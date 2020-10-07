@@ -1,0 +1,42 @@
+
+.header-cdt {
+    position: fixed;
+    display: flex;
+    top: 0px;
+    left: 0px;
+    height: 80px;
+    width: 100%;
+    background: transparent linear-gradient(90deg, #3AA800 0%, #90DD00 100%) 0% 0% no-repeat padding-box;
+    opacity: 1;
+    z-index: 1;
+    justify-content: center;
+
+    .logo {
+        margin-left: 30px;
+        margin-top: 10px;
+
+        img {
+            max-width: 100%;
+        }
+    }
+
+    .texto-encabezado {
+        margin-left: 20px;
+        width: 100%;
+
+        p {
+            font-size: 24px;
+            color: #FFFFFF;
+            font-family: sans-serif;
+        }
+    }
+
+    .img-bancodigital {
+        margin-right: 30px;
+        margin-top: 10px;
+
+        img {
+            max-width: 100%;
+        }
+    }
+}
