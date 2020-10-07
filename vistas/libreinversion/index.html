@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html ng-app="SimuladorVehiculos">
+<head>
+    <!--<meta http-equiv="refresh" content="10">-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="css/libreinversion.min.css" rel="stylesheet">
+    <script src="js/angular.min.js"></script>
+    <script src="src/js/libreinversion.js"></script>
+    <title>Document</title>
+</head>
+<body ng-controller="SimuladorController">
+    <div class="header-credito" >
+        <div class="logo">
+            <img src="img/general/logo.svg">
+        </div>    
+        <div class="texto-encabezado" >
+            <p>Simulador de Crédito de Libre Inversión <span>Banco Finandina</span></p>
+        </div>
+        <div class="img-bancodigital" >
+            <img src="img/general/banca-digital.svg">
+        </div>        
+    </div>
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="card" >
+                <div class="col-12 side-left" >
+                    <div class="texto-superior-imagen" >
+                        <p>Descubre las ventajas de poder solicitar un crédito<span> desde la comodidad de tu casa u oficina<span></p>
+                    </div>
+                    <div class="content-image" >
+                        <div class="img-izquierda">    
+                            <img src="img/general/messenge.svg" >
+                        </div>                        
+                        <div class="img-derecha">
+                            <img src="img/general/woman.png" >
+                        </div>
+
+                    </div>
+                    <div class="content-circunferencias">
+                        <div class="circunferencia"></div>
+                        <div class="circunferencia2"></div>
+                        <div class="circunferencia2"></div>
+                        <div class="circunferencia2"></div>
+                    </div>                    
+                    <!--<div class="content-texto-lateral">
+                        <div class="texto-lateral-inferior">
+                            <p>VIGILADO</p>
+                        </div>
+                        <div class="texto-lateral-superior"> 
+                            <p>DE COLOMBIA<br> 
+                            SUPERINTENDECIA FINACIERA</p>
+                        </div>
+                    </div>-->
+
+                    <div class="texto-inferior-imagen">
+                        <div class="img-super"><img src="img/general/super.svg" ></div>
+                        <div class="texto">
+                            <p>*Los valores descritos en el presente simulador son informativos, se encuentran sujetos a la solicitud formal de crédito realizada por el cliente a Banco Finandina S.A.</p>
+                            <p>** El valor de cuota propuesta no incluye valor de prima mensual de los seguros.</p>
+                        </div>
+                    </div>
+                </div>
+ 
+                <div class="col-12 side-right" >
+                    <div class="card-content">
+                         <div class="texto-superior" >
+                            <p>Juntos conseguiremos lo que deseas, para ello cuéntanos un poco de ti</p>
+                         </div>   
+                       
+
+                        <div class="texto-superior-derecho" >
+                            <p>¿Cuáles son tus ingresos?</p>
+                        </div>
+
+                        <div class="content-caja-select">
+                            <div class="caja-select caja-select-ingresos" >
+                                <div class="ico-form">
+                                    <img src="img/general/money.svg">
+                                </div>
+                                <div class="control-select-input input-ingresos">
+                                    <input >
+                                    <label for="modelocarro" >Tus ingresos</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="texto-superior-derecho" >
+                            <p>Elige el destino de tu crédito</p>
+                        </div>
+
+                        <div class="content-caja-select">
+                            <div class="caja-select" >
+                                <div class="ico-form">
+                                    <img  src="img/general/wallet.svg" >
+                                </div>
+                                <div class="control-select-input">
+                                    <select >
+                                        <option>esto es una prueba</option>
+                                    </select>
+                                </div>
+ 
+                            </div>
+                        </div>
+
+
+                        <div class="texto-monto" >
+                            <p>¿Cuánto dinero necesitas?</p>
+                        </div>
+                        <div class=" content-monto" >
+                            <div class=" caja-monto " >
+                                <div class="ico-form">
+                                    <img src="img/general/money.svg">
+                                </div>
+                                <div class="control-select-input ">
+                                    <input readonly>
+                                    <div class="ico-form2">
+                                        <img src="img/general/money.svg">
+                                    </div>                                      
+                                </div>
+                              
+                            </div>                            
+                        </div>    
+                        <div class="texto-plazo" >
+                            <p>Elige el plazo e identifica una cuota que se acomode a tu bolsillo o flujo de caja:</p>
+                        </div>
+                                              
+                        <div class="content-caja-monto" ng-show="data.ShowMonto60Meses" ng-click="MostrarCuota(id=2)">
+                            <div class="caja-plazos " >
+                                    <label for="modelocarro" >60 meses</label>
+                            </div>                            
+                        </div>
+                        <div class="content-caja-monto" ng-show="data.ShowMonto60MesesCuota">
+                            <div class="caja-plazos-monto " >
+                                <div class="content-monto">
+                                    <div class="content-monto-sup">
+                                        <span class="caja-izquierda"><p>60 meses</p></span>
+                                        <span class="caja-derecha"><img src="img/general/chulo-blue.svg"></span>
+                                    </div>
+                                    <div class="content-monto-inf">
+                                        <span class="caja-izquierda"><p>Cuota mensual</p></span>
+                                        <span class="caja-derecha texto-info">$ {{data.cuotaMensual60 | number}}</span>
+                                    </div>                                    
+                                </div>
+                            </div>                            
+                        </div>                          
+                        <div class="content-caja-monto" ng-show="data.ShowMonto48Meses" ng-click="MostrarCuota(id=3)">
+                            <div class="caja-plazos " >
+                                    <label for="modelocarro" >48 meses</label>
+                            </div>                            
+                        </div>
+                        <div class="content-caja-monto" ng-show="data.ShowMonto48MesesCuota">
+                            <div class="caja-plazos-monto " >
+                                <div class="content-monto">
+                                    <div class="content-monto-sup">
+                                        <span class="caja-izquierda"><p>48 meses</p></span>
+                                        <span class="caja-derecha"><img src="img/general/chulo-blue.svg"></span>
+                                    </div>
+                                    <div class="content-monto-inf">
+                                        <span class="caja-izquierda"><p>Cuota mensual</p></span>
+                                        <span class="caja-derecha texto-info">$ {{data.cuotaMensual48 | number}}</span>
+                                    </div>                                    
+                                </div>
+                            </div>                            
+                        </div>                          
+                        <div class="content-caja-monto" ng-show="data.ShowMonto36Meses" ng-click="MostrarCuota(id=4)">
+                            <div class="caja-plazos " >
+                                    <label for="modelocarro" >36 meses</label>
+                            </div>                            
+                        </div>
+                        <div class="content-caja-monto" ng-show="data.ShowMonto36MesesCuota">
+                            <div class="caja-plazos-monto " >
+                                <div class="content-monto">
+                                    <div class="content-monto-sup">
+                                        <span class="caja-izquierda"><p>36 meses</p></span>
+                                        <span class="caja-derecha"><img src="img/general/chulo-blue.svg"></span>
+                                    </div>
+                                    <div class="content-monto-inf">
+                                        <span class="caja-izquierda"><p>Cuota mensual</p></span>
+                                        <span class="caja-derecha texto-info">$ {{data.cuotaMensual36 | number}}</span>
+                                    </div>                                    
+                                </div>
+                            </div>                            
+                        </div>                          
+                        <div class="content-caja-monto" ng-show="data.ShowMonto24Meses" ng-click="MostrarCuota(id=5)">
+                            <div class="caja-plazos " >
+                                    <label for="modelocarro" >24 meses</label>
+                            </div>                            
+                        </div>
+                        <div class="content-caja-monto" ng-show="data.ShowMonto24MesesCuota">
+                            <div class="caja-plazos-monto " >
+                                <div class="content-monto">
+                                    <div class="content-monto-sup">
+                                        <span class="caja-izquierda"><p>24 meses</p></span>
+                                        <span class="caja-derecha"><img src="img/general/chulo-blue.svg"></span>
+                                    </div>
+                                    <div class="content-monto-inf">
+                                        <span class="caja-izquierda"><p>Cuota mensual</p></span>
+                                        <span class="caja-derecha texto-info">$ {{data.cuotaMensual24 | number}}</span>
+                                    </div>                                    
+                                </div>
+                            </div>                            
+                        </div> 
+                        <div class="content-caja-monto" ng-show="data.ShowMonto12Meses" ng-click="MostrarCuota(id=6)">
+                            <div class="caja-plazos " >
+                                    <label for="modelocarro" >12 meses</label>
+                            </div>                            
+                        </div>
+                        <div class="content-caja-monto" ng-show="data.ShowMonto12MesesCuota">
+                            <div class="caja-plazos-monto " >
+                                <div class="content-monto">
+                                    <div class="content-monto-sup">
+                                        <span class="caja-izquierda"><p>12 meses</p></span>
+                                        <span class="caja-derecha"><img src="img/general/chulo-blue.svg"></span>
+                                    </div>
+                                    <div class="content-monto-inf">
+                                        <span class="caja-izquierda"><p>Cuota mensual</p></span>
+                                        <span class="caja-derecha texto-info">$ {{data.cuotaMensual12 | number}}</span>
+                                    </div>                                    
+                                </div>
+                            </div>                            
+                        </div>
+
+                        <div class="content-buttons">
+                            <button class="button-izquierdo">VER MI PLAN DE PAGOS</button>
+                            <button class="button-derecho">SOLICITAR MI CRÉDITO</button>
+ 
+                        </div>
+                       
+                        <div class="texto-inferior-imagen2" >
+                            <div class="img-super"><img src="img/general/super.svg" ></div>
+                            <div class="texto">
+                                <p>*Los valores descritos en el presente simulador son informativos, se encuentran sujetos a la solicitud formal de crédito realizada por el cliente a Banco Finandina S.A.</p>
+                                <p>** El valor de cuota propuesta no incluye valor de prima mensual de los seguros.</p>
+                            </div>
+                        </div>                                                                                             
+                    </div>
+                </div>                
+            </div>
+        </div>
+        
+    </div>
+ 
+ 
+ 
+ 
+    <footer>
+        <p class="texto-normal">Simulador exclusivo para Crédito de Libre Inversión de Banco Finandina S.A. Todos los derechos reservados 2020 - <b>Banco Finandina<b></p>
+    </footer>
+</body>
+</html>
