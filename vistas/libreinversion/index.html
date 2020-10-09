@@ -4,21 +4,21 @@
     <!--<meta http-equiv="refresh" content="10">-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <link href="css/libreinversion.min.css" rel="stylesheet">
-    <script src="js/angular.min.js"></script>
-    <script src="src/js/libreinversion.js"></script>
+    <link href="../../css/libreinversion/libreinversion.min.css" rel="stylesheet">
+    <script src="../../js/angular.min.js"></script>
+    <script src="../../src/js/libreinversion.js"></script>
     <title>Document</title>
 </head>
 <body ng-controller="SimuladorController">
     <div class="header-credito" >
         <div class="logo">
-            <img src="img/general/logo.svg">
+            <img src="../../img/general/logo.svg">
         </div>    
         <div class="texto-encabezado" >
             <p>Simulador de Crédito de Libre Inversión <span>Banco Finandina</span></p>
         </div>
         <div class="img-bancodigital" >
-            <img src="img/general/banca-digital.svg">
+            <img src="../../img/general/banca-digital.svg">
         </div>        
     </div>
     
@@ -31,10 +31,10 @@
                     </div>
                     <div class="content-image" >
                         <div class="img-izquierda">    
-                            <img src="img/general/messenge.svg" >
+                            <img src="../../img/general/messenge.svg" >
                         </div>                        
                         <div class="img-derecha">
-                            <img src="img/general/woman.png" >
+                            <img src="../../img/general/woman.png" >
                         </div>
 
                     </div>
@@ -55,7 +55,7 @@
                     </div>-->
 
                     <div class="texto-inferior-imagen">
-                        <div class="img-super"><img src="img/general/super.svg" ></div>
+                        <div class="img-super"><img src="../../img/general/super.svg" ></div>
                         <div class="texto">
                             <p>*Los valores descritos en el presente simulador son informativos, se encuentran sujetos a la solicitud formal de crédito realizada por el cliente a Banco Finandina S.A.</p>
                             <p>** El valor de cuota propuesta no incluye valor de prima mensual de los seguros.</p>
@@ -77,7 +77,7 @@
                         <div class="content-caja-select">
                             <div class="caja-select caja-select-ingresos" >
                                 <div class="ico-form">
-                                    <img src="img/general/money.svg">
+                                    <img src="../../img/general/money-blue.svg">
                                 </div>
                                 <div class="control-select-input input-ingresos">
                                     <input >
@@ -93,7 +93,7 @@
                         <div class="content-caja-select">
                             <div class="caja-select" >
                                 <div class="ico-form">
-                                    <img  src="img/general/wallet.svg" >
+                                    <img  src="../../img/general/wallet.svg" >
                                 </div>
                                 <div class="control-select-input">
                                     <select >
@@ -111,19 +111,21 @@
                         <div class=" content-monto" >
                             <div class=" caja-monto " >
                                 <div class="ico-form">
-                                    <img src="img/general/money.svg">
+                                    <img src="../../img/general/money-blue.svg">
                                 </div>
                                 <div class="control-select-input ">
                                     <input readonly>
                                     <div class="ico-form2">
-                                        <img src="img/general/money.svg">
+                                        <img src="../../img/general/money-blue.svg">
                                     </div>                                      
                                 </div>
-                              
+                                <div class="texto-aviso">
+                                    <p>Te prestamos máximo hasta 20 millones</p>
+                                </div>    
                             </div>                            
                         </div>    
                         <div class="texto-plazo" >
-                            <p>Elige el plazo e identifica una cuota que se acomode a tu bolsillo o flujo de caja:</p>
+                            <p>Elige el plazo e identifica una cuota que se acomode a tu bolsillo mes a mes.</p>
                         </div>
                                               
                         <div class="content-caja-monto" ng-show="data.ShowMonto60Meses" ng-click="MostrarCuota(id=2)">
@@ -136,7 +138,7 @@
                                 <div class="content-monto">
                                     <div class="content-monto-sup">
                                         <span class="caja-izquierda"><p>60 meses</p></span>
-                                        <span class="caja-derecha"><img src="img/general/chulo-blue.svg"></span>
+                                        <span class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
                                     </div>
                                     <div class="content-monto-inf">
                                         <span class="caja-izquierda"><p>Cuota mensual</p></span>
@@ -155,7 +157,7 @@
                                 <div class="content-monto">
                                     <div class="content-monto-sup">
                                         <span class="caja-izquierda"><p>48 meses</p></span>
-                                        <span class="caja-derecha"><img src="img/general/chulo-blue.svg"></span>
+                                        <span class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
                                     </div>
                                     <div class="content-monto-inf">
                                         <span class="caja-izquierda"><p>Cuota mensual</p></span>
@@ -174,7 +176,7 @@
                                 <div class="content-monto">
                                     <div class="content-monto-sup">
                                         <span class="caja-izquierda"><p>36 meses</p></span>
-                                        <span class="caja-derecha"><img src="img/general/chulo-blue.svg"></span>
+                                        <span class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
                                     </div>
                                     <div class="content-monto-inf">
                                         <span class="caja-izquierda"><p>Cuota mensual</p></span>
@@ -193,7 +195,7 @@
                                 <div class="content-monto">
                                     <div class="content-monto-sup">
                                         <span class="caja-izquierda"><p>24 meses</p></span>
-                                        <span class="caja-derecha"><img src="img/general/chulo-blue.svg"></span>
+                                        <span class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
                                     </div>
                                     <div class="content-monto-inf">
                                         <span class="caja-izquierda"><p>Cuota mensual</p></span>
@@ -212,7 +214,7 @@
                                 <div class="content-monto">
                                     <div class="content-monto-sup">
                                         <span class="caja-izquierda"><p>12 meses</p></span>
-                                        <span class="caja-derecha"><img src="img/general/chulo-blue.svg"></span>
+                                        <span class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
                                     </div>
                                     <div class="content-monto-inf">
                                         <span class="caja-izquierda"><p>Cuota mensual</p></span>
@@ -229,7 +231,7 @@
                         </div>
                        
                         <div class="texto-inferior-imagen2" >
-                            <div class="img-super"><img src="img/general/super.svg" ></div>
+                            <div class="img-super"><img src="../../img/general/super.svg" ></div>
                             <div class="texto">
                                 <p>*Los valores descritos en el presente simulador son informativos, se encuentran sujetos a la solicitud formal de crédito realizada por el cliente a Banco Finandina S.A.</p>
                                 <p>** El valor de cuota propuesta no incluye valor de prima mensual de los seguros.</p>
