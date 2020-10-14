@@ -21,21 +21,22 @@ app.controller('simuladorCdtController', ['$scope', function ($scope) {
         $scope.data.mensaje = "";
 
         if ($scope.data.montoInversion == "") {
-            data.mensaje = "Debe ingresar el monto de la inversión";
+            $scope.data.mensaje = "Debe ingresar el monto de la inversión";
             return;
         }
         if ($scope.data.plazoDias == "") {
-            data.mensaje = "Debe ingresar el plazo en días";
+            $scope.data.mensaje = "Debe ingresar el plazo en días";
+            return;
+        }
+        if ($scope.data.montoInteresNeto < 1000000) {
+            $scope.data.mensaje = "La inversion mínima es de $1.000.000";
             return;
         }
 
+
         var netoTotal = 0;
-        if (true) {
-            netoTotal = $scope.cdtNormal();
-        }
-        else {
-            netoTotal = $scope.cdtDesmaterializado();
-        }
+        netoTotal = $scope.cdtNormal();
+        //netoTotal = $scope.cdtDesmaterializado();
 
 
         $scope.data.montoInteresNeto = Math.round(netoTotal);
