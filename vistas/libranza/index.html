@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html ng-app="simuladorLibranza">
+<head>
+    <title>Simulador Libranza</title>
+
+    <script src="../../js/angular.min.js"></script>
+    <script src="../../src/js/libranza.js"></script>
+</head>
+<body ng-controller="simuladorLibranzaController">
+
+    <div>
+        <p>Quieres conocer tu capacidad de libranza por:</p>
+    </div>
+    <div>
+        <span>Monto - <input ng-model="data.convenio" ng-change="tipoConvenio()" type="checkbox" /> - Cuota</span>
+    </div>
+
+
+    <div>
+        <p>Selecciona tu convenio</p>
+    </div>
+    <div>
+        <span>¿Cuál es tu actividad?</span>
+        <img src="../../img/general/chulo-blue.svg" />
+        <select>
+            <option>Elige tu opción</option>
+        </select>
+    </div>
+
+
+    <div>
+        <p>Completa los siguientes datos para poder simular tu libranza</p>
+    </div>
+    <div>
+        <span>Indica tus Ingresos</span>
+        <img src="../../img/general/chulo-blue.svg" />
+        <input ng-model="data.ingresos" type="text" autocomplete="off" />
+    </div>
+    <div>
+        <span>Descuentos de nómina</span>
+        <img src="../../img/general/chulo-blue.svg" />
+        <input ng-model="data.descuentoNomina" type="text" autocomplete="off" />
+    </div>
+
+
+    <div ng-if="data.capacidad == 'monto'">
+        <div>
+            <p>¿Cuánto dinero necesitas?</p>
+        </div>
+        <div>
+            <img src="../../img/general/chulo-blue.svg" />
+            <input ng-model="data.montoAprox" type="text" autocomplete="off" />
+        </div>
+    </div>
+    <div ng-if="data.capacidad == 'cuota'">
+        <div>
+            <p>¿Cuál es la cuota que quieres pagar?</p>
+        </div>
+        <div>
+            <img src="../../img/general/chulo-blue.svg">
+            <input ng-model="data.cuotaAprox" type="text" autocomplete="off" />
+        </div>
+    </div>
+
+
+    <div>
+        <div>
+            <p>108 meses</p>
+            <img src="../../img/general/chulo-blue.svg">
+        </div>
+        <div ng-if="data.capacidad == 'monto'">
+            <span>Cuota mensual</span>
+            <span> $ {{data.cuotaAproxCalculada | number}}</span>
+
+        </div>
+        <div ng-if="data.capacidad == 'cuota'">
+            <span>Monto aproximado</span>
+            <span> $ {{data.montoAproxCalculada | number}}</span>
+        </div>
+    </div>
+
+    <button ng-click="analizarDatos()">Calcular</button>
+
+</body>
+</html>
