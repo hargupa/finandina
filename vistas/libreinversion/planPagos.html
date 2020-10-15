@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html ng-app="LibreInversion">
+<head>
+    <!--<meta http-equiv="refresh" content="10">-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="../../css/libreinversion/libreinversion.min.css" rel="stylesheet">
+    <script src="../../js/angular.min.js"></script>
+    <script src="../../src/js/libreinversion.js"></script>
+    <title>Document</title>
+</head>
+<body ng-controller="LibreInversionController">
+    <div class="header-credito" >
+        <div class="logo">
+            <img src="../../img/general/logo-white.svg">
+        </div>    
+        <div class="texto-encabezado" >
+            <p>Simulador de Crédito de Libre Inversión <span>Banco Finandina</span></p>
+        </div>
+        <div class="img-bancodigital" >
+            <img src="../../img/general/banca-digital.svg">
+        </div>        
+    </div>
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="card" >
+                <div class="col-12 side-left" >
+                    <div class="texto-superior-imagen" >
+                        <p>Mereces poder realizar eso que tanto quieres,<span> estás a pocos clics de disfrutar tu crédito 100% digital<span></p>
+                    </div>
+                    <div class="img-planpagos">    
+                        <img src="../../img/general/persons.png" >
+                    </div>                        
+                   
+                    <!--<div class="content-texto-lateral">
+                        <div class="texto-lateral-inferior">
+                            <p>VIGILADO</p>
+                        </div>
+                        <div class="texto-lateral-superior"> 
+                            <p>DE COLOMBIA<br> 
+                            SUPERINTENDECIA FINACIERA</p>
+                        </div>
+                    </div>-->
+
+                    <div class="texto-inferior-imagen">
+                        <div class="img-super"><img src="../../img/general/super.svg" ></div>
+                        <div class="texto">
+                            <p>*Los valores descritos en el presente simulador son informativos, se encuentran sujetos a la solicitud formal de crédito realizada por el cliente a Banco Finandina S.A.</p>
+                            <p>** El valor de cuota propuesta no incluye valor de prima mensual de los seguros.</p>
+                        </div>
+                    </div>
+                </div>
+ 
+                <div class="col-12 side-right" >
+                    <div class="card-content">
+                        <div class="content-img-texto">
+                            <div class="img-pc">
+                                <img src="../../img/general/pc.png">
+                            </div>
+                            <div class="content-texto">
+                                <p>Gracias por contarnos qué deseabas.<br> Aquí están los datos de tu simulación:</p>
+                                <div class="texto-valores">
+                                    <p>Tus ingresos: <span>$2.000.000</span><br>
+                                    Valor de tu crédito:<span> $12.000.000</span><br>
+                                    Plazo: <span>12 meses</span></p>
+                                </div>
+                            </div>                            
+                        </div>
+                        <div class="content-img-texto-2">
+                            <div class="texto-superior-img">
+                                <p>Gracias por contarnos qué deseabas.<br> Aquí están los datos de tu simulación:</p>                               
+                            </div>
+                            <div class="content-texto">
+                                <div class="img-pc">
+                                    <img src="../../img/general/pc.png">
+                                </div>                                
+                                <div class="texto-valores">
+                                    <p>Tus ingresos: <span>$2.000.000</span><br>
+                                    Valor de tu crédito:<span> $12.000.000</span><br>
+                                    Plazo: <span>12 meses</span></p>
+                                </div>
+                            </div>                            
+                        </div>
+
+                        <div class="texto-tabla">
+                            <p>¡Fantástico! Y así quedaría tu plan de pagos</p>
+                        </div>
+                        <div class="texto-tabla-2">
+                            <p>¡Fantástico!<br>Y así quedaría tu plan de pagos</p>
+                        </div>                        
+                        <div class="content-tabla" >
+                            <table class="tabla" >
+                                <tr>
+                                    <th>Mes</th>
+                                    <th>Cuota</th>
+                                    <th>Abono Capital</th>
+                                    <th>Interés</th>
+                                    <th>Saldo</th>
+                                </tr>
+                                  <tr>
+                                    <td class="celda-1">1</td>
+                                    <td class="celda-1">$400.000</td>
+                                    <td class="celda-1">$165.440</td>
+                                    <td class="celda-1">$165.440</td>
+                                    <td class="celda-1">$165.440</td>
+                                  </tr>
+                                 
+                                  <tr>
+                                    <td class="celda-2">2</td>
+                                    <td class="celda-2">$400.000</td>
+                                    <td class="celda-2">$165.440</td>
+                                    <td class="celda-2">$165.440</td>
+                                    <td class="celda-2">$165.440</td>
+                                  </tr> 
+                                  <tr>
+                                    <td class="celda-1">3</td>
+                                    <td class="celda-1">$400.000</td>
+                                    <td class="celda-1">$165.440</td>
+                                    <td class="celda-1">$165.440</td>
+                                    <td class="celda-1">$165.440</td>
+                                  </tr> 
+                                  <tr>
+                                    <td class="celda-2">4</td>
+                                    <td class="celda-2">$400.000</td>
+                                    <td class="celda-2">$165.440</td>
+                                    <td class="celda-2">$165.440</td>
+                                    <td class="celda-2">$165.440</td>
+                                  </tr> 
+                                  <tr>
+                                    <td class="celda-1">5</td>
+                                    <td class="celda-1">$400.000</td>
+                                    <td class="celda-1">$165.440</td>
+                                    <td class="celda-1">$165.440</td>
+                                    <td class="celda-1">$165.440</td>
+                                  </tr> 
+                                  <tr>
+                                    <td class="celda-2">6</td>
+                                    <td class="celda-2">$400.000</td>
+                                    <td class="celda-2">$165.440</td>
+                                    <td class="celda-2">$165.440</td>
+                                    <td class="celda-2">$165.440</td>
+                                  </tr> 
+                                  <tr>
+                                    <td class="celda-1">7</td>
+                                    <td class="celda-1">$400.000</td>
+                                    <td class="celda-1">$165.440</td>
+                                    <td class="celda-1">$165.440</td>
+                                    <td class="celda-1">$165.440</td>
+                                  </tr> 
+                                  <tr>
+                                    <td class="celda-2">8</td>
+                                    <td class="celda-2">$400.000</td>
+                                    <td class="celda-2">$165.440</td>
+                                    <td class="celda-2">$165.440</td>
+                                    <td class="celda-2">$165.440</td>
+                                  </tr> 
+                                  <tr>
+                                    <td class="celda-1">9</td>
+                                    <td class="celda-1">$400.000</td>
+                                    <td class="celda-1">$165.440</td>
+                                    <td class="celda-1">$165.440</td>
+                                    <td class="celda-1">$165.440</td>
+                                  </tr> 
+                                  <tr>
+                                    <td class="celda-2">10</td>
+                                    <td class="celda-2">$400.000</td>
+                                    <td class="celda-2">$165.440</td>
+                                    <td class="celda-2">$165.440</td>
+                                    <td class="celda-2">$165.440</td>
+                                  </tr> 
+                                  <tr>
+                                    <td class="celda-1">11</td>
+                                    <td class="celda-1">$400.000</td>
+                                    <td class="celda-1">$165.440</td>
+                                    <td class="celda-1">$165.440</td>
+                                    <td class="celda-1">$165.440</td>
+                                  </tr> 
+                                  <tr>
+                                    <td class="celda-2">12</td>
+                                    <td class="celda-2">$400.000</td>
+                                    <td class="celda-2">$165.440</td>
+                                    <td class="celda-2">$165.440</td>
+                                    <td class="celda-2">$165.440</td>
+                                  </tr>                                                                                                             
+                            </table>
+                        </div>
+                        <div class="total-tabla">
+                            <p>Total<span>$2.016.086</span></p>
+                        </div>
+                        <div class="content-button-descarga">
+                            <div class="caja-vacia">
+                                
+                            </div>
+                            <div class="content-button-descarga-int">
+                                <button class="button-descarga">Descarga tu plan de pagos  </button>     
+                            </div>
+                                                   
+                        </div>
+
+                        <div class="texto-correo">
+                            <p>Ingresa tu correo y recibe una copia de la simulación del plan de pagos</p>
+                        </div>
+                        <div class="content-caja-correo">
+                            <div class="caja-select " >
+                                <div class="ico-form">
+                                    <img src="../../img/general/plain.svg">
+                                </div>
+                                <div class="control-select-input input-correo">
+                                    <input >
+                                    <div class="content-button-correo"><button class="button-correo">ENVIAR</button></div>     
+                                </div>
+                            </div>
+                            <div class="content-button-correo-2"><button class="button-correo">ENVIAR</button></div>     
+                        </div>
+
+                        <div class="content-buttons-planpagos">
+                            <button class="button-izquierdo-planpago">SIMULAR OTRO CRÉDITO</button>
+                            <button class="button-derecho-planpago">SOLICITAR MI CRÉDITO</button>
+ 
+                        </div>
+                       
+                        <div class="texto-inferior-imagen2" >
+                            <div class="img-super"><img src="../../img/general/super.svg" ></div>
+                            <div class="texto">
+                                <p>*Los valores descritos en el presente simulador son informativos, se encuentran sujetos a la solicitud formal de crédito realizada por el cliente a Banco Finandina S.A.</p>
+                                <p>** El valor de cuota propuesta no incluye valor de prima mensual de los seguros.</p>
+                            </div>
+                        </div>                                                                                             
+                    </div>
+                </div>                
+            </div>
+        </div>
+        
+    </div>
+ 
+ 
+ 
+ 
+    <footer>
+        <p class="texto-normal">Simulador exclusivo para Crédito de Libre Inversión de Banco Finandina S.A.<span> Todos los derechos reservados 2020 - Banco Finandina</span></p>
+    </footer>
+</body>
+</html>
