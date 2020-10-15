@@ -1,5 +1,5 @@
-var app=angular.module("Libranza",[]);
-app.controller("LibranzaController",function($scope){
+var app = angular.module("Libranza", []);
+app.controller('LibranzaController', ['$scope', function ($scope) {
 
     $scope.data = {
         ShowMonto108Meses:true,
@@ -122,5 +122,5 @@ app.controller("LibranzaController",function($scope){
 
 
 
-});
+}]);
     

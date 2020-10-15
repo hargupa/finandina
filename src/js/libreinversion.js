@@ -1,5 +1,8 @@
 var app = angular.module("SimuladorVehiculos", []);
-app.controller("SimuladorController", function ($scope) {
+
+//app.controller("SimuladorController", function ($scope) {
+app.controller('SimuladorController', ['$scope', function ($scope) {
+
 
     $scope.data = {
         ShowMonto60Meses: true,
@@ -171,4 +174,4 @@ app.controller("SimuladorController", function ($scope) {
 
 
 
-});
+}]);
