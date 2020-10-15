@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html ng-app="Libranza">
+<head>
+    <!--<meta http-equiv="refresh" content="10">-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="../../css/libranza/formContacto.min.css" rel="stylesheet">
+    <script src="../../js/angular.min.js"></script>
+    <script src="../../src/js/libranza.js"></script>
+    <title>Document</title>
+</head>
+<body ng-controller="LibranzaController">
+     <div class="header-credito" >
+        <div class="logo">
+            <img src="../../img/general/logo-white.svg">
+        </div>    
+        <div class="texto-encabezado" >
+            <p>Simulador de Libranza <span>Banco Finandina</span></p>
+        </div>
+        <div class="img-bancodigital" >
+            <img src="../../img/general/banca-digital.svg">
+        </div>        
+    </div>
+    
+    <div class="row" >
+        <div class="col-12">
+            <div class="card" >
+                <div class="col-12 side-left" >
+                    <div class="texto-superior-imagen" >
+                        <p>Conoce el valor apróximado de la cuota de <span> tu libranza<span></p>
+                    </div>
+                    <div class="content-image" >
+                        <div class="img-super"><img src="../../img/general/super.svg" ></div>                
+                        <div class="img-derecha">
+                            <img ng-show="data.ShowImgDefault" src="../../img/general/men.png" >
+                            <img ng-show="data.ShowImgSectorPublico" src="../../img/general/sector-publico.png" >
+                            <img ng-show="data.ShowImgDocente" src="../../img/general/docente.png" >
+                            <img ng-show="data.ShowImgFuerzas" src="../../img/general/militar.png" >
+                            <img ng-show="data.ShowImgPensionado" src="../../img/general/pensionado.png" >
+                        </div>
+                                    
+                    </div>
+
+                    <div class="texto-inferior-imagen">
+                        
+                        <div class="texto">
+                            <p>*El valor es aproximado teniendo en cuenta la tasa de interés aplicable a la fecha</p>
+                            <p>La aprobación definitiva de la solicitud de financiación y la tasa de interés del crédito estarán sujetos a las politicas de crédito y condiciones definidas por el Banco Finandina S.A.</p>
+                            <p>La cuota aproximada no incluye seguros y otros cargos.</p>                            
+                        </div>
+                    </div>
+                </div>
+ 
+
+
+                <div class="col-12 side-right" >
+       
+                    <div class="card-content" ng-show="data.ShowTerminos" ng-hide="data.ShowForm">
+                        <div class="texto-encabezado-terminos">
+                            <p >Términos y condiciones legales</p>
+                        </div>
+                        <div class="texto-terminos">
+                            <textarea name="" readonly>
+                                
+                            </textarea>
+                        </div>
+                        <div class="content-buttons">
+                            <button class="button-derecho2" ng-click="ocultarTerminos()">ACEPTAR</button>
+                        </div>        
+                    </div> 
+
+
+
+                    <div class="card-content" ng-show="data.ShowForm">
+                        <div class="texto-superior-derecho " >
+                            <p>Diligencia el formulario para contactarte y ampliar la información sobre nuestras cuotas de libranza.</p>
+                        </div>
+
+                        <div class="texto-monto" >
+                            <p>Escribe tu nombre y apellido</p>
+                        </div>
+                        <div class=" content-monto" >
+                            <div class=" caja-monto input-nombre" >
+                                <div class="ico-form">
+                                    <img src="../../img/general/person-blue.svg">
+                                </div>
+                                <div class="control-select-input ">
+                                    <input >
+                                </div>
+                            </div>                            
+                        </div>    
+
+                        <div class="texto-monto" >
+                            <p>Indica tu número de celular</p>
+                        </div>
+                        <div class=" content-monto" >
+                            <div class=" caja-monto input-celular" >
+                                <div class="ico-form">
+                                    <img src="../../img/general/cellphone-blue.svg">
+                                </div>
+                                <div class="control-select-input ">
+                                    <input >
+                                </div>
+                            </div>                            
+                        </div> 
+
+                        <div class="texto-monto" >
+                            <p>Indica tu correo electrónico</p>
+                        </div>
+                        <div class=" content-monto" >
+                            <div class=" caja-monto input-correo" >
+                                <div class="ico-form">
+                                    <img src="../../img/general/plane-blue.svg">
+                                </div>
+                                <div class="control-select-input ">
+                                    <input >
+                                </div>
+                            </div>                            
+                        </div>   
+
+
+                        <div class="container-switch" >
+                            <div class="texto-switch" >
+                                <p class="texto-switch-descripcion-1">He leído y autorizo el tratamiento de mis datos personales de conformidad con lo enunciado en la  <a href="#" ng-click="mostrarTerminos()">Política de Tratamiento de Datos.</a></p>
+                                <p class="texto-switch-descripcion-2">He leído y acepto los <br><a href="#" ng-click="mostrarTerminos()"> términos y condiciones legales</a></p>                                
+                            </div>
+                            <div class="container-switch-movil" >
+                                <div class="switch-button">
+                                    <input type="checkbox" name="switch-button" id="switch-label" class="switch-button__checkbox" checked ng-model="data.recibirExtractos">
+                                    <label for="switch-label" class="switch-button__label">
+                                        <div class="container-switch-texto">
+                                            <div class="switch-texto-izquierdo">
+                                                <p >SI</p>
+                                            </div>
+                                            <div class="switch-texto-derecho">
+                                                <p >NO</p>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="content-buttons">
+                            <button class="button-izquierdo">¡LO QUIERO!</button>
+                            <button class="button-derecho">ENVIAR</button>
+ 
+                        </div>
+
+                        <div class="texto-inferior-imagen2" >
+                            <div class="img-super"><img src="../../img/general/super.svg" ></div>
+                            <div class="texto">
+                                <p>*El valor es aproximado teniendo en cuenta la tasa de interés aplicable a la fecha</p>
+                                <p>La aprobación definitiva de la solicitud de financiación y la tasa de interés del crédito estarán sujetos a las politicas de crédito y condiciones definidas por el Banco Finandina S.A.</p>
+                                <p>La cuota aproximada no incluye seguros y otros cargos.</p>
+                            </div>
+                        </div>                                                                                             
+                    </div>
+                </div>                
+            </div>
+        </div>
+        
+    </div>
+    
+
+
+    <footer>
+        <p class="texto-normal">Todos los derechos reservados 2020 <span class="guion">-</span><span> Banco Finandina</span></p>
+    </footer>
+</body>
+</html>
