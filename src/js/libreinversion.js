@@ -8,7 +8,7 @@ app.controller('SimuladorController', ['$scope', function ($scope) {
         ShowMonto60Meses: true,
         ShowMonto60MesesCuota: false,
         ShowMonto48Meses: true,
-        ShowMonto48MesesCuota: false,
+        ShowMonto48MesesCuota: false, 
         ShowMonto36Meses: true,
         ShowMonto36MesesCuota: false,
         ShowMonto24Meses: true,
