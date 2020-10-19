@@ -12,7 +12,7 @@
 <body ng-controller="SimuladorController">
     <div class="header-credito">
         <div class="logo">
-            <img src="../../img/general/logo.svg">
+            <img src="../../img/general/logo-white.svg">
         </div>
         <div class="texto-encabezado">
             <p>Simulador de Crédito de Libre Inversión <span>Banco Finandina</span></p>
@@ -30,19 +30,16 @@
                         <p>Descubre las ventajas de poder solicitar un crédito<span> desde la comodidad de tu casa u oficina<span></p>
                     </div>
                     <div class="content-image">
-                        <div class="img-izquierda">
-                            <img src="../../img/general/messenge.svg">
+                        <div class="img-izquierda" id="img-msg">
                         </div>
-                        <div class="img-derecha">
-                            <img src="../../img/general/woman.png">
+                        <div class="img-derecha" id="img-woman">
                         </div>
-
                     </div>
                     <div class="content-circunferencias">
-                        <div class="circunferencia"></div>
-                        <div class="circunferencia2"></div>
-                        <div class="circunferencia2"></div>
-                        <div class="circunferencia2"></div>
+                        <div id="c1" class="circunferencia"></div>
+                        <div id="c2" class="circunferencia2"></div>
+                        <div id="c3" class="circunferencia2"></div>
+                        <div id="c4" class="circunferencia2"></div>
                     </div>
                     <!--<div class="content-texto-lateral">
                         <div class="texto-lateral-inferior">
@@ -114,8 +111,8 @@
                                 </div>
                                 <div class="control-select-input ">
                                     <input ng-model="data.dineronecesito" type="text" autocomplete="off">
-                                    <div class="ico-form2">
-                                        <img src="../../img/general/money-blue.svg">
+                                    <div class="ico-form2" ng-show="data.ShowErrorValor">
+                                        <img src="../../img/general/alert.png">
                                     </div>
                                 </div>
                                 <div class="texto-aviso">
@@ -124,7 +121,7 @@
                             </div>
                         </div>
                         <div class="texto-plazo">
-                            <p>Elige el plazo e identifica una cuota que se acomode a tu bolsillo mes a mes.</p>
+                            <p>Elige el plazo e identifica una cuota que se acomode a tu bolsillo o flujo de caja:</p>
                         </div>
 
                         <div class="content-caja-monto" ng-show="data.ShowMonto60Meses" ng-click="MostrarCuota(id=2)">
@@ -249,5 +246,36 @@
     <footer>
         <p class="texto-normal">Simulador exclusivo para Crédito de Libre Inversión de Banco Finandina S.A. Todos los derechos reservados 2020 - <b>Banco Finandina<b></p>
     </footer>
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) { 
+        setInterval('CambiarImagen()',4000);
+    })
+    function CambiarImagen(){
+        var i;
+            for(i=1;i<=4;i++){
+                let nomdiv = document.getElementById('c'+i);
+                    if(nomdiv.className=='circunferencia'){
+                        if (i==4){
+                            let divcambio = document.getElementById('c1');
+                            divcambio.className='circunferencia';
+                            nomdiv.className='circunferencia2';
+                            document.getElementById('img-msg').innerHTML='<img src="../../img/general/messenge-libreinversion-1.svg">';
+                            document.getElementById('img-woman').innerHTML='<img src="../../img/general/woman-1.png">';
+                        }else{
+                            i = i+1;
+                            let divcambio = document.getElementById('c'+i);
+                            divcambio.className='circunferencia';
+                            nomdiv.className='circunferencia2';
+                            document.getElementById('img-msg').innerHTML='<img src="../../img/general/messenge-libreinversion-'+i+'.svg">';
+                            document.getElementById('img-woman').innerHTML='<img src="../../img/general/woman-'+i+'.png">';                            
+                            break;                        
+
+                        }
+                    };
+            }
+    }
+</script>
+
+
 </body>
 </html>

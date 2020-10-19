@@ -153,63 +153,50 @@ footer {
 .side-left{
     width: 100%;
     height: auto;
-    .texto-superior-imagen{
-        width: 60%;
+    .texto-superior-imagen {
+        width: 70%;
         text-align: left;
-        margin-left:20% ;
-        p{
-            font-family:'Open_Sans_Regular';
+        margin-left: 10%;
+
+        p {
+            font-family: 'Open_Sans_Regular';
             font-size: 36px;
-            span{
-                color:red;
-                font-family:'Open_Sans_Bold';
+
+            span {
+                color: red;
+                font-family: 'Open_Sans_Bold';
             }
         }
     }
-    .img-izquierda{
-        text-align: center;
+    .content-img{
+        display: flex;
+        margin-left: 22px;
+        .img-super{
+            margin-top: 150px;
+        }
+        .img-izquierda {
+            background-color:black;
+            margin-left: -10px;
+            img{
+                max-width: 50%;
+            }
+        }        
     }
     .texto-inferior-imagen{
-        width: 80%;
         text-align: left;
-        margin-left:10% ;
-        margin-bottom: 40px;
-
+        margin-left: 30px;
+        width:90%;
+        max-width: 90%; 
         p{
             font-family:'Open_Sans_Regular';
             font-size: 12px;
-        }
+        }            
+      
+
     }
 
-    .texto-lateral-superior{
-        writing-mode:vertical-lr;
-        transform:rotate(180deg);
-        position: absolute;
-        margin-left:14px;
-        top:500px;
-        p{
-            font-family:'Open_Sans_Semi_Bold';
-            font-size: 8px;
-        }
-    }
-    .texto-lateral-inferior{
-        writing-mode:vertical-lr;
-        transform:rotate(180deg);
-        position: absolute;
-        border-left:solid 2px black;
-        border-right: solid 2px black;
-        height: 75px;
-        width:13.2px;
-        margin-left:22.29px;
-        top:630px;
-        p{
-            letter-spacing: 3px;
-            margin-left:1%;
 
-            font-family:'Open_Sans_Bold';
-            font-size: 11px;
-        }
-    }
+
  
 }
 
@@ -306,7 +293,9 @@ footer {
 
         }
 
-
+        .texto-inferior-imagen2{
+            display:none;
+        }
         .container-switch{
             display: flex;
             width: 55%;
@@ -559,24 +548,38 @@ input:focus, input.form-control:focus {
 
     .side-left{
         width: 100%;
-            .texto-superior-imagen{
-                margin: auto auto auto auto;
-                width: 100%;
+        margin: auto auto 10px auto;
+            .texto-superior-imagen {
+                margin: 10px auto 20px auto;
+                width: 88%;
 
-                p{
-                   margin: auto auto auto 2rem;
-                   font-family: 'Open_Sans_Regular';
-                   font-size: 24px;
+                p {
+                    margin: auto auto auto auto;
+                    font-family: 'Open_Sans_Regular';
+                    font-size: 24px;
                 }
             }
+
             .texto-inferior-imagen{
                 display: none;
             }
-            .texto-lateral-inferior{
-                display: none;
-            }
-            .texto-lateral-superior{
-                display: none;
+
+            .content-img{
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                .img-super{
+                    display: none;
+                }
+                .img-izquierda {
+                margin-left: auto;
+                margin-right: auto;                
+                    img{
+                        width: 10%;
+                    }
+                }        
             }
 
     }
@@ -684,41 +687,30 @@ input:focus, input.form-control:focus {
                                 font-family: 'Open_Sans_Regular';
                             }
                     }
-
-                    .content-texto-lateral2{
+                    .texto-inferior-imagen2{
                         display: block;
-                            .texto-lateral-superior2{
-                                display: block;
-                                writing-mode:vertical-lr;
-                                transform:rotate(180deg);
-                                float:left;
-                                margin-top: -30px;
-                                margin-left: 15px;
+                        display: flex;
+                        margin-left: 20px;
+                        margin-bottom: 20px;
+                        .img-super{
+                            margin-top: 10px;
+                        }
+                        .texto{
+                            text-align: left;
+                            margin-left: 20px;
+                            width:80%;
+                            max-width: 80%;
+                            color:#707070; 
+                            p{
+                                font-family:'Open_Sans_Regular';
+                                font-size: 10px;
+                            }            
 
-                                    p{
-                                        font-family:'Open_Sans_Semi_Bold';
-                                        font-size: 6px;
-                                    }
-                            }
-                            .texto-lateral-inferior2{
-                                display: block;
-                                writing-mode:vertical-lr;
-                                transform:rotate(180deg);
-                                float:left;
-                                border-left:solid 2px black;
-                                border-right: solid 2px black;
-                                height: 60px;
-                                width:13.2px;
-                                margin-left: -25px;
-                                margin-top: 60px;
-                                    p{
-                                        letter-spacing: 3px;
-                                        margin-left:3px;
-                                        font-family:'Open_Sans_Bold';
-                                        font-size: 6px;
-                                    }
-                            }              
+                        }
+                        
+
                     }
+
                     .container-switch{
                         display: flex;
                             .texto-switch{

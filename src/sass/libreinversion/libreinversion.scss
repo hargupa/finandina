@@ -354,14 +354,37 @@ footer {
         .texto-tabla{
             margin:20px auto auto 30px;
             text-align: left;
+            display: flex;
             p{
 
                 font-family:'Open_Sans_Bold';
                 font-size: 16px;
             }
+            .ico-form3 {
+                width: 30px;
+                float: left;
+                height: 40px;
+                margin-top:10px;
+                margin-right: 6px;
+                img, svg {
+                    margin: auto;
+                    display: block;
+                }
+            }             
         }
         .texto-tabla-2{
             display: none;
+            .ico-form3 {
+                width: 30px;
+                position:absolute;
+                height: 40px;
+                margin-top:-8px;
+                margin-left: 85px;
+                img, svg {
+                    margin: auto;
+                    display: block;
+                }
+            }            
         }
         .content-tabla{
             margin:20px 30px auto 30px;
@@ -375,7 +398,7 @@ footer {
                     background:#707070;
                     font-family:'Open_Sans_Bold';
                     font-size: 16px;
-                    border: 0px solid #707070;
+
                 }
                 td{
                     font-family:'Open_Sans_Bold';
@@ -387,33 +410,31 @@ footer {
                 }
                 .celda-2{
                     background:#F5F5F5;
-                }                
-            }
-        }
-        .total-tabla{
-            background:#398FF9;
-            margin:-10px 30px auto 30px;
-            height: 36px;
-            width: 90%;
-            text-align: left;
-            p{
-                font-family:'Open_Sans_Bold';
-                font-size: 16px;
-                margin-left: 14px;
-                padding-top:5px;
-                color:#FDFDFD;     
+                }
+                .total-tabla{
+                    //background:#398FF9;
+                    text-align: center;
+                    p{
+                        font-family:'Open_Sans_Bold';
+                        font-size: 16px;
+                        margin-left: 14px;
+                        padding-top:5px;
+                        color:#FDFDFD;     
 
-            }
-            span{
-                 margin-left: 125px;     
+                    }
+                    th{
+                        background:#398FF9;    
+                    }
+                }                                
             }
         }
+
         .content-button-descarga{
             display: flex;
             width: 100%;
             margin-top: 20px;
             .content-button-descarga-int{
-                width: 80%;
+                width: 60%;
                 padding-right:30px;
                 .button-descarga{
                     background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -428,6 +449,8 @@ footer {
                     background-image:url('../../img/general/download.svg');
                     background-position: 95%  10px;
                     cursor: pointer;
+                    text-align: left;
+                    padding-left:25px;
                   
                 }                
             }
@@ -520,7 +543,7 @@ footer {
                             font-size: 12px;
                             color:#FFFFFF;
                             background-image:url('../../img/general/chulo-black.svg');
-                            background-position: 95%  10px;
+                            background-position: 95%  13px;
                             cursor: pointer;
                          
                         }                    
@@ -698,8 +721,8 @@ footer {
                     width: 30px;
                     float: right;
                     height: 40px;
-                    margin-top:13px;
-                    margin-right: -2px;
+                    margin-top:8px;
+                    margin-right: 2px;
                     img, svg {
                         margin: auto;
                         display: block;
@@ -1136,12 +1159,13 @@ input:focus, input.form-control:focus {
 
     .side-left{
         width: 100%;
+        margin: auto auto auto auto;
             .texto-superior-imagen{
-                margin: auto auto 20px 8px;
-                width: 80%;
+                margin: 10px auto 10px auto;
+                width: 90%;
 
                 p{
-                   margin: auto auto auto 1rem;
+                   margin: auto auto auto auto;
                    font-family: 'Open_Sans_Regular';
                    font-size: 18px;
                 }
@@ -1193,6 +1217,7 @@ input:focus, input.form-control:focus {
                         flex-direction: column;
                         margin:10px 20px 23px 20px;
                         .texto-superior-img{
+                            margin-bottom: 10px;
                             p{
                                 font-family:'Open_Sans_Bold';
                                 font-size: 14px;

@@ -4,7 +4,7 @@
     <!--<meta http-equiv="refresh" content="10">-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <link href="../../css/simuladorvehiculos.min.css" rel="stylesheet">
+    <link href="../../css/simuladorvehiculos/simuladorvehiculos.min.css" rel="stylesheet">
     <script src="../../js/angular.min.js"></script>
     <script src="../../src/js/simuladorvehiculos.js"></script>
     <title>Document</title>
@@ -32,25 +32,20 @@
                     <div class="texto-superior-imagen" ng-hide="data.ShowImgCarro" ng-show="data.ShowImgMoto">
                         <p>Conoce el valor apróximado de la cuota de <span>tu próximo moto</span></p>
                     </div>
-                    <div clas="img-izquierda" ng-show="data.ShowImgCarro">
-                        <img src="../../img/general/persons-car.png" style="max-width: 100%;">
-                    </div>
-                    <div clas="img-izquierda" ng-show="data.ShowImgMoto" ng-hide="data.ShowImgCarro">
-                        <img src="../../img/general/person-moto.png" style="max-width: 100%;">
-                    </div>
-                    <div class="content-texto-lateral">
-                        <div class="texto-lateral-inferior">
-                            <p>VIGILADO</p>
-                        </div>
-                        <div class="texto-lateral-superior">
-                            <p>
-                                DE COLOMBIA<br>
-                                SUPERINTENDECIA FINACIERA
-                            </p>
+                    <div class="content-img">
+                        <div class="img-super"><img src="../../img/general/super.svg"></div>
+                        <div clas="img-izquierda" ng-show="data.ShowImgCarro">
+                            <img src="../../img/general/persons-car.png" style="max-width: 100%;">
+                        </div> 
+                        <div clas="img-izquierda" ng-show="data.ShowImgMoto" ng-hide="data.ShowImgCarro">
+                            <img src="../../img/general/person-moto.png" style="max-width: 100%;">
                         </div>
                     </div>
 
+
+
                     <div class="texto-inferior-imagen">
+                         
                         <p>*El valor es aproximado teniendo en cuenta la tasa de interés aplicable a la fecha.</p>
                         <p>La aprobación definitiva de la solicitud de financiación y la tasa de interés del crédito estarán sujetos a las políticas de crédito y condiciones definidas por el Banco Finandina S.A.</p>
                         <p>La cuota aproximada no incluye seguros y otros cargos.</p>
@@ -269,21 +264,14 @@
                             <button class="button-derecho">¡LO QUIERO!</button>
 
                         </div>
-                        <div class="content-texto-lateral2">
-                            <div class="texto-lateral-superior2">
-                                <p>
-                                    DE COLOMBIA<br>
-                                    SUPERINTENDECIA FINACIERA
-                                </p>
+
+                        <div class="texto-inferior-imagen2">
+                            <div class="img-super"><img src="../../img/general/super.svg"></div>
+                            <div class="texto">
+                                <p>*Los valores descritos en el presente simulador son informativos, se encuentran sujetos a la solicitud formal de crédito realizada por el cliente a Banco Finandina S.A. </p>
+                                <p>** El valor de cuota propuesta no incluye valor de prima mensual de seguro de vida .</p>
+                                <p>***Simulador exclusivo para crédito de Vehículo de Banco Finandina S.A.</p>                                
                             </div>
-                            <div class="texto-lateral-inferior2">
-                                <p>VIGILADO</p>
-                            </div>
-                        </div>
-                        <div class="texto-responsive">
-                            <p>*Los valores descritos en el presente simulador son informativos, se encuentran sujetos a la solicitud formal de crédito realizada por el cliente a Banco Finandina S.A. </p>
-                            <p>** El valor de cuota propuesta no incluye valor de prima mensual de seguro de vida .</p>
-                            <p>***Simulador exclusivo para crédito de Vehículo de Banco Finandina S.A.</p>
                         </div>
                     </div>
                 </div>
