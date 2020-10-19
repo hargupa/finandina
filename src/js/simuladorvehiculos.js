@@ -119,7 +119,7 @@ app.controller('SimuladorController', ['$scope', function ($scope) {
     };
 
     $scope.calcularDatos = function () {
-        if ($scope.data.precioVehiculo !== '' && $scope.data.cuotaInicial !== '') {
+        if ($scope.data.precioVehiculo !== '' && $scope.data.cuotaInicial !== '' && $scope.data.plazo !== '') {
 
             var cuota = ($scope.data.precioVehiculo * 20) / 100;
             if (parseInt($scope.data.cuotaInicial) == cuota) {
@@ -130,9 +130,12 @@ app.controller('SimuladorController', ['$scope', function ($scope) {
             }
 
             $scope.data.montoFinanciar = $scope.data.precioVehiculo - $scope.data.cuotaInicial;
+            $scope.data.cuotaMensual = $scope.calculoCuotaMensual($scope.data.tasa, $scope.data.plazo, $scope.data.montoFinanciar);
         }
-        else
+        else {
             $scope.data.montoFinanciar = 0;
+            $scope.data.plazo = 0;
+        }
     };
 
 }]);
