@@ -1,5 +1,5 @@
 var app = angular.module("SimuladorVehiculos", []);
-app.controller('SimuladorController', ['$scope', function ($scope) {
+app.controller('SimuladorController', ['$scope', '$window', function ($scope, $window) {
 
     $scope.Math = window.Math;
     $scope.data = {
@@ -44,31 +44,31 @@ app.controller('SimuladorController', ['$scope', function ($scope) {
                 $scope.data.ShowMonto72Meses = false;
                 $scope.data.ShowMonto72MesesCuota = true;
                 $scope.data.plazo = 72;
-                //$scope.data.cuotaMensual = $scope.calculoCuotaMensual($scope.data.tasa, 72, $scope.data.montoFinanciar);
                 break;
             case 2:
                 $scope.data.ShowMonto60Meses = false;
                 $scope.data.ShowMonto60MesesCuota = true;
                 $scope.data.plazo = 60;
-                //$scope.data.cuotaMensual = $scope.calculoCuotaMensual($scope.dkata.tasa, 60, $scope.data.montoFinanciar);
                 break;
             case 3:
                 $scope.data.ShowMonto48Meses = false;
                 $scope.data.ShowMonto48MesesCuota = true;
                 $scope.data.plazo = 48;
-                //$scope.data.cuotaMensual = $scope.calculoCuotaMensual($scope.data.tasa, 48, $scope.data.montoFinanciar);
                 break;
             case 4:
                 $scope.data.ShowMonto36Meses = false;
                 $scope.data.ShowMonto36MesesCuota = true;
                 $scope.data.plazo = 36;
-                //$scope.data.cuotaMensual = $scope.calculoCuotaMensual($scope.data.tasa, 36, $scope.data.montoFinanciar);
                 break;
             case 5:
                 $scope.data.ShowMonto24Meses = false;
                 $scope.data.ShowMonto24MesesCuota = true;
-                $scope.data.plazo = 36;
-                //$scope.data.cuotaMensual = $scope.calculoCuotaMensual($scope.data.tasa, 24, $scope.data.montoFinanciar);
+                $scope.data.plazo = 24;
+                break;
+            case 6:
+                $scope.data.ShowMonto12Meses = false;
+                $scope.data.ShowMonto12MesesCuota = true;
+                $scope.data.plazo = 12;
                 break;
         }
 
@@ -106,20 +106,32 @@ app.controller('SimuladorController', ['$scope', function ($scope) {
         $scope.data.ShowTerminos = false;
     }
 
-    $scope.calculoCuotaMensual = function (tasa, plazo, monto) {
 
-        //Formula Pago de excel es: (Tasa * [(1 + Tasa) ^ Plazo] * Monto Financiar) / ([(1 + Tasa) ^ Plazo] - 1)
-        tasa = tasa / 100; //Se combierte el valor de la tasa en porcentaje %
 
-        var calculo = (1 + tasa) ** plazo;
-        var cuotamensual = (tasa * calculo * monto) / (calculo - 1);
+    $scope.validaciones = function () {
+        $scope.data.mensajes = ""
 
-        var result = Math.round(cuotamensual);
-        return result;
+        if ($scope.data.precioVehiculo == '') {
+            $scope.data.mensajes = "ingrese precio del vehiculo";
+            return false;
+        }
+
+        if ($scope.data.cuotaInicial == '') {
+            $scope.data.mensajes = "ingrese cuota Inicial del vehiculo";
+            return false;
+        }
+        if ($scope.data.plazo == '') {
+            $scope.data.mensajes = "ingrese plazo del vehiculo";
+            return false;
+        }
+
+
+        return true;
     };
 
     $scope.calcularDatos = function () {
-        if ($scope.data.precioVehiculo !== '' && $scope.data.cuotaInicial !== '' && $scope.data.plazo !== '') {
+
+        if ($scope.validaciones()) {
 
             var cuota = ($scope.data.precioVehiculo * 20) / 100;
             if (parseInt($scope.data.cuotaInicial) == cuota) {
@@ -134,8 +146,23 @@ app.controller('SimuladorController', ['$scope', function ($scope) {
         }
         else {
             $scope.data.montoFinanciar = 0;
-            $scope.data.plazo = 0;
         }
+
     };
+    $scope.calculoCuotaMensual = function (tasa, plazo, monto) {
+
+        //Formula Pago de excel es: (Tasa * [(1 + Tasa) ^ Plazo] * Monto Financiar) / ([(1 + Tasa) ^ Plazo] - 1)
+        tasa = tasa / 100; //Se combierte el valor de la tasa en porcentaje %
+
+        var calculo = (1 + tasa) ** plazo;
+        var cuotamensual = (tasa * calculo * monto) / (calculo - 1);
+
+        var result = Math.round(cuotamensual);
+        return result;
+    };
+
+    $scope.contactenos = function () {
+        $window.location.href = 'formContacto.html'
+    }
 
 }]);
