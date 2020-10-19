@@ -53,6 +53,12 @@
 
                 <div class="col-12 side-right">
                     <div class="card-content">
+                        <div class="texto-superior-derecho" style="color:red">
+                            <p>
+                                <span>{{data.mensajes}}</span>
+                            </p>
+                        </div>
+
                         <div class="texto-superior-derecho">
                             <p>Selecciona el tipo de vehículo a financiar:</p>
                         </div>
@@ -151,7 +157,6 @@
                                 </div>
                                 <div class="control-select-input ">
                                     <span class="texto">{{data.montoFinanciar | number}}</span>
-                                    <!--<input readonly>-->
                                 </div>
                             </div>
                         </div>
@@ -173,7 +178,6 @@
                                     <div class="content-monto-inf">
                                         <span class="caja-izquierda"><p>Cuota mensual</p></span>
                                         <span class="caja-derecha texto-info">$ {{data.cuotaMensual | number}}</span>
-                                        <!--<span class="caja-derecha"><input readonly></span>-->
                                     </div>
                                 </div>
                             </div>
@@ -193,7 +197,6 @@
                                     <div class="content-monto-inf">
                                         <span class="caja-izquierda"><p>Cuota mensual</p></span>
                                         <span class="caja-derecha texto-info">$ {{data.cuotaMensual | number}}</span>
-                                        <!--<span class="caja-derecha"><input readonly></span>-->
                                     </div>
                                 </div>
                             </div>
@@ -213,7 +216,6 @@
                                     <div class="content-monto-inf">
                                         <span class="caja-izquierda"><p>Cuota mensual</p></span>
                                         <span class="caja-derecha texto-info">$ {{data.cuotaMensual | number}}</span>
-                                        <!--<span class="caja-derecha"><input readonly></span>-->
                                     </div>
                                 </div>
                             </div>
@@ -233,7 +235,6 @@
                                     <div class="content-monto-inf">
                                         <span class="caja-izquierda"><p>Cuota mensual</p></span>
                                         <span class="caja-derecha texto-info">$ {{data.cuotaMensual | number}}</span>
-                                        <!--<span class="caja-derecha"><input readonly></span>-->
                                     </div>
                                 </div>
                             </div>
@@ -253,14 +254,32 @@
                                     <div class="content-monto-inf">
                                         <span class="caja-izquierda"><p>Cuota mensual</p></span>
                                         <span class="caja-derecha texto-info">$ {{data.cuotaMensual | number}}</span>
-                                        <!--<span class="caja-derecha"><input readonly></span>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-caja-monto" ng-show="data.ShowMonto12Meses" ng-click="MostrarCuota(6)">
+                            <div class="caja-plazos ">
+                                <label for="modelocarro">24 meses</label>
+                            </div>
+                        </div>
+                        <div class="content-caja-monto" ng-show="data.ShowMonto12MesesCuota">
+                            <div class="caja-plazos-monto ">
+                                <div class="content-monto">
+                                    <div class="content-monto-sup">
+                                        <span class="caja-izquierda"><p>12 meses</p></span>
+                                        <span class="caja-derecha"><img src="../../img/general/chulo-pink.svg"></span>
+                                    </div>
+                                    <div class="content-monto-inf">
+                                        <span class="caja-izquierda"><p>Cuota mensual</p></span>
+                                        <span class="caja-derecha texto-info">$ {{data.cuotaMensual | number}}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="content-buttons">
-                            <button class="button-izquierdo">CONTÁCTAME</button>
-                            <button class="button-derecho">¡LO QUIERO!</button>
+                            <button class="button-izquierdo" ng-click="contactenos()">CONTÁCTAME</button>
+                            <button class="button-derecho" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CreditoVehiculo'">¡LO QUIERO!</button>
 
                         </div>
 

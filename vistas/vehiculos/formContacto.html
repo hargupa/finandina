@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html ng-app="SimuladorVehiculos">
 <head>
     <!--<meta http-equiv="refresh" content="10">-->
@@ -10,45 +10,45 @@
     <title>Document</title>
 </head>
 <body ng-controller="SimuladorController">
-    <div class="header-vehiculos" >
+    <div class="header-vehiculos">
         <div class="logo">
             <img src="../../img/general/logo.svg">
-        </div>    
-        <div class="texto-encabezado" >
+        </div>
+        <div class="texto-encabezado">
             <p>Simulador crédito de vehículo <b>Banco Finandina</b></p>
         </div>
-        <div class="img-bancodigital" >
+        <div class="img-bancodigital">
             <img src="../../img/general/banca-digital.svg">
-        </div>        
+        </div>
     </div>
-    
-    <div class="row" >
+
+    <div class="row">
         <div class="col-12">
-            <div class="card" >
-                <div class="col-12 side-left" >
-                    <div class="texto-superior-imagen" >
+            <div class="card">
+                <div class="col-12 side-left">
+                    <div class="texto-superior-imagen">
                         <p>Conoce el valor apróximado de la cuota de <span>tu próximo Vehiculo</span></p>
                     </div>
                     <div class="content-img">
-                        <div class="img-super"><img src="../../img/general/super.svg"></div>                
-                        <div clas="img-izquierda" >
+                        <div class="img-super"><img src="../../img/general/super.svg"></div>
+                        <div clas="img-izquierda">
                             <img src="../../img/general/person-car.png" style="max-width: 100%;">
                         </div>
-                    </div>    
+                    </div>
                     <div class="texto-inferior-imagen">
                         <p>*El valor es aproximado teniendo en cuenta la tasa de interés aplicable a la fecha.</p>
                         <p>La aprobación definitiva de la solicitud de financiación y la tasa de interés del crédito estarán sujetos a las políticas de crédito y condiciones definidas por el Banco Finandina S.A.</p>
                         <p>La cuota aproximada no incluye seguros y otros cargos.</p>
                     </div>
                 </div>
- 
 
 
-                <div class="col-12 side-right" >
-       
+
+                <div class="col-12 side-right">
+
                     <div class="card-content" ng-show="data.ShowTerminos" ng-hide="data.ShowForm">
                         <div class="texto-encabezado-terminos">
-                            <p >Términos y condiciones legales</p>
+                            <p>Términos y condiciones legales</p>
                         </div>
                         <div class="texto-terminos">
                             <textarea name="" readonly>
@@ -57,73 +57,73 @@
                         </div>
                         <div class="content-buttons">
                             <button class="button-derecho2" ng-click="ocultarTerminos()">ACEPTAR</button>
-                        </div>        
-                    </div> 
+                        </div>
+                    </div>
 
 
 
                     <div class="card-content" ng-show="data.ShowForm">
-                        <div class="texto-superior-derecho " >
+                        <div class="texto-superior-derecho ">
                             <p>Diligencia el formulario para contactarte y ampliar la información sobre nuestros créditos de vehículo.</p>
                         </div>
 
-                        <div class="texto-monto" >
+                        <div class="texto-monto">
                             <p>Escribe tu nombre y apellido</p>
                         </div>
-                        <div class=" content-monto" >
-                            <div class=" caja-monto input-nombre" >
+                        <div class=" content-monto">
+                            <div class=" caja-monto input-nombre">
                                 <div class="ico-form">
                                     <img src="../../img/general/person.svg">
                                 </div>
                                 <div class="control-select-input ">
-                                    <input >
+                                    <input>
                                 </div>
-                            </div>                            
-                        </div>    
+                            </div>
+                        </div>
 
-                        <div class="texto-monto" >
+                        <div class="texto-monto">
                             <p>Indica tu número de celular</p>
                         </div>
-                        <div class=" content-monto" >
-                            <div class=" caja-monto input-celular" >
+                        <div class=" content-monto">
+                            <div class=" caja-monto input-celular">
                                 <div class="ico-form">
                                     <img src="../../img/general/cellphone.svg">
                                 </div>
                                 <div class="control-select-input ">
-                                    <input >
+                                    <input>
                                 </div>
-                            </div>                            
-                        </div> 
+                            </div>
+                        </div>
 
-                        <div class="texto-monto" >
+                        <div class="texto-monto">
                             <p>Indica tu correo electrónico</p>
                         </div>
-                        <div class=" content-monto" >
-                            <div class=" caja-monto input-correo" >
+                        <div class=" content-monto">
+                            <div class=" caja-monto input-correo">
                                 <div class="ico-form">
                                     <img src="../../img/general/plane.svg">
                                 </div>
                                 <div class="control-select-input ">
-                                    <input >
+                                    <input>
                                 </div>
-                            </div>                            
-                        </div>   
+                            </div>
+                        </div>
 
 
-                        <div class="container-switch" >
-                            <div class="texto-switch" >
+                        <div class="container-switch">
+                            <div class="texto-switch">
                                 <p class="texto-switch-descripcion">He leído y acepto los <a href="#" ng-click="mostrarTerminos()">términos y condiciones legales</a></p>
                             </div>
-                            <div class="container-switch-movil" >
+                            <div class="container-switch-movil">
                                 <div class="switch-button">
                                     <input type="checkbox" name="switch-button" id="switch-label" class="switch-button__checkbox" checked ng-model="data.recibirExtractos">
                                     <label for="switch-label" class="switch-button__label">
                                         <div class="container-switch-texto">
                                             <div class="switch-texto-izquierdo">
-                                                <p >SI</p>
+                                                <p>SI</p>
                                             </div>
                                             <div class="switch-texto-derecho">
-                                                <p >NO</p>
+                                                <p>NO</p>
                                             </div>
                                         </div>
                                     </label>
@@ -132,27 +132,26 @@
                         </div>
 
                         <div class="content-buttons">
-                            <button class="button-izquierdo">¡LO QUIERO!</button>
-                            <button class="button-derecho">ENVIAR</button>
- 
+                            <button class="button-izquierdo" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CreditoVehiculo'">¡LO QUIERO!</button>
+                            <button class="button-derecho" ng-disabled="true">ENVIAR</button>
                         </div>
 
-                      
+
                         <div class="texto-inferior-imagen2">
-                            <div class="img-super"><img src="../../img/general/super.svg"></div>            
+                            <div class="img-super"><img src="../../img/general/super.svg"></div>
                             <div class="texto">
                                 <p>*Los valores descritos en el presente simulador son informativos, se encuentran sujetos a la solicitud formal de crédito realizada por el cliente a Banco Finandina S.A. </p>
-                                <p>** El valor de cuota propuesta no incluye valor de prima mensual de seguro de vida .</p> 
-                                <p>***Simulador exclusivo para crédito de Vehículo de Banco Finandina S.A.</p>                                
+                                <p>** El valor de cuota propuesta no incluye valor de prima mensual de seguro de vida .</p>
+                                <p>***Simulador exclusivo para crédito de Vehículo de Banco Finandina S.A.</p>
                             </div>
-                        </div>                                                                                               
+                        </div>
                     </div>
-                </div>                
+                </div>
             </div>
         </div>
-        
+
     </div>
-    
+
 
 
     <footer>
