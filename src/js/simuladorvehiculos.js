@@ -8,6 +8,7 @@ app.controller('SimuladorController', ['$scope', function ($scope) {
         precioVehiculo: '',
         cuotaInicial: '',
         tasa: 1.22, //valor de la tasa activa
+        plazo: "",
 
         ShowMonto72Meses: true,
         ShowMonto72MesesCuota: false,
@@ -42,29 +43,37 @@ app.controller('SimuladorController', ['$scope', function ($scope) {
             case 1:
                 $scope.data.ShowMonto72Meses = false;
                 $scope.data.ShowMonto72MesesCuota = true;
-                $scope.data.cuotaMensual72 = $scope.calculoCuotaMensual($scope.data.tasa, 72, $scope.data.montoFinanciar);
+                $scope.data.plazo = 72;
+                //$scope.data.cuotaMensual = $scope.calculoCuotaMensual($scope.data.tasa, 72, $scope.data.montoFinanciar);
                 break;
             case 2:
                 $scope.data.ShowMonto60Meses = false;
                 $scope.data.ShowMonto60MesesCuota = true;
-                $scope.data.cuotaMensual60 = $scope.calculoCuotaMensual($scope.data.tasa, 60, $scope.data.montoFinanciar);
+                $scope.data.plazo = 60;
+                //$scope.data.cuotaMensual = $scope.calculoCuotaMensual($scope.dkata.tasa, 60, $scope.data.montoFinanciar);
                 break;
             case 3:
                 $scope.data.ShowMonto48Meses = false;
                 $scope.data.ShowMonto48MesesCuota = true;
-                $scope.data.cuotaMensual48 = $scope.calculoCuotaMensual($scope.data.tasa, 48, $scope.data.montoFinanciar);
+                $scope.data.plazo = 48;
+                //$scope.data.cuotaMensual = $scope.calculoCuotaMensual($scope.data.tasa, 48, $scope.data.montoFinanciar);
                 break;
             case 4:
                 $scope.data.ShowMonto36Meses = false;
                 $scope.data.ShowMonto36MesesCuota = true;
-                $scope.data.cuotaMensual36 = $scope.calculoCuotaMensual($scope.data.tasa, 36, $scope.data.montoFinanciar);
+                $scope.data.plazo = 36;
+                //$scope.data.cuotaMensual = $scope.calculoCuotaMensual($scope.data.tasa, 36, $scope.data.montoFinanciar);
                 break;
             case 5:
                 $scope.data.ShowMonto24Meses = false;
                 $scope.data.ShowMonto24MesesCuota = true;
-                $scope.data.cuotaMensual24 = $scope.calculoCuotaMensual($scope.data.tasa, 24, $scope.data.montoFinanciar);
+                $scope.data.plazo = 36;
+                //$scope.data.cuotaMensual = $scope.calculoCuotaMensual($scope.data.tasa, 24, $scope.data.montoFinanciar);
                 break;
         }
+
+
+        $scope.data.cuotaMensual = $scope.calculoCuotaMensual($scope.data.tasa, $scope.data.plazo, $scope.data.montoFinanciar);
 
         if ($scope.data.ShowImgCarro == false) {
             $scope.data.ShowMonto72Meses = false;

@@ -7,7 +7,7 @@
     <link href="../../css/simuladorvehiculos/simuladorvehiculos.min.css" rel="stylesheet">
     <script src="../../js/angular.min.js"></script>
     <script src="../../src/js/simuladorvehiculos.js"></script>
-    <title>Document</title>
+    <title>simulador vehiculos</title>
 </head>
 <body ng-controller="SimuladorController">
     <div class="header-vehiculos">
@@ -36,7 +36,7 @@
                         <div class="img-super"><img src="../../img/general/super.svg"></div>
                         <div clas="img-izquierda" ng-show="data.ShowImgCarro">
                             <img src="../../img/general/persons-car.png" style="max-width: 100%;">
-                        </div> 
+                        </div>
                         <div clas="img-izquierda" ng-show="data.ShowImgMoto" ng-hide="data.ShowImgCarro">
                             <img src="../../img/general/person-moto.png" style="max-width: 100%;">
                         </div>
@@ -45,7 +45,7 @@
 
 
                     <div class="texto-inferior-imagen">
-                         
+
                         <p>*El valor es aproximado teniendo en cuenta la tasa de interés aplicable a la fecha.</p>
                         <p>La aprobación definitiva de la solicitud de financiación y la tasa de interés del crédito estarán sujetos a las políticas de crédito y condiciones definidas por el Banco Finandina S.A.</p>
                         <p>La cuota aproximada no incluye seguros y otros cargos.</p>
@@ -173,7 +173,7 @@
                                     </div>
                                     <div class="content-monto-inf">
                                         <span class="caja-izquierda"><p>Cuota mensual</p></span>
-                                        <span class="caja-derecha texto-info">$ {{data.cuotaMensual72 | number}}</span>
+                                        <span class="caja-derecha texto-info">$ {{data.cuotaMensual | number}}</span>
                                         <!--<span class="caja-derecha"><input readonly></span>-->
                                     </div>
                                 </div>
@@ -193,7 +193,7 @@
                                     </div>
                                     <div class="content-monto-inf">
                                         <span class="caja-izquierda"><p>Cuota mensual</p></span>
-                                        <span class="caja-derecha texto-info">$ {{data.cuotaMensual60 | number}}</span>
+                                        <span class="caja-derecha texto-info">$ {{data.cuotaMensual | number}}</span>
                                         <!--<span class="caja-derecha"><input readonly></span>-->
                                     </div>
                                 </div>
@@ -213,7 +213,7 @@
                                     </div>
                                     <div class="content-monto-inf">
                                         <span class="caja-izquierda"><p>Cuota mensual</p></span>
-                                        <span class="caja-derecha texto-info">$ {{data.cuotaMensual48 | number}}</span>
+                                        <span class="caja-derecha texto-info">$ {{data.cuotaMensual | number}}</span>
                                         <!--<span class="caja-derecha"><input readonly></span>-->
                                     </div>
                                 </div>
@@ -233,7 +233,7 @@
                                     </div>
                                     <div class="content-monto-inf">
                                         <span class="caja-izquierda"><p>Cuota mensual</p></span>
-                                        <span class="caja-derecha texto-info">$ {{data.cuotaMensual36 | number}}</span>
+                                        <span class="caja-derecha texto-info">$ {{data.cuotaMensual | number}}</span>
                                         <!--<span class="caja-derecha"><input readonly></span>-->
                                     </div>
                                 </div>
@@ -253,7 +253,7 @@
                                     </div>
                                     <div class="content-monto-inf">
                                         <span class="caja-izquierda"><p>Cuota mensual</p></span>
-                                        <span class="caja-derecha texto-info">$ {{data.cuotaMensual24 | number}}</span>
+                                        <span class="caja-derecha texto-info">$ {{data.cuotaMensual | number}}</span>
                                         <!--<span class="caja-derecha"><input readonly></span>-->
                                     </div>
                                 </div>
@@ -270,7 +270,7 @@
                             <div class="texto">
                                 <p>*Los valores descritos en el presente simulador son informativos, se encuentran sujetos a la solicitud formal de crédito realizada por el cliente a Banco Finandina S.A. </p>
                                 <p>** El valor de cuota propuesta no incluye valor de prima mensual de seguro de vida .</p>
-                                <p>***Simulador exclusivo para crédito de Vehículo de Banco Finandina S.A.</p>                                
+                                <p>***Simulador exclusivo para crédito de Vehículo de Banco Finandina S.A.</p>
                             </div>
                         </div>
                     </div>
