@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html ng-app="Libranza">
 <head>
     <!--<meta http-equiv="refresh" content="10">-->
@@ -10,52 +10,52 @@
     <title>Document</title>
 </head>
 <body ng-controller="LibranzaController">
-    <div class="header-credito" >
+    <div class="header-credito">
         <div class="logo">
             <img src="../../img/general/logo-white.svg">
-        </div>    
-        <div class="texto-encabezado" >
+        </div>
+        <div class="texto-encabezado">
             <p>Simulador de Libranza <span>Banco Finandina</span></p>
         </div>
-        <div class="img-bancodigital" >
+        <div class="img-bancodigital">
             <img src="../../img/general/banca-digital.svg">
-        </div>        
+        </div>
     </div>
-    
+
     <div class="row">
         <div class="col-12">
-            <div class="card" >
-                <div class="col-12 side-left" >
-                    <div class="texto-superior-imagen" >
+            <div class="card">
+                <div class="col-12 side-left">
+                    <div class="texto-superior-imagen">
                         <p>Conoce el valor apróximado de la cuota de <span> tu libranza<span></p>
                     </div>
-                    <div class="content-image" >
-                        <div class="img-super"><img src="../../img/general/super.svg" ></div>                
+                    <div class="content-image">
+                        <div class="img-super"><img src="../../img/general/super.svg"></div>
                         <div class="img-derecha">
-                            <img ng-show="data.ShowImgDefault" src="../../img/general/men.png" >
-                            <img ng-show="data.ShowImgSectorPublico" src="../../img/general/sector-publico.png" >
-                            <img ng-show="data.ShowImgDocente" src="../../img/general/docente.png" >
-                            <img ng-show="data.ShowImgFuerzas" src="../../img/general/militar.png" >
-                            <img ng-show="data.ShowImgPensionado" src="../../img/general/pensionado.png" >
+                            <img ng-show="data.ShowImgDefault" src="../../img/general/men.png">
+                            <img ng-show="data.ShowImgSectorPublico" src="../../img/general/sector-publico.png">
+                            <img ng-show="data.ShowImgDocente" src="../../img/general/docente.png">
+                            <img ng-show="data.ShowImgFuerzas" src="../../img/general/militar.png">
+                            <img ng-show="data.ShowImgPensionado" src="../../img/general/pensionado.png">
                         </div>
-                                    
+
                     </div>
 
                     <div class="texto-inferior-imagen">
-                        
+
                         <div class="texto">
                             <p>*El valor es aproximado teniendo en cuenta la tasa de interés aplicable a la fecha</p>
                             <p>La aprobación definitiva de la solicitud de financiación y la tasa de interés del crédito estarán sujetos a las politicas de crédito y condiciones definidas por el Banco Finandina S.A.</p>
-                            <p>La cuota aproximada no incluye seguros y otros cargos.</p>                            
+                            <p>La cuota aproximada no incluye seguros y otros cargos.</p>
                         </div>
                     </div>
                 </div>
- 
-                <div class="col-12 side-right" >
+
+                <div class="col-12 side-right">
                     <div class="card-content">
-                         <div class="texto-superior" >
+                        <div class="texto-superior">
                             <p>Quieres conocer tu capacidad de libranza por:</p>
-                         </div>   
+                        </div>
                         <div class="content-switch">
                             <div class="container-switch-movil">
                                 <div class="texto-izquierdo">
@@ -69,18 +69,18 @@
                                 <div class="texto-derecho">
                                     <p ng-show="data.ShowMonto">CUOTA</p>
                                     <p class="texto-azul" ng-show="data.ShowCuota" ng-hide="data.ShowMonto">CUOTA</p>
-                                </div>                                
-                            </div>    
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="texto-superior-derecho" >
+                        <div class="texto-superior-derecho">
                             <p>Selecciona tu convenio</p>
                         </div>
 
                         <div class="content-caja-select">
                             <div class="caja-select">
                                 <div class="ico-form img-car">
-                                    <img class="img-responsive" src="../../img/general/suitcase.svg" >
+                                    <img class="img-responsive" src="../../img/general/suitcase.svg">
                                 </div>
                                 <div class="control-select-input">
                                     <select name="singleSelect" ng-model="data.singleSelect" ng-change="CambiarActividad()">
@@ -90,27 +90,27 @@
                                         <option value="3">Fuerzas militares</option>
                                         <option value="4">Pensionado</option>
                                     </select>
-                                    <label for="opcionactividad" >¿Cuál es tu actividad?</label>
+                                    <label for="opcionactividad">¿Cuál es tu actividad?</label>
                                 </div>
 
                             </div>
                             <div class="separador"></div>
                             <div class="caja-select" ng-show="data.ShowImgDefault" style="border: 0px;">
 
-                            </div>                            
+                            </div>
                             <div class="caja-select" ng-hide="data.ShowImgDefault">
                                 <div class="ico-form">
                                     <img src="../../img/general/money-blue.svg">
                                 </div>
                                 <div class="control-select-input">
-                                    <input type="text"  autocomplete="off" miles-keypress>
-                                    <label for="modelocarro" >¿Cuál es el convenio?</label>
+                                    <input type="text" autocomplete="off" miles-keypress>
+                                    <label for="modelocarro">¿Cuál es el convenio?</label>
                                 </div>
 
                             </div>
                         </div>
 
-                        <div class="texto-superior-derecho" >
+                        <div class="texto-superior-derecho">
                             <p>Completa los siguientes datos para poder simular tu libranza</p>
                         </div>
 
@@ -121,8 +121,8 @@
                                     <img src="../../img/general/money-blue.svg">
                                 </div>
                                 <div class="control-select-input">
-                                    <input type="text"  autocomplete="off" miles-keypress>
-                                    <label for="modelocarro" >Indica tus Ingresos</label>
+                                    <input ng-model="data.ingresos" type="text" autocomplete="off" miles-keypress />
+                                    <label for="modelocarro">Indica tus Ingresos</label>
                                 </div>
 
                             </div>
@@ -132,7 +132,7 @@
                                     <img src="../../img/general/money-blue.svg">
                                 </div>
                                 <div class="control-select-input">
-                                    <input type="text"  autocomplete="off" miles-keypress>
+                                    <input ng-model="data.descuentoNomina" type="text" autocomplete="off" miles-keypress />
                                     <label for="modelocarro">Descuentos de nómina</label>
                                 </div>
                                 <div class="mensaje-valor">
@@ -142,37 +142,38 @@
                         </div>
 
 
-                        <div class="texto-monto" >
-                            <p ng-show="data.ShowMonto">¿Cuánto dinero necesitas?</p>
-                            <p ng-show="data.ShowCuota" ng-hide="data.ShowMonto">¿Cuál es la cuota que quieres pagar?</p>
+                        <div class="texto-monto">
+                            <p ng-if="data.ShowMonto">¿Cuánto dinero necesitas?</p>
+                            <p ng-if="data.ShowCuota">¿Cuál es la cuota que quieres pagar?</p>
                         </div>
-                        <div class=" content-monto" >
-                            <div class=" caja-monto " >
+                        <div class=" content-monto">
+                            <div class=" caja-monto ">
                                 <div class="ico-form">
                                     <img src="../../img/general/money-blue.svg">
                                 </div>
                                 <div class="control-select-input ">
-                                    <input >
+                                    <input ng-if="data.ShowMonto" ng-model="data.montoAprox" type="text" autocomplete="off" ng-change="analizarDatos()" />
+                                    <input ng-if="data.ShowCuota" ng-model="data.cuotaAprox" type="text" autocomplete="off" ng-change="analizarDatos()" />
                                     <div class="ico-form2" ng-show="data.ShowAviso">
                                         <img src="../../img/general/money-blue.svg">
-                                    </div>                                      
+                                    </div>
                                 </div>
                                 <div class="texto-aviso" ng-show="data.ShowAviso">
                                     <p>Te prestamos máximo hasta 20 millones</p>
-                                </div>    
-                            </div>                            
-                        </div>    
-                        <div class="texto-plazo" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="texto-plazo">
                             <p>Elige el plazo en el que quieres pagar</p>
                         </div>
-                                              
+
                         <div class="content-caja-monto" ng-show="data.ShowMonto108Meses" ng-click="MostrarCuota(id=1)">
-                            <div class="caja-plazos " >
-                                    <label for="modelocarro" >108 meses</label>
-                            </div>                            
+                            <div class="caja-plazos ">
+                                <label for="modelocarro">108 meses</label>
+                            </div>
                         </div>
                         <div class="content-caja-monto" ng-show="data.ShowMonto108MesesCuota">
-                            <div class="caja-plazos-monto " >
+                            <div class="caja-plazos-monto ">
                                 <div class="content-monto">
                                     <div class="content-monto-sup">
                                         <span class="caja-izquierda"><p>108 meses</p></span>
@@ -181,20 +182,20 @@
                                     <div class="content-monto-inf">
                                         <span class="caja-izquierda">
                                             <p ng-show="data.ShowMonto">Cuota mensual</p>
-                                            <p ng-show="data.ShowCuota" ng-hide="data.ShowMonto">Monto aproximado</p>
+                                            <p ng-show="data.ShowCuota">Monto aproximado</p>
                                         </span>
-                                        <span class="caja-derecha texto-info">$ {{data.cuotaMensual108 | number}}</span>
-                                    </div>                                    
+                                        <span class="caja-derecha texto-info">$ {{data.AproxCalculada | number}}</span>
+                                    </div>
                                 </div>
-                            </div>                            
-                        </div>                          
+                            </div>
+                        </div>
                         <div class="content-caja-monto" ng-show="data.ShowMonto96Meses" ng-click="MostrarCuota(id=2)">
-                            <div class="caja-plazos " >
-                                    <label for="modelocarro" >96 meses</label>
-                            </div>                            
+                            <div class="caja-plazos ">
+                                <label for="modelocarro">96 meses</label>
+                            </div>
                         </div>
                         <div class="content-caja-monto" ng-show="data.ShowMonto96MesesCuota">
-                            <div class="caja-plazos-monto " >
+                            <div class="caja-plazos-monto ">
                                 <div class="content-monto">
                                     <div class="content-monto-sup">
                                         <span class="caja-izquierda"><p>96 meses</p></span>
@@ -203,20 +204,20 @@
                                     <div class="content-monto-inf">
                                         <span class="caja-izquierda">
                                             <p ng-show="data.ShowMonto">Cuota mensual</p>
-                                            <p ng-show="data.ShowCuota" ng-hide="data.ShowMonto">Monto aproximado</p>
+                                            <p ng-show="data.ShowCuota">Monto aproximado</p>
                                         </span>
-                                        <span class="caja-derecha texto-info">$ {{data.cuotaMensual96 | number}}</span>
-                                    </div>                                    
+                                        <span class="caja-derecha texto-info">$ {{data.AproxCalculada | number}}</span>
+                                    </div>
                                 </div>
-                            </div>                            
-                        </div>                          
+                            </div>
+                        </div>
                         <div class="content-caja-monto" ng-show="data.ShowMonto84Meses" ng-click="MostrarCuota(id=3)">
-                            <div class="caja-plazos " >
-                                    <label for="modelocarro" >84 meses</label>
-                            </div>                            
+                            <div class="caja-plazos ">
+                                <label for="modelocarro">84 meses</label>
+                            </div>
                         </div>
                         <div class="content-caja-monto" ng-show="data.ShowMonto84MesesCuota">
-                            <div class="caja-plazos-monto " >
+                            <div class="caja-plazos-monto ">
                                 <div class="content-monto">
                                     <div class="content-monto-sup">
                                         <span class="caja-izquierda"><p>84 meses</p></span>
@@ -225,20 +226,20 @@
                                     <div class="content-monto-inf">
                                         <span class="caja-izquierda">
                                             <p ng-show="data.ShowMonto">Cuota mensual</p>
-                                            <p ng-show="data.ShowCuota" ng-hide="data.ShowMonto">Monto aproximado</p>
+                                            <p ng-show="data.ShowCuota">Monto aproximado</p>
                                         </span>
-                                        <span class="caja-derecha texto-info">$ {{data.cuotaMensual84 | number}}</span>
-                                    </div>                                    
+                                        <span class="caja-derecha texto-info">$ {{data.AproxCalculada | number}}</span>
+                                    </div>
                                 </div>
-                            </div>                            
-                        </div>                          
+                            </div>
+                        </div>
                         <div class="content-caja-monto" ng-show="data.ShowMonto72Meses" ng-click="MostrarCuota(id=4)">
-                            <div class="caja-plazos " >
-                                    <label for="modelocarro" >72 meses</label>
-                            </div>                            
+                            <div class="caja-plazos ">
+                                <label for="modelocarro">72 meses</label>
+                            </div>
                         </div>
                         <div class="content-caja-monto" ng-show="data.ShowMonto72MesesCuota">
-                            <div class="caja-plazos-monto " >
+                            <div class="caja-plazos-monto ">
                                 <div class="content-monto">
                                     <div class="content-monto-sup">
                                         <span class="caja-izquierda"><p>72 meses</p></span>
@@ -247,20 +248,20 @@
                                     <div class="content-monto-inf">
                                         <span class="caja-izquierda">
                                             <p ng-show="data.ShowMonto">Cuota mensual</p>
-                                            <p ng-show="data.ShowCuota" ng-hide="data.ShowMonto">Monto aproximado</p>
+                                            <p ng-show="data.ShowCuota">Monto aproximado</p>
                                         </span>
-                                        <span class="caja-derecha texto-info">$ {{data.cuotaMensual72 | number}}</span>
-                                    </div>                                    
+                                        <span class="caja-derecha texto-info">$ {{data.AproxCalculada | number}}</span>
+                                    </div>
                                 </div>
-                            </div>                            
-                        </div> 
+                            </div>
+                        </div>
                         <div class="content-caja-monto" ng-show="data.ShowMonto60Meses" ng-click="MostrarCuota(id=5)">
-                            <div class="caja-plazos " >
-                                    <label for="modelocarro" >60 meses</label>
-                            </div>                            
+                            <div class="caja-plazos ">
+                                <label for="modelocarro">60 meses</label>
+                            </div>
                         </div>
                         <div class="content-caja-monto" ng-show="data.ShowMonto60MesesCuota">
-                            <div class="caja-plazos-monto " >
+                            <div class="caja-plazos-monto ">
                                 <div class="content-monto">
                                     <div class="content-monto-sup">
                                         <span class="caja-izquierda"><p>60 meses</p></span>
@@ -269,37 +270,37 @@
                                     <div class="content-monto-inf">
                                         <span class="caja-izquierda">
                                             <p ng-show="data.ShowMonto">Cuota mensual</p>
-                                            <p ng-show="data.ShowCuota" ng-hide="data.ShowMonto">Monto aproximado</p>
+                                            <p ng-show="data.ShowCuota">Monto aproximado</p>
                                         </span>
-                                        <span class="caja-derecha texto-info">$ {{data.cuotaMensual60 | number}}</span>
-                                    </div>                                    
+                                        <span class="caja-derecha texto-info">$ {{data.AproxCalculada | number}}</span>
+                                    </div>
                                 </div>
-                            </div>                            
+                            </div>
                         </div>
 
                         <div class="content-buttons">
                             <button class="button-izquierdo">CONTÁCTAME</button>
                             <button class="button-derecho">¡LO QUIERO!</button>
                         </div>
-                       
-                        <div class="texto-inferior-imagen2" >
-                            <div class="img-super"><img src="../../img/general/super.svg" ></div>
+
+                        <div class="texto-inferior-imagen2">
+                            <div class="img-super"><img src="../../img/general/super.svg"></div>
                             <div class="texto">
                                 <p>*El valor es aproximado teniendo en cuenta la tasa de interés aplicable a la fecha</p>
                                 <p>La aprobación definitiva de la solicitud de financiación y la tasa de interés del crédito estarán sujetos a las politicas de crédito y condiciones definidas por el Banco Finandina S.A.</p>
                                 <p>La cuota aproximada no incluye seguros y otros cargos.</p>
                             </div>
-                        </div>                                                                                             
+                        </div>
                     </div>
-                </div>                
+                </div>
             </div>
         </div>
-        
+
     </div>
- 
- 
- 
- 
+
+
+
+
     <footer>
         <p class="texto-normal">Todos los derechos reservados 2020 <span class="guion">-</span><span> Banco Finandina</span></p>
     </footer>

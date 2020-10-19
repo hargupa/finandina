@@ -3,15 +3,12 @@ app.controller('LibranzaController', ['$scope', function ($scope) {
 
     $scope.data = {
         //VARIABLES PARA CALCULO Simulador LIBRANZA
-        convenio: true,
-        capacidad: "monto",
-        empleado: false,
-        pensionado: false,
+        porcentajeDescuentos: "",
         descuento: "",
         maxCuota: "",
         plazo: "",
         tasa: 1.20,
-        porcentajeDescuentos: "",
+
 
         ShowMonto108Meses: true,
         ShowMonto108MesesCuota: false,
@@ -37,7 +34,6 @@ app.controller('LibranzaController', ['$scope', function ($scope) {
 
     }
 
-
     $scope.Cambiar = function () {
         if ($scope.data.ShowCuota == true) {
             $scope.data.ShowCuota = false;
@@ -55,6 +51,16 @@ app.controller('LibranzaController', ['$scope', function ($scope) {
         $scope.data.ShowImgFuerzas = false;
         $scope.data.ShowImgPensionado = false;
 
+        if ($scope.data.singleSelect == "0") {
+            $scope.data.porcentajeDescuentos = 0;
+        }
+        else if ($scope.data.singleSelect == "4") {
+            $scope.data.porcentajeDescuentos = (12 / 100);
+        }
+        else {
+            $scope.data.porcentajeDescuentos = (8 / 100);
+        }
+
         switch ($scope.data.singleSelect) {
             case "0":
                 $scope.data.ShowImgDefault = true;
@@ -68,11 +74,10 @@ app.controller('LibranzaController', ['$scope', function ($scope) {
             case "3":
                 $scope.data.ShowImgFuerzas = true;
                 break;
-            case "4":
+            case "4"://pensionado
                 $scope.data.ShowImgPensionado = true;
                 break;
         }
-
 
     };
 
@@ -92,29 +97,34 @@ app.controller('LibranzaController', ['$scope', function ($scope) {
         switch (id) {
 
             case 1:
+                $scope.data.plazo = 108;
                 $scope.data.ShowMonto108Meses = false;
                 $scope.data.ShowMonto108MesesCuota = true;
                 break;
             case 2:
+                $scope.data.plazo = 96;
                 $scope.data.ShowMonto96Meses = false;
                 $scope.data.ShowMonto96MesesCuota = true;
                 break;
             case 3:
+                $scope.data.plazo = 84;
                 $scope.data.ShowMonto84Meses = false;
                 $scope.data.ShowMonto84MesesCuota = true;
                 break;
             case 4:
+                $scope.data.plazo = 72;
                 $scope.data.ShowMonto72Meses = false;
                 $scope.data.ShowMonto72MesesCuota = true;
                 break;
 
             case 5:
+                $scope.data.plazo = 60;
                 $scope.data.ShowMonto60Meses = false;
                 $scope.data.ShowMonto60MesesCuota = true;
                 break;
         }
 
-
+        $scope.calcularDatos();
     };
 
 
@@ -131,42 +141,48 @@ app.controller('LibranzaController', ['$scope', function ($scope) {
 
     /**************CALCULO LIBRANZA *****************/
 
-    $scope.analizarDatos = function () {
+    $scope.validaciones = function () {
         $scope.data.mensaje = "";
-        $scope.data.empleado = true;
-        $scope.data.pensionado = false;
-        $scope.data.plazo = 108;
 
-        if ($scope.data.empleado) {
-            $scope.data.porcentajeDescuentos = (8 / 100);
-            console.log("empleado", true);
+        if ($scope.data.ingresos == "") {
+            $scope.data.mensaje = "Debe indicar sus ingresos";
+            return;
         }
-        else if ($scope.data.pensionado) {
-            $scope.data.porcentajeDescuentos = (12 / 100);
-            console.log("pensionado", true);
+
+
+    }
+
+    $scope.calcularDatos = function () {
+        if ($scope.data.porcentajeDescuentos == "") {
+
+            if ($scope.data.singleSelect == "4") {
+                $scope.data.porcentajeDescuentos = (12 / 100);
+            }
+            else {
+                $scope.data.porcentajeDescuentos = (8 / 100);
+            }
         }
 
         //Campos Calculos
         $scope.data.descuento = $scope.data.ingresos * $scope.data.porcentajeDescuentos;
         $scope.data.maxCuota = (($scope.data.ingresos - $scope.data.descuento) / 2) - $scope.data.descuentoNomina;
 
-        console.log("Capacidad", $scope.data.capacidad);
-
-        if ($scope.data.capacidad == "monto") {
+        if ($scope.data.ShowMonto) {
             //Segun funcion excel:  Pago 
-            $scope.data.cuotaAproxCalculada = $scope.calculoCuotaAprox($scope.data.tasa, $scope.data.plazo, $scope.data.montoAprox);
+            $scope.data.AproxCalculada = $scope.calculoCuotaAprox($scope.data.tasa, $scope.data.plazo, $scope.data.montoAprox);
             console.log("cuotaAproxCalculada", $scope.data.cuotaAproxCalculada);
         }
-        else if ($scope.data.capacidad == "cuota") {
+        else if ($scope.data.ShowCuota) {
             var montoAprox = $scope.calculoMontoAprox($scope.data.tasa, $scope.data.plazo, $scope.data.cuotaAprox);
             //Segun funcion excel:  Redondear.menos (valor, -5)
-            $scope.data.montoAproxCalculada = $scope.calculoRedondearMenos(montoAprox, 5);
+            $scope.data.AproxCalculada = $scope.calculoRedondearMenos(montoAprox, 5);
             console.log("montoAproxCalculada", $scope.data.montoAproxCalculada);
         }
 
         console.log("descuento", $scope.data.descuento);
         console.log("maxCuota", $scope.data.maxCuota);
     };
+
 
     $scope.calculoCuotaAprox = function (tasa, plazo, monto) {
         //Formula Pago de excel es: (Tasa * [(1 + Tasa) ^ Plazo] * Monto Financiar) / ([(1 + Tasa) ^ Plazo] - 1)
@@ -176,6 +192,11 @@ app.controller('LibranzaController', ['$scope', function ($scope) {
         var cuotamensual = (tasa * calculo * monto) / (calculo - 1);
 
         var result = Math.round(cuotamensual);
+
+        if (isNaN(result)) {
+            result = 0;
+        }
+
         return result;
     };
 
@@ -187,6 +208,10 @@ app.controller('LibranzaController', ['$scope', function ($scope) {
         VA = Math.round(VA);
 
         var _min = Math.min(VA, 100000000);
+
+        if (isNaN(_min)) {
+            result = 0;
+        }
         return _min;
     }
 
@@ -209,19 +234,6 @@ app.controller('LibranzaController', ['$scope', function ($scope) {
         else
             return 0;
     }
-
-    $scope.tipoConvenio = function () {
-        if ($scope.data.convenio) {
-            $scope.data.capacidad = "monto";
-            $scope.data.cuotaAproxCalculada = "";
-        }
-        else {
-            $scope.data.capacidad = "cuota";
-            $scope.data.montoAproxCalculada = "";
-        }
-    }
-
-
 
 
 }]);
