@@ -180,7 +180,7 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
 
         if ($scope.data.montoFinanciar < $scope.data.minMonto) {
             $scope.data.errorMonto = "El monto mínimo a financiar debe ser mayor que $" + $scope.data.minMonto;
-            return false;
+            //return false;
         }
 
         if ($scope.data.plazo != '')
