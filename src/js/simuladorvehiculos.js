@@ -10,7 +10,7 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
         tasa: 1.22, //valor de la tasa activa
         plazo: "",
 
-        anioModelo: '',
+        anioModelo: '0',
         minMonto: 3000000,
         errorPrecio: '',
         errorCuota: '',

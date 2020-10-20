@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="switch-button2">
                                     <span class="flecha-izq" ng-show="data.ShowImgCarro"><img src="../../img/general/arrow-1.png"></span>
-                                    <span class="flecha-der" ng-show="data.ShowImgMoto"><img src="../../img/general/arrow-2.png"></span>
+                                    <span class="flecha-der" ng-show="data.ShowImgMoto" ng-hide="data.ShowImgCarro"><img src="../../img/general/arrow-2.png"></span>
                                     <input type="checkbox" name="switch-button2" id="switch-label2" class="switch-button2__checkbox" ng-click="CambiarVehiculo()">
                                     <label for="switch-label2" class="switch-button2__label"></label>
                                 </div>
@@ -98,13 +98,13 @@
                                 </div>
                                 <div class="control-select-input">
                                     <select ng-show="data.ShowModeloCarroMoto" ng-model="data.anioModelo">
-                                        <option>Año</option>
+                                        <option selected>Año</option>
                                         <option>2020</option>
                                         <option>2021</option>
                                     </select>
 
                                     <select ng-show="data.ShowModeloCarroUsado" ng-model="data.anioModelo">
-                                        <option>Año</option>
+                                        <option selected>Año</option>
                                         <option>2006</option>
                                         <option>2007</option>
                                         <option>2008</option>
@@ -135,7 +135,7 @@
                                 </div>
                                 <div class="control-select-input">
                                     <select ng-show="data.ShowImgCarro">
-                                        <option>Elige la marca</option>
+                                        <option selected>Elige la marca</option>
                                         <option>Kia</option>
                                         <option>Renault</option>
                                         <option>Chevrolet</option>
@@ -153,7 +153,7 @@
                                         <option>Mitsubishi</option>
                                     </select>
                                     <select ng-show="data.ShowImgMoto">
-                                        <option>Elige la marca</option>
+                                        <option selected>Elige la marca</option>
                                         <option>Honda</option>
                                         <option>Suzuki</option>
                                         <option>Yamaha</option>
