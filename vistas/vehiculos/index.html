@@ -97,14 +97,14 @@
                                     <img class="img-responsive" src="../../img/general/moto.svg" ng-show="data.ShowImgMoto">
                                 </div>
                                 <div class="control-select-input">
-                                    <select ng-show="data.ShowModeloCarroMoto" ng-model="data.anioModelo">
-                                        <option>Año</option>
+                                    <select ng-show="data.ShowModeloCarroMoto" ng-model="data.anioModelo" ng-change="calcularDatos()">
+                                        <option value="">Año</option>
                                         <option>2020</option>
                                         <option>2021</option>
                                     </select>
 
-                                    <select ng-show="data.ShowModeloCarroUsado" ng-model="data.anioModelo">
-                                        <option>Año</option>
+                                    <select ng-show="data.ShowModeloCarroUsado" ng-model="data.anioModelo" ng-change="calcularDatos()">
+                                        <option value="">Año</option>
                                         <option>2006</option>
                                         <option>2007</option>
                                         <option>2008</option>
@@ -125,7 +125,7 @@
                                     <label for="modelocarro" ng-show="data.ShowImgCarro">Modelo del carro</label>
                                     <label for="modelocarro" ng-show="data.ShowImgMoto">Modelo de la moto</label>
                                 </div>
-
+                                <span class="error">{{data.errorModelo}}</span>
                             </div>
                             <div class="separador"></div>
                             <div class="caja-select">
@@ -134,8 +134,8 @@
                                     <img class="img-responsive" src="../../img/general/moto.svg" ng-show="data.ShowImgMoto" ng-hide="data.ShowImgCarro">
                                 </div>
                                 <div class="control-select-input">
-                                    <select ng-show="data.ShowImgCarro">
-                                        <option>Elige la marca</option>
+                                    <select ng-show="data.ShowImgCarro" ng-model="data.marcaVehiculo">
+                                        <option value="">Elige la marca</option>
                                         <option>Kia</option>
                                         <option>Renault</option>
                                         <option>Chevrolet</option>
@@ -152,8 +152,8 @@
                                         <option>Jeep</option>
                                         <option>Mitsubishi</option>
                                     </select>
-                                    <select ng-show="data.ShowImgMoto">
-                                        <option>Elige la marca</option>
+                                    <select ng-show="data.ShowImgMoto" ng-model="data.marcaVehiculo">
+                                        <option value="">Elige la marca</option>
                                         <option>Honda</option>
                                         <option>Suzuki</option>
                                         <option>Yamaha</option>

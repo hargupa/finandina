@@ -5,12 +5,14 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
     $scope.data = {
         //Datos basicos del simulador
         montoFinanciar: 0,
+        cuotaMensual: 0,
         precioVehiculo: '',
         cuotaInicial: '',
         tasa: 1.22, //valor de la tasa activa
         plazo: "",
 
         anioModelo: '',
+        marcaVehiculo: '',
         minMonto: 3000000,
         errorPrecio: '',
         errorCuota: '',
@@ -92,8 +94,8 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
                 break;
         }
 
-        //calcular cuota mensual si cambia el plazo
-        $scope.data.cuotaMensual = $scope.calculoCuotaMensual($scope.data.tasa, $scope.data.plazo, $scope.data.montoFinanciar);
+        //calcular MONTO FINANCIAR y CUOTA MENSUAL si cambia el plazo
+        $scope.calcularDatos();
 
         if ($scope.data.ShowImgCarro == false) {
             $scope.data.ShowMonto72Meses = false;
@@ -115,8 +117,10 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
             $scope.data.ShowImgMoto = false;
             $scope.data.ShowMonto72Meses = true;
             $scope.data.ShowMonto72MesesCuota = false;
-
         }
+        $scope.data.anioModelo = '';
+        $scope.data.marcaVehiculo = '';
+        $scope.calcularDatos();
     };
 
 
@@ -132,6 +136,8 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
             $scope.data.ShowModeloCarroMoto = true;
             $scope.data.ShowModeloCarroUsado = false;
         }
+        $scope.data.anioModelo = '';
+        $scope.calcularDatos();
     }
 
 
@@ -149,6 +155,14 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
         $scope.data.errorPrecio = '';
         $scope.data.errorCuota = '';
         $scope.data.errorMonto = '';
+        $scope.data.errorModelo = '';
+
+        if ($scope.data.anioModelo == '') {
+            $scope.data.errorModelo = "ingrese el año del modelo del vehículo";
+            $scope.data.montoFinanciar = 0;
+            $scope.data.cuotaMensual = 0;
+            return false;
+        }
 
         if ($scope.data.precioVehiculo == '') {
             $scope.data.errorPrecio = "ingrese precio del vehiculo";
@@ -163,24 +177,35 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
         _precioVehiculo = $scope.data.precioVehiculo.replace(/\,/g, '');
         _cuotaInicial = parseInt($scope.data.cuotaInicial.replace(/\,/g, ''));
 
-        var anio = new Date().getFullYear()
-        var _antiguedad = (anio) - $scope.data.anioModelo;
-        if ($scope.data.ShowImgCarro && _antiguedad > 14) {
-            $scope.data.errorModelo = "modelo de vehiculo";
+        var _antiguedad = (new Date().getFullYear()) - $scope.data.anioModelo;
+        if ($scope.data.ShowImgCarro && _antiguedad > 13) {
+            $scope.data.errorModelo = "El modelo del vehiculo no es factible";
+            $scope.data.montoFinanciar = 0;
+            $scope.data.cuotaMensual = 0;
+            return false;
+        }
+        else if ($scope.data.ShowImgMoto && _antiguedad > 1) {
+            $scope.data.errorModelo = "El modelo del vehiculo no es factible";
+            $scope.data.montoFinanciar = 0;
+            $scope.data.cuotaMensual = 0;
+            return false;
         }
 
-        var porcentaje = 20;
-        var cuota = (_precioVehiculo * porcentaje) / 100;
-
-        if (_cuotaInicial != cuota)
-            $scope.data.errorCuota = 'Debe ser del ' + porcentaje + '% del precio del vehiculo';
+        //CALCULO MONTO FINANCIAR A PARTIR DE LOS DATOS RECOLECTADOS
+        var porcentaje = $scope.calculoPorcentajeFinanciacion();
+        if (porcentaje == 100)
+            $scope.data.errorCuota = 'Aplica financiación del ' + porcentaje + '% del precio del vehiculo';
+        else {
+            var cuota = (_precioVehiculo * porcentaje) / 100;
+            if (_cuotaInicial != cuota)
+                $scope.data.errorCuota = 'Debe ser del ' + porcentaje + '% del precio del vehiculo';
+        }
 
         _montoFinanciar = _precioVehiculo - _cuotaInicial;
         $scope.data.montoFinanciar = _montoFinanciar >= 0 ? _montoFinanciar : 0;
 
         if ($scope.data.montoFinanciar < $scope.data.minMonto) {
             $scope.data.errorMonto = "El monto mínimo a financiar debe ser mayor que $" + $scope.data.minMonto;
-            //return false;
         }
 
         if ($scope.data.plazo != '')
@@ -188,12 +213,36 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
 
     };
 
+    $scope.calculoPorcentajeFinanciacion = function () {
+        var porcentaje = 20;
+
+        if ($scope.data.ShowImgMoto) {
+            if ($scope.data.ShowTextoNuevo && $scope.data.plazo >= 12 && $scope.data.plazo <= 60) {
+                porcentaje = 100;
+            }
+            else if ($scope.data.ShowTextoUsado && $scope.data.plazo >= 12 && $scope.data.plazo <= 48) {
+                porcentaje = 100;
+            }
+        }
+
+        if ($scope.data.ShowImgCarro) {
+            if ($scope.data.ShowTextoNuevo && $scope.data.plazo >= 12 && $scope.data.plazo <= 60) {
+                porcentaje = 100;
+            }
+            else if ($scope.data.ShowTextoUsado && $scope.data.plazo >= 12 && $scope.data.plazo <= 60) {
+                porcentaje = 30;
+            }
+        }
+
+        return porcentaje;
+    }
+
     $scope.calculoCuotaMensual = function (tasa, plazo, monto) {
         //Formula Pago de excel es: (Tasa * [(1 + Tasa) ^ Plazo] * Monto Financiar) / ([(1 + Tasa) ^ Plazo] - 1)
         tasa = tasa / 100; //Se combierte el valor de la tasa en porcentaje %
         var calculo = (1 + tasa) ** plazo;
-        var cuotamensual = (tasa * calculo * monto) / (calculo - 1);
-        return Math.round(cuotamensual);
+        var _cuotamensual = (tasa * calculo * monto) / (calculo - 1);
+        return Math.round(_cuotamensual);
     };
 
     $scope.contactenos = function () {
