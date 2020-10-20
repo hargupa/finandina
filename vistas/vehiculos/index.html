@@ -75,18 +75,18 @@
                             </div>
                             <div class="container-switch-movil" ng-show="data.ShowImgCarro">
                                 <div class="texto-izquierdo">
-                                    <p ng.show="data.ShowTextoNuevo" ng-hide="data.ShowTextoUsado">NUEVO</p>
-                                    <p class="texto-negro" ng.show="data.ShowTextoUsado" ng-hide="data.ShowTextoNuevo">NUEVO</p>
+                                    <p ng-show="data.ShowTextoNuevo">NUEVO</p>
+                                    <p class="texto-negro" ng-show="data.ShowTextoUsado">NUEVO</p>
                                 </div>
                                 <div class="switch-button">
-                                    <span class="flecha-izq" ng.show="data.ShowTextoNuevo" ng-hide="data.ShowTextoUsado"><img src="../../img/general/arrow-1.png"></span>
-                                    <span class="flecha-der" ng.show="data.ShowTextoUsado" ng-hide="data.ShowTextoNuevo"><img src="../../img/general/arrow-2.png"></span>
+                                    <span class="flecha-izq" ng-show="data.ShowTextoNuevo"><img src="../../img/general/arrow-1.png"></span>
+                                    <span class="flecha-der" ng-show="data.ShowTextoUsado"><img src="../../img/general/arrow-2.png"></span>
                                     <input type="checkbox" name="switch-button" id="switch-label" class="switch-button__checkbox" ng-click="CambiarEstadoVehiculo()">
                                     <label for="switch-label" class="switch-button__label"></label>
                                 </div>
                                 <div class="texto-derecho">
-                                    <p ng.show="data.ShowTextoNuevo" ng-hide="data.ShowTextoUsado">USADO</p>
-                                    <p class="texto-rojo" ng.show="data.ShowTextoUsado" ng-hide="data.ShowTextoNuevo">USADO</p>
+                                    <p ng-show="data.ShowTextoNuevo">USADO</p>
+                                    <p class="texto-rojo" ng-show="data.ShowTextoUsado">USADO</p>
                                 </div>
                             </div>
                         </div>
