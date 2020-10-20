@@ -1,14 +1,12 @@
-var app = angular.module("SimuladorVehiculos", []);
+var app = angular.module("LibreInversion", []);
 
-//app.controller("SimuladorController", function ($scope) {
-app.controller('SimuladorController', ['$scope', function ($scope) {
-
+app.controller('LibreInversionController', ['$scope', '$window', function ($scope, $window) {
 
     $scope.data = {
         ShowMonto60Meses: true,
         ShowMonto60MesesCuota: false,
         ShowMonto48Meses: true,
-        ShowMonto48MesesCuota: false, 
+        ShowMonto48MesesCuota: false,
         ShowMonto36Meses: true,
         ShowMonto36MesesCuota: false,
         ShowMonto24Meses: true,
@@ -117,7 +115,13 @@ app.controller('SimuladorController', ['$scope', function ($scope) {
 
     };
 
-    $scope.calculoPlanPago = function () {
+    $scope.obtenerPlan = function () {
+
+        $scope.data.dineronecesito = localStorage.getItem('dineronecesito');
+        $scope.data.tasaNVM = localStorage.getItem('tasaNVM');
+        $scope.data.plazo = localStorage.getItem('plazo');
+        $scope.data.cuotaMensual = localStorage.getItem('cuotaMensual');
+
 
         if ($scope.data.dineronecesito == "" || $scope.data.tasaNVM == "" || $scope.data.plazo == "")
             return;
@@ -138,8 +142,16 @@ app.controller('SimuladorController', ['$scope', function ($scope) {
             _abonoCapital = _cuota - _interes;
             _saldoNuevo = _saldoAnterior - _abonoCapital;
 
+            if ((_mes % 2) == 0) {
+                _estilo = 'celda-2';
+            }
+            else {
+                _estilo = 'celda-1';
+            }
+
             $scope.data.planPago.push(
                 {
+                    'estilo': _estilo,
                     'mes': _mes,
                     'cuota': _cuota,
                     'interes': _interes,
@@ -150,6 +162,17 @@ app.controller('SimuladorController', ['$scope', function ($scope) {
 
             _saldoAnterior = _saldoNuevo;
         }
+    }
+
+    $scope.calculoPlanPago = function () {
+
+        localStorage.setItem('dineronecesito', $scope.data.dineronecesito);
+        localStorage.setItem('tasaNVM', $scope.data.tasaNVM);
+        localStorage.setItem('plazo', $scope.data.plazo);
+        localStorage.setItem('cuotaMensual', $scope.data.cuotaMensual);
+
+        $window.location.href = 'planPagos.html';
+
     };
 
     $scope.calcularTasa = function (salario) {
@@ -175,3 +198,60 @@ app.controller('SimuladorController', ['$scope', function ($scope) {
 
 
 }]);
+
+//SERCCION DE DIRECTIVAS
+app.directive('mileskeypress', function () {
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function (scope, element, attr, ctrl) {
+            var validateNumber = function (inputValue) {
+                if (inputValue === undefined) {
+                    return '';
+                }
+                inputValue = inputValue.replace(/\,/g, "");
+                var transformedInput = inputValue.replace(/[^0-9,]/g, '');
+                if (transformedInput !== inputValue) {
+                    ctrl.$setViewValue(transformedInput);
+                    ctrl.$render();
+                }
+                else {
+                    if (transformedInput > 999) {
+                        var transformedInputTemp = parseInt(transformedInput).toString().split("");
+                        var count = 0;
+                        var result = [];
+                        var length = transformedInputTemp.length - 1;
+                        for (var i = length; i >= 0; i--) {
+                            var temp = transformedInputTemp[i].replace(/\,/g, "");
+                            if (temp != "") {
+                                if (length >= 3) {
+                                    if (count == 2 && i != 0) {
+                                        result[i] = "," + temp;
+                                        count = 0;
+                                    }
+                                    else {
+                                        result[i] = temp;
+                                        count += 1;
+                                    }
+                                }
+                                else {
+                                    result[i] = temp;
+                                }
+                            }
+                        }
+                        transformedInput = result.join("");
+                    }
+                    ctrl.$setViewValue(transformedInput);
+                    ctrl.$render();
+                    ctrl.$setValidity('onlyNumbers', true);
+                }
+                return transformedInput;
+            };
+            ctrl.$parsers.unshift(validateNumber);
+            ctrl.$parsers.push(validateNumber);
+            attr.$observe('onlyNumbers', function () {
+                validateNumber(ctrl.$ViewValue)
+            });
+        }
+    };
+})
