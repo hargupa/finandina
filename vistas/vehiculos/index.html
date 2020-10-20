@@ -7,7 +7,7 @@
     <link href="../../css/simuladorvehiculos/simuladorvehiculos.min.css" rel="stylesheet">
     <script src="../../js/angular.min.js"></script>
     <script src="../../src/js/simuladorvehiculos.js"></script>
-    <title>simulador vehiculos</title>
+    <title>simulador creditos de vehiculo</title>
 </head>
 <body ng-controller="SimuladorController">
     <div class="header-vehiculos">
@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="switch-button2">
                                     <span class="flecha-izq" ng-show="data.ShowImgCarro"><img src="../../img/general/arrow-1.png"></span>
-                                    <span class="flecha-der" ng-show="data.ShowImgMoto" ng-hide="data.ShowImgCarro"><img src="../../img/general/arrow-2.png"></span>
+                                    <span class="flecha-der" ng-show="data.ShowImgMoto"><img src="../../img/general/arrow-2.png"></span>
                                     <input type="checkbox" name="switch-button2" id="switch-label2" class="switch-button2__checkbox" ng-click="CambiarVehiculo()">
                                     <label for="switch-label2" class="switch-button2__label"></label>
                                 </div>
@@ -97,24 +97,14 @@
                                     <img class="img-responsive" src="../../img/general/moto.svg" ng-show="data.ShowImgMoto">
                                 </div>
                                 <div class="control-select-input">
-<<<<<<< HEAD
-                                    <select ng-show="data.ShowModeloCarroMoto" ng-model="data.anioModelo">
-                                        <option selected>Año</option>
-=======
                                     <select ng-show="data.ShowModeloCarroMoto" ng-model="data.anioModelo" ng-change="calcularDatos()">
                                         <option value="">Año</option>
->>>>>>> origin/main
                                         <option>2020</option>
                                         <option>2021</option>
                                     </select>
 
-<<<<<<< HEAD
-                                    <select ng-show="data.ShowModeloCarroUsado" ng-model="data.anioModelo">
-                                        <option selected>Año</option>
-=======
                                     <select ng-show="data.ShowModeloCarroUsado" ng-model="data.anioModelo" ng-change="calcularDatos()">
                                         <option value="">Año</option>
->>>>>>> origin/main
                                         <option>2006</option>
                                         <option>2007</option>
                                         <option>2008</option>
@@ -144,13 +134,8 @@
                                     <img class="img-responsive" src="../../img/general/moto.svg" ng-show="data.ShowImgMoto" ng-hide="data.ShowImgCarro">
                                 </div>
                                 <div class="control-select-input">
-<<<<<<< HEAD
-                                    <select ng-show="data.ShowImgCarro">
-                                        <option selected>Elige la marca</option>
-=======
                                     <select ng-show="data.ShowImgCarro" ng-model="data.marcaVehiculo">
                                         <option value="">Elige la marca</option>
->>>>>>> origin/main
                                         <option>Kia</option>
                                         <option>Renault</option>
                                         <option>Chevrolet</option>
@@ -167,13 +152,8 @@
                                         <option>Jeep</option>
                                         <option>Mitsubishi</option>
                                     </select>
-<<<<<<< HEAD
-                                    <select ng-show="data.ShowImgMoto">
-                                        <option selected>Elige la marca</option>
-=======
                                     <select ng-show="data.ShowImgMoto" ng-model="data.marcaVehiculo">
                                         <option value="">Elige la marca</option>
->>>>>>> origin/main
                                         <option>Honda</option>
                                         <option>Suzuki</option>
                                         <option>Yamaha</option>
@@ -375,11 +355,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-
-
-
 
     <footer>
         <p class="texto-normal">Todos los derechos reservados 2020 - <b>Banco Finandina</b></p>

@@ -145,6 +145,13 @@ footer {
     align-items: center;
 }
 
+.error {
+    font-family: 'Open_Sans_Semi_Bold';
+    font-size: 12px;
+    font-style: italic;
+    color: #EE2552;
+    font-weight: bold;
+}
 
 .card {
     display: flex;
@@ -322,7 +329,7 @@ footer {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 60px;
+            /*margin-bottom: 60px;*/
 
             .caja-monto {
                 width: 50%;

@@ -7,7 +7,7 @@
     <link href="../../css/simuladorvehiculos/formContacto.min.css" rel="stylesheet">
     <script src="../../js/angular.min.js"></script>
     <script src="../../src/js/simuladorvehiculos.js"></script>
-    <title>Document</title>
+    <title>simulador creditos de vehiculo</title>
 </head>
 <body ng-controller="SimuladorController">
     <div class="header-vehiculos">
@@ -52,7 +52,7 @@
                             <div class="texto-monto">
                                 <p>Escribe tu nombre y apellido</p>
                             </div>
-                            <div class=" content-monto">
+                            <div class="content-monto">
                                 <div class=" caja-monto input-nombre">
                                     <div class="ico-form">
                                         <img src="../../img/general/person.svg">
@@ -62,6 +62,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <span class="error">{{data.errornombre}}</span>
 
                             <div class="texto-monto">
                                 <p>Indica tu número de celular</p>
@@ -76,6 +77,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <span class="error">{{data.errorcel}}</span>
 
                             <div class="texto-monto">
                                 <p>Indica tu correo electrónico</p>
@@ -90,6 +92,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <span class="error">{{data.erroremail}}</span>
 
 
                             <div class="container-switch">
