@@ -14,6 +14,8 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
         anioModelo: '',
         marcaVehiculo: '',
         minMonto: 3000000,
+        maxAnioCarro: 14,
+        maxAnioMoto: 4,
         errorPrecio: '',
         errorCuota: '',
         errorMonto: '',
@@ -178,13 +180,13 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
         _cuotaInicial = parseInt($scope.data.cuotaInicial.replace(/\,/g, ''));
 
         var _antiguedad = (new Date().getFullYear()) - $scope.data.anioModelo;
-        if ($scope.data.ShowImgCarro && _antiguedad > 13) {
+        if ($scope.data.ShowImgCarro && _antiguedad > $scope.data.maxAnioCarro) {
             $scope.data.errorModelo = "El modelo del veh\u00CDculo no es factible";
             $scope.data.montoFinanciar = 0;
             $scope.data.cuotaMensual = 0;
             return false;
         }
-        else if ($scope.data.ShowImgMoto && _antiguedad > 1) {
+        else if ($scope.data.ShowImgMoto && _antiguedad > $scope.data.maxAnioMoto) {
             $scope.data.errorModelo = "El modelo del veh\u00CDculo no es factible";
             $scope.data.montoFinanciar = 0;
             $scope.data.cuotaMensual = 0;
@@ -245,12 +247,45 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
         return Math.round(_cuotamensual);
     };
 
+    $scope.guardarInfo = function () {
+
+        $scope.guardarInfo = function () {
+            $scope.data.errornombre = '';
+            $scope.data.errorcel = '';
+            $scope.data.erroremail = '';
+
+            if ($scope.data.nombre == '') {
+                $scope.data.errornombre = 'Debe ingresar su nombre y apellido';
+                return false;
+            }
+            if ($scope.data.celular == '') {
+                $scope.data.errorcel = 'Debe ingresar su numero de celular';
+                return false;
+            }
+            if ($scope.data.email == '') {
+                $scope.data.erroremail = 'Debe ingresar su correo electronico';
+                return false;
+            }
+
+            //if ($scope.data.celular != '') {
+            //    $scope.data.errorcel = 'Número de celular incorrecto';
+            //    return false;
+            //}
+
+            //TODO guardar info en firebase
+
+            if (true) {
+                console.log("guardar Data");
+                console.log("MOSTRAR MODAL");
+            }
+        }
+    }
+
     $scope.contactenos = function () {
         $window.location.href = 'formContacto.html'
     }
-
-    $scope.guardarInfo = function () {
-        console.log("guardar Data");
+    $scope.showindex = function () {
+        $window.location.href = 'index.html'
     }
 }]);
 

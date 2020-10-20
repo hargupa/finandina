@@ -58,7 +58,7 @@
                                         <img src="../../img/general/person.svg">
                                     </div>
                                     <div class="control-select-input ">
-                                        <input ng-model="data.nombre" autocomplete="off" letterkeypress />
+                                        <input ng-model="data.nombre" autocomplete="off" ng-change="data.errornombre == ''" letterkeypress />
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +73,7 @@
                                         <img src="../../img/general/cellphone.svg">
                                     </div>
                                     <div class="control-select-input ">
-                                        <input ng-model="data.celular" type="tel" maxlength="10" autocomplete="off" numberkeypress />
+                                        <input ng-model="data.celular" type="tel" maxlength="10" ng-change="data.errorcel == ''" autocomplete="off" numberkeypress />
                                     </div>
                                 </div>
                             </div>
@@ -87,8 +87,8 @@
                                     <div class="ico-form">
                                         <img src="../../img/general/plane.svg">
                                     </div>
-                                    <div class="control-select-input ">
-                                        <input type="email" ng-model="data.email" autocomplete="off">
+                                    <div class="control-select-input">
+                                        <input type="email" ng-model="data.email" ng-change="data.erroremail ==''" autocomplete="off">
                                     </div>
                                 </div>
                             </div>
@@ -119,6 +119,7 @@
                             <div class="content-buttons">
                                 <button class="button-izquierdo" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CreditoVehiculo'">¡LO QUIERO!</button>
                                 <button class="button-derecho" type="submit" ng-disabled="data.nombre =='' || data.email=='' || data.celular=='' || !data.recibirExtractos">ENVIAR</button>
+                                <a href="#Modal">QUITAR ESTE BOTON</a>
                             </div>
 
                             <div class="texto-inferior-imagen2">
@@ -144,7 +145,7 @@
             <img src="../../img/general/happyface.png">
             <p class="texto-popup-contenido-1">En los proximos dias uno de nuestros agentes de<br>servicio se estara comunidando contigo para resolver<br>todas tus dudas acerca de tu crédito de vehiculo</p>
             <p class="texto-popup-contenido-2">En los proximos dias uno de nuestros agentes de servicio se estara comunidando contigo para resolver todas tus dudas acerca de tu crédito de vehiculo</p>
-            <a href="#"><div class="button-izquierdo"><p>ENTENDIDO</p></div></a>
+            <a href="" ng-click="showindex()"><div class="button-izquierdo"><p>ENTENDIDO</p></div></a>
         </div>
     </div>
 
