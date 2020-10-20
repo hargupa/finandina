@@ -10,6 +10,12 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
         tasa: 1.22, //valor de la tasa activa
         plazo: "",
 
+        anioModelo: '',
+        minMonto: 3000000,
+        errorPrecio: '',
+        errorCuota: '',
+        errorMonto: '',
+
         ShowMonto72Meses: true,
         ShowMonto72MesesCuota: false,
         ShowMonto60Meses: true,
@@ -23,7 +29,7 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
         ShowMonto12Meses: true,
         ShowMonto12MesesCuota: false,
         ShowImgCarro: true,
-        ShowImgMoto: true,
+        ShowImgMoto: false,
         ShowTextoPorcentaje: false,
         ShowForm: true,
         ShowTerminos: false,
@@ -32,6 +38,11 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
         ShowErrorValor: false,
         ShowModeloCarroMoto: true,
         ShowModeloCarroUsado: false,
+        //Variables de Contactenos
+        nombre: '',
+        celular: '',
+        email: '',
+
     }
 
     $scope.MostrarCuota = function (id) {
@@ -81,7 +92,7 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
                 break;
         }
 
-
+        //calcular cuota mensual si cambia el plazo
         $scope.data.cuotaMensual = $scope.calculoCuotaMensual($scope.data.tasa, $scope.data.plazo, $scope.data.montoFinanciar);
 
         if ($scope.data.ShowImgCarro == false) {
@@ -134,63 +145,174 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
         $scope.data.ShowTerminos = false;
     }
 
-
-
-    $scope.validaciones = function () {
-        $scope.data.mensajes = ""
+    $scope.calcularDatos = function () {
+        $scope.data.errorPrecio = '';
+        $scope.data.errorCuota = '';
+        $scope.data.errorMonto = '';
 
         if ($scope.data.precioVehiculo == '') {
-            $scope.data.mensajes = "ingrese precio del vehiculo";
+            $scope.data.errorPrecio = "ingrese precio del vehiculo";
             return false;
         }
-
         if ($scope.data.cuotaInicial == '') {
-            $scope.data.mensajes = "ingrese cuota Inicial del vehiculo";
-            return false;
-        }
-        if ($scope.data.plazo == '') {
-            $scope.data.mensajes = "ingrese plazo del vehiculo";
+            $scope.data.errorCuota = "ingrese cuota Inicial del vehiculo";
             return false;
         }
 
+        //se quita separcion para trabajar con el dato en numero
+        _precioVehiculo = $scope.data.precioVehiculo.replace(/\,/g, '');
+        _cuotaInicial = parseInt($scope.data.cuotaInicial.replace(/\,/g, ''));
 
-        return true;
-    };
+        var anio = new Date().getFullYear()
+        var _antiguedad = (anio) - $scope.data.anioModelo;
+        if ($scope.data.ShowImgCarro && _antiguedad > 14) {
+            $scope.data.errorModelo = "modelo de vehiculo";
+        }
 
-    $scope.calcularDatos = function () {
+        var porcentaje = 20;
+        var cuota = (_precioVehiculo * porcentaje) / 100;
 
-        if ($scope.validaciones()) {
+        if (_cuotaInicial != cuota)
+            $scope.data.errorCuota = 'Debe ser del ' + porcentaje + '% del precio del vehiculo';
 
-            var cuota = ($scope.data.precioVehiculo * 20) / 100;
-            if (parseInt($scope.data.cuotaInicial) == cuota) {
-                $scope.data.ShowTextoPorcentaje = false;
-            }
-            else {
-                $scope.data.ShowTextoPorcentaje = true;
-            }
+        _montoFinanciar = _precioVehiculo - _cuotaInicial;
+        $scope.data.montoFinanciar = _montoFinanciar >= 0 ? _montoFinanciar : 0;
 
-            $scope.data.montoFinanciar = $scope.data.precioVehiculo - $scope.data.cuotaInicial;
+        if ($scope.data.montoFinanciar < $scope.data.minMonto) {
+            $scope.data.errorMonto = "El monto mínimo a financiar debe ser mayor que $" + $scope.data.minMonto;
+            return false;
+        }
+
+        if ($scope.data.plazo != '')
             $scope.data.cuotaMensual = $scope.calculoCuotaMensual($scope.data.tasa, $scope.data.plazo, $scope.data.montoFinanciar);
-        }
-        else {
-            $scope.data.montoFinanciar = 0;
-        }
 
     };
-    $scope.calculoCuotaMensual = function (tasa, plazo, monto) {
 
+    $scope.calculoCuotaMensual = function (tasa, plazo, monto) {
         //Formula Pago de excel es: (Tasa * [(1 + Tasa) ^ Plazo] * Monto Financiar) / ([(1 + Tasa) ^ Plazo] - 1)
         tasa = tasa / 100; //Se combierte el valor de la tasa en porcentaje %
-
         var calculo = (1 + tasa) ** plazo;
         var cuotamensual = (tasa * calculo * monto) / (calculo - 1);
-
-        var result = Math.round(cuotamensual);
-        return result;
+        return Math.round(cuotamensual);
     };
 
     $scope.contactenos = function () {
         $window.location.href = 'formContacto.html'
     }
 
+    $scope.guardarInfo = function () {
+        console.log("guardar Data");
+    }
 }]);
+
+//SERCCION DE DIRECTIVAS
+app.directive('mileskeypress', function () {
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function (scope, element, attr, ctrl) {
+            var validateNumber = function (inputValue) {
+                if (inputValue === undefined) {
+                    return '';
+                }
+                inputValue = inputValue.replace(/\,/g, "");
+                var transformedInput = inputValue.replace(/[^0-9,]/g, '');
+                if (transformedInput !== inputValue) {
+                    ctrl.$setViewValue(transformedInput);
+                    ctrl.$render();
+                }
+                else {
+                    if (transformedInput > 999) {
+                        var transformedInputTemp = parseInt(transformedInput).toString().split("");
+                        var count = 0;
+                        var result = [];
+                        var length = transformedInputTemp.length - 1;
+                        for (var i = length; i >= 0; i--) {
+                            var temp = transformedInputTemp[i].replace(/\,/g, "");
+                            if (temp != "") {
+                                if (length >= 3) {
+                                    if (count == 2 && i != 0) {
+                                        result[i] = "," + temp;
+                                        count = 0;
+                                    }
+                                    else {
+                                        result[i] = temp;
+                                        count += 1;
+                                    }
+                                }
+                                else {
+                                    result[i] = temp;
+                                }
+                            }
+                        }
+                        transformedInput = result.join("");
+                    }
+                    ctrl.$setViewValue(transformedInput);
+                    ctrl.$render();
+                    ctrl.$setValidity('onlyNumbers', true);
+                }
+                return transformedInput;
+            };
+            ctrl.$parsers.unshift(validateNumber);
+            ctrl.$parsers.push(validateNumber);
+            attr.$observe('onlyNumbers', function () {
+                validateNumber(ctrl.$ViewValue)
+            });
+        }
+    };
+}).directive('letterkeypress', function () {
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function (scope, element, attr, ctrl) {
+            var validateletter = function (inputValue) {
+                if (inputValue === undefined) {
+                    return '';
+                }
+                var transformedInput = inputValue.replace(/[^A-Za-z ]/g, '');
+                if (transformedInput !== inputValue) {
+                    ctrl.$setViewValue(transformedInput);
+                    ctrl.$render();
+                }
+                else {
+                    ctrl.$setValidity('onlyLetters', true);
+                }
+                return transformedInput;
+            }
+
+            ctrl.$parsers.unshift(validateletter);
+            ctrl.$parsers.push(validateletter);
+            attr.$observe('onlyLetters', function () {
+                validateletter(ctrl.$ViewValue)
+            });
+        }
+    };
+}).directive('numberkeypress', function () {
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function (scope, element, attr, ctrl) {
+            var validateNumber = function (inputValue) {
+                if (inputValue === undefined) {
+                    return '';
+                }
+                var transformedInput = inputValue.replace(/[^0-9]/g, '');
+                if (transformedInput !== inputValue) {
+                    ctrl.$setViewValue(transformedInput);
+                    ctrl.$render();
+                }
+                else {
+                    ctrl.$setValidity('onlyNumbers', true);
+                }
+                return transformedInput;
+            }
+
+            ctrl.$parsers.unshift(validateNumber);
+            ctrl.$parsers.push(validateNumber);
+            attr.$observe('onlyLetters', function () {
+                validateNumber(ctrl.$ViewValue)
+            });
+        }
+    };
+});
+

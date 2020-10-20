@@ -43,90 +43,91 @@
                 </div>
 
                 <div class="col-12 side-right">
+                    <form name="formUSer" autocomplete="off" ng-submit="guardarInfo(formUSer)">
+                        <div class="card-content" ng-show="data.ShowForm">
+                            <div class="texto-superior-derecho ">
+                                <p>Diligencia el formulario para contactarte y ampliar la información sobre nuestros créditos de vehículo.</p>
+                            </div>
 
-                    <div class="card-content" ng-show="data.ShowForm">
-                        <div class="texto-superior-derecho ">
-                            <p>Diligencia el formulario para contactarte y ampliar la información sobre nuestros créditos de vehículo.</p>
-                        </div>
-
-                        <div class="texto-monto">
-                            <p>Escribe tu nombre y apellido</p>
-                        </div>
-                        <div class=" content-monto">
-                            <div class=" caja-monto input-nombre">
-                                <div class="ico-form">
-                                    <img src="../../img/general/person.svg">
-                                </div>
-                                <div class="control-select-input ">
-                                    <input ng-model="data.nombre">
+                            <div class="texto-monto">
+                                <p>Escribe tu nombre y apellido</p>
+                            </div>
+                            <div class=" content-monto">
+                                <div class=" caja-monto input-nombre">
+                                    <div class="ico-form">
+                                        <img src="../../img/general/person.svg">
+                                    </div>
+                                    <div class="control-select-input ">
+                                        <input ng-model="data.nombre" autocomplete="off" letterkeypress />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="texto-monto">
-                            <p>Indica tu número de celular</p>
-                        </div>
-                        <div class=" content-monto">
-                            <div class=" caja-monto input-celular">
-                                <div class="ico-form">
-                                    <img src="../../img/general/cellphone.svg">
-                                </div>
-                                <div class="control-select-input ">
-                                    <input type="number" maxlength="10" onKeyDown="if(this.value.length==10) return false;">
+                            <div class="texto-monto">
+                                <p>Indica tu número de celular</p>
+                            </div>
+                            <div class=" content-monto">
+                                <div class=" caja-monto input-celular">
+                                    <div class="ico-form">
+                                        <img src="../../img/general/cellphone.svg">
+                                    </div>
+                                    <div class="control-select-input ">
+                                        <input ng-model="data.celular" type="tel" maxlength="10" autocomplete="off" numberkeypress />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="texto-monto">
-                            <p>Indica tu correo electrónico</p>
-                        </div>
-                        <div class=" content-monto">
-                            <div class=" caja-monto input-correo">
-                                <div class="ico-form">
-                                    <img src="../../img/general/plane.svg">
-                                </div>
-                                <div class="control-select-input ">
-                                    <input type="email">
+                            <div class="texto-monto">
+                                <p>Indica tu correo electrónico</p>
+                            </div>
+                            <div class=" content-monto">
+                                <div class=" caja-monto input-correo">
+                                    <div class="ico-form">
+                                        <img src="../../img/general/plane.svg">
+                                    </div>
+                                    <div class="control-select-input ">
+                                        <input type="email" ng-model="data.email" autocomplete="off">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
 
-                        <div class="container-switch">
-                            <div class="texto-switch">
-                                <p class="texto-switch-descripcion">He leído y acepto los <a href="https://www.bancofinandina.com/docs/default-source/institucionaldocs/politica-tratamiento-de-datos-banco-finandina-2020-i.pdf?sfvrsn=f491f9ea_2" target="_blank">términos y condiciones legales</a></p>
-                            </div>
-                            <div class="container-switch-movil">
-                                <div class="switch-button">
-                                    <input type="checkbox" name="switch-button" id="switch-label" class="switch-button__checkbox" checked ng-model="data.recibirExtractos">
-                                    <label for="switch-label" class="switch-button__label">
-                                        <div class="container-switch-texto">
-                                            <div class="switch-texto-izquierdo">
-                                                <p>SI</p>
+                            <div class="container-switch">
+                                <div class="texto-switch">
+                                    <p class="texto-switch-descripcion">He leído y acepto los <a href="https://www.bancofinandina.com/docs/default-source/institucionaldocs/politica-tratamiento-de-datos-banco-finandina-2020-i.pdf?sfvrsn=f491f9ea_2" target="_blank">términos y condiciones legales</a></p>
+                                </div>
+                                <div class="container-switch-movil">
+                                    <div class="switch-button">
+                                        <input type="checkbox" name="switch-button" id="switch-label" class="switch-button__checkbox" checked ng-model="data.recibirExtractos">
+                                        <label for="switch-label" class="switch-button__label">
+                                            <div class="container-switch-texto">
+                                                <div class="switch-texto-izquierdo">
+                                                    <p>SI</p>
+                                                </div>
+                                                <div class="switch-texto-derecho">
+                                                    <p>NO</p>
+                                                </div>
                                             </div>
-                                            <div class="switch-texto-derecho">
-                                                <p>NO</p>
-                                            </div>
-                                        </div>
-                                    </label>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="content-buttons">
+                                <button class="button-izquierdo" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CreditoVehiculo'">¡LO QUIERO!</button>
+                                <button class="button-derecho" type="submit" ng-disabled="data.nombre =='' || data.email=='' || data.celular=='' || !data.recibirExtractos">ENVIAR</button>
+                            </div>
+
+                            <div class="texto-inferior-imagen2">
+                                <div class="img-super"><img src="../../img/general/super.svg"></div>
+                                <div class="texto">
+                                    <p>*Los valores descritos en el presente simulador son informativos, se encuentran sujetos a la solicitud formal de crédito realizada por el cliente a Banco Finandina S.A. </p>
+                                    <p>** El valor de cuota propuesta no incluye valor de prima mensual de seguro de vida .</p>
+                                    <p>***Simulador exclusivo para crédito de Vehículo de Banco Finandina S.A.</p>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="content-buttons">
-                            <button class="button-izquierdo" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CreditoVehiculo'">¡LO QUIERO!</button>
-                            <button class="button-derecho" ng-disabled="true">ENVIAR</button>
-                        </div>
-
-                        <div class="texto-inferior-imagen2">
-                            <div class="img-super"><img src="../../img/general/super.svg"></div>
-                            <div class="texto">
-                                <p>*Los valores descritos en el presente simulador son informativos, se encuentran sujetos a la solicitud formal de crédito realizada por el cliente a Banco Finandina S.A. </p>
-                                <p>** El valor de cuota propuesta no incluye valor de prima mensual de seguro de vida .</p>
-                                <p>***Simulador exclusivo para crédito de Vehículo de Banco Finandina S.A.</p>
-                            </div>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
 

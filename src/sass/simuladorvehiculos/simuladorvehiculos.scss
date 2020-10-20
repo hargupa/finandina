@@ -6,7 +6,7 @@
     font-weight: normal;
     font-style: italic;
 }
- 
+
 @font-face {
     font-family: 'Open_Sans_Bold';
     src: url('../fonts/OpenSans-Bold.eot');
@@ -14,7 +14,7 @@
     font-weight: bold;
     font-style: normal;
 }
- 
+
 @font-face {
     font-family: 'Open_Sans_Semi_Bold';
     src: url('../fonts/OpenSans-SemiBold.eot');
@@ -22,7 +22,7 @@
     font-weight: 600;
     font-style: normal;
 }
- 
+
 @font-face {
     font-family: 'Open_Sans_Light';
     src: url('../fonts/OpenSans-Light.eot');
@@ -30,7 +30,7 @@
     font-weight: 300;
     font-style: normal;
 }
- 
+
 @font-face {
     font-family: 'Open_Sans_Regular';
     src: url('../fonts/OpenSans-Regular.eot');
@@ -38,7 +38,7 @@
     font-weight: normal;
     font-style: normal;
 }
- 
+
 @font-face {
     font-family: 'Finandina_Menu';
     src: url('../fonts/finandina-menu.eot');
@@ -46,7 +46,7 @@
     font-weight: normal;
     font-style: normal;
 }
- 
+
 @font-face {
     font-family: 'Fontello';
     src: url('../fonts/fontello.eot');
@@ -65,7 +65,6 @@ body {
     margin-bottom: 120px;
 }
 
-
 .texto {
     font-size: 20px;
     color: #EE2552;
@@ -80,6 +79,14 @@ body {
     border: 1px solid #EE2552;
     padding: 0 10px;
     border-radius: 3px;
+}
+
+.error {
+    font-family: 'Open_Sans_Semi_Bold';
+    font-size: 12px;
+    font-style: italic;
+    color: #EE2552;
+    font-weight: bold;
 }
 
 .header-vehiculos {
@@ -203,36 +210,37 @@ footer {
             }
         }
     }
-    .content-img{
+
+    .content-img {
         display: flex;
         margin-left: 22px;
-        .img-super{
+
+        .img-super {
             margin-top: 150px;
         }
+
         .img-izquierda {
-            background-color:black;
+            background-color: black;
             margin-left: -10px;
-            img{
+
+            img {
                 max-width: 50%;
             }
-        }        
+        }
     }
 
 
-    .texto-inferior-imagen{
+    .texto-inferior-imagen {
         text-align: left;
         margin-left: 30px;
-        width:90%;
-        max-width: 90%; 
-        p{
-            font-family:'Open_Sans_Regular';
+        width: 90%;
+        max-width: 90%;
+
+        p {
+            font-family: 'Open_Sans_Regular';
             font-size: 12px;
-        }            
-      
-
+        }
     }
-
-
 }
 
 
@@ -362,19 +370,20 @@ footer {
                         font-family: 'Open_Sans_Regular';
                         font-size: 12px;
                     }
+
                     .ico-form2 {
                         width: 30px;
                         float: right;
                         height: 40px;
-                        margin-top:8px;
+                        margin-top: 8px;
                         margin-right: 2px;
-
                         z-index: 100;
+
                         img, svg {
                             margin: auto;
                             display: block;
                         }
-                    }                    
+                    }
                 }
 
                 .ico-form {
@@ -389,8 +398,8 @@ footer {
                         max-width: 100%;
                     }
                 }
-                
- 
+
+
 
                 .img-car {
                     margin-left: 4%;
@@ -418,6 +427,7 @@ footer {
 
         .texto-monto {
             margin-top: 31px;
+            display: grid;
 
             p {
                 font-family: 'Open_Sans_Semi_Bold';
@@ -601,9 +611,11 @@ footer {
                 }
             }
         }
-        .texto-inferior-imagen2{
-            display:none;
+
+        .texto-inferior-imagen2 {
+            display: none;
         }
+
         .content-buttons {
             margin: 40px auto 40px auto;
             display: flex;
@@ -637,6 +649,10 @@ footer {
                 background-position: 97% 16px;
                 cursor: pointer;
             }
+
+            .button-derecho:disabled {
+                opacity: 0.5;
+            }
         }
 
         .content-texto-lateral2 {
@@ -667,29 +683,32 @@ footer {
     border: 1px solid #D2D8DD;
     border-radius: 30px;
     height: 30px;
-    .flecha-izq{
-        position: absolute;
-        color:white;
-        z-index: 1000;
-        margin-top:8px; 
-        margin-left:6px;
-        img{
-            height: 14px;
-            width: 15px;
-        }        
-    }    
 
-    .flecha-der{
-        position:absolute;
-        color:white;
+    .flecha-izq {
+        position: absolute;
+        color: white;
         z-index: 1000;
-        margin-top:8px; 
-        margin-left: 40px;
-        img{
+        margin-top: 8px;
+        margin-left: 6px;
+
+        img {
             height: 14px;
             width: 15px;
-        }        
-    }   
+        }
+    }
+
+    .flecha-der {
+        position: absolute;
+        color: white;
+        z-index: 1000;
+        margin-top: 8px;
+        margin-left: 40px;
+
+        img {
+            height: 14px;
+            width: 15px;
+        }
+    }
 
     .switch-button__checkbox {
         display: none;
@@ -738,28 +757,33 @@ footer {
     .switch-button2__checkbox {
         display: none;
     }
-    .flecha-izq{
+
+    .flecha-izq {
         position: absolute;
-        color:white;
+        color: white;
         z-index: 1000;
-        margin-top:8px; 
-        margin-left:6px;
-        img{
+        margin-top: 8px;
+        margin-left: 6px;
+
+        img {
             height: 14px;
             width: 15px;
-        }        
+        }
     }
-    .flecha-der{
-        position:absolute;
-        color:white;
+
+    .flecha-der {
+        position: absolute;
+        color: white;
         z-index: 1000;
-        margin-top:8px; 
+        margin-top: 8px;
         margin-left: 40px;
-        img{
+
+        img {
             height: 14px;
             width: 15px;
-        }        
-    }    
+        }
+    }
+
     .switch-button2__label {
         width: 60px;
         height: 30px;
@@ -923,6 +947,7 @@ input:focus, input.form-control:focus {
 
     .side-left {
         width: 100%;
+
         .texto-superior-imagen {
             margin: auto auto auto auto;
             width: 90%;
@@ -935,27 +960,30 @@ input:focus, input.form-control:focus {
             }
         }
 
-        .content-img{
+        .content-img {
             margin-left: auto;
             margin-right: auto;
             text-align: center;
             display: flex;
             flex-direction: column;
-            .img-super{
+
+            .img-super {
                 display: none;
             }
+
             .img-izquierda {
-            margin-left: auto;
-            margin-right: auto;                
-                img{
+                margin-left: auto;
+                margin-right: auto;
+
+                img {
                     width: 10%;
                 }
-            }        
-        }
-        .texto-inferior-imagen{
-            display:none;
+            }
         }
 
+        .texto-inferior-imagen {
+            display: none;
+        }
     }
 
 
@@ -1086,31 +1114,29 @@ input:focus, input.form-control:focus {
                 }
             }
 
-            .texto-inferior-imagen2{
+            .texto-inferior-imagen2 {
                 display: block;
                 display: flex;
                 margin-left: 20px;
                 margin-bottom: 20px;
-                .img-super{
+
+                .img-super {
                     margin-top: 10px;
                 }
-                .texto{
+
+                .texto {
                     text-align: left;
                     margin-left: 20px;
-                    width:80%;
+                    width: 80%;
                     max-width: 80%;
-                    color:#707070; 
-                    p{
-                        font-family:'Open_Sans_Regular';
+                    color: #707070;
+
+                    p {
+                        font-family: 'Open_Sans_Regular';
                         font-size: 10px;
-                    }            
-
+                    }
                 }
-                
-
             }
-
-
         }
     }
 }

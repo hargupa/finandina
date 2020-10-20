@@ -29,7 +29,7 @@
                     <div class="texto-superior-imagen" ng-show="data.ShowImgCarro">
                         <p>Conoce el valor apróximado de la cuota de <span>tu próximo carro</span></p>
                     </div>
-                    <div class="texto-superior-imagen" ng-hide="data.ShowImgCarro" ng-show="data.ShowImgMoto">
+                    <div class="texto-superior-imagen" ng-show="data.ShowImgMoto">
                         <p>Conoce el valor apróximado de la cuota de <span>tu próximo moto</span></p>
                     </div>
                     <div class="content-img">
@@ -37,7 +37,7 @@
                         <div clas="img-izquierda" ng-show="data.ShowImgCarro">
                             <img src="../../img/general/persons-car.png" style="max-width: 100%;">
                         </div>
-                        <div clas="img-izquierda" ng-show="data.ShowImgMoto" ng-hide="data.ShowImgCarro">
+                        <div clas="img-izquierda" ng-show="data.ShowImgMoto">
                             <img src="../../img/general/person-moto.png" style="max-width: 100%;">
                         </div>
                     </div>
@@ -53,12 +53,6 @@
 
                 <div class="col-12 side-right">
                     <div class="card-content">
-                        <div class="texto-superior-derecho" style="color:red">
-                            <p>
-                                <span>{{data.mensajes}}</span>
-                            </p>
-                        </div>
-
                         <div class="texto-superior-derecho">
                             <p>Selecciona el tipo de vehículo a financiar:</p>
                         </div>
@@ -66,17 +60,17 @@
                             <div class="container-switch-movil">
                                 <div class="texto-izquierdo">
                                     <p ng-show="data.ShowImgCarro">CARRO</p>
-                                    <p class="texto-negro" ng-show="data.ShowImgMoto" ng-hide="data.ShowImgCarro">CARRO</p>
+                                    <p class="texto-negro" ng-show="data.ShowImgMoto">CARRO</p>
                                 </div>
                                 <div class="switch-button2">
                                     <span class="flecha-izq" ng-show="data.ShowImgCarro"><img src="../../img/general/arrow-1.png"></span>
-                                    <span class="flecha-der" ng-show="data.ShowImgMoto" ng-hide="data.ShowImgCarro"><img src="../../img/general/arrow-2.png"></span>
-                                    <input type="checkbox" name="switch-button2" id="switch-label2" class="switch-button2__checkbox" ng-click="CambiarVehiculo()" >
+                                    <span class="flecha-der" ng-show="data.ShowImgMoto"><img src="../../img/general/arrow-2.png"></span>
+                                    <input type="checkbox" name="switch-button2" id="switch-label2" class="switch-button2__checkbox" ng-click="CambiarVehiculo()">
                                     <label for="switch-label2" class="switch-button2__label"></label>
                                 </div>
                                 <div class="texto-derecho">
                                     <p ng-show="data.ShowImgCarro">MOTO</p>
-                                    <p class="texto-rojo" ng-show="data.ShowImgMoto" ng-hide="data.ShowImgCarro">MOTO</p>
+                                    <p class="texto-rojo" ng-show="data.ShowImgMoto">MOTO</p>
                                 </div>
                             </div>
                             <div class="container-switch-movil" ng-show="data.ShowImgCarro">
@@ -86,13 +80,13 @@
                                 </div>
                                 <div class="switch-button">
                                     <span class="flecha-izq" ng.show="data.ShowTextoNuevo" ng-hide="data.ShowTextoUsado"><img src="../../img/general/arrow-1.png"></span>
-                                    <span class="flecha-der" ng.show="data.ShowTextoUsado" ng-hide="data.ShowTextoNuevo"><img src="../../img/general/arrow-2.png"></span>                                    
+                                    <span class="flecha-der" ng.show="data.ShowTextoUsado" ng-hide="data.ShowTextoNuevo"><img src="../../img/general/arrow-2.png"></span>
                                     <input type="checkbox" name="switch-button" id="switch-label" class="switch-button__checkbox" ng-click="CambiarEstadoVehiculo()">
                                     <label for="switch-label" class="switch-button__label"></label>
                                 </div>
                                 <div class="texto-derecho">
                                     <p ng.show="data.ShowTextoNuevo" ng-hide="data.ShowTextoUsado">USADO</p>
-                                    <p class="texto-rojo" ng.show="data.ShowTextoUsado" ng-hide="data.ShowTextoNuevo" >USADO</p>
+                                    <p class="texto-rojo" ng.show="data.ShowTextoUsado" ng-hide="data.ShowTextoNuevo">USADO</p>
                                 </div>
                             </div>
                         </div>
@@ -100,16 +94,16 @@
                             <div class="caja-select">
                                 <div class="ico-form img-car">
                                     <img class="img-responsive" src="../../img/general/car.svg" ng-show="data.ShowImgCarro">
-                                    <img class="img-responsive" src="../../img/general/moto.svg" ng-show="data.ShowImgMoto" ng-hide="data.ShowImgCarro">
+                                    <img class="img-responsive" src="../../img/general/moto.svg" ng-show="data.ShowImgMoto">
                                 </div>
                                 <div class="control-select-input">
-                                    <select ng-show="data.ShowModeloCarroMoto">
+                                    <select ng-show="data.ShowModeloCarroMoto" ng-model="data.anioModelo">
                                         <option>Año</option>
                                         <option>2020</option>
                                         <option>2021</option>
                                     </select>
 
-                                    <select ng-show="data.ShowModeloCarroUsado">
+                                    <select ng-show="data.ShowModeloCarroUsado" ng-model="data.anioModelo">
                                         <option>Año</option>
                                         <option>2006</option>
                                         <option>2007</option>
@@ -129,7 +123,7 @@
                                     </select>
 
                                     <label for="modelocarro" ng-show="data.ShowImgCarro">Modelo del carro</label>
-                                    <label for="modelocarro" ng-show="data.ShowImgMoto" ng-hide="data.ShowImgCarro">Modelo de la moto</label>
+                                    <label for="modelocarro" ng-show="data.ShowImgMoto">Modelo de la moto</label>
                                 </div>
 
                             </div>
@@ -158,7 +152,7 @@
                                         <option>Jeep</option>
                                         <option>Mitsubishi</option>
                                     </select>
-                                    <select ng-show="data.ShowImgMoto" ng-hide="data.ShowImgCarro">
+                                    <select ng-show="data.ShowImgMoto">
                                         <option>Elige la marca</option>
                                         <option>Honda</option>
                                         <option>Suzuki</option>
@@ -175,9 +169,9 @@
                                         <option>LML</option>
                                         <option>Kymco</option>
                                         <option>Keeway</option>
-                                    </select>                                    
+                                    </select>
                                     <label for="modelocarro" ng-show="data.ShowImgCarro">Marca del vehículo</label>
-                                    <label for="modelocarro" ng-show="data.ShowImgMoto" ng-hide="data.ShowImgCarro">Marca de la moto</label>
+                                    <label for="modelocarro" ng-show="data.ShowImgMoto">Marca de la moto</label>
                                 </div>
 
                             </div>
@@ -188,11 +182,14 @@
                                     <img src="../../img/general/money.svg">
                                 </div>
                                 <div class="control-select-input">
-                                    <input type="text" ng-model="data.precioVehiculo" ng-change="calcularDatos()" autocomplete="off" miles-keypress>
+                                    <input type="text" ng-model="data.precioVehiculo" ng-change="calcularDatos()" autocomplete="off" mileskeypress>
                                     <label for="modelocarro" ng-show="data.ShowImgCarro">Precio del vehículo</label>
-                                    <label for="modelocarro" ng-show="data.ShowImgMoto" ng-hide="data.ShowImgCarro">Precio de la moto</label>
+                                    <label for="modelocarro" ng-show="data.ShowImgMoto">Precio de la moto</label>
+                                    <div class="ico-form2" ng-show="data.errorPrecio != ''">
+                                        <img src="../../img/general/alert.png">
+                                    </div>
                                 </div>
-
+                                <span class="error">{{data.errorPrecio}}</span>
                             </div>
                             <div class="separador"></div>
                             <div class="caja-select">
@@ -200,16 +197,13 @@
                                     <img src="../../img/general/money.svg">
                                 </div>
                                 <div class="control-select-input">
-                                    <input type="text" ng-model="data.cuotaInicial" ng-change="calcularDatos()" autocomplete="off" miles-keypress>
-                                    <div class="ico-form2" ng-show="data.ShowErrorValor">
-                                        <img src="../../img/general/alert.png">
-                                    </div>                                      
+                                    <input type="text" ng-model="data.cuotaInicial" ng-change="calcularDatos()" autocomplete="off" mileskeypress>
                                     <label for="modelocarro">Cuota inicial</label>
+                                    <div class="ico-form2" ng-show="data.errorCuota != ''">
+                                        <img src="../../img/general/alert.png">
+                                    </div>
                                 </div>
-
-                                <div class="mensaje-porcentaje" ng-show="data.ShowTextoPorcentaje">
-                                    <p>Debe ser del 20% del precio del vehiculo</p>
-                                </div>
+                                <span class="error">{{data.errorCuota}}</span>
                             </div>
                         </div>
                         <div class="texto-monto">
@@ -225,6 +219,8 @@
                                 </div>
                             </div>
                         </div>
+                        <span class="error">{{data.errorMonto}}</span>
+
                         <div class="texto-plazo">
                             <p>Elige el plazo en el que quieres pagar</p>
                         </div>
