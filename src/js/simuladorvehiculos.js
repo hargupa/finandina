@@ -158,18 +158,18 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
         $scope.data.errorModelo = '';
 
         if ($scope.data.anioModelo == '') {
-            $scope.data.errorModelo = "ingrese el año del modelo del vehículo";
+            $scope.data.errorModelo = "ingrese el a\u00F1o del modelo del veh\u00CDculo";
             $scope.data.montoFinanciar = 0;
             $scope.data.cuotaMensual = 0;
             return false;
         }
 
         if ($scope.data.precioVehiculo == '') {
-            $scope.data.errorPrecio = "ingrese precio del vehiculo";
+            $scope.data.errorPrecio = "ingrese precio del veh\u00CDculo";
             return false;
         }
         if ($scope.data.cuotaInicial == '') {
-            $scope.data.errorCuota = "ingrese cuota Inicial del vehiculo";
+            $scope.data.errorCuota = "ingrese cuota Inicial del veh\u00CDculo";
             return false;
         }
 
@@ -179,13 +179,13 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
 
         var _antiguedad = (new Date().getFullYear()) - $scope.data.anioModelo;
         if ($scope.data.ShowImgCarro && _antiguedad > 13) {
-            $scope.data.errorModelo = "El modelo del vehiculo no es factible";
+            $scope.data.errorModelo = "El modelo del veh\u00CDculo no es factible";
             $scope.data.montoFinanciar = 0;
             $scope.data.cuotaMensual = 0;
             return false;
         }
         else if ($scope.data.ShowImgMoto && _antiguedad > 1) {
-            $scope.data.errorModelo = "El modelo del vehiculo no es factible";
+            $scope.data.errorModelo = "El modelo del veh\u00CDculo no es factible";
             $scope.data.montoFinanciar = 0;
             $scope.data.cuotaMensual = 0;
             return false;
@@ -194,18 +194,18 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
         //CALCULO MONTO FINANCIAR A PARTIR DE LOS DATOS RECOLECTADOS
         var porcentaje = $scope.calculoPorcentajeFinanciacion();
         if (porcentaje == 100)
-            $scope.data.errorCuota = 'Aplica financiación del ' + porcentaje + '% del precio del vehiculo';
+            $scope.data.errorCuota = 'Aplica financiaci\u00F3n del ' + porcentaje + '% del precio del veh\u00CDculo';
         else {
             var cuota = (_precioVehiculo * porcentaje) / 100;
             if (_cuotaInicial != cuota)
-                $scope.data.errorCuota = 'Debe ser del ' + porcentaje + '% del precio del vehiculo';
+                $scope.data.errorCuota = 'Debe ser del ' + porcentaje + '% del precio del veh\u00CDculo';
         }
 
         _montoFinanciar = _precioVehiculo - _cuotaInicial;
         $scope.data.montoFinanciar = _montoFinanciar >= 0 ? _montoFinanciar : 0;
 
         if ($scope.data.montoFinanciar < $scope.data.minMonto) {
-            $scope.data.errorMonto = "El monto mínimo a financiar debe ser mayor que $" + $scope.data.minMonto;
+            $scope.data.errorMonto = "El monto m\u00CDnimo a financiar debe ser mayor que $" + $scope.data.minMonto;
         }
 
         if ($scope.data.plazo != '')
