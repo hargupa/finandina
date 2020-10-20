@@ -20,16 +20,18 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
         ShowMonto36MesesCuota: false,
         ShowMonto24Meses: true,
         ShowMonto24MesesCuota: false,
+        ShowMonto12Meses: true,
+        ShowMonto12MesesCuota: false,
         ShowImgCarro: true,
         ShowImgMoto: true,
         ShowTextoPorcentaje: false,
         ShowForm: true,
         ShowTerminos: false,
-        ShowTextoUsado:false,
-        ShowTextoNuevo:true,
-        ShowErrorValor:false,
-        ShowModeloCarroMoto:true,
-        ShowModeloCarroUsado:false,
+        ShowTextoUsado: false,
+        ShowTextoNuevo: true,
+        ShowErrorValor: false,
+        ShowModeloCarroMoto: true,
+        ShowModeloCarroUsado: false,
     }
 
     $scope.MostrarCuota = function (id) {
@@ -43,6 +45,8 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
         $scope.data.ShowMonto36MesesCuota = false;
         $scope.data.ShowMonto24Meses = true;
         $scope.data.ShowMonto24MesesCuota = false;
+        $scope.data.ShowMonto12Meses = true;
+        $scope.data.ShowMonto12MesesCuota = false;
 
         switch (id) {
             case 1:
@@ -93,8 +97,8 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
             $scope.data.ShowImgMoto = true;
             $scope.data.ShowMonto72Meses = false;
             $scope.data.ShowMonto72MesesCuota = false;
-            $scope.data.ShowModeloCarroMoto=true;
-            $scope.data.ShowModeloCarroUsado=false;            
+            $scope.data.ShowModeloCarroMoto = true;
+            $scope.data.ShowModeloCarroUsado = false;
         } else {
             $scope.data.ShowImgCarro = true;
             $scope.data.ShowImgMoto = false;
@@ -105,17 +109,17 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
     };
 
 
-    $scope.CambiarEstadoVehiculo=function(){
-        if($scope.data.ShowTextoNuevo==true){
-            $scope.data.ShowTextoUsado=true;
-            $scope.data.ShowTextoNuevo=false;
-            $scope.data.ShowModeloCarroMoto=false;
-            $scope.data.ShowModeloCarroUsado=true;             
-        }else{
-            $scope.data.ShowTextoUsado=false;
-            $scope.data.ShowTextoNuevo=true;
-            $scope.data.ShowModeloCarroMoto=true;
-            $scope.data.ShowModeloCarroUsado=false;             
+    $scope.CambiarEstadoVehiculo = function () {
+        if ($scope.data.ShowTextoNuevo == true) {
+            $scope.data.ShowTextoUsado = true;
+            $scope.data.ShowTextoNuevo = false;
+            $scope.data.ShowModeloCarroMoto = false;
+            $scope.data.ShowModeloCarroUsado = true;
+        } else {
+            $scope.data.ShowTextoUsado = false;
+            $scope.data.ShowTextoNuevo = true;
+            $scope.data.ShowModeloCarroMoto = true;
+            $scope.data.ShowModeloCarroUsado = false;
         }
     }
 
