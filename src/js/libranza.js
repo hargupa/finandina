@@ -30,7 +30,8 @@ app.controller('LibranzaController', ['$scope', function ($scope) {
         ShowCuota: false,
         ShowMonto: true,
         ShowForm: true,
-        ShowAviso: false
+        ShowAviso: false,
+        
 
     }
 
