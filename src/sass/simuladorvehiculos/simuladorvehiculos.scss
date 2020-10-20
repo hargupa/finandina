@@ -342,15 +342,16 @@ footer {
                     input {
                         border: 0;
                         height: 35px;
-                        width: 80%;
-                        max-width: 80%;
+                        width: 70%;
+                        max-width: 70%;
                         margin-top: 2px;
-                        margin-left: 15%;
+                        margin-left: 10%;
                         font-size: 20px;
                         color: #707070;
                         outline: 0;
                         background: white;
                         font-family: 'Open_Sans_Regular';
+                        z-index: 0;
                     }
 
                     label {
@@ -361,13 +362,26 @@ footer {
                         font-family: 'Open_Sans_Regular';
                         font-size: 12px;
                     }
+                    .ico-form2 {
+                        width: 30px;
+                        float: right;
+                        height: 40px;
+                        margin-top:8px;
+                        margin-right: 2px;
+
+                        z-index: 100;
+                        img, svg {
+                            margin: auto;
+                            display: block;
+                        }
+                    }                    
                 }
 
                 .ico-form {
                     width: 30px;
                     position: relative;
                     height: 40px;
-                    top: 15px;
+                    top: 11px;
 
                     img, svg {
                         margin: auto;
@@ -375,6 +389,8 @@ footer {
                         max-width: 100%;
                     }
                 }
+                
+ 
 
                 .img-car {
                     margin-left: 4%;
@@ -651,6 +667,29 @@ footer {
     border: 1px solid #D2D8DD;
     border-radius: 30px;
     height: 30px;
+    .flecha-izq{
+        position: absolute;
+        color:white;
+        z-index: 1000;
+        margin-top:8px; 
+        margin-left:6px;
+        img{
+            height: 14px;
+            width: 15px;
+        }        
+    }    
+
+    .flecha-der{
+        position:absolute;
+        color:white;
+        z-index: 1000;
+        margin-top:8px; 
+        margin-left: 40px;
+        img{
+            height: 14px;
+            width: 15px;
+        }        
+    }   
 
     .switch-button__checkbox {
         display: none;
@@ -699,7 +738,28 @@ footer {
     .switch-button2__checkbox {
         display: none;
     }
-
+    .flecha-izq{
+        position: absolute;
+        color:white;
+        z-index: 1000;
+        margin-top:8px; 
+        margin-left:6px;
+        img{
+            height: 14px;
+            width: 15px;
+        }        
+    }
+    .flecha-der{
+        position:absolute;
+        color:white;
+        z-index: 1000;
+        margin-top:8px; 
+        margin-left: 40px;
+        img{
+            height: 14px;
+            width: 15px;
+        }        
+    }    
     .switch-button2__label {
         width: 60px;
         height: 30px;

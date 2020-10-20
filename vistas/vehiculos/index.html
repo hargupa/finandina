@@ -69,7 +69,9 @@
                                     <p class="texto-negro" ng-show="data.ShowImgMoto" ng-hide="data.ShowImgCarro">CARRO</p>
                                 </div>
                                 <div class="switch-button2">
-                                    <input type="checkbox" name="switch-button2" id="switch-label2" class="switch-button2__checkbox" ng-click="CambiarVehiculo()">
+                                    <span class="flecha-izq" ng-show="data.ShowImgCarro"><img src="../../img/general/arrow-1.png"></span>
+                                    <span class="flecha-der" ng-show="data.ShowImgMoto" ng-hide="data.ShowImgCarro"><img src="../../img/general/arrow-2.png"></span>
+                                    <input type="checkbox" name="switch-button2" id="switch-label2" class="switch-button2__checkbox" ng-click="CambiarVehiculo()" >
                                     <label for="switch-label2" class="switch-button2__label"></label>
                                 </div>
                                 <div class="texto-derecho">
@@ -79,14 +81,18 @@
                             </div>
                             <div class="container-switch-movil" ng-show="data.ShowImgCarro">
                                 <div class="texto-izquierdo">
-                                    <p>NUEVO</p>
+                                    <p ng.show="data.ShowTextoNuevo" ng-hide="data.ShowTextoUsado">NUEVO</p>
+                                    <p class="texto-negro" ng.show="data.ShowTextoUsado" ng-hide="data.ShowTextoNuevo">NUEVO</p>
                                 </div>
                                 <div class="switch-button">
-                                    <input type="checkbox" name="switch-button" id="switch-label" class="switch-button__checkbox">
+                                    <span class="flecha-izq" ng.show="data.ShowTextoNuevo" ng-hide="data.ShowTextoUsado"><img src="../../img/general/arrow-1.png"></span>
+                                    <span class="flecha-der" ng.show="data.ShowTextoUsado" ng-hide="data.ShowTextoNuevo"><img src="../../img/general/arrow-2.png"></span>                                    
+                                    <input type="checkbox" name="switch-button" id="switch-label" class="switch-button__checkbox" ng-click="CambiarEstadoVehiculo()">
                                     <label for="switch-label" class="switch-button__label"></label>
                                 </div>
                                 <div class="texto-derecho">
-                                    <p>USADO</p>
+                                    <p ng.show="data.ShowTextoNuevo" ng-hide="data.ShowTextoUsado">USADO</p>
+                                    <p class="texto-rojo" ng.show="data.ShowTextoUsado" ng-hide="data.ShowTextoNuevo" >USADO</p>
                                 </div>
                             </div>
                         </div>
@@ -97,9 +103,31 @@
                                     <img class="img-responsive" src="../../img/general/moto.svg" ng-show="data.ShowImgMoto" ng-hide="data.ShowImgCarro">
                                 </div>
                                 <div class="control-select-input">
-                                    <select>
-                                        <option>esto es una prueba</option>
+                                    <select ng-show="data.ShowModeloCarroMoto">
+                                        <option>Año</option>
+                                        <option>2020</option>
+                                        <option>2021</option>
                                     </select>
+
+                                    <select ng-show="data.ShowModeloCarroUsado">
+                                        <option>Año</option>
+                                        <option>2006</option>
+                                        <option>2007</option>
+                                        <option>2008</option>
+                                        <option>2009</option>
+                                        <option>2010</option>
+                                        <option>2011</option>
+                                        <option>2012</option>
+                                        <option>2013</option>
+                                        <option>2014</option>
+                                        <option>2015</option>
+                                        <option>2016</option>
+                                        <option>2017</option>
+                                        <option>2018</option>
+                                        <option>2019</option>
+                                        <option>2020</option>
+                                    </select>
+
                                     <label for="modelocarro" ng-show="data.ShowImgCarro">Modelo del carro</label>
                                     <label for="modelocarro" ng-show="data.ShowImgMoto" ng-hide="data.ShowImgCarro">Modelo de la moto</label>
                                 </div>
@@ -112,9 +140,42 @@
                                     <img class="img-responsive" src="../../img/general/moto.svg" ng-show="data.ShowImgMoto" ng-hide="data.ShowImgCarro">
                                 </div>
                                 <div class="control-select-input">
-                                    <select>
-                                        <option>esto es una prueba</option>
+                                    <select ng-show="data.ShowImgCarro">
+                                        <option>Elige la marca</option>
+                                        <option>Kia</option>
+                                        <option>Renault</option>
+                                        <option>Chevrolet</option>
+                                        <option>Mazda</option>
+                                        <option>Ford</option>
+                                        <option>Volkswagen</option>
+                                        <option>Mercedes</option>
+                                        <option>BMW</option>
+                                        <option>Audi</option>
+                                        <option>Citroën</option>
+                                        <option>Fiat</option>
+                                        <option>Honda</option>
+                                        <option>Hyundai</option>
+                                        <option>Jeep</option>
+                                        <option>Mitsubishi</option>
                                     </select>
+                                    <select ng-show="data.ShowImgMoto" ng-hide="data.ShowImgCarro">
+                                        <option>Elige la marca</option>
+                                        <option>Honda</option>
+                                        <option>Suzuki</option>
+                                        <option>Yamaha</option>
+                                        <option>Kawasaki</option>
+                                        <option>BMW</option>
+                                        <option>United Motors</option>
+                                        <option>Ducatti</option>
+                                        <option>KMT</option>
+                                        <option>Triumph</option>
+                                        <option>Bajaj</option>
+                                        <option>Sachs</option>
+                                        <option>Piagio</option>
+                                        <option>LML</option>
+                                        <option>Kymco</option>
+                                        <option>Keeway</option>
+                                    </select>                                    
                                     <label for="modelocarro" ng-show="data.ShowImgCarro">Marca del vehículo</label>
                                     <label for="modelocarro" ng-show="data.ShowImgMoto" ng-hide="data.ShowImgCarro">Marca de la moto</label>
                                 </div>
@@ -140,8 +201,12 @@
                                 </div>
                                 <div class="control-select-input">
                                     <input type="text" ng-model="data.cuotaInicial" ng-change="calcularDatos()" autocomplete="off" miles-keypress>
+                                    <div class="ico-form2" ng-show="data.ShowErrorValor">
+                                        <img src="../../img/general/alert.png">
+                                    </div>                                      
                                     <label for="modelocarro">Cuota inicial</label>
                                 </div>
+
                                 <div class="mensaje-porcentaje" ng-show="data.ShowTextoPorcentaje">
                                     <p>Debe ser del 20% del precio del vehiculo</p>
                                 </div>

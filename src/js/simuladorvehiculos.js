@@ -24,7 +24,12 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
         ShowImgMoto: true,
         ShowTextoPorcentaje: false,
         ShowForm: true,
-        ShowTerminos: false
+        ShowTerminos: false,
+        ShowTextoUsado:false,
+        ShowTextoNuevo:true,
+        ShowErrorValor:false,
+        ShowModeloCarroMoto:true,
+        ShowModeloCarroUsado:false,
     }
 
     $scope.MostrarCuota = function (id) {
@@ -88,13 +93,32 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
             $scope.data.ShowImgMoto = true;
             $scope.data.ShowMonto72Meses = false;
             $scope.data.ShowMonto72MesesCuota = false;
+            $scope.data.ShowModeloCarroMoto=true;
+            $scope.data.ShowModeloCarroUsado=false;            
         } else {
             $scope.data.ShowImgCarro = true;
             $scope.data.ShowImgMoto = false;
             $scope.data.ShowMonto72Meses = true;
             $scope.data.ShowMonto72MesesCuota = false;
+
         }
     };
+
+
+    $scope.CambiarEstadoVehiculo=function(){
+        if($scope.data.ShowTextoNuevo==true){
+            $scope.data.ShowTextoUsado=true;
+            $scope.data.ShowTextoNuevo=false;
+            $scope.data.ShowModeloCarroMoto=false;
+            $scope.data.ShowModeloCarroUsado=true;             
+        }else{
+            $scope.data.ShowTextoUsado=false;
+            $scope.data.ShowTextoNuevo=true;
+            $scope.data.ShowModeloCarroMoto=true;
+            $scope.data.ShowModeloCarroUsado=false;             
+        }
+    }
+
 
     $scope.mostrarTerminos = function () {
         $scope.data.ShowForm = false;
