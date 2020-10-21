@@ -157,7 +157,7 @@
                                 <div class="mensaje-valor">
                                     <p>Diferentes a descuentos a salud</p>
                                     <span class="error msg-1">{{data.errorIngresos}}</span>
-                                    <span class="error msg-2">{{data.errorDescNomina}}</span>                                    
+                                    <span class="error msg-2">{{data.errorDescNomina}}</span>
                                 </div>
                             </div>
                         </div>
@@ -174,8 +174,8 @@
                                     <img src="../../img/general/money-blue.svg">
                                 </div>
                                 <div class="control-select-input ">
-                                    <input ng-if="data.ShowMonto" ng-model="data.montoAprox" type="text" mileskeypress autocomplete="off" ng-change="analizarDatos()" />
-                                    <input ng-if="data.ShowCuota" ng-model="data.cuotaAprox" type="text" mileskeypress autocomplete="off" ng-change="analizarDatos()" />
+                                    <input ng-if="data.ShowMonto" ng-model="data.montoAprox" type="text" mileskeypress autocomplete="off" ng-change="calcularDatos()" />
+                                    <input ng-if="data.ShowCuota" ng-model="data.cuotaAprox" type="text" mileskeypress autocomplete="off" ng-change="calcularDatos()" />
                                     <div class="ico-form2" ng-show="data.ShowAviso">
                                         <img src="../../img/general/money-blue.svg">
                                     </div>
@@ -304,8 +304,8 @@
                         </div>
 
                         <div class="content-buttons">
-                            <button class="button-izquierdo">CONTÁCTAME</button>
-                            <button class="button-derecho">¡LO QUIERO!</button>
+                            <button class="button-izquierdo" ng-click="contactenos()">CONTÁCTAME</button>
+                            <button class="button-derecho" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CreditoLibranza'">¡LO QUIERO!</button>
                         </div>
 
                         <div class="texto-inferior-imagen2">

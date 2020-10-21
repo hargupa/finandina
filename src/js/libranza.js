@@ -1,5 +1,5 @@
 var app = angular.module("Libranza", []);
-app.controller('LibranzaController', ['$scope', function ($scope) {
+app.controller('LibranzaController', ['$scope', '$window', function ($scope, $window) {
 
     $scope.data = {
         //VARIABLES PARA CALCULO Simulador LIBRANZA
@@ -248,6 +248,12 @@ app.controller('LibranzaController', ['$scope', function ($scope) {
         }
         else
             return 0;
+    }
+    $scope.contactenos = function () {
+        $window.location.href = 'formContacto.html'
+    }
+    $scope.showindex = function () {
+        $window.location.href = 'index.html'
     }
 
 }]);
