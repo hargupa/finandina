@@ -368,7 +368,6 @@ footer {
             justify-content: center;
             align-items: center;
             /*margin-bottom: 60px;*/
-
             .caja-monto {
                 width: 50%;
                 background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -492,6 +491,11 @@ footer {
                 cursor: pointer;
             }
 
+            .button-derecho:disabled,
+            .button-derecho input[type=submit]:disabled {
+                opacity: 0.5;
+            }
+
             .button-derecho2 {
                 background: #ED2529 0% 0% no-repeat padding-box;
                 opacity: 1;
@@ -506,6 +510,11 @@ footer {
                 background-image: url('../img/general/chulo-white.svg');
                 background-position: 97% 16px;
                 cursor: pointer;
+            }
+
+            .button-derecho2:disabled,
+            .button-derecho2 input[type=submit]:disabled {
+                opacity: 0.5;
             }
         }
 
