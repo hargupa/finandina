@@ -1,5 +1,5 @@
 var app = angular.module("simuladorCDT", []);
-app.controller('CdtController', ['$scope', function ($scope) {
+app.controller('CdtController', ['$scope','$window', function ($scope) {
 
     $scope.Math = window.Math;
     $scope.data = {
@@ -22,6 +22,12 @@ app.controller('CdtController', ['$scope', function ($scope) {
         mindias: 90,
         maxdias: 540,
         minMontoInversion: 1000000,
+
+        ShowModal:false,
+        //Variables de Contactenos
+        nombre: '',
+        celular: '',
+        email: '',        
     }
 
     $scope.calculos = function () {
@@ -99,6 +105,52 @@ app.controller('CdtController', ['$scope', function ($scope) {
         $scope.data.montoInteresNeto = netoTotal;
         return netoTotal;
     }
+
+
+    $scope.guardarInfo = function () {
+
+        $scope.guardarInfo = function () {
+            $scope.data.errornombre = '';
+            $scope.data.errorcel = '';
+            $scope.data.erroremail = '';
+
+            if ($scope.data.nombre == '') {
+                $scope.data.errornombre = 'Debe ingresar su nombre y apellido';
+                return false;
+            }
+            if ($scope.data.celular == '') {
+                $scope.data.errorcel = 'Debe ingresar su numero de celular';
+                return false;
+            }
+            if ($scope.data.email == '') {
+                $scope.data.erroremail = 'Debe ingresar su correo electronico';
+                return false;
+            }
+
+            //if ($scope.data.celular != '') {
+            //    $scope.data.errorcel = 'Número de celular incorrecto';
+            //    return false;
+            //}
+
+            //TODO guardar info en firebase
+
+            if (true) {
+                console.log("guardar Data");
+                $scope.data.ShowModal=true;
+            }
+        }
+    }
+
+    $scope.contactenos = function () {
+        $window.location.href = 'formContacto.html'
+    }
+    $scope.showindex = function () {
+        $window.location.href = 'index.html'
+    }
+
+
+
+
 }]);
 
 //SERCCION DE DIRECTIVAS
@@ -156,4 +208,59 @@ app.directive('mileskeypress', function () {
             });
         }
     };
-})
+}).directive('letterkeypress', function () {
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function (scope, element, attr, ctrl) {
+            var validateletter = function (inputValue) {
+                if (inputValue === undefined) {
+                    return '';
+                }
+                var transformedInput = inputValue.replace(/[^A-Za-z ]/g, '');
+                if (transformedInput !== inputValue) {
+                    ctrl.$setViewValue(transformedInput);
+                    ctrl.$render();
+                }
+                else {
+                    ctrl.$setValidity('onlyLetters', true);
+                }
+                return transformedInput;
+            }
+
+            ctrl.$parsers.unshift(validateletter);
+            ctrl.$parsers.push(validateletter);
+            attr.$observe('onlyLetters', function () {
+                validateletter(ctrl.$ViewValue)
+            });
+        }
+    };
+}).directive('numberkeypress', function () {
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function (scope, element, attr, ctrl) {
+            var validateNumber = function (inputValue) {
+                if (inputValue === undefined) {
+                    return '';
+                }
+                var transformedInput = inputValue.replace(/[^0-9]/g, '');
+                if (transformedInput !== inputValue) {
+                    ctrl.$setViewValue(transformedInput);
+                    ctrl.$render();
+                }
+                else {
+                    ctrl.$setValidity('onlyNumbers', true);
+                }
+                return transformedInput;
+            }
+
+            ctrl.$parsers.unshift(validateNumber);
+            ctrl.$parsers.push(validateNumber);
+            attr.$observe('onlyLetters', function () {
+                validateNumber(ctrl.$ViewValue)
+            });
+        }
+    };
+});
+
