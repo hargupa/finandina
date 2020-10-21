@@ -1281,9 +1281,10 @@ input:focus, input.form-control:focus {
 
                 .content-texto {
                     display: flex;
+                    justify-content: center;
 
                     .img-pc {
-                        width: 20%;
+                        width: 10%;
 
                         img {
                             max-width: 100%;
