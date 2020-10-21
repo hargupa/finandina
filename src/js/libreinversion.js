@@ -200,8 +200,6 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
     }
 
     $scope.calculoPlanPago = function () {
-        if (!$scope.validaciones())
-            return false;
 
         _dineronecesito = $scope.data.dineronecesito.replace(/\,/g, '');
         _ingresos = $scope.data.ingresos.replace(/\,/g, '');
