@@ -4,11 +4,23 @@ app.controller('LibranzaController', ['$scope', function ($scope) {
     $scope.data = {
         //VARIABLES PARA CALCULO Simulador LIBRANZA
         porcentajeDescuentos: "",
+        AproxCalculada: 0,
         descuento: "",
         maxCuota: "",
         plazo: "",
         tasa: 1.20,
 
+        descuentoNomina: '',
+        ingresos: '',
+        selectActividad: '0',
+        montoAprox: '',
+        cuotaAprox: '',
+
+        errorDescNomina: '',
+        errorIngresos: '',
+        errorActividad: '',
+        errorMonto: '',
+        errorCuota: '',
 
         ShowMonto108Meses: true,
         ShowMonto108MesesCuota: false,
@@ -26,13 +38,10 @@ app.controller('LibranzaController', ['$scope', function ($scope) {
         ShowImgDocente: false,
         ShowImgFuerzas: false,
         ShowImgPensionado: false,
-        singleSelect: "0",
         ShowCuota: false,
         ShowMonto: true,
         ShowForm: true,
         ShowAviso: false,
-        
-
     }
 
     $scope.Cambiar = function () {
@@ -52,17 +61,7 @@ app.controller('LibranzaController', ['$scope', function ($scope) {
         $scope.data.ShowImgFuerzas = false;
         $scope.data.ShowImgPensionado = false;
 
-        if ($scope.data.singleSelect == "0") {
-            $scope.data.porcentajeDescuentos = 0;
-        }
-        else if ($scope.data.singleSelect == "4") {
-            $scope.data.porcentajeDescuentos = (12 / 100);
-        }
-        else {
-            $scope.data.porcentajeDescuentos = (8 / 100);
-        }
-
-        switch ($scope.data.singleSelect) {
+        switch ($scope.data.selectActividad) {
             case "0":
                 $scope.data.ShowImgDefault = true;
                 break;
@@ -79,11 +78,10 @@ app.controller('LibranzaController', ['$scope', function ($scope) {
                 $scope.data.ShowImgPensionado = true;
                 break;
         }
-
+        $scope.calcularDatos();
     };
 
     $scope.MostrarCuota = function (id) {
-
         $scope.data.ShowMonto108Meses = true;
         $scope.data.ShowMonto108MesesCuota = false;
         $scope.data.ShowMonto96Meses = true;
@@ -96,7 +94,6 @@ app.controller('LibranzaController', ['$scope', function ($scope) {
         $scope.data.ShowMonto60MesesCuota = false;
 
         switch (id) {
-
             case 1:
                 $scope.data.plazo = 108;
                 $scope.data.ShowMonto108Meses = false;
@@ -117,14 +114,12 @@ app.controller('LibranzaController', ['$scope', function ($scope) {
                 $scope.data.ShowMonto72Meses = false;
                 $scope.data.ShowMonto72MesesCuota = true;
                 break;
-
             case 5:
                 $scope.data.plazo = 60;
                 $scope.data.ShowMonto60Meses = false;
                 $scope.data.ShowMonto60MesesCuota = true;
                 break;
         }
-
         $scope.calcularDatos();
     };
 
@@ -143,20 +138,43 @@ app.controller('LibranzaController', ['$scope', function ($scope) {
     /**************CALCULO LIBRANZA *****************/
 
     $scope.validaciones = function () {
-        $scope.data.mensaje = "";
+        $scope.data.errorIngresos = '';
+        $scope.data.errorDescNomina = '';
+        $scope.data.errorActividad = '';
+        $scope.data.errorMonto = '';
+        $scope.data.errorCuota = '';
 
+
+        if ($scope.data.selectActividad == '0') {
+            $scope.data.errorActividad = "Debe indicar su actividad";
+            return false;
+        }
         if ($scope.data.ingresos == "") {
-            $scope.data.mensaje = "Debe indicar sus ingresos";
-            return;
+            $scope.data.errorIngresos = "Debe indicar sus ingresos";
+            return false;
         }
 
-
+        if ($scope.data.descuentoNomina == "") {
+            $scope.data.errorDescNomina = 'Debe indicar sus descuentos por n\u00F3mina';
+            return false;
+        }
+        if ($scope.data.ShowMonto && $scope.data.montoAprox == '') {
+            $scope.data.errorMonto = 'Debe indicar la cantidad de dinero que necesita';
+            return false;
+        }
+        if ($scope.data.ShowCuota && $scope.data.cuotaAprox == '') {
+            $scope.data.errorCuota = 'Debe indicar la cantidad de cuota que quiere pagar';
+            return false;
+        }
+        return true;
     }
 
     $scope.calcularDatos = function () {
-        if ($scope.data.porcentajeDescuentos == "") {
+        if (!$scope.validaciones())
+            return false;
 
-            if ($scope.data.singleSelect == "4") {
+        if ($scope.data.porcentajeDescuentos == "") {
+            if ($scope.data.ShowImgPensionado) {
                 $scope.data.porcentajeDescuentos = (12 / 100);
             }
             else {
@@ -171,13 +189,11 @@ app.controller('LibranzaController', ['$scope', function ($scope) {
         if ($scope.data.ShowMonto) {
             //Segun funcion excel:  Pago 
             $scope.data.AproxCalculada = $scope.calculoCuotaAprox($scope.data.tasa, $scope.data.plazo, $scope.data.montoAprox);
-            console.log("cuotaAproxCalculada", $scope.data.cuotaAproxCalculada);
         }
         else if ($scope.data.ShowCuota) {
             var montoAprox = $scope.calculoMontoAprox($scope.data.tasa, $scope.data.plazo, $scope.data.cuotaAprox);
             //Segun funcion excel:  Redondear.menos (valor, -5)
             $scope.data.AproxCalculada = $scope.calculoRedondearMenos(montoAprox, 5);
-            console.log("montoAproxCalculada", $scope.data.montoAproxCalculada);
         }
 
         console.log("descuento", $scope.data.descuento);
@@ -187,16 +203,14 @@ app.controller('LibranzaController', ['$scope', function ($scope) {
 
     $scope.calculoCuotaAprox = function (tasa, plazo, monto) {
         //Formula Pago de excel es: (Tasa * [(1 + Tasa) ^ Plazo] * Monto Financiar) / ([(1 + Tasa) ^ Plazo] - 1)
-        tasa = tasa / 100; //Se combierte el valor de la tasa en porcentaje %
 
+        tasa = tasa / 100; //Se combierte el valor de la tasa en porcentaje %
         var calculo = (1 + tasa) ** plazo;
         var cuotamensual = (tasa * calculo * monto) / (calculo - 1);
-
         var result = Math.round(cuotamensual);
 
-        if (isNaN(result)) {
+        if (isNaN(result))
             result = 0;
-        }
 
         return result;
     };
@@ -210,9 +224,9 @@ app.controller('LibranzaController', ['$scope', function ($scope) {
 
         var _min = Math.min(VA, 100000000);
 
-        if (isNaN(_min)) {
+        if (isNaN(_min))
             result = 0;
-        }
+
         return _min;
     }
 
@@ -236,5 +250,62 @@ app.controller('LibranzaController', ['$scope', function ($scope) {
             return 0;
     }
 
-
 }]);
+
+
+//SERCCION DE DIRECTIVAS
+app.directive('mileskeypress', function () {
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function (scope, element, attr, ctrl) {
+            var validateNumber = function (inputValue) {
+                if (inputValue === undefined) {
+                    return '';
+                }
+                inputValue = inputValue.replace(/\,/g, "");
+                var transformedInput = inputValue.replace(/[^0-9,]/g, '');
+                if (transformedInput !== inputValue) {
+                    ctrl.$setViewValue(transformedInput);
+                    ctrl.$render();
+                }
+                else {
+                    if (transformedInput > 999) {
+                        var transformedInputTemp = parseInt(transformedInput).toString().split("");
+                        var count = 0;
+                        var result = [];
+                        var length = transformedInputTemp.length - 1;
+                        for (var i = length; i >= 0; i--) {
+                            var temp = transformedInputTemp[i].replace(/\,/g, "");
+                            if (temp != "") {
+                                if (length >= 3) {
+                                    if (count == 2 && i != 0) {
+                                        result[i] = "," + temp;
+                                        count = 0;
+                                    }
+                                    else {
+                                        result[i] = temp;
+                                        count += 1;
+                                    }
+                                }
+                                else {
+                                    result[i] = temp;
+                                }
+                            }
+                        }
+                        transformedInput = result.join("");
+                    }
+                    ctrl.$setViewValue(transformedInput);
+                    ctrl.$render();
+                    ctrl.$setValidity('onlyNumbers', true);
+                }
+                return transformedInput;
+            };
+            ctrl.$parsers.unshift(validateNumber);
+            ctrl.$parsers.push(validateNumber);
+            attr.$observe('onlyNumbers', function () {
+                validateNumber(ctrl.$ViewValue)
+            });
+        }
+    };
+})

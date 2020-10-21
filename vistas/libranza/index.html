@@ -39,9 +39,7 @@
                             <img ng-show="data.ShowImgPensionado" src="../../img/general/pensionado.png">
                         </div>
                     </div>
-
                     <div class="texto-inferior-imagen">
-
                         <div class="texto">
                             <p>*El valor es aproximado teniendo en cuenta la tasa de interés aplicable a la fecha</p>
                             <p>La aprobación definitiva de la solicitud de financiación y la tasa de interés del crédito estarán sujetos a las politicas de crédito y condiciones definidas por el Banco Finandina S.A.</p>
@@ -74,17 +72,17 @@
                             </div>
                         </div>
 
+
                         <div class="texto-superior-derecho">
                             <p>Selecciona tu convenio</p>
                         </div>
-
                         <div class="content-caja-select">
                             <div class="caja-select">
                                 <div class="ico-form img-car">
                                     <img class="img-responsive" src="../../img/general/suitcase.svg">
                                 </div>
                                 <div class="control-select-input">
-                                    <select name="singleSelect" ng-model="data.singleSelect" ng-change="CambiarActividad()">
+                                    <select name="singleSelect" ng-model="data.selectActividad" ng-change="CambiarActividad()">
                                         <option value="0" selected="selected">Elige tu opción</option>
                                         <option value="1">Sector público</option>
                                         <option value="2">Docente</option>
@@ -93,16 +91,14 @@
                                     </select>
                                     <label for="opcionactividad">¿Cuál es tu actividad?</label>
                                 </div>
-
                             </div>
                             <div class="separador"></div>
-                            <div class="caja-select" ng-show="data.ShowImgDefault" style="border: none;"></div>
-                            <div class="caja-select" ng-hide="data.ShowImgDefault">
+                            <!--<div class="caja-select" ng-if="data.ShowImgDefault" style="border: none;"></div>-->
+                            <div class="caja-select" ng-if="!data.ShowImgDefault">
                                 <div class="ico-form img-car">
                                     <img class="img-responsive" src="../../img/general/hands.png">
                                 </div>
                                 <div class="control-select-input">
-
                                     <select name="singleSelect" ng-show="data.ShowImgSectorPublico">
                                         <option value="0" selected="selected">Elige tu opción</option>
                                         <option value="1">Alcaldía Envigado</option>
@@ -131,25 +127,23 @@
                                     </select>
                                     <label for="opcionactividad" ng-hide="data.ShowImgDefault">¿Cuál es el convenio?</label>
                                 </div>
-
                             </div>
                         </div>
+                        <span class="error">{{data.errorActividad}}</span>
+
 
                         <div class="texto-superior-derecho">
                             <p>Completa los siguientes datos para poder simular tu libranza</p>
                         </div>
-
-
                         <div class="content-caja-select">
                             <div class="caja-select">
                                 <div class="ico-form">
                                     <img src="../../img/general/money-blue.svg">
                                 </div>
                                 <div class="control-select-input">
-                                    <input ng-model="data.ingresos" type="text" autocomplete="off" mileskeypress />
+                                    <input ng-model="data.ingresos" type="text" autocomplete="off" mileskeypress ng-change="calcularDatos()" />
                                     <label for="modelocarro">Indica tus Ingresos</label>
                                 </div>
-
                             </div>
                             <div class="separador"></div>
                             <div class="caja-select">
@@ -157,7 +151,7 @@
                                     <img src="../../img/general/money-blue.svg">
                                 </div>
                                 <div class="control-select-input">
-                                    <input ng-model="data.descuentoNomina" type="text" autocomplete="off" mileskeypress />
+                                    <input ng-model="data.descuentoNomina" type="text" autocomplete="off" mileskeypress ng-change="calcularDatos()" />
                                     <label for="modelocarro">Descuentos de nómina</label>
                                 </div>
                                 <div class="mensaje-valor">
@@ -165,6 +159,8 @@
                                 </div>
                             </div>
                         </div>
+                        <span class="error">{{data.errorIngresos}}</span>
+                        <span class="error">{{data.errorDescNomina}}</span>
 
 
                         <div class="texto-monto">
@@ -188,10 +184,13 @@
                                 </div>
                             </div>
                         </div>
+                        <span class="error">{{data.errorMonto}}</span>
+                        <span class="error">{{data.errorCuota}}</span>
+
+
                         <div class="texto-plazo">
                             <p>Elige el plazo en el que quieres pagar</p>
                         </div>
-
                         <div class="content-caja-monto" ng-show="data.ShowMonto108Meses" ng-click="MostrarCuota(id=1)">
                             <div class="caja-plazos ">
                                 <label for="modelocarro">108 meses</label>
