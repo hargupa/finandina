@@ -8,7 +8,7 @@ app.controller('CdtController', ['$scope', function ($scope) {
         montoInversion: "",
         tasaEA: 4.7437, //valor de la tasa efectiva anual
         tasaEA_texto: '4.74% EA',
-        plazoDias: "",
+        plazoDias: '',
 
         //Retenciones
         fuente: 4,
@@ -27,12 +27,14 @@ app.controller('CdtController', ['$scope', function ($scope) {
     $scope.calculos = function () {
         $scope.data.errormonto = '';
         $scope.data.errordias = '';
+        $scope.data.montoInteresNeto = 0
+        $scope.data.totalInversion = 0
 
         if ($scope.data.montoInversion == "") {
             $scope.data.errormonto = "Debe ingresar el monto de la inversi\u00F3n";
             return false;
         }
-        if ($scope.data.plazoDias == "") {
+        if ($scope.data.plazoDias == "" || $scope.data.plazoDias == null) {
             $scope.data.errordias = "Debe ingresar el plazo en d\u00EDas";
             return false;
         }
@@ -43,11 +45,11 @@ app.controller('CdtController', ['$scope', function ($scope) {
             return false;
         }
         if ($scope.data.plazoDias < $scope.data.mindias) {
-            $scope.data.errordias = "El m\u00EDnimo de d\u00EDas es " + $scope.data.mindias + 'dias.';
+            $scope.data.errordias = "El m\u00EDnimo de d\u00EDas es " + $scope.data.mindias + ' d\u00EDas.';
             return false;
         }
         if ($scope.data.plazoDias > $scope.data.maxdias) {
-            $scope.data.errordias = "El maximo de d\u00EDas es " + $scope.data.maxdias + 'dias.';
+            $scope.data.errordias = "El m\u00E1ximo de d\u00EDas es " + $scope.data.maxdias + ' d\u00EDas.';
             return false;
         }
 
