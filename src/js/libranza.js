@@ -249,9 +249,19 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
         else
             return 0;
     }
+
+
+    $scope.obtenerDatos = function () {
+        $scope.data.selectActividad = localStorage.getItem('selectActividad');
+        $scope.CambiarActividad();
+    }
+
     $scope.contactenos = function () {
+        localStorage.setItem('selectActividad', $scope.data.selectActividad)
+
         $window.location.href = 'formContacto.html'
     }
+
     $scope.showindex = function () {
         $window.location.href = 'index.html'
     }
