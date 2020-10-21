@@ -82,6 +82,7 @@
                                 </div>
                             </div>
                         </div>
+                        <span class="error">{{data.errormonto}}</span>
 
                         <div class="texto-superior-derecho">
                             <p>¿A cuánto tiempo quieres hacer tu inversión?</p>
@@ -97,8 +98,8 @@
                                     <label for="modelocarro">En días</label>
                                 </div>
                             </div>
-
                         </div>
+                        <span class="error">{{data.errordias}}</span>
 
                         <div class="texto-superior-derecho">
                             <p>Estos son los intereses que recibirás por tu inversión</p>
@@ -109,16 +110,13 @@
                                     <img src="../../img/general/money-green.svg">
                                 </div>
                                 <div class="control-select-input input-ingresos">
-                                    <!--<input ng-model="data.montoInteresNeto" type="text" autocomplete="off" readonly>-->
                                     <span class="texto">{{data.montoInteresNeto | number}}</span>
                                     <label for="modelocarro">Monto interes neto</label>
                                 </div>
                             </div>
 
                         </div>
-                        <span class="error">*Esta cifra incluye retenciones del 4%</span>
-
-
+                        <span class="">*Esta cifra incluye retenciones del 4%</span>
 
                         <div class="content-caja-select content-caja-responsive">
                             <div class="caja-select caja-interes caja-resp-inv">
@@ -126,7 +124,7 @@
                                     <img src="../../img/general/money-green.svg">
                                 </div>
                                 <div class="control-select-input input-ingresos">
-                                    <input ng-model="data.ingresos" type="text" autocomplete="off" ng-change="calcularTasaxIngresos()">
+                                    <span class="texto">{{data.totalInversion | number}}</span>
                                     <label for="modelocarro">Total inversión + interés</label>
                                 </div>
                             </div>
@@ -136,7 +134,8 @@
                                     <img src="../../img/general/calendar2.svg">
                                 </div>
                                 <div class=" input-porcentaje input-fecha">
-                                    <input ng-model="data.ingresos" type="text" autocomplete="off" ng-change="calcularTasaxIngresos()" value="15/03/2021">
+                                    <!--<input ng-model="data.fechaFinal" type="text" autocomplete="off" readonly>-->
+                                    <span>{{data.fechaFinal | date:'dd/MM/yyyy'}}</span>
                                     <label for="modelocarro">Fecha final</label>
                                 </div>
                             </div>

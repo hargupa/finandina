@@ -16,23 +16,22 @@ app.controller('CdtController', ['$scope', function ($scope) {
         modalidad: "V",
 
         montoInteresNeto: 0,
-
+        totalInversion: 0,
+        errormonto: '',
+        errordias: '',
     }
 
     $scope.calculos = function () {
-        $scope.data.mensaje = "";
+        $scope.data.errormonto = '';
+        $scope.data.errordias = '';
 
         if ($scope.data.montoInversion == "") {
-            $scope.data.mensaje = "Debe ingresar el monto de la inversión";
-            return;
+            $scope.data.errormonto = "Debe ingresar el monto de la inversi\u00F3n";
+            return false;
         }
         if ($scope.data.plazoDias == "") {
-            $scope.data.mensaje = "Debe ingresar el plazo en días";
-            return;
-        }
-        if ($scope.data.montoInteresNeto < 1000000) {
-            $scope.data.mensaje = "La inversion mínima es de $1.000.000";
-            return;
+            $scope.data.errordias = "Debe ingresar el plazo en d\u00EDas";
+            return false;
         }
 
 
@@ -49,10 +48,10 @@ app.controller('CdtController', ['$scope', function ($scope) {
     }
 
     $scope.cdtNormal = function () {
-
+        _montoInversion = $scope.data.montoInversion.replace(/\,/g, '');
         var tasaEA = ($scope.data.tasaEA / 100);//se divide en 100 para sacar el equivalente a porcentaje
 
-        var intTotal = ($scope.data.montoInversion * tasaEA) / (360 / $scope.data.plazoDias);
+        var intTotal = (_montoInversion * tasaEA) / (360 / $scope.data.plazoDias);
 
         var reteFuente = intTotal * ($scope.data.fuente / 100);
         var reteIca = intTotal * ($scope.data.ica / 100);
