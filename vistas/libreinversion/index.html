@@ -77,11 +77,12 @@
                                     <img src="../../img/general/money-blue.svg">
                                 </div>
                                 <div class="control-select-input input-ingresos">
-                                    <input ng-model="data.ingresos" type="text" autocomplete="off" ng-change="calcularTasaxIngresos()">
+                                    <input ng-model="data.ingresos" type="text" autocomplete="off" ng-change="calcularTasaxIngresos()" mileskeypress>
                                     <label for="modelocarro">Tus ingresos</label>
                                 </div>
                             </div>
                         </div>
+                        <span class="error">{{data.erroringresos}}</span>
 
                         <div class="texto-superior-derecho">
                             <p>Elige el destino de tu crédito</p>
@@ -93,8 +94,8 @@
                                     <img src="../../img/general/wallet.svg">
                                 </div>
                                 <div class="control-select-input">
-                                    <select>
-                                        <option>Elige tu opción</option>
+                                    <select ng-model="data.destino">
+                                        <option value="">Elige tu opción</option>
                                         <option>Viajar</option>
                                         <option>Estudiar</option>
                                         <option>Remodelar</option>
@@ -108,22 +109,25 @@
                         <div class="texto-monto">
                             <p>¿Cuánto dinero necesitas?</p>
                         </div>
-                        <div class=" content-monto">
-                            <div class=" caja-monto ">
+                        <div class="content-monto">
+                            <div class="caja-monto ">
                                 <div class="ico-form">
                                     <img src="../../img/general/money-blue.svg">
                                 </div>
                                 <div class="control-select-input ">
-                                    <input ng-model="data.dineronecesito" type="text" autocomplete="off">
+                                    <input ng-model="data.dineronecesito" type="text" autocomplete="off" ng-change="calcularTasaxIngresos()" mileskeypress>
                                     <div class="ico-form2" ng-show="data.ShowErrorValor">
                                         <img src="../../img/general/alert.png">
                                     </div>
                                 </div>
                                 <div class="texto-aviso">
-                                    <p>Te prestamos máximo hasta 20 millones</p>
+                                    <!--<p>Te prestamos máximo hasta 20 millones</p>-->
+                                    <span class="error">{{data.errornecesito}}</span>
                                 </div>
                             </div>
                         </div>
+
+                        <h1> tasa = {{data.tasaNVM}}</h1>
                         <div class="texto-plazo">
                             <p>Elige el plazo e identifica una cuota que se acomode a tu bolsillo o flujo de caja:</p>
                         </div>

@@ -3,6 +3,19 @@ var app = angular.module("LibreInversion", []);
 app.controller('LibreInversionController', ['$scope', '$window', function ($scope, $window) {
 
     $scope.data = {
+        //VARIABLES PARA CALCULO Simulador LIBRE INVERSION
+        cuotaMensual: 0,
+        planPago: [],
+
+        destino: '',
+        ingresos: '',
+        dineronecesito: '',
+        tasaNVM: '',
+        plazo: '',
+
+        erroringresos: '',
+        errornecesito: '',
+
         ShowMonto60Meses: true,
         ShowMonto60MesesCuota: false,
         ShowMonto48Meses: true,
@@ -18,15 +31,6 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
         ShowTextoPorcentaje: false,
         ShowForm: true,
         ShowTerminos: false,
-
-        //VARIABLES PARA CALCULO Simulador LIBRE INVERSION
-        cuotaMensual: 0,
-        planPago: [],
-
-        ingresos: "",
-        dineronecesito: "",
-        tasaNVM: "",
-        plazo: "",
 
     }
 
@@ -49,68 +53,90 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
                 $scope.data.ShowMonto60Meses = false;
                 $scope.data.ShowMonto60MesesCuota = true;
                 $scope.data.plazo = 60;
-                $scope.data.cuotaMensual = $scope.calculoCuota($scope.data.dineronecesito, $scope.data.tasaNVM, $scope.data.plazo);
                 break;
             case 3:
                 $scope.data.ShowMonto48Meses = false;
                 $scope.data.ShowMonto48MesesCuota = true;
                 $scope.data.plazo = 48;
-                $scope.data.cuotaMensual = $scope.calculoCuota($scope.data.dineronecesito, $scope.data.tasaNVM, $scope.data.plazo);
                 break;
             case 4:
                 $scope.data.ShowMonto36Meses = false;
                 $scope.data.ShowMonto36MesesCuota = true;
                 $scope.data.plazo = 36;
-                $scope.data.cuotaMensual = $scope.calculoCuota($scope.data.dineronecesito, $scope.data.tasaNVM, $scope.data.plazo);
                 break;
             case 5:
                 $scope.data.ShowMonto24Meses = false;
                 $scope.data.ShowMonto24MesesCuota = true;
                 $scope.data.plazo = 24;
-                $scope.data.cuotaMensual = $scope.calculoCuota($scope.data.dineronecesito, $scope.data.tasaNVM, $scope.data.plazo);
                 break;
 
             case 6:
                 $scope.data.ShowMonto12Meses = false;
                 $scope.data.ShowMonto12MesesCuota = true;
                 $scope.data.plazo = 12;
-                $scope.data.cuotaMensual = $scope.calculoCuota($scope.data.dineronecesito, $scope.data.tasaNVM, $scope.data.plazo);
                 break;
 
             default:
-                $scope.data.cuotaMensual = "";
+                $scope.data.cuotaMensual = 0;
+                $scope.data.plazo = '';
                 break;
         }
+        //calcular MONTO FINANCIAR y CUOTA MENSUAL si cambia el plazo
+        $scope.calcularTasaxIngresos();
 
     };
 
 
 
     /**************CALCULO LIBRE INVERSION *****************/
-    $scope.calcularDatosLibreInversion = function () {
+    $scope.validaciones = function () {
+        $scope.data.erroringresos = '';
+        $scope.data.errornecesito = '';
+
+        if ($scope.data.ingresos == "") {
+            $scope.data.erroringresos = "Indique sus ingresos mensuales";
+            return false;
+        }
+        if ($scope.data.dineronecesito == "") {
+            $scope.data.errornecesito = "Indique sus ingresos mensuales";
+            return false;
+        }
+
+        return true;
     }
 
     $scope.calcularTasaxIngresos = function () {
+        $scope.data.erroringresos = '';
+        $scope.data.errornecesito = '';
+
         if ($scope.data.ingresos == "") {
-            return
+            $scope.data.erroringresos = "Indique sus ingresos mensuales";
+            return false;
+        }
+        if ($scope.data.dineronecesito == "") {
+            $scope.data.errornecesito = "Indique sus ingresos mensuales";
+            return false;
         }
 
-        var prestamoTotal = $scope.data.ingresos * 10;
-        $scope.data.tasaNVM = $scope.calcularTasa($scope.data.ingresos);
+        //se quita separcion para trabajar con el dato en numero
+        _ingresos = $scope.data.ingresos.replace(/\,/g, '');
+        _dineronecesito = $scope.data.dineronecesito.replace(/\,/g, '');
 
-        //var tasaEA = Math.round((1 + $scope.data.tasaNVM) ** plazo - 1).toFixed(4);
+        var prestamoTotal = _ingresos * 10;
+        $scope.data.tasaNVM = $scope.calcularTasa(_ingresos);
+
+        if ($scope.data.plazo != '') {
+            var tasaEA = Math.round((1 + $scope.data.tasaNVM) ** $scope.data.plazo - 1).toFixed(4);
+            $scope.data.cuotaMensual = $scope.calculoCuota(_dineronecesito, $scope.data.tasaNVM, $scope.data.plazo);
+        }
     };
 
-    $scope.calculoCuota = function () {
-        if ($scope.data.dineronecesito == "" || $scope.data.tasaNVM == "" || $scope.data.plazo == "") {
-            return;
-        }
-
-        var tasa = $scope.data.tasaNVM / 100; //Se combierte el valor de la tasa en porcentaje %
-        var calculo = (1 + tasa) ** -$scope.data.plazo;
+    $scope.calculoCuota = function (_dineronecesito, _tasaNVM, _plazo) {
+        var tasa = _tasaNVM / 100; //Se combierte el valor de la tasa en porcentaje %
+        var calculo = (1 + tasa) ** - _plazo;
         var calculo2 = (1 - calculo) / tasa;
 
-        var result = Math.round($scope.data.dineronecesito / calculo2);
+        var result = Math.round(_dineronecesito / calculo2);
         return result;
 
     };
@@ -124,7 +150,7 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
 
 
         if ($scope.data.dineronecesito == "" || $scope.data.tasaNVM == "" || $scope.data.plazo == "")
-            return;
+            return false;
 
         var tasa = $scope.data.tasaNVM / 100;
         $scope.data.planPago = [];
@@ -165,18 +191,20 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
     }
 
     $scope.calculoPlanPago = function () {
+        if (!$scope.validaciones())
+            return false;
 
-        localStorage.setItem('dineronecesito', $scope.data.dineronecesito);
+        _dineronecesito = $scope.data.dineronecesito.replace(/\,/g, '');
+
+        localStorage.setItem('dineronecesito', _dineronecesito);
         localStorage.setItem('tasaNVM', $scope.data.tasaNVM);
         localStorage.setItem('plazo', $scope.data.plazo);
         localStorage.setItem('cuotaMensual', $scope.data.cuotaMensual);
 
         $window.location.href = 'planPagos.html';
-
     };
 
     $scope.calcularTasa = function (salario) {
-
         var tasa = 0;
         var millon = 1000000;
         if (salario <= (millon * 2))//entre 1 y 2 millones
@@ -194,8 +222,6 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
 
         return tasa;
     };
-
-
 
 }]);
 
