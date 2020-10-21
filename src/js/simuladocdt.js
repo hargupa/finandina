@@ -34,21 +34,22 @@ app.controller('CdtController', ['$scope', function ($scope) {
             return false;
         }
 
+        _montoInversion = $scope.data.montoInversion.replace(/\,/g, '');
 
         var netoTotal = 0;
-        netoTotal = $scope.cdtNormal();
+        netoTotal = $scope.cdtNormal(_montoInversion);
         //netoTotal = $scope.cdtDesmaterializado();
 
-
         $scope.data.montoInteresNeto = Math.round(netoTotal);
-        $scope.data.totalInversion = parseInt($scope.data.montoInversion) + parseInt($scope.data.montoInteresNeto);
+        $scope.data.totalInversion = parseInt(_montoInversion) + parseInt($scope.data.montoInteresNeto);
 
         var fecha = new Date();
         $scope.data.fechaFinal = fecha.setDate(fecha.getDate() + parseInt($scope.data.plazoDias));
+
     }
 
-    $scope.cdtNormal = function () {
-        _montoInversion = $scope.data.montoInversion.replace(/\,/g, '');
+    $scope.cdtNormal = function (_montoInversion) {
+
         var tasaEA = ($scope.data.tasaEA / 100);//se divide en 100 para sacar el equivalente a porcentaje
 
         var intTotal = (_montoInversion * tasaEA) / (360 / $scope.data.plazoDias);
@@ -60,8 +61,6 @@ app.controller('CdtController', ['$scope', function ($scope) {
         var netoTotal = (intTotal - reteTotal);
 
         return netoTotal;
-
-
     }
 
 
