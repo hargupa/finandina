@@ -38,7 +38,6 @@
                             <img ng-show="data.ShowImgFuerzas" src="../../img/general/militar.png">
                             <img ng-show="data.ShowImgPensionado" src="../../img/general/pensionado.png">
                         </div>
-
                     </div>
 
                     <div class="texto-inferior-imagen">
@@ -60,17 +59,17 @@
                             <div class="container-switch-movil">
                                 <div class="texto-izquierdo">
                                     <p ng-show="data.ShowMonto">MONTO</p>
-                                    <p class="texto-negro" ng-show="data.ShowCuota" ng-hide="data.ShowMonto">MONTO</p>
+                                    <p class="texto-negro" ng-show="data.ShowCuota">MONTO</p>
                                 </div>
                                 <div class="switch-button">
                                     <span class="flecha-izq" ng-show="data.ShowMonto"><img src="../../img/general/arrow-1.png"></span>
-                                    <span class="flecha-der" ng-show="data.ShowCuota" ng-hide="data.ShowMonto"><img src="../../img/general/arrow-2.png"></span>                                    
+                                    <span class="flecha-der" ng-show="data.ShowCuota"><img src="../../img/general/arrow-2.png"></span>
                                     <input type="checkbox" name="switch-button" id="switch-label" class="switch-button__checkbox" ng-click="Cambiar()">
                                     <label for="switch-label" class="switch-button__label"></label>
                                 </div>
                                 <div class="texto-derecho">
                                     <p ng-show="data.ShowMonto">CUOTA</p>
-                                    <p class="texto-azul" ng-show="data.ShowCuota" ng-hide="data.ShowMonto">CUOTA</p>
+                                    <p class="texto-azul" ng-show="data.ShowCuota">CUOTA</p>
                                 </div>
                             </div>
                         </div>
@@ -102,34 +101,34 @@
                                 <div class="ico-form img-car">
                                     <img class="img-responsive" src="../../img/general/hands.png">
                                 </div>
-                                <div class="control-select-input" >
+                                <div class="control-select-input">
 
-                                    <select name="singleSelect" ng-show="data.ShowImgSectorPublico" >
+                                    <select name="singleSelect" ng-show="data.ShowImgSectorPublico">
                                         <option value="0" selected="selected">Elige tu opción</option>
                                         <option value="1">Alcaldía Envigado</option>
                                         <option value="2">Alcaldía Palmira</option>
                                         <option value="3">Alcaldía Yumbo</option>
                                         <option value="4">Alcaldía Mayor de Bogotá</option>
                                     </select>
-                                    <select name="singleSelect" ng-show="data.ShowImgDocente" >
+                                    <select name="singleSelect" ng-show="data.ShowImgDocente">
                                         <option value="0" selected="selected">Elige tu opción</option>
                                         <option value="1">Secretaría educación Funza</option>
                                         <option value="2">Secretaría educación Piedecuesta</option>
                                         <option value="3">Secretaría educación Santander</option>
                                         <option value="4">Secretaría educación Chía</option>
-                                    </select> 
-                                    <select name="singleSelect" ng-show="data.ShowImgFuerzas" >
+                                    </select>
+                                    <select name="singleSelect" ng-show="data.ShowImgFuerzas">
                                         <option value="0" selected="selected">Elige tu opción</option>
                                         <option value="1">INPEC - Bogotá</option>
                                         <option value="2">INPEC - Buen Pastor</option>
                                         <option value="3">INPEC - Jamundi</option>
                                         <option value="4">INPEC - Modelo</option>
                                     </select>
-                                    <select name="singleSelect" ng-show="data.ShowImgPensionado" >
+                                    <select name="singleSelect" ng-show="data.ShowImgPensionado">
                                         <option value="0" selected="selected">Elige tu opción</option>
                                         <option value="1">Alcaldía Palmira</option>
                                         <option value="2">Alcaldía Yumbo</option>
-                                    </select>                                                                                                            
+                                    </select>
                                     <label for="opcionactividad" ng-hide="data.ShowImgDefault">¿Cuál es el convenio?</label>
                                 </div>
 
@@ -147,7 +146,7 @@
                                     <img src="../../img/general/money-blue.svg">
                                 </div>
                                 <div class="control-select-input">
-                                    <input ng-model="data.ingresos" type="number" autocomplete="off" miles-keypress />
+                                    <input ng-model="data.ingresos" type="text" autocomplete="off" mileskeypress />
                                     <label for="modelocarro">Indica tus Ingresos</label>
                                 </div>
 
@@ -158,7 +157,7 @@
                                     <img src="../../img/general/money-blue.svg">
                                 </div>
                                 <div class="control-select-input">
-                                    <input ng-model="data.descuentoNomina" type="number" autocomplete="off" miles-keypress />
+                                    <input ng-model="data.descuentoNomina" type="text" autocomplete="off" mileskeypress />
                                     <label for="modelocarro">Descuentos de nómina</label>
                                 </div>
                                 <div class="mensaje-valor">
@@ -178,8 +177,8 @@
                                     <img src="../../img/general/money-blue.svg">
                                 </div>
                                 <div class="control-select-input ">
-                                    <input ng-if="data.ShowMonto" ng-model="data.montoAprox" type="number" autocomplete="off" ng-change="analizarDatos()" />
-                                    <input ng-if="data.ShowCuota" ng-model="data.cuotaAprox" type="number" autocomplete="off" ng-change="analizarDatos()" />
+                                    <input ng-if="data.ShowMonto" ng-model="data.montoAprox" type="text" mileskeypress autocomplete="off" ng-change="analizarDatos()" />
+                                    <input ng-if="data.ShowCuota" ng-model="data.cuotaAprox" type="text" mileskeypress autocomplete="off" ng-change="analizarDatos()" />
                                     <div class="ico-form2" ng-show="data.ShowAviso">
                                         <img src="../../img/general/money-blue.svg">
                                     </div>
