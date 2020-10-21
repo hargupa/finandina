@@ -334,8 +334,8 @@ footer {
         }
 
         .content-caja-select {
-            width: 60%;
-            max-width: 60%;
+            width: 80%;
+            max-width: 80%;
             margin: 40px auto auto auto;
             display: flex;
 
@@ -383,6 +383,7 @@ footer {
                         outline: 0;
                         background: white;
                         font-family: 'Open_Sans_Regular';
+                        
                     }
 
                     label {
@@ -413,11 +414,31 @@ footer {
                 }
 
                 .mensaje-valor {
-                    margin-top: auto;
+                    //margin-top: -8px;
                     font-family: 'Open_Sans_Semi_Bold';
                     font-size: 10px;
                     font-style: italic;
                     color: #707070;
+                    height: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    p{
+                        margin-top: 2px;
+                    }
+                    span{
+                        
+                        font-family: 'Open_Sans_Semi_Bold';
+                        font-size: 10px;
+                        font-style: italic;
+                    }
+                    .msg-1{
+                        margin-top: -10px;
+
+                    }
+                    .msg-2{
+                        margin-top: 3px;
+
+                    }
                 }
             }
 
