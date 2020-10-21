@@ -150,8 +150,7 @@
 
                         <div class="content-buttons-planpagos">
                             <button class="button-izquierdo-planpago" ng-click="showindex()">SIMULAR OTRO CRÉDITO</button>
-                            <button class="button-derecho-planpago">SOLICITAR MI CRÉDITO</button>
-
+                            <button class="button-derecho-planpago" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CreditoLibreInversion'">SOLICITAR MI CRÉDITO</button>
                         </div>
 
                         <div class="texto-inferior-imagen2">
@@ -169,28 +168,28 @@
     </div>
 
     <script>
-        function exportarInformacion(){
-            var filename = 'planpagos' +'.csv';
+        function exportarInformacion() {
+            var filename = 'planpagos' + '.csv';
             var csv = [];
             var table = document.getElementById('tablapagos'),
-            rows = table.getElementsByTagName('tr');
-            
+                rows = table.getElementsByTagName('tr');
+
             for (var i = 0; i < rows.length; i++) {
                 var row = [], cols = rows[i].querySelectorAll("td, th");
-                
-                for (var j = 0; j < cols.length; j++) 
+
+                for (var j = 0; j < cols.length; j++)
                     row.push(cols[j].innerText);
-                
-                csv.push(row.join("|"));        
+
+                csv.push(row.join("|"));
             }
 
-            downloadCSV(csv.join("\n"), filename);            
+            downloadCSV(csv.join("\n"), filename);
         }
 
         function downloadCSV(csv, filename) {
             var csvFile;
             var downloadLink;
-            csvFile = new Blob([csv], {type: "text/csv"});
+            csvFile = new Blob([csv], { type: "text/csv" });
             downloadLink = document.createElement("a");
             downloadLink.download = filename;
             downloadLink.href = window.URL.createObjectURL(csvFile);
