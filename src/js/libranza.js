@@ -8,7 +8,7 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
         descuento: "",
         maxCuota: "",
         plazo: "",
-        tasa: 1.20,
+        tasa: 1.89,
 
         descuentoNomina: '',
         ingresos: '',
@@ -16,11 +16,17 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
         montoAprox: '',
         cuotaAprox: '',
 
+        minMontoPerimitido: 3000000,
+        minCuotaPerimitido: 3000000,
+        maxMontoPerimitido: 100000000,
+        maxCuotaPerimitido: 100000000,
+
         errorDescNomina: '',
         errorIngresos: '',
         errorActividad: '',
         errorMonto: '',
         errorCuota: '',
+        errorplazo: '',
 
         ShowMonto108Meses: true,
         ShowMonto108MesesCuota: false,
@@ -42,6 +48,13 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
         ShowMonto: true,
         ShowForm: true,
         ShowAviso: false,
+
+
+        ShowModal: false,
+        //Variables de Contactenos
+        nombre: '',
+        celular: '',
+        email: '',
     }
 
     $scope.Cambiar = function () {
@@ -52,6 +65,10 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
             $scope.data.ShowCuota = true;
             $scope.data.ShowMonto = false;
         }
+
+        $scope.data.montoAprox = '';
+        $scope.data.cuotaAprox = '';
+        $scope.data.AproxCalculada = 0;
     };
 
     $scope.CambiarActividad = function () {
@@ -138,11 +155,12 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
     /**************CALCULO LIBRANZA *****************/
 
     $scope.validaciones = function () {
+        $scope.data.errorActividad = '';
         $scope.data.errorIngresos = '';
         $scope.data.errorDescNomina = '';
-        $scope.data.errorActividad = '';
         $scope.data.errorMonto = '';
         $scope.data.errorCuota = '';
+        $scope.data.errorplazo = '';
 
 
         if ($scope.data.selectActividad == '0') {
@@ -158,14 +176,35 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
             $scope.data.errorDescNomina = 'Debe indicar sus descuentos por n\u00F3mina';
             return false;
         }
-        if ($scope.data.ShowMonto && $scope.data.montoAprox == '') {
-            $scope.data.errorMonto = 'Debe indicar la cantidad de dinero que necesita';
+        if ($scope.data.ShowMonto) {
+            if ($scope.data.montoAprox == '') {
+                $scope.data.errorMonto = 'Debe indicar la cantidad de dinero que necesita';
+                return false;
+            }
+            _montoAprox = $scope.data.montoAprox.replace(/\,/g, '');
+            if (_montoAprox < $scope.data.minMontoPerimitido) {
+                $scope.data.errorMonto = "El monto del dinero no puede ser inferior a $" + $scope.data.minMontoPerimitido;
+                return false;
+            }
+            if (_montoAprox > $scope.data.maxMontoPerimitido) {
+                $scope.data.errorMonto = "El monto del dinero no puede ser superior a $" + $scope.data.maxMontoPerimitido;
+                return false;
+            }
+        }
+        if ($scope.data.ShowCuota) {
+            if ($scope.data.cuotaAprox == '') {
+                $scope.data.errorCuota = 'Debe indicar la cantidad de cuota que quiere pagar';
+                return false;
+            }
+        }
+
+        if ($scope.data.plazo == '') {
+            $scope.data.errorplazo = 'Debe indicar el plazo en el que quiere pagar';
             return false;
         }
-        if ($scope.data.ShowCuota && $scope.data.cuotaAprox == '') {
-            $scope.data.errorCuota = 'Debe indicar la cantidad de cuota que quiere pagar';
-            return false;
-        }
+
+
+
         return true;
     }
 
@@ -174,30 +213,31 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
             return false;
 
         if ($scope.data.porcentajeDescuentos == "") {
-            if ($scope.data.ShowImgPensionado) {
+            if ($scope.data.ShowImgPensionado)
                 $scope.data.porcentajeDescuentos = (12 / 100);
-            }
-            else {
+            else
                 $scope.data.porcentajeDescuentos = (8 / 100);
-            }
         }
+
+        _ingresos = $scope.data.ingresos.replace(/\,/g, '');
+        _descuentoNomina = $scope.data.descuentoNomina.replace(/\,/g, '');
 
         //Campos Calculos
-        $scope.data.descuento = $scope.data.ingresos * $scope.data.porcentajeDescuentos;
-        $scope.data.maxCuota = (($scope.data.ingresos - $scope.data.descuento) / 2) - $scope.data.descuentoNomina;
+        $scope.data.descuento = _ingresos * $scope.data.porcentajeDescuentos;
+        $scope.data.maxCuota = ((_ingresos - $scope.data.descuento) / 2) - _descuentoNomina;
 
         if ($scope.data.ShowMonto) {
+            _montoAprox = $scope.data.montoAprox.replace(/\,/g, '');
             //Segun funcion excel:  Pago 
-            $scope.data.AproxCalculada = $scope.calculoCuotaAprox($scope.data.tasa, $scope.data.plazo, $scope.data.montoAprox);
+            $scope.data.AproxCalculada = $scope.calculoCuotaAprox($scope.data.tasa, $scope.data.plazo, _montoAprox);
         }
         else if ($scope.data.ShowCuota) {
-            var montoAprox = $scope.calculoMontoAprox($scope.data.tasa, $scope.data.plazo, $scope.data.cuotaAprox);
+            _cuotaAprox = $scope.data.cuotaAprox.replace(/\,/g, '');
+            var montoAprox = $scope.calculoMontoAprox($scope.data.tasa, $scope.data.plazo, _cuotaAprox);
             //Segun funcion excel:  Redondear.menos (valor, -5)
             $scope.data.AproxCalculada = $scope.calculoRedondearMenos(montoAprox, 5);
         }
 
-        console.log("descuento", $scope.data.descuento);
-        console.log("maxCuota", $scope.data.maxCuota);
     };
 
 
@@ -255,6 +295,33 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
         $scope.data.selectActividad = localStorage.getItem('selectActividad');
         $scope.CambiarActividad();
     }
+
+    $scope.guardarInfo = function () {
+        $scope.data.errornombre = '';
+        $scope.data.errorcel = '';
+        $scope.data.erroremail = '';
+
+        if ($scope.data.nombre == '') {
+            $scope.data.errornombre = 'Debe ingresar su nombre y apellido';
+            return false;
+        }
+        if ($scope.data.celular == '') {
+            $scope.data.errorcel = 'Debe ingresar su numero de celular';
+            return false;
+        }
+        if ($scope.data.email == '') {
+            $scope.data.erroremail = 'Debe ingresar su correo electronico';
+            return false;
+        }
+
+        //TODO guardar info en firebase
+        if (true) {
+            console.log("guardar Data");
+            $scope.data.ShowModal = true;
+        }
+    }
+
+
 
     $scope.contactenos = function () {
         localStorage.setItem('selectActividad', $scope.data.selectActividad)

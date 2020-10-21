@@ -144,6 +144,9 @@
                                     <input ng-model="data.ingresos" type="text" autocomplete="off" mileskeypress ng-change="calcularDatos()" />
                                     <label for="modelocarro">Indica tus Ingresos</label>
                                 </div>
+                                <div class="mensaje-valor">
+                                    <span class="error msg-2">{{data.errorIngresos}}</span>
+                                </div>
                             </div>
                             <div class="separador"></div>
                             <div class="caja-select">
@@ -156,8 +159,7 @@
                                 </div>
                                 <div class="mensaje-valor">
                                     <p>Diferentes a descuentos a salud</p>
-                                    <span class="error msg-1">{{data.errorIngresos}}</span>
-                                    <span class="error msg-2">{{data.errorDescNomina}}</span>
+                                    <span class="error msg-1">{{data.errorDescNomina}}</span>
                                 </div>
                             </div>
                         </div>
@@ -192,6 +194,7 @@
                         <div class="texto-plazo">
                             <p>Elige el plazo en el que quieres pagar</p>
                         </div>
+                        <span class="error">{{data.errorplazo}}</span>
                         <div class="content-caja-monto" ng-show="data.ShowMonto108Meses" ng-click="MostrarCuota(id=1)">
                             <div class="caja-plazos ">
                                 <label for="modelocarro">108 meses</label>
