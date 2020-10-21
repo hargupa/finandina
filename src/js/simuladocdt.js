@@ -1,5 +1,5 @@
 var app = angular.module("simuladorCDT", []);
-app.controller('CdtController', ['$scope','$window', function ($scope) {
+app.controller('CdtController', ['$scope', '$window', function ($scope) {
 
     $scope.Math = window.Math;
     $scope.data = {
@@ -23,11 +23,11 @@ app.controller('CdtController', ['$scope','$window', function ($scope) {
         maxdias: 540,
         minMontoInversion: 1000000,
 
-        ShowModal:false,
+        ShowModal: false,
         //Variables de Contactenos
         nombre: '',
         celular: '',
-        email: '',        
+        email: '',
     }
 
     $scope.calculos = function () {
@@ -68,7 +68,13 @@ app.controller('CdtController', ['$scope','$window', function ($scope) {
 
         var fecha = new Date();
         fecha.setDate(fecha.getDate() + parseInt($scope.data.plazoDias));
-        $scope.data.fechaFinal = fecha.getDate() + '/' + fecha.getMonth() + '/' + fecha.getFullYear();
+
+        var anio = fecha.getFullYear();
+        var mes = (fecha.getMonth() + 1).toString().padStart(2, "0");
+        var dia = fecha.getDate().toString().padStart(2, "0")
+
+        $scope.data.fechaFinal = dia + '/' + mes + '/' + anio;
+
 
     }
 
@@ -136,7 +142,7 @@ app.controller('CdtController', ['$scope','$window', function ($scope) {
 
             if (true) {
                 console.log("guardar Data");
-                $scope.data.ShowModal=true;
+                $scope.data.ShowModal = true;
             }
         }
     }
