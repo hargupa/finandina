@@ -42,6 +42,7 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
         ShowErrorValor: false,
         ShowModeloCarroMoto: true,
         ShowModeloCarroUsado: false,
+        ShowModal:false,
         //Variables de Contactenos
         nombre: '',
         celular: '',
@@ -276,7 +277,7 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
 
             if (true) {
                 console.log("guardar Data");
-                console.log("MOSTRAR MODAL");
+                $scope.data.ShowModal=true;
             }
         }
     }

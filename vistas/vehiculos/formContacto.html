@@ -119,7 +119,7 @@
                             <div class="content-buttons">
                                 <button class="button-izquierdo" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CreditoVehiculo'">¡LO QUIERO!</button>
                                 <button class="button-derecho" type="submit" ng-disabled="data.nombre =='' || data.email=='' || data.celular=='' || !data.recibirExtractos">ENVIAR</button>
-                                <a href="#Modal">QUITAR ESTE BOTON</a>
+
                             </div>
 
                             <div class="texto-inferior-imagen2">
@@ -139,7 +139,7 @@
 
     </div>
     <!--Ventana Modal-->
-    <div id="Modal" class="modal">
+    <div id="Modal" class="modal" ng-show="data.ShowModal">
         <div class="modal-contenido">
             <p class="texto-popup-titulo">¡Felicitaciones tu solicitud se ha enviado exitosamente!</p>
             <img src="../../img/general/happyface.png">
