@@ -350,7 +350,7 @@ footer {
             display: flex;
 
             .texto-aviso {
-                margin-top: -8px;
+                margin-top: 8px;
                 justify-content: center;
                 align-items: center;
 
@@ -386,7 +386,7 @@ footer {
                         max-width: 80%;
                         margin-top: 2px;
                         margin-left: 25px;
-                        font-size: 20px;
+                        font-size: 18px;
                         color: #707070;
                         outline: 0;
                         background: white;
@@ -406,10 +406,12 @@ footer {
                         max-width: 50%;
                     }
                 }
-                .input-ingresos{
-                    margin-top:-35px;
-                    label{
-                        margin-top:-5px;
+
+                .input-ingresos {
+                    margin-top: -35px;
+
+                    label {
+                        margin-top: -5px;
                     }
                 }
 
@@ -520,9 +522,9 @@ footer {
                     padding-right: 2px;
 
                     input {
-                        font-size: 12px;
-                        width: 70%;
-                        max-width: 70%;
+                        font-size: 16px;
+                        width: 80%;
+                        max-width: 80%;
                         background: #F0F0F0 0% 0% no-repeat padding-box;
                         color: #707070;
                         margin-left: 30px;
@@ -628,7 +630,7 @@ footer {
                         max-width: 60%;
                         margin-top: 2px;
                         margin-left: 30px;
-                        font-size: 20px;
+                        font-size: 18px;
                         color: #24D1FD;
                         outline: 0;
                         background: white;
@@ -1175,8 +1177,7 @@ input:focus, input.form-control:focus {
             .content-caja-select {
                 width: 90%;
                 max-width: 90%;
-                margin: auto auto 46px auto;
-
+                /*margin: auto auto 46px auto;*/
                 .caja-select {
 
                     .ico-form {

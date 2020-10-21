@@ -19,6 +19,9 @@ app.controller('CdtController', ['$scope', function ($scope) {
         totalInversion: 0,
         errormonto: '',
         errordias: '',
+        mindias: 90,
+        maxdias: 540,
+        minMontoInversion: 1000000,
     }
 
     $scope.calculos = function () {
@@ -35,6 +38,18 @@ app.controller('CdtController', ['$scope', function ($scope) {
         }
 
         _montoInversion = $scope.data.montoInversion.replace(/\,/g, '');
+        if (_montoInversion < $scope.data.minMontoInversion) {
+            $scope.data.errormonto = "El monto m\u00EDnimo para la inversi\u00F3n es de $" + $scope.data.minMontoInversion;
+            return false;
+        }
+        if ($scope.data.plazoDias < $scope.data.mindias) {
+            $scope.data.errordias = "El m\u00EDnimo de d\u00EDas es " + $scope.data.mindias + 'dias.';
+            return false;
+        }
+        if ($scope.data.plazoDias > $scope.data.maxdias) {
+            $scope.data.errordias = "El maximo de d\u00EDas es " + $scope.data.maxdias + 'dias.';
+            return false;
+        }
 
         var netoTotal = 0;
         netoTotal = $scope.cdtNormal(_montoInversion);
@@ -44,7 +59,8 @@ app.controller('CdtController', ['$scope', function ($scope) {
         $scope.data.totalInversion = parseInt(_montoInversion) + parseInt($scope.data.montoInteresNeto);
 
         var fecha = new Date();
-        $scope.data.fechaFinal = fecha.setDate(fecha.getDate() + parseInt($scope.data.plazoDias));
+        fecha.setDate(fecha.getDate() + parseInt($scope.data.plazoDias));
+        $scope.data.fechaFinal = fecha.getDate() + '/' + fecha.getMonth() + '/' + fecha.getFullYear();
 
     }
 

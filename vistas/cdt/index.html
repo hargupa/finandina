@@ -135,19 +135,15 @@
                                     <img src="../../img/general/calendar2.svg">
                                 </div>
                                 <div class=" input-porcentaje input-fecha">
-                                    <span>{{data.fechaFinal | date:'dd/MM/yyyy'}}</span>
+                                    <!--<span>{{data.fechaFinal | date:'dd/MM/yyyy'}}</span>-->
+                                    <input ng-model="data.fechaFinal" type="text" autocomplete="off" readonly>
                                     <label for="modelocarro">Fecha final</label>
                                 </div>
                             </div>
                         </div>
 
-
-
-
-
                         <div class="content-buttons">
-                            <button class="button-derecho">¡QUIERO MI CDT!</button>
-
+                            <button class="button-derecho" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CDT'">¡QUIERO MI CDT!</button>
                         </div>
 
                         <div class="texto-inferior-imagen2">
