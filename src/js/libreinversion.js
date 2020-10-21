@@ -13,6 +13,8 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
         tasaNVM: '',
         plazo: '',
 
+        minMonto: 3000000,
+        maxMonto: 100000000,
         erroringresos: '',
         errornecesito: '',
 
@@ -82,7 +84,7 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
                 break;
         }
         //calcular MONTO FINANCIAR y CUOTA MENSUAL si cambia el plazo
-        $scope.calcularTasaxIngresos();
+        $scope.validaciones();
 
     };
 
@@ -98,25 +100,33 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
             return false;
         }
         if ($scope.data.dineronecesito == "") {
-            $scope.data.errornecesito = "Indique sus ingresos mensuales";
+            $scope.data.errornecesito = "Indique el monto del dinero que necesita";
             return false;
         }
 
-        return true;
+        _dineronecesito = $scope.data.dineronecesito.replace(/\,/g, '');
+        _ingresos = $scope.data.ingresos.replace(/\,/g, '');
+
+        if (_dineronecesito < $scope.data.minMonto) {
+            $scope.data.errornecesito = "El monto del dinero que necesita no puede ser inferior a $" + $scope.data.minMonto;
+            return false;
+        }
+        if (_dineronecesito > $scope.data.maxMonto) {
+            $scope.data.errornecesito = "El monto del dinero que necesita no puede ser superior a $" + $scope.data.maxMonto;
+            return false;
+        }
+
+        var prestamoTotal = _ingresos * 10;
+        if (_dineronecesito > prestamoTotal) {
+            $scope.data.errornecesito = "El monto del dinero que solicita supera la capacidad de prestamo";
+            return false;
+        }
+
+
+        $scope.calcularTasaxIngresos();
     }
 
     $scope.calcularTasaxIngresos = function () {
-        $scope.data.erroringresos = '';
-        $scope.data.errornecesito = '';
-
-        if ($scope.data.ingresos == "") {
-            $scope.data.erroringresos = "Indique sus ingresos mensuales";
-            return false;
-        }
-        if ($scope.data.dineronecesito == "") {
-            $scope.data.errornecesito = "Indique sus ingresos mensuales";
-            return false;
-        }
 
         //se quita separcion para trabajar con el dato en numero
         _ingresos = $scope.data.ingresos.replace(/\,/g, '');
