@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html ng-app="simuladorCDT">
 <head>
     <!--<meta http-equiv="refresh" content="10">-->
@@ -53,12 +53,11 @@
                             <p> ** Los valores no incluyen los descuentos de retenciones y 4x1000</p>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="col-12 side-right">
-                   
-                        <div class="card-content" >
+                    <form name="formUSer" autocomplete="off" ng-submit="guardarInfo(formUSer)">
+                        <div class="card-content">
                             <div class="texto-superior-derecho ">
                                 <p>Diligencia el formulario para contactarte y ampliar la información sobre CDT.</p>
                             </div>
@@ -131,9 +130,8 @@
                             </div>
 
                             <div class="content-buttons">
-                                <button class="button-izquierdo" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CreditoVehiculo'">¡LO QUIERO!</button>
-                                <button class="button-derecho" type="submit" ng-disabled="data.nombre =='' || data.email=='' || data.celular=='' || !data.recibirExtractos">ENVIAR</button>
-
+                                <button class="button-izquierdo" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CDT'">¡QUIERO MI CDT!</button>
+                                <button class="button-derecho" type="submit" ng-disabled="data.nombre =='' || data.email=='' || data.celular== '' || !data.recibirExtractos">ENVIAR</button>
                             </div>
 
                             <div class="texto-inferior-imagen2">
@@ -144,13 +142,12 @@
                                 </div>
                             </div>
                         </div>
-     
+                    </form>
                 </div>
             </div>
-
         </div>
-
     </div>
+
     <!--Ventana Modal-->
     <div id="Modal" class="modal" ng-show="data.ShowModal">
         <div class="modal-contenido">

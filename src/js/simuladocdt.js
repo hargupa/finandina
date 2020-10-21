@@ -1,5 +1,5 @@
 var app = angular.module("simuladorCDT", []);
-app.controller('CdtController', ['$scope', '$window', function ($scope) {
+app.controller('CdtController', ['$scope', '$window', function ($scope, $window) {
 
     $scope.Math = window.Math;
     $scope.data = {
@@ -112,46 +112,36 @@ app.controller('CdtController', ['$scope', '$window', function ($scope) {
         return netoTotal;
     }
 
-
     $scope.guardarInfo = function () {
+        $scope.data.errornombre = '';
+        $scope.data.errorcel = '';
+        $scope.data.erroremail = '';
 
-        $scope.guardarInfo = function () {
-            $scope.data.errornombre = '';
-            $scope.data.errorcel = '';
-            $scope.data.erroremail = '';
+        if ($scope.data.nombre == '') {
+            $scope.data.errornombre = 'Debe ingresar su nombre y apellido';
+            return false;
+        }
+        if ($scope.data.celular == '') {
+            $scope.data.errorcel = 'Debe ingresar su numero de celular';
+            return false;
+        }
+        if ($scope.data.email == '') {
+            $scope.data.erroremail = 'Debe ingresar su correo electronico';
+            return false;
+        }
 
-            if ($scope.data.nombre == '') {
-                $scope.data.errornombre = 'Debe ingresar su nombre y apellido';
-                return false;
-            }
-            if ($scope.data.celular == '') {
-                $scope.data.errorcel = 'Debe ingresar su numero de celular';
-                return false;
-            }
-            if ($scope.data.email == '') {
-                $scope.data.erroremail = 'Debe ingresar su correo electronico';
-                return false;
-            }
-
-            //if ($scope.data.celular != '') {
-            //    $scope.data.errorcel = 'Número de celular incorrecto';
-            //    return false;
-            //}
-
-            //TODO guardar info en firebase
-
-            if (true) {
-                console.log("guardar Data");
-                $scope.data.ShowModal = true;
-            }
+        //TODO guardar info en firebase
+        if (true) {
+            console.log("guardar Data");
+            $scope.data.ShowModal = true;
         }
     }
 
     $scope.contactenos = function () {
-        $window.location.href = 'formContacto.html'
+        $window.location.href = 'formContacto.html';
     }
     $scope.showindex = function () {
-        $window.location.href = 'index.html'
+        $window.location.href = 'index.html';
     }
 
 
