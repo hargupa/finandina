@@ -391,4 +391,60 @@ app.directive('mileskeypress', function () {
             });
         }
     };
-})
+}).directive('letterkeypress', function () {
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function (scope, element, attr, ctrl) {
+            var validateletter = function (inputValue) {
+                if (inputValue === undefined) {
+                    return '';
+                }
+                var transformedInput = inputValue.replace(/[^A-Za-z ]/g, '');
+                if (transformedInput !== inputValue) {
+                    ctrl.$setViewValue(transformedInput);
+                    ctrl.$render();
+                }
+                else {
+                    ctrl.$setValidity('onlyLetters', true);
+                }
+                return transformedInput;
+            }
+
+            ctrl.$parsers.unshift(validateletter);
+            ctrl.$parsers.push(validateletter);
+            attr.$observe('onlyLetters', function () {
+                validateletter(ctrl.$ViewValue)
+            });
+        }
+    };
+}).directive('numberkeypress', function () {
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function (scope, element, attr, ctrl) {
+            var validateNumber = function (inputValue) {
+                if (inputValue === undefined) {
+                    return '';
+                }
+                var transformedInput = inputValue.replace(/[^0-9]/g, '');
+                if (transformedInput !== inputValue) {
+                    ctrl.$setViewValue(transformedInput);
+                    ctrl.$render();
+                }
+                else {
+                    ctrl.$setValidity('onlyNumbers', true);
+                }
+                return transformedInput;
+            }
+
+            ctrl.$parsers.unshift(validateNumber);
+            ctrl.$parsers.push(validateNumber);
+            attr.$observe('onlyLetters', function () {
+                validateNumber(ctrl.$ViewValue)
+            });
+        }
+    };
+});
+
+
