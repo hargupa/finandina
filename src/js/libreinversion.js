@@ -17,6 +17,7 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
         maxMonto: 100000000,
         erroringresos: '',
         errornecesito: '',
+        errorplazo: '',
 
         ShowMonto60Meses: true,
         ShowMonto60MesesCuota: false,
@@ -84,7 +85,10 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
                 break;
         }
         //calcular MONTO FINANCIAR y CUOTA MENSUAL si cambia el plazo
-        $scope.validaciones();
+        if ($scope.validaciones()) {
+            $scope.calcularTasaxIngresos();
+        }
+
 
     };
 
@@ -94,6 +98,7 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
     $scope.validaciones = function () {
         $scope.data.erroringresos = '';
         $scope.data.errornecesito = '';
+        $scope.data.errorplazo = '';
 
         if ($scope.data.ingresos == "") {
             $scope.data.erroringresos = "Indique sus ingresos mensuales";
@@ -101,6 +106,10 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
         }
         if ($scope.data.dineronecesito == "") {
             $scope.data.errornecesito = "Indique el monto del dinero que necesita";
+            return false;
+        }
+        if ($scope.data.plazo == "") {
+            $scope.data.errorplazo = "Indique el plazo";
             return false;
         }
 
@@ -123,11 +132,13 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
         }
 
 
-        $scope.calcularTasaxIngresos();
+        return true;
     }
 
     $scope.calcularTasaxIngresos = function () {
-
+        if (!$scope.validaciones()) {
+            return false;
+        }
         //se quita separcion para trabajar con el dato en numero
         _ingresos = $scope.data.ingresos.replace(/\,/g, '');
         _dineronecesito = $scope.data.dineronecesito.replace(/\,/g, '');
@@ -200,6 +211,9 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
     }
 
     $scope.calculoPlanPago = function () {
+        if (!$scope.validaciones()) {
+            return false;
+        }
 
         _dineronecesito = $scope.data.dineronecesito.replace(/\,/g, '');
         _ingresos = $scope.data.ingresos.replace(/\,/g, '');
