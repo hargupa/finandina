@@ -142,12 +142,11 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
     };
 
     $scope.obtenerPlan = function () {
-
+        $scope.data.ingresos = localStorage.getItem('ingresos');
         $scope.data.dineronecesito = localStorage.getItem('dineronecesito');
         $scope.data.tasaNVM = localStorage.getItem('tasaNVM');
         $scope.data.plazo = localStorage.getItem('plazo');
         $scope.data.cuotaMensual = localStorage.getItem('cuotaMensual');
-
 
         if ($scope.data.dineronecesito == "" || $scope.data.tasaNVM == "" || $scope.data.plazo == "")
             return false;
@@ -195,7 +194,9 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
             return false;
 
         _dineronecesito = $scope.data.dineronecesito.replace(/\,/g, '');
+        _ingresos = $scope.data.ingresos.replace(/\,/g, '');
 
+        localStorage.setItem('ingresos', _ingresos);
         localStorage.setItem('dineronecesito', _dineronecesito);
         localStorage.setItem('tasaNVM', $scope.data.tasaNVM);
         localStorage.setItem('plazo', $scope.data.plazo);
@@ -222,7 +223,9 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
 
         return tasa;
     };
-
+    $scope.showindex = function () {
+        $window.location.href = 'index.html'
+    }
 }]);
 
 //SERCCION DE DIRECTIVAS
