@@ -1,5 +1,5 @@
 var app = angular.module("simuladorCDT", []);
-app.controller('simuladorCdtController', ['$scope', function ($scope) {
+app.controller('CdtController', ['$scope', function ($scope) {
 
     $scope.Math = window.Math;
     $scope.data = {
@@ -7,6 +7,7 @@ app.controller('simuladorCdtController', ['$scope', function ($scope) {
         //Datos basicos del simulador
         montoInversion: "",
         tasaEA: 4.7437, //valor de la tasa efectiva anual
+        tasaEA_texto: '4.74% EA',
         plazoDias: "",
 
         //Retenciones
@@ -14,6 +15,7 @@ app.controller('simuladorCdtController', ['$scope', function ($scope) {
         ica: 0,
         modalidad: "V",
 
+        montoInteresNeto: 0,
 
     }
 
@@ -82,3 +84,60 @@ app.controller('simuladorCdtController', ['$scope', function ($scope) {
         return netoTotal;
     }
 }]);
+
+//SERCCION DE DIRECTIVAS
+app.directive('mileskeypress', function () {
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function (scope, element, attr, ctrl) {
+            var validateNumber = function (inputValue) {
+                if (inputValue === undefined) {
+                    return '';
+                }
+                inputValue = inputValue.replace(/\,/g, "");
+                var transformedInput = inputValue.replace(/[^0-9,]/g, '');
+                if (transformedInput !== inputValue) {
+                    ctrl.$setViewValue(transformedInput);
+                    ctrl.$render();
+                }
+                else {
+                    if (transformedInput > 999) {
+                        var transformedInputTemp = parseInt(transformedInput).toString().split("");
+                        var count = 0;
+                        var result = [];
+                        var length = transformedInputTemp.length - 1;
+                        for (var i = length; i >= 0; i--) {
+                            var temp = transformedInputTemp[i].replace(/\,/g, "");
+                            if (temp != "") {
+                                if (length >= 3) {
+                                    if (count == 2 && i != 0) {
+                                        result[i] = "," + temp;
+                                        count = 0;
+                                    }
+                                    else {
+                                        result[i] = temp;
+                                        count += 1;
+                                    }
+                                }
+                                else {
+                                    result[i] = temp;
+                                }
+                            }
+                        }
+                        transformedInput = result.join("");
+                    }
+                    ctrl.$setViewValue(transformedInput);
+                    ctrl.$render();
+                    ctrl.$setValidity('onlyNumbers', true);
+                }
+                return transformedInput;
+            };
+            ctrl.$parsers.unshift(validateNumber);
+            ctrl.$parsers.push(validateNumber);
+            attr.$observe('onlyNumbers', function () {
+                validateNumber(ctrl.$ViewValue)
+            });
+        }
+    };
+})
