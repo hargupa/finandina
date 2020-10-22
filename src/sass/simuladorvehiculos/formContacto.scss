@@ -856,7 +856,7 @@ input:focus, input.form-control:focus {
             }
 
             .texto-monto {
-                margin-top: -30px;
+                margin-top: 30px;
 
                 p {
                     font-size: 14px;
@@ -951,6 +951,7 @@ input:focus, input.form-control:focus {
                 display: flex;
 
                 .texto-switch {
+                    margin-top: 50px;
                     .texto-switch-descripcion {
                         font-size: 12px;
                     }
