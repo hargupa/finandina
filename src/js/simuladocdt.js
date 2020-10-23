@@ -1,5 +1,13 @@
 var app = angular.module("simuladorCDT", []);
 app.controller('CdtController', ['$scope', '$window', function ($scope, $window) {
+    // Set the configuration for your app
+    var config = {
+        apiKey: "AIzaSyC8vrdhMCthhxAw7CwEfN3OnVWPbHNFVpk",
+        authDomain: "simuladores-75631.firebaseapp.com.firebaseapp.com",
+        databaseURL: "https://simuladores-75631.firebaseio.com",
+        storageBucket: "simuladores-75631.appspot.com.appspot.com"
+    };
+    firebase.initializeApp(config);
 
     $scope.Math = window.Math;
     $scope.data = {
@@ -131,22 +139,59 @@ app.controller('CdtController', ['$scope', '$window', function ($scope, $window)
         }
 
         //TODO guardar info en firebase
-        if (true) {
-            console.log("guardar Data");
+        if ($scope.writeFirebase()) {
             $scope.data.ShowModal = true;
         }
     }
 
+    $scope.writeFirebase = function () {
+
+        var datos = localStorage.getItem('simulacion');
+        var credito = JSON.parse(datos);
+
+        var result = false;
+        try {
+            var cdt = {
+                'DatosPersonales': {
+                    'nombre': $scope.data.nombre,
+                    'celular': $scope.data.celular,
+                    'email': $scope.data.email,
+                },
+                'Simulacion': credito,
+            };
+            result = firebase.database().ref("cdt").push(cdt);
+        } catch (error) {
+            console.log(error);
+        }
+        return result;
+    }
+
+
+
+    //***************************** REDIRECCION *****************************//
     $scope.contactenos = function () {
+
+        if ($scope.data.montoInversion != '' && $scope.data.plazoDias != '') {
+            _montoInversion = $scope.data.montoInversion.replace(/\,/g, '');
+            var simulacion = {
+                'montoInversion': _montoInversion,
+                'tasaEA': $scope.data.tasaEA,
+                'periodo': 'dias',
+                'plazoDias': $scope.data.plazoDias,
+                'retencionFuente': $scope.data.fuente,
+                'retencionIca': $scope.data.ica,
+                'montoInteresNeto': $scope.data.montoInteresNeto,
+                'totalInversion': $scope.data.totalInversion,
+                'fechaFinal': $scope.fechaFinal
+            };
+            localStorage.setItem('simulacion', JSON.stringify(simulacion));
+        }
+
         $window.location.href = 'formContacto.html';
     }
     $scope.showindex = function () {
         $window.location.href = 'index.html';
     }
-
-
-
-
 }]);
 
 //SERCCION DE DIRECTIVAS
