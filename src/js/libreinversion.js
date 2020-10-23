@@ -208,6 +208,12 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
 
             _saldoAnterior = _saldoNuevo;
         }
+
+        localStorage.removeItem('ingresos');
+        localStorage.removeItem('dineronecesito');
+        localStorage.removeItem('tasaNVM');
+        localStorage.removeItem('plazo');
+        localStorage.removeItem('cuotaMensual');
     }
 
     $scope.calculoPlanPago = function () {

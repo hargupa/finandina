@@ -302,6 +302,7 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
         } catch (error) {
             console.log(error);
         }
+        localStorage.removeItem('simulacion');
         return result;
     }
 
@@ -326,6 +327,7 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
             };
             localStorage.setItem('simulacion', JSON.stringify(simulacion));
         }
+
         $window.location.href = 'formContacto.html'
     }
     $scope.showindex = function () {

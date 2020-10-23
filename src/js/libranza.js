@@ -346,6 +346,7 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
         } catch (error) {
             console.log(error);
         }
+        localStorage.removeItem('simulacion');
         return result;
     }
 

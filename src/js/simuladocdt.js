@@ -163,9 +163,10 @@ app.controller('CdtController', ['$scope', '$window', function ($scope, $window)
         } catch (error) {
             console.log(error);
         }
+
+        localStorage.removeItem('simulacion');
         return result;
     }
-
 
 
     //***************************** REDIRECCION *****************************//
