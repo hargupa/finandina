@@ -7,7 +7,13 @@
     <link href="../../css/libranza/libranza.min.css" rel="stylesheet">
     <script src="../../js/angular.min.js"></script>
     <script src="../../src/js/libranza.js"></script>
-    <title>Document</title>
+    <title>Simulador de credito de Libranza</title>
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase.js"></script>
 </head>
 <body ng-controller="LibranzaController">
     <div class="header-credito">
@@ -99,28 +105,28 @@
                                     <img class="img-responsive" src="../../img/general/hands.png">
                                 </div>
                                 <div class="control-select-input">
-                                    <select name="singleSelect" ng-show="data.ShowImgSectorPublico">
+                                    <select name="singleSelect" ng-show="data.ShowImgSectorPublico" ng-model="data.selectConvenio">
                                         <option value="0" selected="selected">Elige tu opción</option>
                                         <option value="1">Alcaldía Envigado</option>
                                         <option value="2">Alcaldía Palmira</option>
                                         <option value="3">Alcaldía Yumbo</option>
                                         <option value="4">Alcaldía Mayor de Bogotá</option>
                                     </select>
-                                    <select name="singleSelect" ng-show="data.ShowImgDocente">
+                                    <select name="singleSelect" ng-show="data.ShowImgDocente" ng-model="data.selectConvenio">
                                         <option value="0" selected="selected">Elige tu opción</option>
                                         <option value="1">Secretaría educación Funza</option>
                                         <option value="2">Secretaría educación Piedecuesta</option>
                                         <option value="3">Secretaría educación Santander</option>
                                         <option value="4">Secretaría educación Chía</option>
                                     </select>
-                                    <select name="singleSelect" ng-show="data.ShowImgFuerzas">
+                                    <select name="singleSelect" ng-show="data.ShowImgFuerzas" ng-model="data.selectConvenio">
                                         <option value="0" selected="selected">Elige tu opción</option>
                                         <option value="1">INPEC - Bogotá</option>
                                         <option value="2">INPEC - Buen Pastor</option>
                                         <option value="3">INPEC - Jamundi</option>
                                         <option value="4">INPEC - Modelo</option>
                                     </select>
-                                    <select name="singleSelect" ng-show="data.ShowImgPensionado">
+                                    <select name="singleSelect" ng-show="data.ShowImgPensionado" ng-model="data.selectConvenio">
                                         <option value="0" selected="selected">Elige tu opción</option>
                                         <option value="1">Alcaldía Palmira</option>
                                         <option value="2">Alcaldía Yumbo</option>

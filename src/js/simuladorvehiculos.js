@@ -1,5 +1,13 @@
 var app = angular.module("SimuladorVehiculos", []);
 app.controller('SimuladorController', ['$scope', '$window', function ($scope, $window) {
+    // Set the configuration for your app
+    var config = {
+        apiKey: "AIzaSyC8vrdhMCthhxAw7CwEfN3OnVWPbHNFVpk",
+        authDomain: "simuladores-75631.firebaseapp.com.firebaseapp.com",
+        databaseURL: "https://simuladores-75631.firebaseio.com",
+        storageBucket: "simuladores-75631.appspot.com.appspot.com"
+    };
+    firebase.initializeApp(config);
 
     $scope.Math = window.Math;
     $scope.data = {
@@ -42,7 +50,7 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
         ShowErrorValor: false,
         ShowModeloCarroMoto: true,
         ShowModeloCarroUsado: false,
-        ShowModal:false,
+        ShowModal: false,
         //Variables de Contactenos
         nombre: '',
         celular: '',
@@ -143,16 +151,15 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
         $scope.calcularDatos();
     }
 
+    //$scope.mostrarTerminos = function () {
+    //    $scope.data.ShowForm = false;
+    //    $scope.data.ShowTerminos = true;
+    //}
 
-    $scope.mostrarTerminos = function () {
-        $scope.data.ShowForm = false;
-        $scope.data.ShowTerminos = true;
-    }
-
-    $scope.ocultarTerminos = function () {
-        $scope.data.ShowForm = true;
-        $scope.data.ShowTerminos = false;
-    }
+    //$scope.ocultarTerminos = function () {
+    //    $scope.data.ShowForm = true;
+    //    $scope.data.ShowTerminos = false;
+    //}
 
     $scope.calcularDatos = function () {
         $scope.data.errorPrecio = '';
@@ -166,6 +173,7 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
             $scope.data.cuotaMensual = 0;
             return false;
         }
+
 
         if ($scope.data.precioVehiculo == '') {
             $scope.data.errorPrecio = "ingrese precio del veh\u00CDculo";
@@ -248,41 +256,76 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
         return Math.round(_cuotamensual);
     };
 
+    //***************************** CONTACTENOS *****************************//
+
     $scope.guardarInfo = function () {
+        $scope.data.errornombre = '';
+        $scope.data.errorcel = '';
+        $scope.data.erroremail = '';
 
-        $scope.guardarInfo = function () {
-            $scope.data.errornombre = '';
-            $scope.data.errorcel = '';
-            $scope.data.erroremail = '';
+        if ($scope.data.nombre == '') {
+            $scope.data.errornombre = 'Debe ingresar su nombre y apellido';
+            return false;
+        }
+        if ($scope.data.celular == '') {
+            $scope.data.errorcel = 'Debe ingresar su numero de celular';
+            return false;
+        }
+        if ($scope.data.email == '') {
+            $scope.data.erroremail = 'Debe ingresar su correo electronico';
+            return false;
+        }
 
-            if ($scope.data.nombre == '') {
-                $scope.data.errornombre = 'Debe ingresar su nombre y apellido';
-                return false;
-            }
-            if ($scope.data.celular == '') {
-                $scope.data.errorcel = 'Debe ingresar su numero de celular';
-                return false;
-            }
-            if ($scope.data.email == '') {
-                $scope.data.erroremail = 'Debe ingresar su correo electronico';
-                return false;
-            }
-
-            //if ($scope.data.celular != '') {
-            //    $scope.data.errorcel = 'Número de celular incorrecto';
-            //    return false;
-            //}
-
-            //TODO guardar info en firebase
-
-            if (true) {
-                console.log("guardar Data");
-                $scope.data.ShowModal=true;
-            }
+        //TODO guardar info en firebase
+        if ($scope.writeFirebase()) {
+            $scope.data.ShowModal = true;
         }
     }
 
+    $scope.writeFirebase = function () {
+
+        var datos = localStorage.getItem('simulacion');
+        var credito = JSON.parse(datos);
+
+
+        var result = false;
+        try {
+            var vehiculo = {
+                'DatosPersonales': {
+                    'nombre': $scope.data.nombre,
+                    'celular': $scope.data.celular,
+                    'email': $scope.data.email,
+                },
+                'Simulacion': credito,
+            };
+            result = firebase.database().ref("vehiculo").push(vehiculo);
+        } catch (error) {
+            console.log(error);
+        }
+        return result;
+    }
+
+    //***************************** REDIRECCION *****************************//
     $scope.contactenos = function () {
+        if ($scope.data.anioModelo != '' && $scope.data.precioVehiculo != '' && $scope.data.cuotaInicial != '') {
+            _cuotaInicial = parseInt($scope.data.cuotaInicial.replace(/\,/g, ''));
+            _precioVehiculo = parseInt($scope.data.precioVehiculo.replace(/\,/g, ''));
+
+            var simulacion = {
+                'tipoVehiculo': $scope.data.ShowImgCarro ? 'Carro' : 'Moto',
+                'estadoVehiculo': $scope.data.ShowTextoNuevo ? 'Nuevo' : 'Usado',
+                'marcaVehiculo': $scope.data.marcaVehiculo,
+                'anioModelo': $scope.data.anioModelo,
+                'periodoPago': 'Meses',
+                'tasa': $scope.data.tasa,
+                'precioVehiculo': _precioVehiculo,
+                'cuotaInicial': _cuotaInicial,
+                'montoFinanciar': $scope.data.montoFinanciar,
+                'cuotaMensual': $scope.data.cuotaMensual,
+                'plazo': $scope.data.cuotaMensual,
+            };
+            localStorage.setItem('simulacion', JSON.stringify(simulacion));
+        }
         $window.location.href = 'formContacto.html'
     }
     $scope.showindex = function () {

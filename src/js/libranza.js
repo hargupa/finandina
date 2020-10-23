@@ -1,11 +1,20 @@
 var app = angular.module("Libranza", []);
 app.controller('LibranzaController', ['$scope', '$window', function ($scope, $window) {
 
+    // Set the configuration for your app
+    var config = {
+        apiKey: "AIzaSyC8vrdhMCthhxAw7CwEfN3OnVWPbHNFVpk",
+        authDomain: "simuladores-75631.firebaseapp.com.firebaseapp.com",
+        databaseURL: "https://simuladores-75631.firebaseio.com",
+        storageBucket: "simuladores-75631.appspot.com.appspot.com"
+    };
+    firebase.initializeApp(config);
+
     $scope.data = {
         //VARIABLES PARA CALCULO Simulador LIBRANZA
         porcentajeDescuentos: "",
         AproxCalculada: 0,
-        descuento: "",
+        descuentoSalud: "",
         maxCuota: "",
         plazo: "",
         tasa: 1.89,
@@ -13,6 +22,7 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
         descuentoNomina: '',
         ingresos: '',
         selectActividad: '0',
+        selectConvenio: '0',
         montoAprox: '',
         cuotaAprox: '',
 
@@ -162,7 +172,6 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
         $scope.data.errorCuota = '';
         $scope.data.errorplazo = '';
 
-
         if ($scope.data.selectActividad == '0') {
             $scope.data.errorActividad = "Debe indicar su actividad";
             return false;
@@ -203,8 +212,6 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
             return false;
         }
 
-
-
         return true;
     }
 
@@ -223,8 +230,8 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
         _descuentoNomina = $scope.data.descuentoNomina.replace(/\,/g, '');
 
         //Campos Calculos
-        $scope.data.descuento = _ingresos * $scope.data.porcentajeDescuentos;
-        $scope.data.maxCuota = ((_ingresos - $scope.data.descuento) / 2) - _descuentoNomina;
+        $scope.data.descuentoSalud = _ingresos * $scope.data.porcentajeDescuentos;
+        $scope.data.maxCuota = ((_ingresos - $scope.data.descuentoSalud) / 2) - _descuentoNomina;
 
         if ($scope.data.ShowMonto) {
             _montoAprox = $scope.data.montoAprox.replace(/\,/g, '');
@@ -290,7 +297,7 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
             return 0;
     }
 
-
+    //***************************** CONTACTENOS *****************************//
     $scope.obtenerDatos = function () {
         $scope.data.selectActividad = localStorage.getItem('selectActividad');
         $scope.CambiarActividad();
@@ -315,17 +322,60 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
         }
 
         //TODO guardar info en firebase
-        if (true) {
-            console.log("guardar Data");
+        if ($scope.writeFirebase()) {
             $scope.data.ShowModal = true;
         }
     }
 
+    $scope.writeFirebase = function () {
 
+        var datos = localStorage.getItem('simulacion');
+        var credito = JSON.parse(datos);
 
+        var result = false;
+        try {
+            var libranza = {
+                'DatosPersonales': {
+                    'nombre': $scope.data.nombre,
+                    'celular': $scope.data.celular,
+                    'email': $scope.data.email,
+                },
+                'Simulacion': credito,
+            };
+            result = firebase.database().ref("libranza").push(libranza);
+        } catch (error) {
+            console.log(error);
+        }
+        return result;
+    }
+
+    //***************************** REDIRECCION *****************************//
     $scope.contactenos = function () {
         localStorage.setItem('selectActividad', $scope.data.selectActividad)
 
+        if ($scope.data.ingresos != '' && $scope.data.descuentoNomina != '') {
+            montoAprox = $scope.data.montoAprox.replace(/\,/g, '');
+            cuotaAprox = $scope.data.cuotaAprox.replace(/\,/g, '');
+            ingresos = $scope.data.ingresos.replace(/\,/g, '');
+            descuentoNomina = $scope.data.descuentoNomina.replace(/\,/g, '');
+
+            var simulacion = {
+                'esMonto': $scope.data.ShowMonto,
+                'esCuota': $scope.data.ShowCuota,
+                'Actividad': $scope.data.selectActividad,
+                'convenio': $scope.data.selectConvenio,
+                'ingresos': ingresos,
+                'descuentoNomina': descuentoNomina,
+                'porcentajeDescuentoSalud': $scope.data.porcentajeDescuentos,
+                'descuentoSalud': $scope.data.descuentoSalud,
+                'montoFinanciar': montoAprox != '' ? montoAprox : 0,
+                'cuotaFinanciar': cuotaAprox != '' ? cuotaAprox : 0,
+                'plazo': $scope.data.plazo,
+                'tasa': $scope.data.cuotaMensual,
+
+            };
+            localStorage.setItem('simulacion', JSON.stringify(simulacion));
+        }
         $window.location.href = 'formContacto.html'
     }
 
