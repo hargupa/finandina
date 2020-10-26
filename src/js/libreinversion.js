@@ -2,6 +2,15 @@ var app = angular.module("LibreInversion", []);
 
 app.controller('LibreInversionController', ['$scope', '$window', function ($scope, $window) {
 
+    // Set the configuration for your app
+    var config = {
+        apiKey: "AIzaSyC8vrdhMCthhxAw7CwEfN3OnVWPbHNFVpk",
+        authDomain: "simuladores-75631.firebaseapp.com.firebaseapp.com",
+        databaseURL: "https://simuladores-75631.firebaseio.com",
+        storageBucket: "simuladores-75631.appspot.com.appspot.com"
+    };
+    firebase.initializeApp(config);
+
     $scope.data = {
         //VARIABLES PARA CALCULO Simulador LIBRE INVERSION
         cuotaMensual: 0,
@@ -12,7 +21,9 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
         dineronecesito: '',
         tasaNVM: '',
         plazo: '',
+        email: '',
 
+        sendOK: false,
         minMonto: 3000000,
         maxMonto: 100000000,
         erroringresos: '',
@@ -163,11 +174,14 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
     };
 
     $scope.obtenerPlan = function () {
-        $scope.data.ingresos = localStorage.getItem('ingresos');
-        $scope.data.dineronecesito = localStorage.getItem('dineronecesito');
-        $scope.data.tasaNVM = localStorage.getItem('tasaNVM');
-        $scope.data.plazo = localStorage.getItem('plazo');
-        $scope.data.cuotaMensual = localStorage.getItem('cuotaMensual');
+
+        var json = JSON.parse(localStorage.getItem('simulacion'));
+
+        $scope.data.ingresos = json.ingresos;
+        $scope.data.dineronecesito = json.dineronecesito;
+        $scope.data.tasaNVM = json.tasaNVM;
+        $scope.data.plazo = json.plazo;
+        $scope.data.cuotaMensual = json.cuotaMensual;
 
         if ($scope.data.dineronecesito == "" || $scope.data.tasaNVM == "" || $scope.data.plazo == "")
             return false;
@@ -209,11 +223,6 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
             _saldoAnterior = _saldoNuevo;
         }
 
-        localStorage.removeItem('ingresos');
-        localStorage.removeItem('dineronecesito');
-        localStorage.removeItem('tasaNVM');
-        localStorage.removeItem('plazo');
-        localStorage.removeItem('cuotaMensual');
     }
 
     $scope.calculoPlanPago = function () {
@@ -221,16 +230,7 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
             return false;
         }
 
-        _dineronecesito = $scope.data.dineronecesito.replace(/\,/g, '');
-        _ingresos = $scope.data.ingresos.replace(/\,/g, '');
-
-        localStorage.setItem('ingresos', _ingresos);
-        localStorage.setItem('dineronecesito', _dineronecesito);
-        localStorage.setItem('tasaNVM', $scope.data.tasaNVM);
-        localStorage.setItem('plazo', $scope.data.plazo);
-        localStorage.setItem('cuotaMensual', $scope.data.cuotaMensual);
-
-        $window.location.href = 'planPagos.html';
+        $scope.showPlanPagos();
     };
 
     $scope.calcularTasa = function (salario) {
@@ -251,6 +251,66 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
 
         return tasa;
     };
+
+    $scope.guardarInfo = function (paso) {
+
+        if (paso == 2 && $scope.data.sendOK) { //desde btn solicitar credito
+            localStorage.removeItem('simulacion');
+            $scope.data.ShowModal = true;
+        }
+        else if (paso == 2 && !$scope.data.sendOK) {
+            if ($scope.writeFirebase()) {
+                $scope.data.ShowModal = true;
+            }
+        }
+        else if (paso == 1) {
+            $scope.writeFirebase();
+        }
+    }
+
+    $scope.writeFirebase = function () {
+
+        var datos = localStorage.getItem('simulacion');
+        var credito = JSON.parse(datos);
+
+        var result = false;
+        try {
+            var libreInversion = {
+                'DatosPersonales': {
+                    'email': $scope.data.email != undefined ? $scope.data.email : '',
+                },
+                'Simulacion': credito,
+            };
+            result = firebase.database().ref("libreInversion").push(libreInversion);
+        } catch (error) {
+            console.log(error);
+        }
+
+        $scope.data.sendOK = result;
+        return result;
+    }
+
+    //***************************** REDIRECCION *****************************//
+    $scope.showPlanPagos = function () {
+
+        _dineronecesito = $scope.data.dineronecesito.replace(/\,/g, '');
+        _ingresos = $scope.data.ingresos.replace(/\,/g, '');
+
+        var simulacion = {
+
+            'ingresos': _ingresos,
+            'dineronecesito': _dineronecesito,
+            'tasaNVM': $scope.data.tasaNVM,
+            'plazo': $scope.data.plazo,
+            'cuotaMensual': $scope.data.cuotaMensual,
+
+        };
+        localStorage.setItem('simulacion', JSON.stringify(simulacion));
+
+
+        $window.location.href = 'planPagos.html';
+    }
+
     $scope.showindex = function () {
         $window.location.href = 'index.html'
     }

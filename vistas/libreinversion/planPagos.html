@@ -8,6 +8,12 @@
     <script src="../../js/angular.min.js"></script>
     <script src="../../src/js/libreinversion.js"></script>
     <title>Simulador credito de libre inversion</title>
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase.js"></script>
 </head>
 <body ng-controller="LibreInversionController">
     <div class="header-credito">
@@ -95,9 +101,11 @@
                         </div>
                         <div class="texto-tabla-2">
 
-                            <p><span class="ico-form3">
-                                <img src="../../img/general/happy.png">
-                            </span>¡Fantástico!<br>Y así quedaría tu plan de pagos</p>
+                            <p>
+                                <span class="ico-form3">
+                                    <img src="../../img/general/happy.png">
+                                </span>¡Fantástico!<br>Y así quedaría tu plan de pagos
+                            </p>
                         </div>
 
                         <div class="content-tabla">
@@ -143,16 +151,16 @@
                                     <img src="../../img/general/plain-blue.svg">
                                 </div>
                                 <div class="control-select-input input-correo">
-                                    <input>
-                                    <div class="content-button-correo"><button class="button-correo">ENVIAR</button></div>
+                                    <input type="email" ng-model="data.email">
+                                    <div class="content-button-correo"><button class="button-correo" ng-click="guardarInfo(1)">ENVIAR</button></div>
                                 </div>
                             </div>
-                            <div class="content-button-correo-2"><button class="button-correo">ENVIAR</button></div>
+                            <div class="content-button-correo-2"><button class="button-correo" ng-click="guardarInfo(1)">ENVIAR</button></div>
                         </div>
 
                         <div class="content-buttons-planpagos">
                             <button class="button-izquierdo-planpago" ng-click="showindex()">SIMULAR OTRO CRÉDITO</button>
-                            <button class="button-derecho-planpago" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CreditoLibreInversion'">SOLICITAR MI CRÉDITO</button>
+                            <button class="button-derecho-planpago" ng-click="guardarInfo(2)" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CreditoLibreInversion'">SOLICITAR MI CRÉDITO</button>
                         </div>
 
                         <div class="texto-inferior-imagen2">
