@@ -112,15 +112,15 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
         $scope.data.errorplazo = '';
 
         if ($scope.data.ingresos == "") {
-            $scope.data.erroringresos = "Indique sus ingresos mensuales";
+            $scope.data.erroringresos = "Indica tus ingresos mensuales";
             return false;
         }
         if ($scope.data.dineronecesito == "") {
-            $scope.data.errornecesito = "Indique el monto del dinero que necesita";
+            $scope.data.errornecesito = "Indica el monto del dinero que necesitas";
             return false;
         }
         if ($scope.data.plazo == "") {
-            $scope.data.errorplazo = "Indique el plazo";
+            $scope.data.errorplazo = "Indica el plazo";
             return false;
         }
 
@@ -128,17 +128,17 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
         _ingresos = $scope.data.ingresos.replace(/\,/g, '');
 
         if (_dineronecesito < $scope.data.minMonto) {
-            $scope.data.errornecesito = "El monto del dinero que necesita no puede ser inferior a $" + $scope.data.minMonto;
+            $scope.data.errornecesito = "El monto mínimo que te prestamos es de $" + $scope.data.minMonto;
             return false;
         }
         if (_dineronecesito > $scope.data.maxMonto) {
-            $scope.data.errornecesito = "El monto del dinero que necesita no puede ser superior a $" + $scope.data.maxMonto;
+            $scope.data.errornecesito = "El monto máximo que te prestamos es de $" + $scope.data.maxMonto;
             return false;
         }
 
         var prestamoTotal = _ingresos * 10;
         if (_dineronecesito > prestamoTotal) {
-            $scope.data.errornecesito = "El monto del dinero que solicita supera la capacidad de prestamo";
+            $scope.data.errornecesito = "El monto que intentas solicitar es superior a tu capacidad de endeudamiento, el valor máximo que te podemos prestar es $" + $scope.data.maxMonto;
             return false;
         }
 

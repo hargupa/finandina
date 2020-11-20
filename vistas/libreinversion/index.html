@@ -70,7 +70,7 @@
                 <div class="col-12 side-right">
                     <div class="card-content">
                         <div class="texto-superior">
-                            <p>Juntos conseguiremos lo que deseas, para ello cuéntanos un poco de ti</p>
+                            <p>Juntos conseguiremos lo que deseas, para ello cuéntanos un poco de ti, el monto mínimo de los ingresos debe ser 1 SMMLV</p>
                         </div>
 
 
@@ -84,8 +84,8 @@
                                     <img src="../../img/general/money-blue.svg">
                                 </div>
                                 <div class="control-select-input input-ingresos">
-                                    <input ng-model="data.ingresos" type="text" autocomplete="off" ng-change="validaciones()" mileskeypress>
-                                    <label for="modelocarro">Tus ingresos</label>
+                                    <input ng-model="data.ingresos" type="text" maxlength="11" autocomplete="off" ng-change="validaciones()" mileskeypress>
+                                    <!--<label for="modelocarro">Tus ingresos</label>-->
                                 </div>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
 
                         <div class="content-caja-select">
                             <div class="caja-select">
-                                <div class="ico-form">
+                                <div class="ico-form icoSelect">
                                     <img src="../../img/general/wallet.svg">
                                 </div>
                                 <div class="control-select-input">
@@ -105,8 +105,14 @@
                                         <option value="">Elige tu opción</option>
                                         <option>Viajar</option>
                                         <option>Estudiar</option>
+                                        <option>Comprar</option>
+                                        <option>Pagar deudas</option>
                                         <option>Remodelar</option>
                                         <option>Comprar cartera</option>
+                                        <option>Comprar bici</option>
+                                        <option>Comprar vehículo</option>
+                                        <option>Comprar moto</option>
+                                        <option>Otra</option>
                                     </select>
                                 </div>
                             </div>
@@ -255,7 +261,7 @@
     </footer>
     <script>
         document.addEventListener("DOMContentLoaded", function (event) {
-            setInterval('CambiarImagen()', 4000);
+            setInterval('CambiarImagen()', 5000);
         })
         function CambiarImagen() {
             var i;

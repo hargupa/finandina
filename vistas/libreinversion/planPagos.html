@@ -65,7 +65,7 @@
                                 <img src="../../img/general/pc.png">
                             </div>
                             <div class="content-texto">
-                                <p>Gracias por contarnos qué deseabas.<br> Aquí están los datos de tu simulación:</p>
+                                <p>Gracias por contarnos qué deseabas.<br><br> Aquí están los datos de tu simulación:</p>
                                 <div class="texto-valores">
                                     <p>
                                         Tus ingresos: <span>${{data.ingresos | number}}</span><br>
@@ -94,9 +94,9 @@
                         </div>
 
                         <div class="texto-tabla">
-                            <div class="ico-form3">
+                            <!--<div class="ico-form3">
                                 <img src="../../img/general/happy.png">
-                            </div>
+                            </div>-->
                             <p>¡Fantástico! Y así quedaría tu plan de pagos</p>
                         </div>
                         <div class="texto-tabla-2">
@@ -114,7 +114,7 @@
                                     <th>Mes</th>
                                     <th>Cuota</th>
                                     <th>Abono Capital</th>
-                                    <th>Interes</th>
+                                    <th>Intereses</th>
                                     <th>Saldo</th>
                                 </tr>
                                 <tr ng-repeat="row in data.planPago">

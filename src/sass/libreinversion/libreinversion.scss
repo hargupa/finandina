@@ -15,6 +15,7 @@
     font-style: normal;
 }
 
+
 @font-face {
     font-family: 'Open_Sans_Semi_Bold';
     src: url('../fonts/OpenSans-SemiBold.eot');
@@ -63,6 +64,7 @@ html {
 body {
     margin: 0;
     margin-bottom: 120px;
+    color: #707070;
 }
 
 .header-credito {
@@ -194,7 +196,7 @@ footer {
 
         p {
             font-family: 'Open_Sans_Regular';
-            font-size: 36px;
+            font-size: 34px;
 
             span {
                 color: #24D1FD;
@@ -462,7 +464,8 @@ footer {
                     }
 
                     th {
-                        background: #398FF9;
+                        //background: #398FF9;
+                        background: #707070;
                     }
                 }
             }
@@ -509,6 +512,7 @@ footer {
             p {
                 font-family: 'Open_Sans_Semi_Bold';
                 font-size: 16px;
+                text-align: justify;
             }
         }
 
@@ -650,10 +654,11 @@ footer {
                     input {
                         border: 0;
                         height: 35px;
-                        width: 70%;
-                        max-width: 70%;
-                        margin-top: 2px;
-                        margin-left: 25px;
+                        width: 100%;
+                        max-width: 80%;
+                        margin-top: 0px;
+                        margin-left: 20px;
+                        text-align: center;
                         font-size: 15px;
                         color: #707070;
                         outline: 0;
@@ -682,6 +687,10 @@ footer {
                         display: block;
                         max-width: 100%;
                     }
+                }
+
+                .ico-form.icoSelect {
+                    top: 7px;
                 }
 
                 .img-car {
@@ -714,7 +723,7 @@ footer {
             p {
                 font-family: 'Open_Sans_Semi_Bold';
                 font-size: 16px;
-                color: black;
+                color: #707070;
             }
         }
 
@@ -782,10 +791,10 @@ footer {
                         text-align: center;
                         border: 0;
                         height: 35px;
-                        width: 60%;
-                        max-width: 60%;
+                        width: 100%;
+                        max-width: 84%;
                         margin-top: 2px;
-                        margin-left: 30px;
+                        margin-left: 20px;
                         font-size: 15px;
                         color: #24D1FD;
                         outline: 0;
@@ -803,7 +812,7 @@ footer {
             p {
                 font-family: 'Open_Sans_Semi_Bold';
                 font-size: 16px;
-                color: black;
+                color: #707070;
             }
         }
 
@@ -923,7 +932,7 @@ footer {
                 border-radius: 30px;
                 font-family: 'Open_Sans_Semi_Bold';
                 font-size: 16px;
-                color: black;
+                color: #707070;
             }
 
             .button-derecho-planpago {
@@ -959,7 +968,7 @@ footer {
                 border-radius: 30px;
                 font-family: 'Open_Sans_Semi_Bold';
                 font-size: 16px;
-                color: black;
+                color: #707070;
                 cursor: pointer;
                 margin-bottom: 20px;
             }
