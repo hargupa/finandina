@@ -116,13 +116,13 @@
                                     <img src="../../img/general/money-green.svg">
                                 </div>
                                 <div class="control-select-input input-ingresos">
-                                    <span class="texto">{{data.montoInteresNeto | number}}</span>
+                                    <span class="texto">{{data.montoInteresNeto ? (data.montoInteresNeto | number) : ''}}</span>
                                     <label for="modelocarro">Monto interes neto</label>
                                 </div>
-                                <div class="texto-aviso">
-                                    <p>*Esta cifra incluye retenciones del {{data.fuente}}%</p>
-                                </div>
                             </div>
+                        </div>
+                        <div class="texto-aviso">
+                            <p>*Esta cifra incluye retenciones del {{data.fuente}}%</p>
                         </div>
 
                         <div class="content-caja-select content-caja-responsive">
@@ -131,7 +131,7 @@
                                     <img src="../../img/general/money-green.svg">
                                 </div>
                                 <div class="control-select-input input-ingresos">
-                                    <span class="texto">{{data.totalInversion | number}}</span>
+                                    <span class="texto">{{data.totalInversion ? (data.totalInversion | number) : ''}}</span>
                                     <label for="modelocarro">Total inversión + interés</label>
                                 </div>
                             </div>
@@ -149,8 +149,8 @@
                         </div>
 
                         <div class="content-buttons">
-                            <button class="button-izquierdo" ng-click="contactenos()">CONTÁCTAME</button>
-                            <button class="button-derecho" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CDT'">¡QUIERO MI CDT!</button>
+                            <button class="button-derecho" ng-disabled="data.totalInversion == ''" ng-click="contactenos()">¡QUIERO MI CDT!</button>
+                            <!--<button class="button-derecho" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CDT'">¡QUIERO MI CDT!</button>-->
                         </div>
 
                         <div class="texto-inferior-imagen2">
@@ -164,11 +164,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-
-
-
 
     <footer>
         <p class="texto-normal">Todos los derechos reservados 2020 - <b>Banco Finandina<b></p>

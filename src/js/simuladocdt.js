@@ -14,8 +14,8 @@ app.controller('CdtController', ['$scope', '$window', function ($scope, $window)
 
         //Datos basicos del simulador
         montoInversion: "",
-        tasaEA: 4.7437, //valor de la tasa efectiva anual
-        tasaEA_texto: '4.74% EA',
+        tasaEA: '', //valor de la tasa efectiva anual
+        tasaEA_texto: '',
         plazoDias: '',
 
         //Retenciones
@@ -23,13 +23,27 @@ app.controller('CdtController', ['$scope', '$window', function ($scope, $window)
         ica: 0,
         modalidad: "V",
 
-        montoInteresNeto: 0,
-        totalInversion: 0,
+
+        montoInteresNeto: '',
+        totalInversion: '',
         errormonto: '',
         errordias: '',
         mindias: 90,
         maxdias: 540,
         minMontoInversion: 1000000,
+
+        lstTasas: [
+            //tasas para monto de inversion entre 1 millon y 100 millones 
+            { plazo: '90', plazoHasta: '179', tasa: '2.25', monto: 1000000, montoHasta: 100000000 },
+            { plazo: '180', plazoHasta: '359', tasa: '2.40', monto: 1000000, montoHasta: 100000000 },
+            { plazo: '360', plazoHasta: '539', tasa: '2.50', monto: 1000000, montoHasta: 100000000 },
+            { plazo: '540', plazoHasta: '540', tasa: '2.70', monto: 1000000, montoHasta: 100000000 },
+            //tasas para monto de inversion entre 100 millones y 500 millones 
+            { plazo: '90', plazoHasta: '179', tasa: '2.35', monto: 100000000, montoHasta: 500000000 },
+            { plazo: '180', plazoHasta: '359', tasa: '2.50', monto: 100000000, montoHasta: 500000000 },
+            { plazo: '360', plazoHasta: '539', tasa: '2.60', monto: 100000000, montoHasta: 500000000 },
+            { plazo: '540', plazoHasta: '540', tasa: '2.80', monto: 100000000, montoHasta: 500000000 }
+        ],
 
         ShowModal: false,
         //Variables de Contactenos
@@ -38,11 +52,33 @@ app.controller('CdtController', ['$scope', '$window', function ($scope, $window)
         email: '',
     }
 
+
+    $scope.CalcularTasaEA = function (p, m) {
+
+        var obj = $scope.data.lstTasas.find(x =>
+            p >= x.plazo && p <= x.plazoHasta &&
+            m >= x.monto && m <= x.montoHasta
+        );
+
+        if (obj != null) {
+            $scope.data.tasaEA = obj.tasa;
+            $scope.data.tasaEA_texto = obj.tasa + '% EA';
+        }
+        else {
+            $scope.data.tasaEA = '';
+            $scope.data.tasaEA_texto = '';
+        }
+
+    }
+
     $scope.calculos = function () {
+        $scope.data.tasaEA = '';
+        $scope.data.tasaEA_texto = '';
+
         $scope.data.errormonto = '';
         $scope.data.errordias = '';
-        $scope.data.montoInteresNeto = 0
-        $scope.data.totalInversion = 0
+        $scope.data.montoInteresNeto = '';
+        $scope.data.totalInversion = '';
 
         if ($scope.data.montoInversion == "") {
             $scope.data.errormonto = "Debe ingresar el monto de la inversi\u00F3n";
@@ -67,6 +103,14 @@ app.controller('CdtController', ['$scope', '$window', function ($scope, $window)
             return false;
         }
 
+        $scope.CalcularTasaEA($scope.data.plazoDias, _montoInversion);
+
+        if ($scope.data.tasaEA == '') {
+            $scope.data.errordias = 'La tasa esta vacia';
+            return false;
+        }
+
+
         var netoTotal = 0;
         netoTotal = $scope.cdtNormal(_montoInversion);
         //netoTotal = $scope.cdtDesmaterializado();
@@ -74,23 +118,37 @@ app.controller('CdtController', ['$scope', '$window', function ($scope, $window)
         $scope.data.montoInteresNeto = Math.round(netoTotal);
         $scope.data.totalInversion = parseInt(_montoInversion) + parseInt($scope.data.montoInteresNeto);
 
+
         var fecha = new Date();
         fecha.setDate(fecha.getDate() + parseInt($scope.data.plazoDias));
 
         var anio = fecha.getFullYear();
         var mes = (fecha.getMonth() + 1).toString().padStart(2, "0");
-        var dia = fecha.getDate().toString().padStart(2, "0")
+        var dia = fecha.getDate().toString().padStart(2, "0");
 
-        $scope.data.fechaFinal = dia + '/' + mes + '/' + anio;
+        var diaFormat360 = (fecha.getDate() + 2).toString().padStart(2, "0");
 
+        $scope.data.fechaFinal = diaFormat360 + '/' + mes + '/' + anio;
 
+    }
+
+    $scope.TasaCalculaNominal = function (tasa, plazo) {
+        var div = Math.round(360 / plazo);
+        var result = div * (Math.pow((1 + tasa), (1 / div)) - 1);
+        //result2 = Math.round(360 / plazo) * (Math.pow((1 + tasa), (1 / Math.round(360 / plazo))) - 1);
+
+        if (isNaN(result))
+            result = 0;
+
+        return result.toFixed(6);
     }
 
     $scope.cdtNormal = function (_montoInversion) {
 
-        var tasaEA = ($scope.data.tasaEA / 100);//se divide en 100 para sacar el equivalente a porcentaje
+        var porcentaje = ($scope.data.tasaEA / 100); //se divide en 100 para sacar el equivalente a porcentaje
+        var tasaEANominal = $scope.TasaCalculaNominal(porcentaje, $scope.data.plazoDias);
 
-        var intTotal = (_montoInversion * tasaEA) / (360 / $scope.data.plazoDias);
+        var intTotal = (_montoInversion * tasaEANominal) / (360 / $scope.data.plazoDias);
 
         var reteFuente = intTotal * ($scope.data.fuente / 100);
         var reteIca = intTotal * ($scope.data.ica / 100);

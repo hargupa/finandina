@@ -301,7 +301,19 @@ footer {
 }
 
 
+.texto-aviso {
+    justify-content: center;
+    align-items: center;
 
+    p {
+        text-align: center;
+        font-family: 'Open_Sans_Semi_Bold';
+        font-size: 10px;
+        font-style: italic;
+        margin-top: auto;
+        //color: #EE2552;
+    }
+}
 
 .side-right {
     margin: 30px 30px 30px 30px;
@@ -349,19 +361,7 @@ footer {
             margin-right: auto;
             display: flex;
 
-            .texto-aviso {
-                margin-top: 8px;
-                justify-content: center;
-                align-items: center;
 
-                p {
-                    text-align: center;
-                    font-family: 'Open_Sans_Semi_Bold';
-                    font-size: 10px;
-                    font-style: italic;
-                    //color: #EE2552;
-                }
-            }
 
             .caja-select {
                 max-width: 100%;
@@ -818,8 +818,12 @@ footer {
                 color: white;
                 border: #CED4DA;
                 background-image: url('../../img/general/chulo-white.svg');
-                background-position: 97% 16px;
+                background-position: 95%;
                 cursor: pointer;
+            }
+
+            button:disabled {
+                opacity: 0.6;
             }
         }
 

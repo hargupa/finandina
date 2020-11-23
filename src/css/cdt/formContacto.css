@@ -253,6 +253,9 @@ footer .texto-responsivo {
   margin: 10% auto;
   position: relative;
   text-align: center;
+  /*.texto-popup-contenido-2 {
+      display: none;
+  }*/
 }
 .modal-contenido img {
   width: 30%;
@@ -266,9 +269,6 @@ footer .texto-responsivo {
   font-family: "Open_Sans_Regular";
   font-size: 16px;
   color: #707070;
-}
-.modal-contenido .texto-popup-contenido-2 {
-  display: none;
 }
 .modal-contenido a {
   text-decoration: none;
@@ -585,7 +585,7 @@ input:focus, input.form-control:focus {
   -webkit-box-shadow: none;
 }
 
-@media screen and (max-width: 810px) {
+@media screen and (max-width: 900px) {
   .header-vehiculos {
     max-height: 100%;
   }
@@ -648,29 +648,29 @@ input:focus, input.form-control:focus {
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 3px 3px 2px 3px rgba(0, 0, 0, 0.16);
     border-radius: 20px;
-    width: 79%;
+    width: 80%;
     padding: 10px 20px;
     margin: 40% auto;
     position: relative;
     text-align: center;
+    /*.texto-popup-contenido-1 {
+        display: none;
+    }
+
+    .texto-popup-contenido-2 {
+        display: block;
+        font-family: 'Open_Sans_Regular';
+        font-size: 13px;
+        color: #707070;
+    }*/
   }
   .modal-contenido img {
-    width: 35%;
+    width: 40%;
   }
   .modal-contenido .texto-popup-titulo {
     font-family: "Open_Sans_Bold";
-    font-size: 16px;
+    font-size: 14px;
     color: #707070;
-  }
-  .modal-contenido .texto-popup-contenido-1 {
-    display: none;
-  }
-  .modal-contenido .texto-popup-contenido-2 {
-    font-family: "Open_Sans_Regular";
-    font-size: 16px;
-    color: #707070;
-    display: block;
-    padding: 10px 25px;
   }
   .modal-contenido a {
     text-decoration: none;
