@@ -11,7 +11,7 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
     firebase.initializeApp(config);
 
     $scope.data = {
-        tasa: 1.89,
+        tasa: 1.20,
         SMMLV: 877803,
         minMontoPerimitido: 3000000,
         minCuotaPerimitido: 3000000,
@@ -190,7 +190,7 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
         if (!$scope.data.ShowImgPensionado) {
             _ingresos = $scope.data.ingresos.replace(/\,/g, '');
             if (_ingresos < $scope.data.SMMLV) {
-                $scope.data.errorIngresos = "Ingreso mínimo 1 SMMLV";
+                $scope.data.errorIngresos = "Ingreso m\u00EDnimo 1 SMMLV";
                 return false;
             }
         }
@@ -267,7 +267,6 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
             }
 
             $scope.data.AproxCalculada = _AproxCalculada;
-            $scope.data.errorexcede = $scope.data.maxCuota;
         }
         else if ($scope.data.ShowCuota) {
             if ($scope.data.maxCuota < $scope.data.capacidadDescuentoCuota) {
@@ -279,32 +278,28 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
             var montoAprox = $scope.calculoMontoAprox($scope.data.tasa, $scope.data.plazo, _cuotaAprox);
             //Segun funcion excel:  Redondear.menos (valor, -5)
             $scope.data.AproxCalculada = $scope.calculoRedondearMenos(montoAprox, 5);
-
-            $scope.data.errorexcede = $scope.data.maxCuota;
         }
     };
 
 
     $scope.calculoCuotaAprox = function (t, plazo, monto) {
         //Formula Pago de excel es: (Tasa * [(1 + Tasa) ^ Plazo] * Monto Financiar) / ([(1 + Tasa) ^ Plazo] - 1)
+
         var tasa = t / 100; //Se combierte el valor de la tasa en porcentaje %
-        var calculo = (1 + tasa) ** plazo;
-
-        cal = Math.pow((1 + tasa), plazo);
-
-        var cuotamensual = (tasa * calculo * monto) / (calculo - 1);
-        var result = Math.round(cuotamensual);
+        var calculo = Math.pow((1 + tasa), plazo);
+        var result = (tasa * calculo * monto) / (calculo - 1);
 
         if (isNaN(result))
             result = 0;
 
-        return result;
+        return Math.round(result);
     };
 
-    $scope.calculoMontoAprox = function (tasa, plazo, cuota) {
+    $scope.calculoMontoAprox = function (t, plazo, cuota) {
         //Formula VA de excel es: cuota * ((1 + tasa) ^ plazo – 1) / (tasa*(1 + tasa) ^ plazo)
-        tasa = tasa / 100; //Se combierte el valor de la tasa en porcentaje %
-        var calculo = (1 + tasa) ** plazo;
+
+        var tasa = t / 100; //Se combierte el valor de la tasa en porcentaje %
+        var calculo = Math.pow((1 + tasa), plazo);
         var VA = cuota * ((calculo - 1) / (tasa * calculo));
         VA = Math.round(VA);
 
