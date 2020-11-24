@@ -335,7 +335,7 @@ footer {
 
                     select {
                         border: 0;
-                        height: 35px;
+                        height: 33px;
                         width: 70%;
                         max-width: 70%;
                         margin-top: 2px;
@@ -349,11 +349,11 @@ footer {
 
                     input {
                         border: 0;
-                        height: 35px;
+                        height: 33px;
                         width: 60%;
                         max-width: 60%;
                         margin-top: 2px;
-                        margin-left: 5%;
+                        margin-left: 15%;
                         font-size: 13px;
                         color: #707070;
                         outline: 0;
@@ -372,11 +372,9 @@ footer {
                     }
 
                     .ico-form2 {
-                        width: 30px;
+                        width: 29px;
                         float: right;
-                        height: 40px;
                         margin-top: 8px;
-                        margin-right: 8px;
                         z-index: 100;
 
                         img, svg {
@@ -470,10 +468,9 @@ footer {
                     max-width: 100%;
 
                     input {
-
                         text-align: center;
                         border: 0;
-                        height: 35px;
+                        height: 33px;
                         width: 70%;
                         max-width: 70%;
                         margin-top: 2px;
@@ -647,11 +644,11 @@ footer {
                 color: white;
                 border: #CED4DA;
                 background-image: url('../../img/general/chulo-white.svg');
-                background-position: 97% 16px;
+                background-position: 90%;
                 cursor: pointer;
             }
 
-            .button-derecho:disabled {
+            button:disabled {
                 opacity: 0.5;
             }
         }
@@ -1046,12 +1043,14 @@ input:focus, input.form-control:focus {
                         font-size: 10px;
                     }
                 }
-                .control-select-input{
-                    input{
+
+                .control-select-input {
+                    input {
                         max-width: 100%;
                     }
-                    select{
-                         max-width: 100%;
+
+                    select {
+                        max-width: 100%;
                     }
                 }
             }

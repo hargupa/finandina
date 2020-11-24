@@ -11,19 +11,21 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
 
     $scope.Math = window.Math;
     $scope.data = {
+        tasa: 1.22, //valor de la tasa activa
+        minMonto: 3000000,
+        maxAnioCarro: 14,
+        maxAnioMoto: 4,
+
+
         //Datos basicos del simulador
-        montoFinanciar: 0,
-        cuotaMensual: 0,
+        montoFinanciar: '',
+        cuotaMensual: '',
         precioVehiculo: '',
         cuotaInicial: '',
-        tasa: 1.22, //valor de la tasa activa
         plazo: "",
 
         anioModelo: '',
         marcaVehiculo: '',
-        minMonto: 3000000,
-        maxAnioCarro: 14,
-        maxAnioMoto: 4,
         errorPrecio: '',
         errorCuota: '',
         errorMonto: '',
@@ -169,8 +171,8 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
 
         if ($scope.data.anioModelo == '') {
             $scope.data.errorModelo = "ingrese el a\u00F1o del modelo del veh\u00CDculo";
-            $scope.data.montoFinanciar = 0;
-            $scope.data.cuotaMensual = 0;
+            $scope.data.montoFinanciar = '';
+            $scope.data.cuotaMensual = '';
             return false;
         }
 
@@ -179,39 +181,45 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
             $scope.data.errorPrecio = "ingrese precio del veh\u00CDculo";
             return false;
         }
-        if ($scope.data.cuotaInicial == '') {
+
+        /*if ($scope.data.cuotaInicial == '') {
             $scope.data.errorCuota = "ingrese cuota Inicial del veh\u00CDculo";
-            return false;
-        }
+            //return false;
+        }*/
 
         //se quita separcion para trabajar con el dato en numero
         _precioVehiculo = $scope.data.precioVehiculo.replace(/\,/g, '');
         _cuotaInicial = parseInt($scope.data.cuotaInicial.replace(/\,/g, ''));
 
+        if (isNaN(_cuotaInicial))
+            _cuotaInicial = 0;
+
+
         var _antiguedad = (new Date().getFullYear()) - $scope.data.anioModelo;
         if ($scope.data.ShowImgCarro && _antiguedad > $scope.data.maxAnioCarro) {
             $scope.data.errorModelo = "El modelo del veh\u00CDculo no es factible";
-            $scope.data.montoFinanciar = 0;
-            $scope.data.cuotaMensual = 0;
+            $scope.data.montoFinanciar = '';
+            $scope.data.cuotaMensual = '';
             return false;
         }
         else if ($scope.data.ShowImgMoto && _antiguedad > $scope.data.maxAnioMoto) {
             $scope.data.errorModelo = "El modelo del veh\u00CDculo no es factible";
-            $scope.data.montoFinanciar = 0;
-            $scope.data.cuotaMensual = 0;
+            $scope.data.montoFinanciar = '';
+            $scope.data.cuotaMensual = '';
             return false;
         }
 
-        //CALCULO MONTO FINANCIAR A PARTIR DE LOS DATOS RECOLECTADOS
-        var porcentaje = $scope.calculoPorcentajeFinanciacion();
+
+        /*var porcentaje = $scope.calculoPorcentajeFinanciacion();
         if (porcentaje == 100)
             $scope.data.errorCuota = 'Aplica financiaci\u00F3n del ' + porcentaje + '% del precio del veh\u00CDculo';
         else {
             var cuota = (_precioVehiculo * porcentaje) / 100;
             if (_cuotaInicial != cuota)
                 $scope.data.errorCuota = 'Debe ser del ' + porcentaje + '% del precio del veh\u00CDculo';
-        }
+        }*/
 
+        //CALCULO MONTO FINANCIAR A PARTIR DE LOS DATOS RECOLECTADOS
         _montoFinanciar = _precioVehiculo - _cuotaInicial;
         $scope.data.montoFinanciar = _montoFinanciar >= 0 ? _montoFinanciar : 0;
 
@@ -323,7 +331,7 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
                 'cuotaInicial': _cuotaInicial,
                 'montoFinanciar': $scope.data.montoFinanciar,
                 'cuotaMensual': $scope.data.cuotaMensual,
-                'plazo': $scope.data.cuotaMensual,
+                'plazo': $scope.data.plazo,
             };
             localStorage.setItem('simulacion', JSON.stringify(simulacion));
         }

@@ -189,7 +189,7 @@
                                     <img src="../../img/general/money.svg">
                                 </div>
                                 <div class="control-select-input">
-                                    <input type="text" ng-model="data.precioVehiculo" ng-change="calcularDatos()" autocomplete="off" mileskeypress>
+                                    <input type="text" ng-model="data.precioVehiculo" ng-change="calcularDatos()" autocomplete="off" maxlength="11" mileskeypress>
                                     <label for="modelocarro" ng-show="data.ShowImgCarro">Precio del vehículo</label>
                                     <label for="modelocarro" ng-show="data.ShowImgMoto">Precio de la moto</label>
                                     <div class="ico-form2" ng-show="data.errorPrecio != ''">
@@ -204,7 +204,7 @@
                                     <img src="../../img/general/money.svg">
                                 </div>
                                 <div class="control-select-input">
-                                    <input type="text" ng-model="data.cuotaInicial" ng-change="calcularDatos()" autocomplete="off" mileskeypress>
+                                    <input type="text" ng-model="data.cuotaInicial" ng-change="calcularDatos()" maxlength="11" autocomplete="off" mileskeypress>
                                     <label for="modelocarro">Cuota inicial</label>
                                     <div class="ico-form2" ng-show="data.errorCuota != ''">
                                         <img src="../../img/general/alert.png">
@@ -346,7 +346,7 @@
                             </div>
                         </div>
                         <div class="content-buttons">
-                            <button class="button-izquierdo" ng-click="contactenos()">CONTÁCTAME</button>
+                            <button class="button-izquierdo" ng-disabled="data.cuotaMensual == ''" ng-click="contactenos()">CONTÁCTAME</button>
                             <button class="button-derecho" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CreditoVehiculo'">¡LO QUIERO!</button>
                         </div>
 
