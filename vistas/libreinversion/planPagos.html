@@ -103,7 +103,7 @@
 
                             <p>
                                 <span class="ico-form3">
-                                    <img src="../../img/general/happy.png">
+                                    <!--<img src="../../img/general/happy.png">-->
                                 </span>¡Fantástico!<br>Y así quedaría tu plan de pagos
                             </p>
                         </div>
@@ -119,15 +119,15 @@
                                 </tr>
                                 <tr ng-repeat="row in data.planPago">
                                     <td class="{{row.estilo}}">{{row.mes}}</td>
-                                    <td class="{{row.estilo}}">${{row.cuota | number}}</td>
-                                    <td class="{{row.estilo}}">${{row.interes | number}}</td>
-                                    <td class="{{row.estilo}}">${{row.abonoCapital | number}}</td>
-                                    <td class="{{row.estilo}}">${{row.saldo | number}}</td>
+                                    <td class="{{row.estilo}}">{{row.cuota | currency}}</td>
+                                    <td class="{{row.estilo}}">{{row.interes | currency}}</td>
+                                    <td class="{{row.estilo}}">{{row.abonoCapital | currency}}</td>
+                                    <td class="{{row.estilo}}">{{row.saldo | currency}}</td>
                                 </tr>
                                 <tr class="total-tabla">
                                     <th>Total</th>
                                     <th></th>
-                                    <th>$ {{data.dineronecesito|number}}</th>
+                                    <th>{{data.dineronecesito|currency}}</th>
                                     <th colspan="3"></th>
                                 </tr>
                             </table>
@@ -137,7 +137,8 @@
 
                             </div>
                             <div class="content-button-descarga-int">
-                                <button class="button-descarga" onclick="exportarInformacion();">Descarga tu plan de pagos  </button>
+                                <button class="button-descarga" ng-click="exportar()">Descarga tu plan de pagos  </button>
+                                <!--<button class="button-descarga" onclick="exportarInformacion();">Descarga tu plan de pagos  </button>-->
                             </div>
 
                         </div>
@@ -152,10 +153,10 @@
                                 </div>
                                 <div class="control-select-input input-correo">
                                     <input type="email" ng-model="data.email">
-                                    <div class="content-button-correo"><button class="button-correo" ng-click="guardarInfo(1)">ENVIAR</button></div>
+                                    <div class="content-button-correo"><button class="button-correo" ng-disabled="data.email == ''" ng-click="guardarInfo(1)">ENVIAR</button></div>
                                 </div>
                             </div>
-                            <div class="content-button-correo-2"><button class="button-correo" ng-click="guardarInfo(1)">ENVIAR</button></div>
+                            <div class="content-button-correo-2"><button class="button-correo" ng-disabled="data.email == ''" ng-click="guardarInfo(1)">ENVIAR</button></div>
                         </div>
 
                         <div class="content-buttons-planpagos">

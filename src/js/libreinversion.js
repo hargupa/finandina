@@ -12,8 +12,12 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
     firebase.initializeApp(config);
 
     $scope.data = {
+        minMonto: 3000000,
+        maxMonto: 100000000,
+        SMMLV: 877803,
+
         //VARIABLES PARA CALCULO Simulador LIBRE INVERSION
-        cuotaMensual: 0,
+        cuotaMensual: '',
         planPago: [],
 
         destino: '',
@@ -24,8 +28,6 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
         email: '',
 
         sendOK: false,
-        minMonto: 3000000,
-        maxMonto: 100000000,
         erroringresos: '',
         errornecesito: '',
         errorplazo: '',
@@ -91,36 +93,47 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
                 break;
 
             default:
-                $scope.data.cuotaMensual = 0;
+                $scope.data.cuotaMensual = '';
                 $scope.data.plazo = '';
                 break;
         }
         //calcular MONTO FINANCIAR y CUOTA MENSUAL si cambia el plazo
-        if ($scope.validaciones()) {
-            $scope.calcularTasaxIngresos();
-        }
-
+        $scope.calcularDatos();
 
     };
 
+    $scope.calcularDatos = function () {
+        if (!$scope.validaciones()) {
+            return false;
+        }
 
+        $scope.calcularTasaxIngresos();
+    }
+
+    $scope.limpiarlocalStorage = function () {
+        localStorage.clear();
+    }
 
     /**************CALCULO LIBRE INVERSION *****************/
     $scope.validaciones = function () {
         $scope.data.erroringresos = '';
         $scope.data.errornecesito = '';
         $scope.data.errorplazo = '';
+        $scope.data.cuotaMensual = '';
 
         if ($scope.data.ingresos == "") {
             $scope.data.erroringresos = "Indica tus ingresos mensuales";
             return false;
         }
-        if ($scope.data.dineronecesito == "") {
-            $scope.data.errornecesito = "Indica el monto del dinero que necesitas";
+
+        var _ingresos = $scope.data.ingresos.replace(/\,/g, '');
+        if (_ingresos < $scope.data.SMMLV) {
+            $scope.data.erroringresos = "Ingreso m\u00EDnimo 1 SMMLV";
             return false;
         }
-        if ($scope.data.plazo == "") {
-            $scope.data.errorplazo = "Indica el plazo";
+
+        if ($scope.data.dineronecesito == "") {
+            $scope.data.errornecesito = "Indica el monto del dinero que necesitas";
             return false;
         }
 
@@ -131,35 +144,41 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
             $scope.data.errornecesito = "El monto m\u00EDnimo que te prestamos es de $" + $scope.data.minMonto;
             return false;
         }
+
+        var prestamoTotal = _ingresos * 10;
+        if (_dineronecesito > prestamoTotal) {
+            $scope.data.errornecesito = "El monto que intentas solicitar es superior a tu capacidad de endeudamiento, el valor m\u00E1ximo que te podemos prestar es $" + prestamoTotal;
+            return false;
+        }
+
         if (_dineronecesito > $scope.data.maxMonto) {
             $scope.data.errornecesito = "El monto m\u00E1ximo que te prestamos es de $" + $scope.data.maxMonto;
             return false;
         }
 
-        var prestamoTotal = _ingresos * 10;
-        if (_dineronecesito > prestamoTotal) {
-            $scope.data.errornecesito = "El monto que intentas solicitar es superior a tu capacidad de endeudamiento, el valor m\u00E1ximo que te podemos prestar es $" + $scope.data.maxMonto;
+        if ($scope.data.plazo == "") {
+            $scope.data.errorplazo = "Indica el plazo";
             return false;
         }
-
 
         return true;
     }
 
     $scope.calcularTasaxIngresos = function () {
-        if (!$scope.validaciones()) {
-            return false;
-        }
+
         //se quita separcion para trabajar con el dato en numero
         _ingresos = $scope.data.ingresos.replace(/\,/g, '');
         _dineronecesito = $scope.data.dineronecesito.replace(/\,/g, '');
 
-        var prestamoTotal = _ingresos * 10;
         $scope.data.tasaNVM = $scope.calcularTasa(_ingresos);
 
         if ($scope.data.plazo != '') {
             var tasaEA = Math.round((1 + $scope.data.tasaNVM) ** $scope.data.plazo - 1).toFixed(4);
             $scope.data.cuotaMensual = $scope.calculoCuota(_dineronecesito, $scope.data.tasaNVM, $scope.data.plazo);
+        }
+        else {
+            $scope.data.errorplazo = "Indica el plazo";
+            return false;
         }
     };
 
@@ -225,14 +244,6 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
 
     }
 
-    $scope.calculoPlanPago = function () {
-        if (!$scope.validaciones()) {
-            return false;
-        }
-
-        $scope.showPlanPagos();
-    };
-
     $scope.calcularTasa = function (salario) {
         var tasa = 0;
         var millon = 1000000;
@@ -289,6 +300,22 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
         $scope.data.sendOK = result;
         return result;
     }
+    $scope.exportar = function () {
+        var table = 'tablapagos', name = 'plan de pagos', filename = 'plan de pagos - simulacion credito libre inversion'
+
+        let uri = 'data:application/vnd.ms-excel;base64,',
+            template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><title></title><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>',
+            base64 = function (s) { return window.btoa(decodeURIComponent(encodeURIComponent(s))) }, format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+
+        if (!table.nodeType) table = document.getElementById(table)
+        var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+
+        var link = document.createElement('a');
+        link.download = filename;
+        link.href = uri + base64(format(template, ctx));
+        link.click();
+    }
+
 
     //***************************** REDIRECCION *****************************//
     $scope.showPlanPagos = function () {

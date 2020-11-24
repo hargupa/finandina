@@ -439,16 +439,18 @@ footer {
 
                 td {
                     font-family: 'Open_Sans_Bold';
-                    font-size: 14px;
+                    font-size: 13px;
                     color: #707070;
                 }
 
                 .celda-1 {
                     background: #FDFDFD;
+                    padding: 2px 5px;
                 }
 
                 .celda-2 {
                     background: #F5F5F5;
+                    padding: 2px 5px;
                 }
 
                 .total-tabla {
@@ -491,7 +493,7 @@ footer {
                     font-size: 12px;
                     color: #ED2529;
                     background-image: url('../../img/general/download.svg');
-                    background-position: 95% 10px;
+                    background-position: 95%;
                     cursor: pointer;
                     text-align: center;
                     padding-right: 25px;
@@ -594,7 +596,7 @@ footer {
                             font-size: 12px;
                             color: #FFFFFF;
                             background-image: url('../../img/general/chulo-black.svg');
-                            background-position: 95% 13px;
+                            background-position: 95%;
                             cursor: pointer;
                         }
                     }
@@ -944,10 +946,10 @@ footer {
                 border-radius: 30px;
                 font-family: 'Open_Sans_Semi_Bold';
                 font-size: 16px;
-                color: white;
+                color: #fff;
                 border: #CED4DA;
                 background-image: url('../../img/general/chulo-white.svg');
-                background-position: 97% 16px;
+                background-position: 95%;
                 cursor: pointer;
                 margin-left: 10px;
             }
@@ -984,8 +986,12 @@ footer {
                 color: white;
                 border: #CED4DA;
                 background-image: url('../../img/general/chulo-white.svg');
-                background-position: 97% 16px;
+                background-position: 95%;
                 cursor: pointer;
+            }
+
+            button:disabled {
+                opacity: 0.6;
             }
         }
 
@@ -1339,11 +1345,11 @@ input:focus, input.form-control:focus {
             .content-tabla {
                 .tabla {
                     th {
-                        font-size: 11px;
+                        font-size: 14px;
                     }
 
                     td {
-                        font-size: 11px;
+                        font-size: 12px;
                     }
                 }
             }
@@ -1373,7 +1379,7 @@ input:focus, input.form-control:focus {
                         background-size: 8%;
                         text-align: center;
                         padding-right: 15px;
-                        background-position: 93% 5px;
+                        background-position: 93%;
                     }
                 }
             }
@@ -1412,14 +1418,15 @@ input:focus, input.form-control:focus {
                         height: 42px;
                         width: 100%;
                         max-width: 100%;
-                        font-family: 'Open_Sans_Bold';
-                        font-size: 12px;
-                        color: #FFFFFF;
-                        text-align: center;
-                        padding-right: 20px;
+                        font-family: 'Open_Sans_Semi_Bold';
+                        color: #FFF;
                         background-image: url('../../img/general/chulo-black.svg');
-                        background-position: 90% 13px;
+                        background-position: 90%;
                         cursor: pointer;
+                    }
+
+                    button:disabled {
+                        opacity: 0.4;
                     }
                 }
 
