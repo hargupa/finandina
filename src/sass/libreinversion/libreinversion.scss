@@ -507,8 +507,8 @@ footer {
         }
 
         .texto-superior {
-            max-width: 50%;
-            width: 50%;
+            max-width: 80%;
+            width: 80%;
             margin: auto auto auto auto;
 
             p {
@@ -1489,6 +1489,7 @@ input:focus, input.form-control:focus {
                 p {
                     font-family: 'Open_Sans_Semi_Bold';
                     font-size: 14px;
+                    text-align: center;
                 }
             }
 
