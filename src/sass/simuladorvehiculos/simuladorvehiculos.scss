@@ -63,6 +63,7 @@ html {
 body {
     margin: 0;
     margin-bottom: 120px;
+    color: #707070;
 }
 
 .texto {
@@ -220,7 +221,8 @@ footer {
         }
 
         .img-izquierda {
-            background-color: black;
+            background-color: #707070;
+            ;
             margin-left: -10px;
 
             img {
@@ -430,7 +432,6 @@ footer {
             p {
                 font-family: 'Open_Sans_Semi_Bold';
                 font-size: 16px;
-                color: black;
             }
         }
 
@@ -478,7 +479,8 @@ footer {
                         font-size: 20px;
                         color: #EE2552;
                         outline: 0;
-                        background: black;
+                        background: #707070;
+                        ;
                         font-family: 'Open_Sans_Bold';
                     }
                 }
@@ -505,7 +507,6 @@ footer {
             p {
                 font-family: 'Open_Sans_Semi_Bold';
                 font-size: 16px;
-                color: black;
             }
         }
 
@@ -628,7 +629,7 @@ footer {
                 border-radius: 30px;
                 font-family: 'Open_Sans_Semi_Bold';
                 font-size: 16px;
-                color: black;
+                color: #707070;
                 cursor: pointer;
             }
 

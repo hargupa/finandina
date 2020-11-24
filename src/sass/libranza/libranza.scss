@@ -63,6 +63,7 @@ html {
 body {
     margin: 0;
     margin-bottom: 120px;
+    color: #707070;
 }
 
 .header-credito {
@@ -383,7 +384,6 @@ footer {
                         outline: 0;
                         background: white;
                         font-family: 'Open_Sans_Regular';
-                        
                     }
 
                     label {
@@ -422,22 +422,23 @@ footer {
                     height: 20px;
                     display: flex;
                     flex-direction: column;
-                    p{
+
+                    p {
                         margin-top: 2px;
                     }
-                    span{
-                        
+
+                    span {
                         font-family: 'Open_Sans_Semi_Bold';
                         font-size: 10px;
                         font-style: italic;
                     }
-                    .msg-1{
+
+                    .msg-1 {
                         margin-top: -10px;
-
                     }
-                    .msg-2{
-                        margin-top: 3px;
 
+                    .msg-2 {
+                        margin-top: 3px;
                     }
                 }
             }
@@ -463,7 +464,6 @@ footer {
             p {
                 font-family: 'Open_Sans_Semi_Bold';
                 font-size: 16px;
-                color: black;
             }
         }
 
@@ -557,7 +557,6 @@ footer {
             p {
                 font-family: 'Open_Sans_Semi_Bold';
                 font-size: 16px;
-                color: black;
             }
         }
 
@@ -676,7 +675,7 @@ footer {
                 border-radius: 30px;
                 font-family: 'Open_Sans_Semi_Bold';
                 font-size: 16px;
-                color: black;
+                color: #707070;
                 cursor: pointer;
             }
 
@@ -689,7 +688,7 @@ footer {
                 border-radius: 30px;
                 font-family: 'Open_Sans_Semi_Bold';
                 font-size: 16px;
-                color: white;
+                color: #fff;
                 border: #CED4DA;
                 background-image: url('../../img/general/chulo-white.svg');
                 background-position: 95% 16px;

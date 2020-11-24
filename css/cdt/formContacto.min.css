@@ -57,6 +57,7 @@ html {
 body {
   margin: 0;
   margin-bottom: 120px;
+  color: #707070;
 }
 
 .header-vehiculos {
@@ -345,7 +346,6 @@ footer .texto-responsivo {
 .side-right .card-content .texto-monto p {
   font-family: "Open_Sans_Semi_Bold";
   font-size: 16px;
-  color: black;
 }
 .side-right .card-content .content-monto {
   width: 100%;
@@ -442,7 +442,7 @@ footer .texto-responsivo {
   border-radius: 30px;
   font-family: "Open_Sans_Semi_Bold";
   font-size: 16px;
-  color: black;
+  color: #707070;
   cursor: pointer;
 }
 .side-right .card-content .content-buttons .button-derecho {
