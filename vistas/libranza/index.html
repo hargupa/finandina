@@ -148,7 +148,7 @@
                                 </div>
                                 <div class="control-select-input">
                                     <input ng-model="data.ingresos" type="text" autocomplete="off" mileskeypress ng-change="calcularDatos()" />
-                                    <label for="modelocarro">Indica tus Ingresos</label>
+                                    <label for="modelocarro">Indica tus ingresos</label>
                                 </div>
                                 <div class="mensaje-valor">
                                     <span class="error msg-2">{{data.errorIngresos}}</span>
@@ -161,23 +161,23 @@
                                 </div>
                                 <div class="control-select-input">
                                     <input ng-model="data.descuentoNomina" type="text" autocomplete="off" mileskeypress ng-change="calcularDatos()" />
-                                    <label for="modelocarro">Descuentos de nómina</label>
+                                    <label for="modelocarro" ng-show="data.ShowImgPensionado">Otros descuentos</label>
+                                    <label for="modelocarro" ng-show="!data.ShowImgPensionado">Descuentos de nómina</label>
                                 </div>
                                 <div class="mensaje-valor">
-                                    <p>Diferentes a descuentos a salud</p>
+                                    <p ng-show="data.ShowImgPensionado">Diferentes a descuentos de salud</p>
+                                    <p ng-show="!data.ShowImgPensionado">Diferentes a descuentos de ley</p>
                                     <span class="error msg-1">{{data.errorDescNomina}}</span>
                                 </div>
                             </div>
                         </div>
 
-
-
                         <div class="texto-monto">
                             <p ng-if="data.ShowMonto">¿Cuánto dinero necesitas?</p>
                             <p ng-if="data.ShowCuota">¿Cuál es la cuota que quieres pagar?</p>
                         </div>
-                        <div class=" content-monto">
-                            <div class=" caja-monto ">
+                        <div class="content-monto">
+                            <div class="caja-monto">
                                 <div class="ico-form">
                                     <img src="../../img/general/money-blue.svg">
                                 </div>
@@ -196,11 +196,11 @@
                         <span class="error">{{data.errorMonto}}</span>
                         <span class="error">{{data.errorCuota}}</span>
 
-
                         <div class="texto-plazo">
                             <p>Elige el plazo en el que quieres pagar</p>
                         </div>
                         <span class="error">{{data.errorplazo}}</span>
+                        <span class="error">{{data.errorexcede}}</span>
                         <div class="content-caja-monto" ng-show="data.ShowMonto108Meses" ng-click="MostrarCuota(id=1)">
                             <div class="caja-plazos ">
                                 <label for="modelocarro">108 meses</label>

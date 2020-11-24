@@ -11,32 +11,38 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
     firebase.initializeApp(config);
 
     $scope.data = {
-        //VARIABLES PARA CALCULO Simulador LIBRANZA
-        porcentajeDescuentos: "",
-        AproxCalculada: 0,
-        descuentoSalud: "",
-        maxCuota: "",
-        plazo: "",
         tasa: 1.89,
+        SMMLV: 877803,
+        minMontoPerimitido: 3000000,
+        minCuotaPerimitido: 3000000,
+        maxMontoPerimitido: 100000000,
+        maxCuotaPerimitido: 100000000,
 
+        capacidadDescuentoMonto: 17800 * 3,
+        capacidadDescuentoCuota: 180000,
+
+        //VARIABLES PARA CALCULO Simulador LIBRANZA
         descuentoNomina: '',
         ingresos: '',
         selectActividad: '0',
         selectConvenio: '0',
         montoAprox: '',
         cuotaAprox: '',
+        AproxCalculada: '',
+        descuentoSalud: '',
+        maxCuota: '',
+        plazo: '',
+        porcentajeDescuentos: '',
 
-        minMontoPerimitido: 3000000,
-        minCuotaPerimitido: 3000000,
-        maxMontoPerimitido: 100000000,
-        maxCuotaPerimitido: 100000000,
 
+        //Variables para mensajes de error
         errorDescNomina: '',
         errorIngresos: '',
         errorActividad: '',
         errorMonto: '',
         errorCuota: '',
         errorplazo: '',
+        errorexcede: '',
 
         ShowMonto108Meses: true,
         ShowMonto108MesesCuota: false,
@@ -59,7 +65,6 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
         ShowForm: true,
         ShowAviso: false,
 
-
         ShowModal: false,
         //Variables de Contactenos
         nombre: '',
@@ -78,7 +83,7 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
 
         $scope.data.montoAprox = '';
         $scope.data.cuotaAprox = '';
-        $scope.data.AproxCalculada = 0;
+        $scope.data.AproxCalculada = '';
     };
 
     $scope.CambiarActividad = function () {
@@ -171,6 +176,8 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
         $scope.data.errorMonto = '';
         $scope.data.errorCuota = '';
         $scope.data.errorplazo = '';
+        $scope.data.errorexcede = '';
+        $scope.data.AproxCalculada = '';
 
         if ($scope.data.selectActividad == '0') {
             $scope.data.errorActividad = "Debe indicar su actividad";
@@ -180,9 +187,20 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
             $scope.data.errorIngresos = "Debe indicar sus ingresos";
             return false;
         }
+        if (!$scope.data.ShowImgPensionado) {
+            _ingresos = $scope.data.ingresos.replace(/\,/g, '');
+            if (_ingresos < $scope.data.SMMLV) {
+                $scope.data.errorIngresos = "Ingreso mínimo 1 SMMLV";
+                return false;
+            }
+        }
 
         if ($scope.data.descuentoNomina == "") {
-            $scope.data.errorDescNomina = 'Debe indicar sus descuentos por n\u00F3mina';
+            if ($scope.data.ShowImgPensionado)
+                $scope.data.errorDescNomina = 'Debe indicar sus descuentos';
+            else
+                $scope.data.errorDescNomina = 'Debe indicar sus descuentos por n\u00F3mina';
+
             return false;
         }
         if ($scope.data.ShowMonto) {
@@ -234,25 +252,46 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
         $scope.data.maxCuota = ((_ingresos - $scope.data.descuentoSalud) / 2) - _descuentoNomina;
 
         if ($scope.data.ShowMonto) {
+            if ($scope.data.maxCuota < $scope.data.capacidadDescuentoMonto) {
+                $scope.data.errorexcede = "La cuota mensual excede tu capacidad de descuento";
+                return;
+            }
+
             _montoAprox = $scope.data.montoAprox.replace(/\,/g, '');
             //Segun funcion excel:  Pago 
-            $scope.data.AproxCalculada = $scope.calculoCuotaAprox($scope.data.tasa, $scope.data.plazo, _montoAprox);
+            var _AproxCalculada = $scope.calculoCuotaAprox($scope.data.tasa, $scope.data.plazo, _montoAprox);
+
+            if (_AproxCalculada > $scope.data.maxCuota) {
+                $scope.data.errorexcede = "La cuota mensual excede tu capacidad de descuento";
+                return;
+            }
+
+            $scope.data.AproxCalculada = _AproxCalculada;
+            $scope.data.errorexcede = $scope.data.maxCuota;
         }
         else if ($scope.data.ShowCuota) {
+            if ($scope.data.maxCuota < $scope.data.capacidadDescuentoCuota) {
+                $scope.data.errorexcede = "El monto excede tu capacidad de pago";
+                return;
+            }
+
             _cuotaAprox = $scope.data.cuotaAprox.replace(/\,/g, '');
             var montoAprox = $scope.calculoMontoAprox($scope.data.tasa, $scope.data.plazo, _cuotaAprox);
             //Segun funcion excel:  Redondear.menos (valor, -5)
             $scope.data.AproxCalculada = $scope.calculoRedondearMenos(montoAprox, 5);
-        }
 
+            $scope.data.errorexcede = $scope.data.maxCuota;
+        }
     };
 
 
-    $scope.calculoCuotaAprox = function (tasa, plazo, monto) {
+    $scope.calculoCuotaAprox = function (t, plazo, monto) {
         //Formula Pago de excel es: (Tasa * [(1 + Tasa) ^ Plazo] * Monto Financiar) / ([(1 + Tasa) ^ Plazo] - 1)
-
-        tasa = tasa / 100; //Se combierte el valor de la tasa en porcentaje %
+        var tasa = t / 100; //Se combierte el valor de la tasa en porcentaje %
         var calculo = (1 + tasa) ** plazo;
+
+        cal = Math.pow((1 + tasa), plazo);
+
         var cuotamensual = (tasa * calculo * monto) / (calculo - 1);
         var result = Math.round(cuotamensual);
 
