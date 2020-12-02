@@ -164,9 +164,9 @@ footer {
 }
 
 .texto-info {
-    font-size: 17px;
+    font-size: 18px;
     color: #707070;
-    font-family: "Open_Sans";
+    font-family: "Open_Sans_Regular";
     background: #fff;
     border: 1px solid #24D1FD;
     padding: 0 10px;
@@ -472,11 +472,43 @@ footer {
                 }
             }
         }
+        .content-tabla-2{
+            margin: 20px 30px auto 30px;
+            height: 50px;
+            .tabla {
+                color: #FDFDFD;
+                width: 100%;
+                max-width: 100%;
 
+                th {
+                    background: #707070;
+                    font-family: 'Open_Sans_Bold';
+                    font-size: 16px;
+                }
+
+                .total-tabla {
+                    //background:#398FF9;
+                    text-align: center;
+
+                    p {
+                        font-family: 'Open_Sans_Bold';
+                        font-size: 16px;
+                        margin-left: 14px;
+                        padding-top: 5px;
+                        color: #FDFDFD;
+                    }
+
+                    th {
+                        //background: #398FF9;
+                        background: #707070;
+                    }
+                }
+            }            
+        }
         .content-button-descarga {
             display: flex;
             width: 100%;
-            margin-top: 20px;
+            margin-top: 2px;
 
             .content-button-descarga-int {
                 width: 60%;
@@ -659,13 +691,14 @@ footer {
                         width: 100%;
                         max-width: 80%;
                         margin-top: 0px;
-                        margin-left: 20px;
+                        margin-left: 23px;
                         text-align: center;
                         font-size: 15px;
                         color: #707070;
                         outline: 0;
                         background: white;
-                        font-family: 'Open_Sans_Regular';
+                        font-weight: 600;
+                        font-family: 'Open_Sans_Bold';
                     }
 
                     label {
@@ -1651,4 +1684,10 @@ input:focus, input.form-control:focus {
             }
         }
     }
+}
+
+.contenedor-msg{
+    text-align: center;
+    margin: auto auto auto auto;
+    width: 60%;
 }

@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<html ng-app="LibreInversion">
+<head>
+    <!--<meta http-equiv="refresh" content="10">-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="../../css/libreinversion/libreinversion.min.css" rel="stylesheet">
+    <script src="../../js/angular.min.js"></script>
+    <script src="../../src/js/libreinversion.js"></script>
+    <title>Simulador credito de libre inversion</title>
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase.js"></script>
+</head>
+<body ng-controller="LibreInversionController">
+    <div class="header-credito">
+        <div class="logo">
+            <img src="../../img/general/logo-white.svg">
+        </div>
+        <div class="texto-encabezado">
+            <p>Simulador de Crédito de Libre Inversión <span>Banco Finandina</span></p>
+        </div>
+        <div class="img-bancodigital">
+            <img src="../../img/general/banca-digital.svg">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="col-12 side-left">
+                    <div class="texto-superior-imagen">
+                        <p>Mereces realizar eso que tanto quieres,<span> estás a pocos clics de disfrutar tu crédito 100% digital<span></p>
+                    </div>
+                    <div class="img-planpagos">
+                        <img src="../../img/general/persons.png">
+                    </div>
+
+                    <!--<div class="content-texto-lateral">
+                        <div class="texto-lateral-inferior">
+                            <p>VIGILADO</p>
+                        </div>
+                        <div class="texto-lateral-superior">
+                            <p>DE COLOMBIA<br>
+                            SUPERINTENDECIA FINACIERA</p>
+                        </div>
+                    </div>-->
+
+                    <div class="texto-inferior-imagen">
+                        <div class="img-super"><img src="../../img/general/super.svg"></div>
+                        <div class="texto">
+                            <p>*Los valores descritos en el presente simulador son informativos, se encuentran sujetos a la solicitud formal de crédito realizada por el cliente a Banco Finandina S.A.</p>
+                            <p>** El valor de cuota propuesta no incluye valor de prima mensual de los seguros.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 side-right">
+                    <div class="card-content" ng-init="obtenerPlan()">
+                        <div class="content-img-texto">
+                            <div class="img-pc">
+                                <img src="../../img/general/pc.png">
+                            </div>
+                            <div class="content-texto">
+                                <p>Gracias por contarnos qué deseabas.<br><br> Aquí están los datos de tu simulación:</p>
+                                <div class="texto-valores">
+                                    <p>
+                                        Tus ingresos: <span>${{data.ingresos | number}}</span><br>
+                                        Valor de tu crédito:<span> ${{data.dineronecesito | number}}</span><br>
+                                        Plazo: <span>{{data.plazo}} meses</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-img-texto-2">
+                            <div class="texto-superior-img">
+                                <p>Gracias por contarnos qué deseabas.<br> Aquí están los datos de tu simulación:</p>
+                            </div>
+                            <div class="content-texto">
+                                <div class="img-pc">
+                                    <img src="../../img/general/pc.png">
+                                </div>
+                                <div class="texto-valores">
+                                    <p>
+                                        Tus ingresos: <span>${{data.ingresos | number}}</span><br>
+                                        Valor de tu crédito:<span> ${{data.dineronecesito | number}}</span><br>
+                                        Plazo: <span>{{data.plazo}} meses</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="texto-tabla">
+                            <!--<div class="ico-form3">
+                                <img src="../../img/general/happy.png">
+                            </div>-->
+                            <p>¡Fantástico! Y así quedaría tu plan de pagos</p>
+                        </div>
+                        <div class="texto-tabla-2">
+
+                            <p>
+                                <span class="ico-form3">
+                                    <!--<img src="../../img/general/happy.png">-->
+                                </span>¡Fantástico!<br>Y así quedaría tu plan de pagos
+                            </p>
+                        </div>
+
+                        <div class="content-tabla">
+                            <table class="tabla" cellspacing="0" id="tablapagos">
+                                <tr>
+                                    <th>Mes</th>
+                                    <th>Cuota</th>
+                                    <th>Abono Capital</th>
+                                    <th>Intereses</th>
+                                    <th>Saldo</th>
+                                </tr>
+                                <tr ng-repeat="row in data.planPago">
+                                    <td class="{{row.estilo}}">{{row.mes}}</td>
+                                    <td class="{{row.estilo}}">{{row.cuota | currency}}</td>
+                                    <td class="{{row.estilo}}">{{row.interes | currency}}</td>
+                                    <td class="{{row.estilo}}">{{row.abonoCapital | currency}}</td>
+                                    <td class="{{row.estilo}}">{{row.saldo | currency}}</td>
+                                </tr>
+                                <tr class="total-tabla">
+                                    <th>Total</th>
+                                    <th></th>
+                                    <th>{{data.dineronecesito|currency}}</th>
+                                    <th colspan="3"></th>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="content-button-descarga">
+                            <div class="caja-vacia">
+
+                            </div>
+                            <div class="content-button-descarga-int">
+                                <button class="button-descarga" ng-click="exportar()">Descarga tu plan de pagos  </button>
+                                <!--<button class="button-descarga" onclick="exportarInformacion();">Descarga tu plan de pagos  </button>-->
+                            </div>
+
+                        </div>
+
+                        <div class="texto-correo">
+                            <p>Ingresa tu correo y recibe una copia de la simulación del plan de pagos</p>
+                        </div>
+                        <div class="content-caja-correo">
+                            <div class="caja-select ">
+                                <div class="ico-form">
+                                    <img src="../../img/general/plain-blue.svg">
+                                </div>
+                                <div class="control-select-input input-correo">
+                                    <input type="email" ng-model="data.email">
+                                    <div class="content-button-correo"><button class="button-correo" ng-disabled="data.email == ''" ng-click="guardarInfo(1)">ENVIAR</button></div>
+                                </div>
+                            </div>
+                            <div class="content-button-correo-2"><button class="button-correo" ng-disabled="data.email == ''" ng-click="guardarInfo(1)">ENVIAR</button></div>
+                        </div>
+
+                        <div class="content-buttons-planpagos">
+                            <button class="button-izquierdo-planpago" ng-click="showindex()">SIMULAR OTRO CRÉDITO</button>
+                            <button class="button-derecho-planpago" ng-click="guardarInfo(2)" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CreditoLibreInversion'">SOLICITAR MI CRÉDITO</button>
+                        </div>
+
+                        <div class="texto-inferior-imagen2">
+                            <div class="img-super"><img src="../../img/general/super.svg"></div>
+                            <div class="texto">
+                                <p>*Los valores descritos en el presente simulador son informativos, se encuentran sujetos a la solicitud formal de crédito realizada por el cliente a Banco Finandina S.A.</p>
+                                <p>** El valor de cuota propuesta no incluye valor de prima mensual de los seguros.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function exportarInformacion() {
+            var filename = 'planpagos' + '.csv';
+            var csv = [];
+            var table = document.getElementById('tablapagos'),
+                rows = table.getElementsByTagName('tr');
+
+            for (var i = 0; i < rows.length; i++) {
+                var row = [], cols = rows[i].querySelectorAll("td, th");
+
+                for (var j = 0; j < cols.length; j++)
+                    row.push(cols[j].innerText);
+
+                csv.push(row.join("|"));
+            }
+
+            downloadCSV(csv.join("\n"), filename);
+        }
+
+        function downloadCSV(csv, filename) {
+            var csvFile;
+            var downloadLink;
+            csvFile = new Blob([csv], { type: "text/csv" });
+            downloadLink = document.createElement("a");
+            downloadLink.download = filename;
+            downloadLink.href = window.URL.createObjectURL(csvFile);
+            downloadLink.style.display = "none";
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+        }
+
+    </script>
+    <footer>
+        <p class="texto-normal">Simulador exclusivo para Crédito de Libre Inversión de Banco Finandina S.A.<span> Todos los derechos reservados 2020 - Banco Finandina</span></p>
+    </footer>
+</body>
+</html>
