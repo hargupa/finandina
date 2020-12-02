@@ -19,7 +19,7 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
         //VARIABLES PARA CALCULO Simulador LIBRE INVERSION
         cuotaMensual: '',
         planPago: [],
-
+        planPago2: [],
         destino: '',
         ingresos: '',
         dineronecesito: '',
@@ -30,6 +30,7 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
         sendOK: false,
         erroringresos: '',
         errornecesito: '',
+        ShowErrorValor:false,
         errorplazo: '',
 
         ShowMonto60Meses: true,
@@ -134,7 +135,10 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
 
         if ($scope.data.dineronecesito == "") {
             $scope.data.errornecesito = "Indica el monto del dinero que necesitas";
+            $scope.data.ShowErrorValor=true;
             return false;
+        }else{
+            $scope.data.ShowErrorValor=false;
         }
 
         _dineronecesito = $scope.data.dineronecesito.replace(/\,/g, '');
@@ -142,18 +146,27 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
 
         if (_dineronecesito < $scope.data.minMonto) {
             $scope.data.errornecesito = "El monto m\u00EDnimo que te prestamos es de $" + $scope.data.minMonto;
+            $scope.data.ShowErrorValor=true;
             return false;
+        }else{
+            $scope.data.ShowErrorValor=false;
         }
 
         var prestamoTotal = _ingresos * 10;
         if (_dineronecesito > prestamoTotal) {
             $scope.data.errornecesito = "El monto que intentas solicitar es superior a tu capacidad de endeudamiento, el valor m\u00E1ximo que te podemos prestar es $" + prestamoTotal;
+            $scope.data.ShowErrorValor=true;
             return false;
+        }else{
+            $scope.data.ShowErrorValor=false;
         }
 
         if (_dineronecesito > $scope.data.maxMonto) {
             $scope.data.errornecesito = "El monto m\u00E1ximo que te prestamos es de $" + $scope.data.maxMonto;
+            $scope.data.ShowErrorValor=true;
             return false;
+        }else{
+            $scope.data.ShowErrorValor=false;
         }
 
         if ($scope.data.plazo == "") {
@@ -241,8 +254,80 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
 
             _saldoAnterior = _saldoNuevo;
         }
+        for(let i=0; i<=11;i++){
+            $scope.data.planPago2.push(
+                {
+                    'estilo': $scope.data.planPago[i].estilo,
+                    'mes': $scope.data.planPago[i].mes,
+                    'cuota': $scope.data.planPago[i].cuota,
+                    'interes': $scope.data.planPago[i].interes,
+                    'abonoCapital': $scope.data.planPago[i].abonoCapital,
+                    'saldo': $scope.data.planPago[i].saldoNuevo
+                }
+            );            
+        }
+        for(let i=1; i<=5;i++){
+            angular.element( document.querySelector( '#num-'+i ) ).removeClass('caja-seleccionada');
+            angular.element( document.querySelector( '#num-'+i ) ).addClass('caja-pagina');
+        }
 
+        angular.element( document.querySelector( '#num-1' ) ).addClass('caja-seleccionada');
     }
+
+    $scope.paginador = function (numero) {
+        var inicio=0;
+        var finaliza=0;
+        switch(numero){
+            case 1:{
+                inicio=0;
+                numeroRegistros=11;
+                break;
+            }
+            case 2:{
+                inicio=12;
+                numeroRegistros=23;
+                break;
+            }
+            case 3:{
+                inicio=24;
+                numeroRegistros=35;
+                break;
+            }
+            case 4:{
+                inicio=36;
+                numeroRegistros=47;
+                break;
+            }
+            case 5:{
+                inicio=48;
+                numeroRegistros=59;                
+                break;
+            }
+                                                
+        }
+        $scope.data.planPago2 = [];
+        for(let i=inicio; i<=numeroRegistros;i++){
+            $scope.data.planPago2.push(
+                {
+                    'estilo': $scope.data.planPago[i].estilo,
+                    'mes': $scope.data.planPago[i].mes,
+                    'cuota': $scope.data.planPago[i].cuota,
+                    'interes': $scope.data.planPago[i].interes,
+                    'abonoCapital': $scope.data.planPago[i].abonoCapital,
+                    'saldo': $scope.data.planPago[i].saldoNuevo
+                }
+            );            
+        }
+        for(let i=1; i<=5;i++){
+            angular.element( document.querySelector( '#num-'+i ) ).removeClass('caja-seleccionada');
+            angular.element( document.querySelector( '#num-'+i ) ).addClass('caja-pagina');
+        }
+
+        angular.element( document.querySelector( '#num-'+numero ) ).addClass('caja-seleccionada');
+    }
+
+
+
 
     $scope.calcularTasa = function (salario) {
         var tasa = 0;

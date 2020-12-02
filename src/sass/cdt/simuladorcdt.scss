@@ -145,9 +145,11 @@ footer {
     font-style: italic;
     color: #EE2552;
     font-weight: bold;
-    margin: auto auto auto -88px;
+    margin: auto auto auto -20%;
 }
-
+.error-2{
+   margin: auto auto auto auto; 
+}
 .row {
     display: flex;
     margin: 8rem auto 1rem auto;
