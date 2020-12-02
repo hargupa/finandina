@@ -1,5 +1,5 @@
 var app = angular.module("Libranza", []);
-app.controller('LibranzaController', ['$scope', '$window', function ($scope, $window) {
+app.controller('LibranzaController', ['$scope', '$window', '$filter', function ($scope, $window, $filter) {
 
     // Set the configuration for your app
     var config = {
@@ -210,11 +210,12 @@ app.controller('LibranzaController', ['$scope', '$window', function ($scope, $wi
             }
             _montoAprox = $scope.data.montoAprox.replace(/\,/g, '');
             if (_montoAprox < $scope.data.minMontoPerimitido) {
-                $scope.data.errorMonto = "El monto del dinero no puede ser inferior a $" + $scope.data.minMontoPerimitido;
+
+                $scope.data.errorMonto = "El monto del dinero no puede ser inferior a $" + $filter('currency')($scope.data.minMontoPerimitido, '$', 0);
                 return false;
             }
             if (_montoAprox > $scope.data.maxMontoPerimitido) {
-                $scope.data.errorMonto = "El monto del dinero no puede ser superior a $" + $scope.data.maxMontoPerimitido;
+                $scope.data.errorMonto = "El monto del dinero no puede ser superior a $" + $filter('currency')($scope.data.maxMontoPerimitido, '$', 0);
                 return false;
             }
         }

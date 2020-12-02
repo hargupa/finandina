@@ -1,5 +1,5 @@
 var app = angular.module("simuladorCDT", []);
-app.controller('CdtController', ['$scope', '$window', function ($scope, $window) {
+app.controller('CdtController', ['$scope', '$window', '$filter', function ($scope, $window, $filter) {
     // Set the configuration for your app
     var config = {
         apiKey: "AIzaSyC8vrdhMCthhxAw7CwEfN3OnVWPbHNFVpk",
@@ -91,7 +91,7 @@ app.controller('CdtController', ['$scope', '$window', function ($scope, $window)
 
         _montoInversion = $scope.data.montoInversion.replace(/\,/g, '');
         if (_montoInversion < $scope.data.minMontoInversion) {
-            $scope.data.errormonto = "El monto m\u00EDnimo para la inversi\u00F3n es de $" + $scope.data.minMontoInversion;
+            $scope.data.errormonto = "El monto m\u00EDnimo para la inversi\u00F3n es de $" + $filter('currency')($scope.data.minMontoInversion, '$', 0);
             return false;
         }
         if ($scope.data.plazoDias < $scope.data.mindias) {

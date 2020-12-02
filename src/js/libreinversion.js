@@ -1,6 +1,6 @@
 var app = angular.module("LibreInversion", []);
 
-app.controller('LibreInversionController', ['$scope', '$window', function ($scope, $window) {
+app.controller('LibreInversionController', ['$scope', '$window', '$filter', function ($scope, $window, $filter) {
 
     // Set the configuration for your app
     var config = {
@@ -15,6 +15,7 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
         minMonto: 3000000,
         maxMonto: 100000000,
         SMMLV: 877803,
+        minIngresos: 1000000,
 
         //VARIABLES PARA CALCULO Simulador LIBRE INVERSION
         cuotaMensual: '',
@@ -128,8 +129,8 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
         }
 
         var _ingresos = $scope.data.ingresos.replace(/\,/g, '');
-        if (_ingresos < $scope.data.SMMLV) {
-            $scope.data.erroringresos = "Ingreso m\u00EDnimo 1 SMMLV";
+        if (_ingresos < $scope.data.minIngresos) {
+            $scope.data.erroringresos = "Ingreso m\u00EDnimo " + $filter('currency')($scope.data.minIngresos, '$', 0);
             return false;
         }
 
@@ -145,8 +146,8 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
         _ingresos = $scope.data.ingresos.replace(/\,/g, '');
 
         if (_dineronecesito < $scope.data.minMonto) {
-            $scope.data.errornecesito = "El monto m\u00EDnimo que te prestamos es de $" + $scope.data.minMonto;
             $scope.data.ShowErrorValor=true;
+            $scope.data.errornecesito = "El monto m\u00EDnimo que te prestamos es de $" + $filter('currency')($scope.data.minMonto, '$', 0);
             return false;
         }else{
             $scope.data.ShowErrorValor=false;
@@ -162,8 +163,8 @@ app.controller('LibreInversionController', ['$scope', '$window', function ($scop
         }
 
         if (_dineronecesito > $scope.data.maxMonto) {
-            $scope.data.errornecesito = "El monto m\u00E1ximo que te prestamos es de $" + $scope.data.maxMonto;
             $scope.data.ShowErrorValor=true;
+            $scope.data.errornecesito = "El monto m\u00E1ximo que te prestamos es de $" + $filter('currency')($scope.data.maxMonto, '$', 0);
             return false;
         }else{
             $scope.data.ShowErrorValor=false;

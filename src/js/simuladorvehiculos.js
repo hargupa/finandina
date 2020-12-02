@@ -1,5 +1,5 @@
 var app = angular.module("SimuladorVehiculos", []);
-app.controller('SimuladorController', ['$scope', '$window', function ($scope, $window) {
+app.controller('SimuladorController', ['$scope', '$window', '$filter', function ($scope, $window, $filter) {
     // Set the configuration for your app
     var config = {
         apiKey: "AIzaSyC8vrdhMCthhxAw7CwEfN3OnVWPbHNFVpk",
@@ -224,7 +224,7 @@ app.controller('SimuladorController', ['$scope', '$window', function ($scope, $w
         $scope.data.montoFinanciar = _montoFinanciar >= 0 ? _montoFinanciar : 0;
 
         if ($scope.data.montoFinanciar < $scope.data.minMonto) {
-            $scope.data.errorMonto = "El monto m\u00CDnimo a financiar debe ser mayor que $" + $scope.data.minMonto;
+            $scope.data.errorMonto = "El monto m\u00CDnimo a financiar debe ser mayor que $" + $filter('currency')($scope.data.minMonto, '$', 0);
         }
 
         if ($scope.data.plazo != '')
