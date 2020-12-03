@@ -65,8 +65,22 @@ app.controller('CdtController', ['$scope', '$window', '$filter', function ($scop
             $scope.data.tasaEA_texto = obj.tasa + '% EA';
         }
         else {
-            $scope.data.tasaEA = '';
-            $scope.data.tasaEA_texto = '';
+            var maxValue = 0;
+            var lista = $scope.data.lstTasas.filter(x => p >= x.plazo && p <= x.plazoHasta);
+
+            if (lista.length > 0) {
+                maxValue = lista[0].tasa;
+                for (var i = 1; i < lista.length; i++) {
+                    var currentValue = lista[i].tasa;
+                    if (currentValue > maxValue) {
+                        maxValue = currentValue;
+                    }
+                }
+            }
+
+            $scope.data.tasaEA = maxValue;
+            $scope.data.tasaEA_texto = maxValue + '% EA';
+
         }
 
     }
@@ -115,7 +129,7 @@ app.controller('CdtController', ['$scope', '$window', '$filter', function ($scop
         netoTotal = $scope.cdtNormal(_montoInversion);
         //netoTotal = $scope.cdtDesmaterializado();
 
-        $scope.data.montoInteresNeto = netoTotal.toFixed(2);
+        $scope.data.montoInteresNeto = Math.round(netoTotal);
         $scope.data.totalInversion = parseInt(_montoInversion) + parseInt($scope.data.montoInteresNeto);
 
 
