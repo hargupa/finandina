@@ -52,7 +52,6 @@ app.controller('CdtController', ['$scope', '$window', '$filter', function ($scop
         email: '',
     }
 
-
     $scope.CalcularTasaEA = function (p, m) {
 
         var obj = $scope.data.lstTasas.find(x =>
@@ -129,21 +128,24 @@ app.controller('CdtController', ['$scope', '$window', '$filter', function ($scop
         netoTotal = $scope.cdtNormal(_montoInversion);
         //netoTotal = $scope.cdtDesmaterializado();
 
-        $scope.data.montoInteresNeto = Math.round(netoTotal);
+        $scope.data.montoInteresNeto = netoTotal.toFixed(2);
         $scope.data.totalInversion = parseInt(_montoInversion) + parseInt($scope.data.montoInteresNeto);
 
 
-        var fecha = new Date();
-        fecha.setDate(fecha.getDate() + parseInt($scope.data.plazoDias));
+        var fecha = $scope.sumarDias(new Date(), $scope.data.plazoDias);
 
         var anio = fecha.getFullYear();
         var mes = (fecha.getMonth() + 1).toString().padStart(2, "0");
         var dia = fecha.getDate().toString().padStart(2, "0");
 
-        var diaFormat360 = (fecha.getDate() + 2).toString().padStart(2, "0");
+        $scope.data.fechaFinal = dia + '/' + mes + '/' + anio;
 
-        $scope.data.fechaFinal = diaFormat360 + '/' + mes + '/' + anio;
+    }
 
+    $scope.sumarDias = function (fecha, dias) {
+        fecha.setDate(fecha.getDate() + dias);
+        console.log(fecha);
+        return fecha;
     }
 
     $scope.TasaCalculaNominal = function (tasa, plazo) {
@@ -157,10 +159,17 @@ app.controller('CdtController', ['$scope', '$window', '$filter', function ($scop
         return result;
     }
 
+    $scope.redondeaSeisDecimas = function (valor) {
+        return Math.round(valor * 1000000) / 1000000;
+    }
+
     $scope.cdtNormal = function (_montoInversion) {
 
         var porcentaje = ($scope.data.tasaEA / 100); //se divide en 100 para sacar el equivalente a porcentaje
-        var tasaEANominal = $scope.TasaCalculaNominal(porcentaje, $scope.data.plazoDias);
+        var _tasaEANominal = $scope.TasaCalculaNominal(porcentaje, $scope.data.plazoDias);
+
+        //se llama funcion para redondear el valor a 6 decimales
+        var tasaEANominal = $scope.redondeaSeisDecimas(_tasaEANominal);
 
         var uno = (_montoInversion * tasaEANominal);
         var dos = (360 / $scope.data.plazoDias);
