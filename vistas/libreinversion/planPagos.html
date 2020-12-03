@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html ng-app="LibreInversion">
 <head>
     <!--<meta http-equiv="refresh" content="10">-->
@@ -142,27 +142,27 @@
                         <div class="content-button-descarga">
                             <div class="caja-vacia">
                                 <div class="paginador">
-                                    <div class="caja-pagina" ng-click="paginador(1)">
+                                    <div class="caja-pagina" ng-click="paginador('pri')">
                                         <div class="numero"><img src="../../img/general/flecha-izq.png"></div>
                                     </div>
                                     <div class="caja-pagina" id="num-1" ng-click="paginador(1)">
                                         <div class="numero">1</div>
                                     </div>
-                                    <div class="caja-pagina" id="num-2" ng-click="paginador(2)">
+                                    <div class="caja-pagina" id="num-2" ng-click="data.pag2 && paginador(2)" ng-class="{'disabled':!data.pag2}">
                                         <div class="numero">2</div>
                                     </div>
-                                    <div class="caja-pagina" id="num-3" ng-click="paginador(3)">
+                                    <div class="caja-pagina" id="num-3" ng-click="data.pag3 && paginador(3)" ng-class="{'disabled':!data.pag3}">
                                         <div class="numero">3</div>
                                     </div>
-                                    <div class="caja-pagina" id="num-4" ng-click="paginador(4)">
+                                    <div class="caja-pagina" id="num-4" ng-click="data.pag4 && paginador(4)" ng-class="{'disabled':!data.pag4}">
                                         <div class="numero">4</div>
                                     </div>
-                                    <div class="caja-pagina" id="num-5" ng-click="paginador(5)">
+                                    <div class="caja-pagina" id="num-5" ng-click="data.pag5 && paginador(5)" ng-class="{'disabled':!data.pag5}">
                                         <div class="numero">5</div>
                                     </div>
-                                    <div class="caja-pagina" ng-click="paginador(5)">
+                                    <div class="caja-pagina" ng-click="paginador('ult')">
                                         <div class="numero"><img src="../../img/general/flecha-der.png"></div>
-                                    </div>                                                                                      
+                                    </div>
                                 </div>
                             </div>
                             <div class="content-button-descarga-int">

@@ -31,7 +31,7 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
         sendOK: false,
         erroringresos: '',
         errornecesito: '',
-        ShowErrorValor:false,
+        ShowErrorValor: false,
         errorplazo: '',
 
         ShowMonto60Meses: true,
@@ -50,6 +50,11 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
         ShowForm: true,
         ShowTerminos: false,
 
+
+        pag2: false,
+        pag3: false,
+        pag4: false,
+        pag5: false,
     }
 
     $scope.MostrarCuota = function (id) {
@@ -122,6 +127,7 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
         $scope.data.errornecesito = '';
         $scope.data.errorplazo = '';
         $scope.data.cuotaMensual = '';
+        $scope.data.ShowErrorValor = false;
 
         if ($scope.data.ingresos == "") {
             $scope.data.erroringresos = "Indica tus ingresos mensuales";
@@ -136,38 +142,36 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
 
         if ($scope.data.dineronecesito == "") {
             $scope.data.errornecesito = "Indica el monto del dinero que necesitas";
-            $scope.data.ShowErrorValor=true;
+            $scope.data.ShowErrorValor = true;
             return false;
-        }else{
-            $scope.data.ShowErrorValor=false;
         }
 
         _dineronecesito = $scope.data.dineronecesito.replace(/\,/g, '');
         _ingresos = $scope.data.ingresos.replace(/\,/g, '');
 
         if (_dineronecesito < $scope.data.minMonto) {
-            $scope.data.ShowErrorValor=true;
-            $scope.data.errornecesito = "El monto m\u00EDnimo que te prestamos es de $" + $filter('currency')($scope.data.minMonto, '$', 0);
+            $scope.data.errornecesito = "El monto m\u00EDnimo que te prestamos es de " + $filter('currency')($scope.data.minMonto, '$', 0);
+            $scope.data.ShowErrorValor = true;
             return false;
-        }else{
-            $scope.data.ShowErrorValor=false;
         }
 
         var prestamoTotal = _ingresos * 10;
-        if (_dineronecesito > prestamoTotal) {
-            $scope.data.errornecesito = "El monto que intentas solicitar es superior a tu capacidad de endeudamiento, el valor m\u00E1ximo que te podemos prestar es $" + prestamoTotal;
-            $scope.data.ShowErrorValor=true;
+        if (prestamoTotal > $scope.data.maxMonto) {
+            $scope.data.errornecesito = "El monto que intentas solicitar es superior a tu capacidad de endeudamiento, el valor m\u00E1ximo que te podemos prestar es " + $filter('currency')($scope.data.maxMonto, '$', 0);
+            $scope.data.ShowErrorValor = true;
             return false;
-        }else{
-            $scope.data.ShowErrorValor=false;
+        }
+
+        if (_dineronecesito > prestamoTotal) {
+            $scope.data.errornecesito = "El monto que intentas solicitar es superior a tu capacidad de endeudamiento, el valor m\u00E1ximo que te podemos prestar es " + $filter('currency')(prestamoTotal, '$', 0);
+            $scope.data.ShowErrorValor = true;
+            return false;
         }
 
         if (_dineronecesito > $scope.data.maxMonto) {
-            $scope.data.ShowErrorValor=true;
-            $scope.data.errornecesito = "El monto m\u00E1ximo que te prestamos es de $" + $filter('currency')($scope.data.maxMonto, '$', 0);
+            $scope.data.errornecesito = "El monto m\u00E1ximo que te prestamos es de " + $filter('currency')($scope.data.maxMonto, '$', 0);
+            $scope.data.ShowErrorValor = true;
             return false;
-        }else{
-            $scope.data.ShowErrorValor=false;
         }
 
         if ($scope.data.plazo == "") {
@@ -235,6 +239,13 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
             _abonoCapital = _cuota - _interes;
             _saldoNuevo = _saldoAnterior - _abonoCapital;
 
+            if (_mes == $scope.data.plazo) {
+                _cuota = _cuota + _saldoNuevo;
+
+                _abonoCapital = _cuota - _interes;
+                _saldoNuevo = _saldoAnterior - _abonoCapital;
+            }
+
             if ((_mes % 2) == 0) {
                 _estilo = 'celda-2';
             }
@@ -255,7 +266,9 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
 
             _saldoAnterior = _saldoNuevo;
         }
-        for(let i=0; i<=11;i++){
+
+
+        for (let i = 0; i <= 11; i++) {
             $scope.data.planPago2.push(
                 {
                     'estilo': $scope.data.planPago[i].estilo,
@@ -263,51 +276,84 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
                     'cuota': $scope.data.planPago[i].cuota,
                     'interes': $scope.data.planPago[i].interes,
                     'abonoCapital': $scope.data.planPago[i].abonoCapital,
-                    'saldo': $scope.data.planPago[i].saldoNuevo
+                    'saldo': $scope.data.planPago[i].saldo
                 }
-            );            
-        }
-        for(let i=1; i<=5;i++){
-            angular.element( document.querySelector( '#num-'+i ) ).removeClass('caja-seleccionada');
-            angular.element( document.querySelector( '#num-'+i ) ).addClass('caja-pagina');
+            );
         }
 
-        angular.element( document.querySelector( '#num-1' ) ).addClass('caja-seleccionada');
+        //habilitar paginas cada 12 registros
+        var pag = $scope.data.plazo / 12;
+        switch (pag) {
+            case 5:
+                $scope.data.pag2 = true;
+                $scope.data.pag3 = true;
+                $scope.data.pag4 = true;
+                $scope.data.pag5 = true;
+                break;
+            case 4:
+                $scope.data.pag2 = true;
+                $scope.data.pag3 = true;
+                $scope.data.pag4 = true;
+                break;
+            case 3:
+                $scope.data.pag2 = true;
+                $scope.data.pag3 = true;
+                break;
+            case 2:
+                $scope.data.pag2 = true;
+                break;
+        }
+        for (let i = 1; i <= pag; i++) {
+            angular.element(document.querySelector('#num-' + i)).removeClass('caja-seleccionada');
+            angular.element(document.querySelector('#num-' + i)).addClass('caja-pagina');
+        }
+
+        angular.element(document.querySelector('#num-1')).addClass('caja-seleccionada');
+
     }
 
-    $scope.paginador = function (numero) {
-        var inicio=0;
-        var finaliza=0;
-        switch(numero){
-            case 1:{
-                inicio=0;
-                numeroRegistros=11;
+    $scope.paginador = function (_numero) {
+        var numero = 1;
+
+        if (_numero == 'ult')
+            numero = $scope.data.plazo / 12;
+        else if (_numero == 'pri')
+            numero = 1;
+        else
+            numero = _numero;
+
+        var inicio = 0;
+        var finaliza = 0;
+        switch (numero) {
+            case 1: {
+                inicio = 0;
+                numeroRegistros = 11;
                 break;
             }
-            case 2:{
-                inicio=12;
-                numeroRegistros=23;
+            case 2: {
+                inicio = 12;
+                numeroRegistros = 23;
                 break;
             }
-            case 3:{
-                inicio=24;
-                numeroRegistros=35;
+            case 3: {
+                inicio = 24;
+                numeroRegistros = 35;
                 break;
             }
-            case 4:{
-                inicio=36;
-                numeroRegistros=47;
+            case 4: {
+                inicio = 36;
+                numeroRegistros = 47;
                 break;
             }
-            case 5:{
-                inicio=48;
-                numeroRegistros=59;                
+            case 5: {
+                inicio = 48;
+                numeroRegistros = 59;
                 break;
             }
-                                                
         }
+
         $scope.data.planPago2 = [];
-        for(let i=inicio; i<=numeroRegistros;i++){
+        for (let i = inicio; i <= numeroRegistros; i++) {
             $scope.data.planPago2.push(
                 {
                     'estilo': $scope.data.planPago[i].estilo,
@@ -315,20 +361,17 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
                     'cuota': $scope.data.planPago[i].cuota,
                     'interes': $scope.data.planPago[i].interes,
                     'abonoCapital': $scope.data.planPago[i].abonoCapital,
-                    'saldo': $scope.data.planPago[i].saldoNuevo
+                    'saldo': $scope.data.planPago[i].saldo
                 }
-            );            
+            );
         }
-        for(let i=1; i<=5;i++){
-            angular.element( document.querySelector( '#num-'+i ) ).removeClass('caja-seleccionada');
-            angular.element( document.querySelector( '#num-'+i ) ).addClass('caja-pagina');
+        for (let i = 1; i <= 5; i++) {
+            angular.element(document.querySelector('#num-' + i)).removeClass('caja-seleccionada');
+            angular.element(document.querySelector('#num-' + i)).addClass('caja-pagina');
         }
+        angular.element(document.querySelector('#num-' + numero)).addClass('caja-seleccionada');
 
-        angular.element( document.querySelector( '#num-'+numero ) ).addClass('caja-seleccionada');
     }
-
-
-
 
     $scope.calcularTasa = function (salario) {
         var tasa = 0;
