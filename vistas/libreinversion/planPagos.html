@@ -109,7 +109,7 @@
                         </div>
 
                         <div class="content-tabla">
-                            <table class="tabla" cellspacing="0" id="tablapagos">
+                            <table class="tabla" cellspacing="0" id="tablapagos2">
                                 <tr>
                                     <th>Mes</th>
                                     <th>Cuota</th>
@@ -128,7 +128,7 @@
                         </div>
 
                         <div class="content-tabla-2">
-                            <table class="tabla" cellspacing="0" id="tablapagos">
+                            <table class="tabla" cellspacing="0" id="tablapagos2">
                                 <tr class="total-tabla">
                                     <th>Total</th>
                                     <th></th>
@@ -204,10 +204,33 @@
                 </div>
             </div>
         </div>
+        <div style="display:none" ng-show="false">
+            <table cellspacing="0" id="tablapagos">
+                <tr>
+                    <th>Mes</th>
+                    <th>Cuota</th>
+                    <th>Abono Capital</th>
+                    <th>Intereses</th>
+                    <th>Saldo</th>
+                </tr>
+                <tr ng-repeat="row in data.planPago">
+                    <td>{{row.mes}}</td>
+                    <td>{{row.cuota|currency}}</td>
+                    <td>{{row.interes|currency}}</td>
+                    <td>{{row.abonoCapital|currency}}</td>
+                    <td>{{row.saldo|currency}}</td>
+                </tr>
+                <tr>
+                    <th>Total</th>
+                    <th></th>
+                    <th>{{data.dineronecesito|currency}}</th>
+                </tr>
+            </table>
+        </div>
 
     </div>
 
-    <script>
+    <!--<script>
         function exportarInformacion() {
             var filename = 'planpagos' + '.csv';
             var csv = [];
@@ -238,7 +261,7 @@
             downloadLink.click();
         }
 
-    </script>
+    </script>-->
     <footer>
         <p class="texto-normal">Simulador exclusivo para Crédito de Libre Inversión de Banco Finandina S.A.<span> Todos los derechos reservados 2020 - Banco Finandina</span></p>
     </footer>

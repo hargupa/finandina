@@ -215,7 +215,6 @@ app.controller('LibranzaController', ['$scope', '$window', '$filter', function (
                 return false;
             }
             if (_montoAprox > $scope.data.maxMontoPerimitido) {
-               //$scope.data.errorMonto = "El monto del dinero no puede ser superior a " + $filter('currency')($scope.data.maxMontoPerimitido, '$', 0);
                $scope.data.errorMonto = "El monto que intentas solicitar es superior a tu capacidad de endeudamiento, el valor m\u00E1ximo que te podemos prestar es " + $filter('currency')($scope.data.maxMontoPerimitido, '$', 0);
                 return false;
             }

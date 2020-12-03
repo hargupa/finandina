@@ -91,7 +91,7 @@ app.controller('CdtController', ['$scope', '$window', '$filter', function ($scop
 
         _montoInversion = $scope.data.montoInversion.replace(/\,/g, '');
         if (_montoInversion < $scope.data.minMontoInversion) {
-            $scope.data.errormonto = "El monto m\u00EDnimo para la inversi\u00F3n es de $" + $filter('currency')($scope.data.minMontoInversion, '$', 0);
+            $scope.data.errormonto = "El monto m\u00EDnimo para la inversi\u00F3n es de " + $filter('currency')($scope.data.minMontoInversion, '$', 0);
             return false;
         }
         if ($scope.data.plazoDias < $scope.data.mindias) {
