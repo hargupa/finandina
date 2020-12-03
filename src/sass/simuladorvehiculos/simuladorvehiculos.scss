@@ -84,7 +84,7 @@ body {
 
 .error {
     font-family: 'Open_Sans_Semi_Bold';
-    font-size: 12px;
+    font-size: 10px;
     font-style: italic;
     color: #EE2552;
     font-weight: bold;
@@ -354,16 +354,17 @@ footer {
                     input {
                         border: 0;
                         height: 33px;
-                        width: 60%;
-                        max-width: 60%;
+                        width: 68%;
+                        max-width: 68%;
                         margin-top: 2px;
-                        margin-left: 15%;
-                        font-size: 13px;
+                        margin-left: 10%;
+                        font-size: 18px;
                         color: #707070;
                         outline: 0;
                         background: white;
-                        font-family: 'Open_Sans_Regular';
+                        font-family: 'Open_Sans_Semi_Bold';
                         z-index: 0;
+                        text-align: center;
                     }
 
                     label {
