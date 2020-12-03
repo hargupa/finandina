@@ -36,7 +36,7 @@
                     <div class="texto-superior-imagen">
                         <p>Proyecta los rendimientos de tu <span>Inversión Digital<span></p>
                     </div>
-                    <div class="content-image">
+                    <div class="content-image" id="img-dinamica">
                         <div class="img-izquierda" id="img-msg">
                         </div>
                         <div class="img-derecha" id="img-family">
@@ -73,7 +73,7 @@
                                     <img src="../../img/general/money-green.svg">
                                 </div>
                                 <div class="control-select-input ">
-                                    <input class="input-inv-input" ng-model="data.montoInversion" type="text" autocomplete="off" mileskeypress ng-change="calculos()" maxlength="12">
+                                    <input class="input-inv-input" ng-model="data.montoInversion" type="text" autocomplete="off" mileskeypress ng-change="calculos()" maxlength="11">
                                     <label for="modelocarro">Tu inversión</label>
                                 </div>
 
@@ -176,6 +176,9 @@
         var time;
         var transparency = 0;        
         document.addEventListener("DOMContentLoaded", function (event) {
+            if (screen.width<400){
+                document.getElementById('img-dinamica').style.height='200px';
+            }            
             setInterval('CambiarImagen()', 5000);
         })
         function CambiarImagen() {

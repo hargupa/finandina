@@ -36,7 +36,7 @@
                     <div class="texto-superior-imagen">
                         <p>Descubre las ventajas de poder solicitar un crédito<span> desde la comodidad de tu casa u oficina<span></p>
                     </div>
-                    <div class="content-image">
+                    <div class="content-image" id="img-dinamica">
                         <div class="img-izquierda imagen-fade" id="img-msg">
                         </div>
                         <div class="img-derecha imagen-fade" id="img-woman">
@@ -269,6 +269,9 @@
         var time;
         var transparency = 0;        
         document.addEventListener("DOMContentLoaded", function (event) {
+            if (screen.width<400){
+                document.getElementById('img-dinamica').style.height='250px';
+            }
             setInterval('CambiarImagen()', 5000);
         })
         function CambiarImagen() {
