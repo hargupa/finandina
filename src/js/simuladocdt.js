@@ -115,7 +115,7 @@ app.controller('CdtController', ['$scope', '$window', '$filter', function ($scop
         netoTotal = $scope.cdtNormal(_montoInversion);
         //netoTotal = $scope.cdtDesmaterializado();
 
-        $scope.data.montoInteresNeto = Math.round(netoTotal);
+        $scope.data.montoInteresNeto = netoTotal.toFixed(2);
         $scope.data.totalInversion = parseInt(_montoInversion) + parseInt($scope.data.montoInteresNeto);
 
 
@@ -133,14 +133,14 @@ app.controller('CdtController', ['$scope', '$window', '$filter', function ($scop
     }
 
     $scope.TasaCalculaNominal = function (tasa, plazo) {
-        var div = Math.round(360 / plazo);
+        var div = (360 / plazo);
         var result = div * (Math.pow((1 + tasa), (1 / div)) - 1);
         //result2 = Math.round(360 / plazo) * (Math.pow((1 + tasa), (1 / Math.round(360 / plazo))) - 1);
 
         if (isNaN(result))
             result = 0;
 
-        return result.toFixed(6);
+        return result;
     }
 
     $scope.cdtNormal = function (_montoInversion) {
@@ -148,7 +148,9 @@ app.controller('CdtController', ['$scope', '$window', '$filter', function ($scop
         var porcentaje = ($scope.data.tasaEA / 100); //se divide en 100 para sacar el equivalente a porcentaje
         var tasaEANominal = $scope.TasaCalculaNominal(porcentaje, $scope.data.plazoDias);
 
-        var intTotal = (_montoInversion * tasaEANominal) / (360 / $scope.data.plazoDias);
+        var uno = (_montoInversion * tasaEANominal);
+        var dos = (360 / $scope.data.plazoDias);
+        var intTotal = uno / dos;
 
         var reteFuente = intTotal * ($scope.data.fuente / 100);
         var reteIca = intTotal * ($scope.data.ica / 100);
@@ -195,6 +197,12 @@ app.controller('CdtController', ['$scope', '$window', '$filter', function ($scop
             $scope.data.erroremail = 'Debe ingresar su correo electronico';
             return false;
         }
+        var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if (!regex.test($scope.data.email)) {
+            $scope.data.erroremail = 'La direccion de correo electronico no es correcta';
+            return false;
+        }
+
 
         //TODO guardar info en firebase
         if ($scope.writeFirebase()) {
@@ -251,6 +259,8 @@ app.controller('CdtController', ['$scope', '$window', '$filter', function ($scop
     $scope.showindex = function () {
         $window.location.href = 'index.html';
     }
+
+
 }]);
 
 //SERCCION DE DIRECTIVAS

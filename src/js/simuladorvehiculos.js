@@ -287,6 +287,12 @@ app.controller('SimuladorController', ['$scope', '$window', '$filter', function 
             return false;
         }
 
+        var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if (!regex.test($scope.data.email)) {
+            $scope.data.erroremail = 'La direccion de correo electronico no es correcta';
+            return false;
+        }
+
         //TODO guardar info en firebase
         if ($scope.writeFirebase()) {
             $scope.data.ShowModal = true;
@@ -345,34 +351,34 @@ app.controller('SimuladorController', ['$scope', '$window', '$filter', function 
         $window.location.href = 'index.html'
     }
 
-    $scope.agregarClase=function(){
-        if ($scope.data.anioModelo==''){
-            angular.element( document.querySelector( '#selectModelo' ) ).removeClass('ctrol-gris');
-        }else{
-            angular.element( document.querySelector( '#selectModelo' ) ).addClass('ctrol-gris');
+    $scope.agregarClase = function () {
+        if ($scope.data.anioModelo == '') {
+            angular.element(document.querySelector('#selectModelo')).removeClass('ctrol-gris');
+        } else {
+            angular.element(document.querySelector('#selectModelo')).addClass('ctrol-gris');
         }
-        if ($scope.data.marcaVehiculo==''){
-            angular.element( document.querySelector( '#selectMarca' ) ).removeClass('ctrol-gris');
-        }else{
-            angular.element( document.querySelector( '#selectMarca' ) ).addClass('ctrol-gris');
-        }        
-
-        if ($scope.data.marcaVehiculo==''){
-            angular.element( document.querySelector( '#selectMarca' ) ).removeClass('ctrol-gris');
-        }else{
-            angular.element( document.querySelector( '#selectMarca' ) ).addClass('ctrol-gris');
-        }   
-
-        if ($scope.data.precioVehiculo=='' || $scope.data.precioVehiculo==0){
-            angular.element( document.querySelector( '#precioVehiculo' ) ).removeClass('ctrol-gris');
-        }else{
-            angular.element( document.querySelector( '#precioVehiculo' ) ).addClass('ctrol-gris');
+        if ($scope.data.marcaVehiculo == '') {
+            angular.element(document.querySelector('#selectMarca')).removeClass('ctrol-gris');
+        } else {
+            angular.element(document.querySelector('#selectMarca')).addClass('ctrol-gris');
         }
 
-        if ($scope.data.cuotaInicial=='' || $scope.data.cuotaInicial==0){
-            angular.element( document.querySelector( '#cuotaInicial' ) ).removeClass('ctrol-gris');
-        }else{
-            angular.element( document.querySelector( '#cuotaInicial' ) ).addClass('ctrol-gris');
+        if ($scope.data.marcaVehiculo == '') {
+            angular.element(document.querySelector('#selectMarca')).removeClass('ctrol-gris');
+        } else {
+            angular.element(document.querySelector('#selectMarca')).addClass('ctrol-gris');
+        }
+
+        if ($scope.data.precioVehiculo == '' || $scope.data.precioVehiculo == 0) {
+            angular.element(document.querySelector('#precioVehiculo')).removeClass('ctrol-gris');
+        } else {
+            angular.element(document.querySelector('#precioVehiculo')).addClass('ctrol-gris');
+        }
+
+        if ($scope.data.cuotaInicial == '' || $scope.data.cuotaInicial == 0) {
+            angular.element(document.querySelector('#cuotaInicial')).removeClass('ctrol-gris');
+        } else {
+            angular.element(document.querySelector('#cuotaInicial')).addClass('ctrol-gris');
         }
 
 

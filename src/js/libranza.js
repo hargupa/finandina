@@ -356,6 +356,12 @@ app.controller('LibranzaController', ['$scope', '$window', '$filter', function (
             return false;
         }
 
+        var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if (!regex.test($scope.data.email)) {
+            $scope.data.erroremail = 'La direccion de correo electronico no es correcta';
+            return false;
+        }
+
         //TODO guardar info en firebase
         if ($scope.writeFirebase()) {
             $scope.data.ShowModal = true;
