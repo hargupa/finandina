@@ -224,7 +224,7 @@ app.controller('SimuladorController', ['$scope', '$window', '$filter', function 
         $scope.data.montoFinanciar = _montoFinanciar >= 0 ? _montoFinanciar : 0;
 
         if ($scope.data.montoFinanciar < $scope.data.minMonto) {
-            $scope.data.errorMonto = "El monto m\u00CDnimo a financiar debe ser mayor que $" + $filter('currency')($scope.data.minMonto, '$', 0);
+            $scope.data.errorMonto = "El monto m\u00CDnimo a financiar debe ser mayor que " + $filter('currency')($scope.data.minMonto, '$', 0);
         }
 
         if ($scope.data.plazo != '')

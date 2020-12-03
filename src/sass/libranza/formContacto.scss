@@ -403,7 +403,26 @@ footer {
                         margin-top: 2px;
                         margin-left: 30px;
                         font-size: 16px;
+                        font-family: 'Open_Sans_Regular';
                     }
+
+                    .input-nombre-input {
+                        width: 100%;
+                        max-width: 85%;
+                        margin-left: 16px;
+                    }
+
+                    .input-celular-input {
+                        width: 100%;
+                        margin-left: 0px;
+                    }
+
+                    .input-correo-input {
+                        width: 100%;
+                        max-width: 85%;
+                        margin-left: 16px;
+                        
+                    }                    
                 }
             }
 

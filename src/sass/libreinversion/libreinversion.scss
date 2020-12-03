@@ -773,7 +773,7 @@ footer {
                     label {
                         position: absolute;
                         top: -11px;
-                        left: 35px;
+                        left: 11px;
                         background: #fdfdfd 0% 0% no-repeat padding-box;
                         font-family: 'Open_Sans_Regular';
                         font-size: 12px;
@@ -1355,13 +1355,19 @@ input:focus, input.form-control:focus {
         }
 
         .content-image {
+            height: 250px;
+            margin-left:10%;
+            padding-left:10%;
+            padding-right:10%;
             .img-izquierda {
                 left: 25px;
+                max-width: 100%;
             }
 
             .img-derecha {
                 float: right;
                 margin-left: -35px;
+                max-width: 100%;
             }
         }
 
@@ -1380,6 +1386,9 @@ input:focus, input.form-control:focus {
         display: flex;
         flex-direction: column;
 
+        .error{
+
+        }
         .card-content {
             height: 100%;
 
@@ -1446,17 +1455,30 @@ input:focus, input.form-control:focus {
             }
 
             .content-tabla {
+                width: 90%;
+                margin: auto auto auto auto;
                 .tabla {
                     th {
-                        font-size: 14px;
+                        border: 1px solid #707070;
+                        font-size: 12px;
                     }
 
                     td {
-                        font-size: 12px;
+                        font-size: 9px;
                     }
                 }
             }
-
+            .content-tabla-2{
+                width: 90%;
+                margin: auto auto -33px auto;
+                .tabla{
+                    th {
+                        border: 1px solid #707070;
+                        font-size: 12px;
+                    }                      
+                }
+              
+            }
             .total-tabla {
                 margin: -50px auto auto auto;
                 width: 80%;
@@ -1469,12 +1491,22 @@ input:focus, input.form-control:focus {
             .content-button-descarga {
                 margin: 23px auto auto auto;
                 justify-content: center;
-
-
+                display: flex;
+                flex-direction: column;
+                .caja-vacia{
+                    width: 70%;
+                    max-width: 70%;
+                    margin:auto auto auto auto;
+                    .paginador{
+                        width: 100%;
+                        max-width: 100%;
+                    }
+                }
                 .content-button-descarga-int {
                     /*padding-right: 0px;*/
                     width: 70%;
-
+                    margin: 20px auto auto auto;
+                    padding-right: 0px;
                     .button-descarga {
                         background-size: 8%;
                         text-align: center;
@@ -1595,7 +1627,7 @@ input:focus, input.form-control:focus {
 
             .texto-superior-derecho {
                 max-width: 100%;
-                margin: 20px auto 30px auto;
+                margin: 20px auto auto auto;
 
                 p {
                     font-size: 14px;
@@ -1607,7 +1639,7 @@ input:focus, input.form-control:focus {
                 width: 60%;
                 max-width: 60%;
                 height: 100%;
-                margin: auto auto 46px auto;
+                margin: auto auto 3px auto;
 
                 .caja-select {
 
@@ -1650,7 +1682,7 @@ input:focus, input.form-control:focus {
             .content-monto {
 
                 .caja-monto {
-                    width: 80%;
+                    width: 70%;
                 }
             }
 
