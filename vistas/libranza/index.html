@@ -148,7 +148,7 @@
                                     <img src="../../img/general/money-blue.svg">
                                 </div>
                                 <div class="control-select-input">
-                                    <input ng-model="data.ingresos" type="text" autocomplete="off" mileskeypress ng-change="calcularDatos()" />
+                                    <input ng-model="data.ingresos" type="text" autocomplete="off" mileskeypress ng-change="calcularDatos()" maxlength="12" />
                                     <label for="modelocarro">Indica tus ingresos</label>
                                 </div>
                                 <div class="mensaje-valor">
@@ -161,7 +161,7 @@
                                     <img src="../../img/general/money-blue.svg">
                                 </div>
                                 <div class="control-select-input">
-                                    <input ng-model="data.descuentoNomina" type="text" autocomplete="off" mileskeypress ng-change="calcularDatos()" />
+                                    <input ng-model="data.descuentoNomina" type="text" autocomplete="off" mileskeypress ng-change="calcularDatos()" maxlength="12" />
                                     <label for="modelocarro" ng-show="data.ShowImgPensionado">Otros descuentos</label>
                                     <label for="modelocarro" ng-show="!data.ShowImgPensionado">Descuentos de nómina</label>
                                 </div>
@@ -183,8 +183,8 @@
                                     <img src="../../img/general/money-blue.svg">
                                 </div>
                                 <div class="control-select-input ">
-                                    <input ng-if="data.ShowMonto" ng-model="data.montoAprox" type="text" mileskeypress autocomplete="off" ng-change="calcularDatos()" />
-                                    <input ng-if="data.ShowCuota" ng-model="data.cuotaAprox" type="text" mileskeypress autocomplete="off" ng-change="calcularDatos()" />
+                                    <input ng-if="data.ShowMonto" ng-model="data.montoAprox" type="text" mileskeypress autocomplete="off" ng-change="calcularDatos()" maxlength="12" />
+                                    <input ng-if="data.ShowCuota" ng-model="data.cuotaAprox" type="text" mileskeypress autocomplete="off" ng-change="calcularDatos()" maxlength="12" />
                                     <div class="ico-form2" ng-show="data.ShowAviso">
                                         <img src="../../img/general/money-blue.svg">
                                     </div>
