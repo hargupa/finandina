@@ -283,14 +283,15 @@ footer {
 
 
 .modal-contenido {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 75%;
+    max-height: 47%;
     background: #FFFFFF 0% 0% no-repeat padding-box;
-    box-shadow: 3px 3px 2px 3px rgba(0, 0, 0, 0.16);
-    border-radius: 20px;
+    box-shadow: 7px 1px 14px 7px rgba(0, 0, 0, 0.16);
+    border-radius: 8px;
+    opacity: 1;
     width: 500px;
     padding: 10px 20px;
-    margin: 10% auto;
+    margin: 10% 6% auto auto;
     position: relative;
     text-align: center;
 
@@ -355,14 +356,13 @@ footer {
     border-radius: 8px;
     opacity: 0.9;
     display: inline-block;
-    position: fixed;
-    top: 0;
+    position: absolute;
+    top: 21px;
     bottom: 0;
-    left: 0;
-    right: 0;
+    right: 7%;
     margin: auto;
-    width: 100%;
-    height: 100%;
+    width: 45%;
+    height: 72%;
 }
 
 
@@ -452,6 +452,26 @@ footer {
                         margin-left: 10px;
                         font-size: 16px;
                     }
+
+                    .input-nombre-input {
+                        width: 100%;
+                        max-width: 85%;
+                        margin-left: 16px;
+                    }
+
+                    .input-celular-input {
+                        width: 100%;
+                        margin-left: 10px;
+                    }
+
+                    .input-correo-input {
+                        width: 100%;
+                        max-width: 85%;
+                        margin-left: 16px;
+                        
+                    } 
+
+
                 }
             }
 
@@ -767,19 +787,19 @@ input:focus, input.form-control:focus {
 
 
     .modal-contenido {
-        max-width: 100%;
-        max-height: 100%;
+        max-width: 90%;
+        max-height: 90%;
         background: #FFFFFF 0% 0% no-repeat padding-box;
-        box-shadow: 3px 3px 2px 3px rgba(0, 0, 0, 0.16);
-        border-radius: 20px;
-        width: 79%;
+        box-shadow: 7px 1px 14px 7px rgba(0, 0, 0, 0.16);
+        border-radius: 8px;
+        width: 80%;
         padding: 10px 20px;
         margin: 40% auto;
         position: relative;
         text-align: center;
 
         img {
-            width: 35%;
+            width: 40%;
         }
 
         .texto-popup-titulo {
@@ -835,7 +855,9 @@ input:focus, input.form-control:focus {
         pointer-events: none;
     }*/
     .modal {
-        background-color: rgba(0,0,0,.8);
+        background: #FDFDFD 0% 0% no-repeat padding-box;
+        border-radius: 8px;
+        opacity: 0.9;
         display: inline-block;
         position: fixed;
         top: 0;
@@ -843,6 +865,8 @@ input:focus, input.form-control:focus {
         left: 0;
         right: 0;
         margin: auto;
+        width: 100%;
+        height: 100%;
     }
 
 
@@ -938,7 +962,7 @@ input:focus, input.form-control:focus {
 
             .texto-superior-derecho {
                 max-width: 80%;
-                margin: 20px auto 60px auto;
+                margin: 20px auto 18px auto;
 
                 p {
                     font-size: 14px;
