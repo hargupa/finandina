@@ -73,9 +73,9 @@ body {
 }
 
 .texto-info {
-    font-size: 17px;
+    font-size: 18px;
     color: #707070;
-    font-family: "Open_Sans";
+    font-family: "Open_Sans_Regular";
     background: #fff;
     border: 1px solid #EE2552;
     padding: 0 10px;
@@ -200,6 +200,7 @@ footer {
         width: 70%;
         text-align: left;
         margin-left: 10%;
+        line-height: 1.0;
 
         p {
             font-family: 'Open_Sans_Regular';
@@ -316,8 +317,8 @@ footer {
 
         .content-caja-select {
             display: flex;
-            width: 80%;
-            max-width: 80%;
+            width: 65%;
+            max-width: 65%;
             margin: 40px auto auto auto;
 
             .caja-select {
@@ -341,7 +342,7 @@ footer {
                         width: 70%;
                         max-width: 70%;
                         margin-top: 2px;
-                        margin-left: 21%;
+                        margin-left: 28%;
                         font-size: 13px;
                         color: #707070;
                         outline: 0;
@@ -413,7 +414,9 @@ footer {
                     color: #EE2552;
                 }
             }
-
+            .ctrol-gris{
+                    border: 1px solid #ccc;
+            }
 
 
             .caja-monto {

@@ -217,14 +217,15 @@ footer {
 }
 
 .modal-contenido {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 75%;
+    max-height: 47%;
     background: #FFFFFF 0% 0% no-repeat padding-box;
-    box-shadow: 3px 3px 2px 3px rgba(0, 0, 0, 0.16);
-    border-radius: 20px;
+    box-shadow: 7px 1px 14px 7px rgba(0, 0, 0, 0.16);
+    border-radius: 8px;
+    opacity: 1;
     width: 500px;
     padding: 10px 20px;
-    margin: 10% auto;
+    margin: 10% 6% auto auto;
     position: relative;
     text-align: center;
 
@@ -237,16 +238,22 @@ footer {
         font-size: 16px;
         color: #707070;
     }
+    .content-parrafo{
+        text-align: center;
+        width: 70%;
+        max-width: 70%;
+        margin:auto auto auto auto;
+        .texto-popup-contenido-1 {
+            font-family: 'Open_Sans_Regular';
+            font-size: 15px;
+            color: #707070;
+        }
 
-    .texto-popup-contenido-1 {
-        font-family: 'Open_Sans_Regular';
-        font-size: 16px;
-        color: #707070;
+        .texto-popup-contenido-2 {
+            display: none;
+        }        
     }
 
-    .texto-popup-contenido-2 {
-        display: none;
-    }
 
     a {
         text-decoration: none;
@@ -285,16 +292,17 @@ footer {
 }*/
 
 .modal {
-    background-color: rgba(0,0,0,.8);
+    background: #FDFDFD 0% 0% no-repeat padding-box;
+    border-radius: 8px;
+    opacity: 0.9;
     display: inline-block;
-    position: fixed;
-    top: 0;
+    position: absolute;
+    top: 21px;
     bottom: 0;
-    left: 0;
-    right: 0;
+    right: 7%;
     margin: auto;
-    width: 100%;
-    height: 100%;
+    width: 45%;
+    height: 72%;
 }
 
 
@@ -698,17 +706,19 @@ input:focus, input.form-control:focus {
             font-size: 14px;
             color: #707070;
         }
+        .content-parrafo{
+                .texto-popup-contenido-1 {
+                    display: none;
+                }
 
-        .texto-popup-contenido-1 {
-            display: none;
+                .texto-popup-contenido-2 {
+                    display: block;
+                    font-family: 'Open_Sans_Regular';
+                    font-size: 13px;
+                    color: #707070;
+                }            
         }
 
-        .texto-popup-contenido-2 {
-            display: block;
-            font-family: 'Open_Sans_Regular';
-            font-size: 13px;
-            color: #707070;
-        }
 
         a {
             text-decoration: none;

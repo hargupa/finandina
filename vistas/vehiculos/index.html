@@ -98,7 +98,7 @@
                             </div>
                         </div>
                         <div class="content-caja-select">
-                            <div class="caja-select">
+                            <div class="caja-select " id="selectModelo">
                                 <div class="ico-form img-car">
                                     <img class="img-responsive" src="../../img/general/car.svg" ng-show="data.ShowImgCarro">
                                     <img class="img-responsive" src="../../img/general/moto.svg" ng-show="data.ShowImgMoto">
@@ -135,13 +135,13 @@
                                 <span class="error">{{data.errorModelo}}</span>
                             </div>
                             <div class="separador"></div>
-                            <div class="caja-select">
+                            <div class="caja-select" id="selectMarca">
                                 <div class="ico-form img-car">
                                     <img class="img-responsive" src="../../img/general/car.svg" ng-show="data.ShowImgCarro">
                                     <img class="img-responsive" src="../../img/general/moto.svg" ng-show="data.ShowImgMoto" ng-hide="data.ShowImgCarro">
                                 </div>
                                 <div class="control-select-input">
-                                    <select ng-show="data.ShowImgCarro" ng-model="data.marcaVehiculo">
+                                    <select ng-show="data.ShowImgCarro" ng-model="data.marcaVehiculo" ng-change="calcularDatos()">
                                         <option value="">Elige la marca</option>
                                         <option>NISSAN</option>
                                         <option>FORD</option>
@@ -204,7 +204,7 @@
                                         <option>RAM</option>
                                         <option>BYD</option>
                                     </select>
-                                    <select ng-show="data.ShowImgMoto" ng-model="data.marcaVehiculo">
+                                    <select ng-show="data.ShowImgMoto" ng-model="data.marcaVehiculo" ng-change="calcularDatos()">
                                         <option value="">Elige la marca</option>
                                         <option>Honda</option>
                                         <option>Suzuki</option>
@@ -229,7 +229,7 @@
                             </div>
                         </div>
                         <div class="content-caja-select">
-                            <div class="caja-select">
+                            <div class="caja-select" id="precioVehiculo">
                                 <div class="ico-form">
                                     <img src="../../img/general/money.svg">
                                 </div>
@@ -244,7 +244,7 @@
                                 <span class="error">{{data.errorPrecio}}</span>
                             </div>
                             <div class="separador"></div>
-                            <div class="caja-select">
+                            <div class="caja-select" id="cuotaInicial">
                                 <div class="ico-form">
                                     <img src="../../img/general/money.svg">
                                 </div>

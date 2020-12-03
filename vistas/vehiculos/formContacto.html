@@ -95,7 +95,8 @@
                                         <img src="../../img/general/plane.svg">
                                     </div>
                                     <div class="control-select-input">
-                                        <input type="email" ng-model="data.email" ng-change="data.erroremail ==''" autocomplete="off">
+                                        <input type="email" ng-model="data.email" ng-change="data.erroremail ==''" autocomplete="off" 
+                                        oninvalid="setCustomValidity('Debe ingresar un correo válido')" oninput="setCustomValidity('')">
                                     </div>
                                 </div>
                             </div>
@@ -150,8 +151,10 @@
         <div class="modal-contenido">
             <p class="texto-popup-titulo">¡Felicitaciones tu solicitud se ha enviado exitosamente!</p>
             <img src="../../img/general/happyface.png">
-            <p class="texto-popup-contenido-1">¡Listo! uno de nuestros agentes se comunicará contigo y te brindará <br>toda la información para continuar con tu crédito de vehiculo.</p>
-            <p class="texto-popup-contenido-2">¡Listo! uno de nuestros agentes se comunicará contigo y te brindará toda la información para continuar con tu crédito de vehiculo.</p>
+            <div class="content-parrafo">
+                    <p class="texto-popup-contenido-1">En los próximos días uno de nuestros agentes de servicio se estará comunicando contigo para resolver todas tus dudas acerca de tu crédito de vehículo</p>
+                    <p class="texto-popup-contenido-2">En los próximos días uno de nuestros agentes de servicio se estará comunicando contigo para resolver todas tus dudas acerca de tu crédito de vehículo</p>
+             </div>       
             <a href="" ng-click="showindex()"><div class="button-izquierdo"><p>ENTENDIDO</p></div></a>
         </div>
     </div>

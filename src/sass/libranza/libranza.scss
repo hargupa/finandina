@@ -140,13 +140,18 @@ footer {
 }
 
 
-
+.content-error{
+    max-width: 70%;
+    width: 70%;
+    margin: auto auto auto auto;
+}
 .error {
     font-family: 'Open_Sans_Semi_Bold';
     font-size: 12px;
     font-style: italic;
     color: #EE2552;
     font-weight: bold;
+    width: 100%;
 }
 
 .row {
@@ -170,9 +175,9 @@ footer {
 }
 
 .texto-info {
-    font-size: 17px;
+    font-size: 18px;
     color: #707070;
-    font-family: "Open_Sans";
+    font-family: "Open_Sans_Regular";
     background: #fff;
     border: 1px solid #24D1FD;
     padding: 0 10px;
@@ -199,6 +204,7 @@ footer {
         width: 60%;
         text-align: left;
         margin-left: 10%;
+        line-height: 1.0;
 
         p {
             font-family: 'Open_Sans_Regular';
@@ -335,8 +341,8 @@ footer {
         }
 
         .content-caja-select {
-            width: 80%;
-            max-width: 80%;
+            width: 70%;
+            max-width: 70%;
             margin: 40px auto auto auto;
             display: flex;
 
@@ -359,10 +365,10 @@ footer {
                     select {
                         border: 0;
                         height: 35px;
-                        width: 80%;
-                        max-width: 80%;
+                        width: 77%;
+                        max-width: 77%;
                         margin-top: 2px;
-                        margin-left: 20%;
+                        margin-left: 13%;
                         font-size: 13px;
                         color: #707070;
                         outline: 0;
@@ -372,7 +378,7 @@ footer {
 
 
                     input {
-                        text-align: right;
+                        text-align: center;
                         border: 0;
                         height: 35px;
                         width: 80%;
@@ -383,7 +389,7 @@ footer {
                         color: #707070;
                         outline: 0;
                         background: white;
-                        font-family: 'Open_Sans_Regular';
+                        font-family: 'Open_Sans_Bold';
                     }
 
                     label {
@@ -455,7 +461,7 @@ footer {
         }
 
         .separador {
-            width: 40px;
+            width: 20px;
         }
 
         .texto-monto {

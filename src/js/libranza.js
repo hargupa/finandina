@@ -211,11 +211,12 @@ app.controller('LibranzaController', ['$scope', '$window', '$filter', function (
             _montoAprox = $scope.data.montoAprox.replace(/\,/g, '');
             if (_montoAprox < $scope.data.minMontoPerimitido) {
 
-                $scope.data.errorMonto = "El monto del dinero no puede ser inferior a $" + $filter('currency')($scope.data.minMontoPerimitido, '$', 0);
+                $scope.data.errorMonto = "El monto del dinero no puede ser inferior a " + $filter('currency')($scope.data.minMontoPerimitido, '$', 0);
                 return false;
             }
             if (_montoAprox > $scope.data.maxMontoPerimitido) {
-                $scope.data.errorMonto = "El monto del dinero no puede ser superior a $" + $filter('currency')($scope.data.maxMontoPerimitido, '$', 0);
+               //$scope.data.errorMonto = "El monto del dinero no puede ser superior a " + $filter('currency')($scope.data.maxMontoPerimitido, '$', 0);
+               $scope.data.errorMonto = "El monto que intentas solicitar es superior a tu capacidad de endeudamiento, el valor m\u00E1ximo que te podemos prestar es " + $filter('currency')($scope.data.maxMontoPerimitido, '$', 0);
                 return false;
             }
         }

@@ -168,19 +168,19 @@ app.controller('SimuladorController', ['$scope', '$window', '$filter', function 
         $scope.data.errorCuota = '';
         $scope.data.errorMonto = '';
         $scope.data.errorModelo = '';
-
-        if ($scope.data.anioModelo == '') {
+        $scope.agregarClase();
+        /*if ($scope.data.anioModelo == '') {
             $scope.data.errorModelo = "ingrese el a\u00F1o del modelo del veh\u00CDculo";
             $scope.data.montoFinanciar = '';
             $scope.data.cuotaMensual = '';
             return false;
-        }
+        }*/
 
 
-        if ($scope.data.precioVehiculo == '') {
+        /*if ($scope.data.precioVehiculo == '') {
             $scope.data.errorPrecio = "ingrese precio del veh\u00CDculo";
             return false;
-        }
+        }*/
 
         /*if ($scope.data.cuotaInicial == '') {
             $scope.data.errorCuota = "ingrese cuota Inicial del veh\u00CDculo";
@@ -229,6 +229,9 @@ app.controller('SimuladorController', ['$scope', '$window', '$filter', function 
 
         if ($scope.data.plazo != '')
             $scope.data.cuotaMensual = $scope.calculoCuotaMensual($scope.data.tasa, $scope.data.plazo, $scope.data.montoFinanciar);
+
+
+
 
     };
 
@@ -341,9 +344,46 @@ app.controller('SimuladorController', ['$scope', '$window', '$filter', function 
     $scope.showindex = function () {
         $window.location.href = 'index.html'
     }
+
+    $scope.agregarClase=function(){
+        if ($scope.data.anioModelo==''){
+            angular.element( document.querySelector( '#selectModelo' ) ).removeClass('ctrol-gris');
+        }else{
+            angular.element( document.querySelector( '#selectModelo' ) ).addClass('ctrol-gris');
+        }
+        if ($scope.data.marcaVehiculo==''){
+            angular.element( document.querySelector( '#selectMarca' ) ).removeClass('ctrol-gris');
+        }else{
+            angular.element( document.querySelector( '#selectMarca' ) ).addClass('ctrol-gris');
+        }        
+
+        if ($scope.data.marcaVehiculo==''){
+            angular.element( document.querySelector( '#selectMarca' ) ).removeClass('ctrol-gris');
+        }else{
+            angular.element( document.querySelector( '#selectMarca' ) ).addClass('ctrol-gris');
+        }   
+
+        if ($scope.data.precioVehiculo=='' || $scope.data.precioVehiculo==0){
+            angular.element( document.querySelector( '#precioVehiculo' ) ).removeClass('ctrol-gris');
+        }else{
+            angular.element( document.querySelector( '#precioVehiculo' ) ).addClass('ctrol-gris');
+        }
+
+        if ($scope.data.cuotaInicial=='' || $scope.data.cuotaInicial==0){
+            angular.element( document.querySelector( '#cuotaInicial' ) ).removeClass('ctrol-gris');
+        }else{
+            angular.element( document.querySelector( '#cuotaInicial' ) ).addClass('ctrol-gris');
+        }
+
+
+    }
+
+
+
+
 }]);
 
-//SERCCION DE DIRECTIVAS
+//SECCION DE DIRECTIVAS
 app.directive('mileskeypress', function () {
     return {
         restrict: 'A',
