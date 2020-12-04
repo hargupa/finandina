@@ -153,21 +153,12 @@ app.controller('SimuladorController', ['$scope', '$window', '$filter', function 
         $scope.calcularDatos();
     }
 
-    //$scope.mostrarTerminos = function () {
-    //    $scope.data.ShowForm = false;
-    //    $scope.data.ShowTerminos = true;
-    //}
-
-    //$scope.ocultarTerminos = function () {
-    //    $scope.data.ShowForm = true;
-    //    $scope.data.ShowTerminos = false;
-    //}
-
     $scope.calcularDatos = function () {
         $scope.data.errorPrecio = '';
         $scope.data.errorCuota = '';
         $scope.data.errorMonto = '';
         $scope.data.errorModelo = '';
+        $scope.data.cuotaMensual = '';
         $scope.agregarClase();
         /*if ($scope.data.anioModelo == '') {
             $scope.data.errorModelo = "ingrese el a\u00F1o del modelo del veh\u00CDculo";
@@ -182,10 +173,10 @@ app.controller('SimuladorController', ['$scope', '$window', '$filter', function 
             return false;
         }*/
 
-        /*if ($scope.data.cuotaInicial == '') {
+        if ($scope.data.cuotaInicial == '' && $scope.data.ShowTextoUsado) {
             $scope.data.errorCuota = "ingrese cuota Inicial del veh\u00CDculo";
-            //return false;
-        }*/
+            return false;
+        }
 
         //se quita separcion para trabajar con el dato en numero
         _precioVehiculo = $scope.data.precioVehiculo.replace(/\,/g, '');
@@ -225,13 +216,11 @@ app.controller('SimuladorController', ['$scope', '$window', '$filter', function 
 
         if ($scope.data.montoFinanciar < $scope.data.minMonto) {
             $scope.data.errorMonto = "El monto m\u00CDnimo a financiar debe ser mayor que " + $filter('currency')($scope.data.minMonto, '$', 0);
+            return false;
         }
 
         if ($scope.data.plazo != '')
             $scope.data.cuotaMensual = $scope.calculoCuotaMensual($scope.data.tasa, $scope.data.plazo, $scope.data.montoFinanciar);
-
-
-
 
     };
 
