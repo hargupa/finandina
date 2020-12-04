@@ -1,8 +1,10 @@
 ﻿<!DOCTYPE html>
 <html ng-app="simuladorCDT">
+
 <head>
     <!--<meta http-equiv="refresh" content="10">-->
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link href="../../css/cdt/simuladorcdt.min.css" rel="stylesheet">
     <script src="../../js/angular.min.js"></script>
@@ -15,6 +17,7 @@
     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase.js"></script>
 </head>
+
 <body ng-controller="CdtController">
     <div class="header-credito">
         <div class="logo">
@@ -41,7 +44,7 @@
                         </div>
                         <div class="img-derecha" id="img-family">
                         </div>
-                        <div class="img-fogafin">
+                        <div class="img-fogafin" id="fogafin">
                             <img src="../../img/general/fogafin.png">
                         </div>
                     </div>
@@ -73,7 +76,7 @@
                                     <img src="../../img/general/money-green.svg">
                                 </div>
                                 <div class="control-select-input ">
-                                    <input class="input-inv-input" ng-model="data.montoInversion" type="text" autocomplete="off" mileskeypress ng-change="calculos()" maxlength="12">
+                                    <input class="input-inv-input" ng-model="data.montoInversion" type="text" autocomplete="off" mileskeypress ng-change="calculos()" maxlength="11">
                                     <label for="modelocarro">Tu inversión</label>
                                 </div>
 
@@ -90,76 +93,76 @@
                         </div>
                        <span class="error">{{data.errormonto}}</span>
 
-                        <div class="texto-superior-derecho">
-                            <p>¿A cuánto tiempo quieres hacer tu inversión?</p>
-                        </div>
+                            <div class="texto-superior-derecho">
+                                <p>¿A cuánto tiempo quieres hacer tu inversión?</p>
+                            </div>
 
-                        <div class="content-caja-select content-dias">
-                            <div class="caja-select ">
-                                <div class="ico-form">
-                                    <img src="../../img/general/calendar1.svg">
-                                </div>
-                                <div class="control-select-input">
-                                    <input class="input-dias" ng-model="data.plazoDias" type="number" min="90" autocomplete="off" ng-change="calculos()">
-                                    <label for="modelocarro">En días</label>
+                            <div class="content-caja-select content-dias">
+                                <div class="caja-select ">
+                                    <div class="ico-form">
+                                        <img src="../../img/general/calendar1.svg">
+                                    </div>
+                                    <div class="control-select-input">
+                                        <input class="input-dias" ng-model="data.plazoDias" type="number" min="90" autocomplete="off" ng-change="calculos()">
+                                        <label for="modelocarro">En días</label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <span class="error error-2">{{data.errordias}}</span>
+                            <span class="error error-2">{{data.errordias}}</span>
 
-                        <div class="texto-superior-derecho">
-                            <p>Estos son los intereses que recibirás por tu inversión</p>
-                        </div>
-                        <div class="content-caja-select content-monto-interes">
-                            <div class="caja-select caja-interes">
-                                <div class="ico-form">
-                                    <img src="../../img/general/money-green.svg">
-                                </div>
-                                <div class="control-select-input input-ingresos">
-                                    <span class="texto">{{data.montoInteresNeto ? (data.montoInteresNeto | number) : ''}}</span>
-                                    <label for="modelocarro">Tu ganancia es</label>
+                            <div class="texto-superior-derecho">
+                                <p>Estos son los intereses que recibirás por tu inversión</p>
+                            </div>
+                            <div class="content-caja-select content-monto-interes">
+                                <div class="caja-select caja-interes">
+                                    <div class="ico-form">
+                                        <img src="../../img/general/money-green.svg">
+                                    </div>
+                                    <div class="control-select-input input-ingresos">
+                                        <span class="texto">{{data.montoInteresNeto ? (data.montoInteresNeto | number) : ''}}</span>
+                                        <label for="modelocarro">Tu ganancia es</label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="texto-aviso">
-                            <p>*Esta cifra incluye retenciones del {{data.fuente}}%</p>
-                        </div>
+                            <div class="texto-aviso">
+                                <p>*Esta cifra incluye retenciones del {{data.fuente}}%</p>
+                            </div>
 
-                        <div class="content-caja-select content-caja-responsive content-caja-select-tinversion">
-                            <div class="caja-select caja-interes caja-resp-inv">
-                                <div class="ico-form">
-                                    <img src="../../img/general/money-green.svg">
+                            <div class="content-caja-select content-caja-responsive content-caja-select-tinversion">
+                                <div class="caja-select caja-interes caja-resp-inv">
+                                    <div class="ico-form">
+                                        <img src="../../img/general/money-green.svg">
+                                    </div>
+                                    <div class="control-select-input input-ingresos">
+                                        <span class="texto">{{data.totalInversion ? (data.totalInversion | number) : ''}}</span>
+                                        <label for="modelocarro">Total inversión + interés</label>
+                                    </div>
                                 </div>
-                                <div class="control-select-input input-ingresos">
-                                    <span class="texto">{{data.totalInversion ? (data.totalInversion | number) : ''}}</span>
-                                    <label for="modelocarro">Total inversión + interés</label>
+                                <div class="separador"></div>
+                                <div class="caja-select-porcentaje caja-select-fecha">
+                                    <div class="ico-porcentaje ico-fecha">
+                                        <img src="../../img/general/calendar2.svg">
+                                    </div>
+                                    <div class=" input-porcentaje input-fecha">
+                                        <!--<span>{{data.fechaFinal | date:'dd/MM/yyyy'}}</span>-->
+                                        <input ng-model="data.fechaFinal" type="text" autocomplete="off" readonly>
+                                        <label for="modelocarro">Fecha final</label>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="separador"></div>
-                            <div class="caja-select-porcentaje caja-select-fecha">
-                                <div class="ico-porcentaje ico-fecha">
-                                    <img src="../../img/general/calendar2.svg">
-                                </div>
-                                <div class=" input-porcentaje input-fecha">
-                                    <!--<span>{{data.fechaFinal | date:'dd/MM/yyyy'}}</span>-->
-                                    <input ng-model="data.fechaFinal" type="text" autocomplete="off" readonly>
-                                    <label for="modelocarro">Fecha final</label>
+
+                            <div class="content-buttons">
+                                <button class="button-derecho" ng-disabled="data.totalInversion == ''" ng-click="contactenos()">¡QUIERO MI CDT!</button>
+                                <!--<button class="button-derecho" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CDT'">¡QUIERO MI CDT!</button>-->
+                            </div>
+
+                            <div class="texto-inferior-imagen2">
+                                <div class="img-super"><img src="../../img/general/super.svg"></div>
+                                <div class="texto">
+                                    <p>*Los valores descritos en el presente simulador son informativos, se encuentran sujetos a la solicitud formal de crédito realizada por el cliente a Banco Finandina S.A.</p>
+                                    <p>** El valor de cuota propuesta no incluye valor de prima mensual de los seguros.</p>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="content-buttons">
-                            <button class="button-derecho" ng-disabled="data.totalInversion == ''" ng-click="contactenos()">¡QUIERO MI CDT!</button>
-                            <!--<button class="button-derecho" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CDT'">¡QUIERO MI CDT!</button>-->
-                        </div>
-
-                        <div class="texto-inferior-imagen2">
-                            <div class="img-super"><img src="../../img/general/super.svg"></div>
-                            <div class="texto">
-                                <p>*Los valores descritos en el presente simulador son informativos, se encuentran sujetos a la solicitud formal de crédito realizada por el cliente a Banco Finandina S.A.</p>
-                                <p>** El valor de cuota propuesta no incluye valor de prima mensual de los seguros.</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -178,6 +181,11 @@
         document.addEventListener("DOMContentLoaded", function (event) {
             if (screen.width<400){
                 document.getElementById('img-dinamica').style.height='200px';
+                document.getElementById('img-msg').style.width='41%';
+                document.getElementById('img-msg').style.left='28px';
+                document.getElementById('img-family').style.marginLeft ='1px';
+                document.getElementById('fogafin').style.marginTop ='169px';
+                document.getElementById('fogafin').style.marginLeft ='-36px';
             }            
             setInterval('CambiarImagen()', 5000);
         })
