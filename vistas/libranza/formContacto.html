@@ -71,7 +71,7 @@
                                         <img src="../../img/general/person-blue.svg">
                                     </div>
                                     <div class="control-select-input ">
-                                        <input class="input-nombre-input" ng-model="data.nombre" autocomplete="off" ng-change="data.errornombre == ''" letterkeypress />
+                                        <input class="input-nombre-input" ng-model="data.nombre" autocomplete="off" ng-change="data.errornombre = ''" letterkeypress />
                                     </div>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                                         <img src="../../img/general/cellphone-blue.svg">
                                     </div>
                                     <div class="control-select-input ">
-                                        <input class="input-celular-input"ng-model="data.celular" type="text" maxlength="10" ng-change="data.errorcel == ''" autocomplete="off" numberkeypress />
+                                        <input class="input-celular-input" ng-model="data.celular" type="text" maxlength="10" ng-change="data.errorcel = ''" autocomplete="off" numberkeypress />
                                     </div>
                                 </div>
                             </div>
@@ -103,7 +103,7 @@
                                         <img src="../../img/general/plane-blue.svg">
                                     </div>
                                     <div class="control-select-input ">
-                                        <input class="input-correo-input" type="text" ng-model="data.email" ng-change="data.erroremail ==''" autocomplete="off" oninvalid="setCustomValidity('Debe ingresar un correo válido')" oninput="setCustomValidity('')">
+                                        <input class="input-correo-input" type="text" ng-model="data.email" ng-change="data.erroremail =''" autocomplete="off">
                                     </div>
                                 </div>
                             </div>
@@ -113,7 +113,7 @@
                             <div class="container-switch">
                                 <div class="texto-switch">
                                     <p class="texto-switch-descripcion-1">He leído y autorizo el tratamiento de mis datos personales de conformidad con lo enunciado en la  <a href="https://www.bancofinandina.com/docs/default-source/institucionaldocs/politica-tratamiento-de-datos-banco-finandina-2020-i.pdf?sfvrsn=f491f9ea_2" target="_blank">Política de Tratamiento de Datos.</a></p>
-                                    <p class="texto-switch-descripcion-2">He leído y acepto los <br><a href="https://www.bancofinandina.com/docs/default-source/institucionaldocs/politica-tratamiento-de-datos-banco-finandina-2020-i.pdf?sfvrsn=f491f9ea_2" target="_blank"> términos y condiciones legales</a></p>
+                                    <p class="texto-switch-descripcion-2">He leído y autorizo el tratamiento de mis datos personales de conformidad con lo enunciado en la  <a href="https://www.bancofinandina.com/docs/default-source/institucionaldocs/politica-tratamiento-de-datos-banco-finandina-2020-i.pdf?sfvrsn=f491f9ea_2" target="_blank">Política de Tratamiento de Datos.</p>
                                 </div>
                                 <div class="container-switch-movil">
                                     <div class="switch-button">

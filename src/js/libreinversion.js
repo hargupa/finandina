@@ -27,8 +27,10 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
         tasaNVM: '',
         plazo: '',
         email: '',
+        erroremail: '',
+        envioOK: false,//variable para envio de correo
 
-        sendOK: false,
+        sendOK: false,//Variable para envio de formulario
         erroringresos: '',
         errornecesito: '',
         ShowErrorValor: false,
@@ -182,6 +184,10 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
         return true;
     }
 
+    $scope.redondeaSeisDecimas = function (valor) {
+        return Math.round(valor * 1000000) / 1000000;
+    }
+
     $scope.calcularTasaxIngresos = function () {
 
         //se quita separcion para trabajar con el dato en numero
@@ -191,7 +197,8 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
         $scope.data.tasaNVM = $scope.calcularTasa(_ingresos);
 
         if ($scope.data.plazo != '') {
-            var tasaEA = Math.round((1 + $scope.data.tasaNVM) ** $scope.data.plazo - 1).toFixed(4);
+            var tasaEA = (1 + ($scope.data.tasaNVM / 100)) ** 12 - 1;
+            $scope.data.tasaEfectivaAnual = $scope.redondeaSeisDecimas(tasaEA);
             $scope.data.cuotaMensual = $scope.calculoCuota(_dineronecesito, $scope.data.tasaNVM, $scope.data.plazo);
         }
         else {
@@ -404,7 +411,15 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
             }
         }
         else if (paso == 1) {
+
+            var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if (!regex.test($scope.data.email)) {
+                $scope.data.erroremail = 'Debe ingresar una direcci\u00F3n de correo electr\u00F3nico con el formato correcto';
+                return false;
+            }
+
             $scope.writeFirebase();
+            $scope.data.envioOK = true;
         }
     }
 

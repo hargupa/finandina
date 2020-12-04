@@ -181,10 +181,12 @@
                                     <img src="../../img/general/plain-blue.svg">
                                 </div>
                                 <div class="control-select-input input-correo">
-                                    <input type="email" ng-model="data.email" >
-                                    <div class="content-button-correo"><button class="button-correo" ng-disabled="data.email == ''" ng-click="guardarInfo(1)">ENVIAR</button></div>
+                                    <input type="email" ng-model="data.email" ng-change="data.erroremail = ''" autocomplete="off" ng-disabled="data.envioOK">
+                                    <div class="content-button-correo"><button class="button-correo" ng-disabled="data.email == '' || data.envioOK" ng-click="guardarInfo(1)">ENVIAR</button></div>
                                 </div>
                             </div>
+                            <span class="error">{{data.erroremail}}</span>
+                            <span ng-show="data.envioOK" class="txtOK">Satisfactorio!!</span>
                             <div class="content-button-correo-2"><button class="button-correo" ng-disabled="data.email == ''" ng-click="guardarInfo(1)">ENVIAR</button></div>
                         </div>
 

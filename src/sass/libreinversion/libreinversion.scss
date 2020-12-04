@@ -143,6 +143,14 @@ footer {
     font-weight: bold;
 }
 
+.txtOK {
+    font-family: 'Open_Sans_Semi_Bold';
+    font-size: 12px;
+    font-style: italic;
+    color: #3aa800;
+    font-weight: bold;
+}
+
 .row {
     display: flex;
     margin: 8rem auto 1rem auto;
@@ -700,6 +708,10 @@ footer {
                             background-position: 95%;
                             cursor: pointer;
                         }
+
+                        button:disabled {
+                            opacity: 0.6;
+                        }
                     }
                 }
 
@@ -1052,7 +1064,7 @@ footer {
                 border: #CED4DA;
                 background-image: url('../../img/general/chulo-white.svg');
                 background-position: 96%;
-                background-size:5%;
+                background-size: 5%;
                 cursor: pointer;
                 margin-left: 10px;
             }
@@ -1089,7 +1101,7 @@ footer {
                 color: white;
                 border: #CED4DA;
                 background-image: url('../../img/general/chulo-white.svg');
-                background-position: 97% ;
+                background-position: 97%;
                 cursor: pointer;
             }
 
@@ -1334,7 +1346,8 @@ input:focus, input.form-control:focus {
             //margin: 10px auto 10px auto;
             width: 70%;
             line-height: 1.3;
-            margin-bottom:30px;
+            margin-bottom: 30px;
+
             p {
                 margin: auto auto auto auto;
                 font-family: 'Open_Sans_Regular';
@@ -1358,20 +1371,23 @@ input:focus, input.form-control:focus {
         .content-image {
             height: 70%;
             margin: auto auto auto auto;
+
             .img-izquierda {
                 left: 25px;
                 max-width: 100%;
+
                 img {
                     max-width: 100%;
-                }                
+                }
             }
 
             .img-derecha {
                 float: right;
                 margin-left: -30px;
+
                 img {
                     max-width: 100%;
-                }                
+                }
             }
         }
 
@@ -1390,9 +1406,9 @@ input:focus, input.form-control:focus {
         display: flex;
         flex-direction: column;
 
-        .error{
-
+        .error {
         }
+
         .card-content {
             height: 100%;
 
@@ -1461,6 +1477,7 @@ input:focus, input.form-control:focus {
             .content-tabla {
                 width: 90%;
                 margin: auto auto auto auto;
+
                 .tabla {
                     th {
                         border: 1px solid #707070;
@@ -1472,17 +1489,19 @@ input:focus, input.form-control:focus {
                     }
                 }
             }
-            .content-tabla-2{
+
+            .content-tabla-2 {
                 width: 90%;
                 margin: auto auto -33px auto;
-                .tabla{
+
+                .tabla {
                     th {
                         border: 1px solid #707070;
                         font-size: 12px;
-                    }                      
+                    }
                 }
-              
             }
+
             .total-tabla {
                 margin: -50px auto auto auto;
                 width: 80%;
@@ -1497,20 +1516,24 @@ input:focus, input.form-control:focus {
                 justify-content: center;
                 display: flex;
                 flex-direction: column;
-                .caja-vacia{
+
+                .caja-vacia {
                     width: 70%;
                     max-width: 70%;
-                    margin:auto auto auto auto;
-                    .paginador{
+                    margin: auto auto auto auto;
+
+                    .paginador {
                         width: 100%;
                         max-width: 100%;
                     }
                 }
+
                 .content-button-descarga-int {
                     /*padding-right: 0px;*/
                     width: 70%;
                     margin: 20px auto auto auto;
                     padding-right: 0px;
+
                     .button-descarga {
                         background-size: 8%;
                         text-align: center;
