@@ -132,20 +132,163 @@ app.controller('CdtController', ['$scope', '$window', '$filter', function ($scop
         $scope.data.totalInversion = parseInt(_montoInversion) + parseInt($scope.data.montoInteresNeto);
 
 
-        var fecha = $scope.sumarDias(new Date(), $scope.data.plazoDias);
+        $scope.data.fechaFinal = $scope.sumarDias(new Date(), $scope.data.plazoDias);
 
-        var anio = fecha.getFullYear();
-        var mes = (fecha.getMonth() + 1).toString().padStart(2, "0");
-        var dia = fecha.getDate().toString().padStart(2, "0");
+        //var anio = fecha.getFullYear();
+        //var mes = (fecha.getMonth() + 1).toString().padStart(2, "0");
+        //var dia = fecha.getDate().toString().padStart(2, "0");
 
-        $scope.data.fechaFinal = dia + '/' + mes + '/' + anio;
+        //$scope.data.fechaFinal = dia + '/' + mes + '/' + anio;
 
     }
 
-    $scope.sumarDias = function (fecha, dias) {
-        fecha.setDate(fecha.getDate() + dias);
-        console.log(fecha);
-        return fecha;
+    $scope.sumarDias = function (f, dias) {
+
+        var dia = f.getDate();
+        dias = dias + dia;
+        var mes = (f.getMonth() + 1);
+        var ano = f.getFullYear();
+        var snestado = false;
+        var anobiciesto = false;
+        var initYear = 2020;
+        var finalYear;
+
+        for (initYear; initYear <= finalYear; initYear++) {
+            if (((initYear % 4 == 0) && (initYear % 100 != 0)) || (initYear % 400 == 0)) {
+                anobiciesto = true;
+            }
+        }
+
+        while (snestado == false) {
+            finalYear = ano;
+            for (initYear; initYear <= finalYear; initYear++) {
+                if (((initYear % 4 == 0) && (initYear % 100 != 0)) || (initYear % 400 == 0)) {
+                    anobiciesto = true;
+                }
+
+            }
+
+            switch (mes) {
+                case 1: {
+                    if (dias <= 31) {
+                        snestado = true;
+                    } else {
+                        dias = dias - 31;
+                        mes = mes + 1;
+                    }
+                    break;
+                }
+                case 2: {
+                    var diasbiciesto;
+                    if (anobiciesto == true) {
+                        diasbiciesto = 29;
+                    } else {
+                        diasbiciesto = 28;
+                    }
+                    if (dias <= diasbiciesto) {
+                        snestado = true;
+                    } else {
+                        dias = dias - diasbiciesto;
+                        mes = mes + 1;
+                    }
+                    break;
+                }
+                case 3: {
+                    if (dias <= 31) {
+                        snestado = true;
+                    } else {
+                        dias = dias - 31;
+                        mes = mes + 1;
+                    }
+                    break;
+                }
+                case 4: {
+                    if (dias <= 30) {
+                        snestado = true;
+                    } else {
+                        dias = dias - 30;
+                        mes = mes + 1;
+                    }
+                    break;
+                }
+                case 5: {
+                    if (dias <= 31) {
+                        snestado = true;
+                    } else {
+                        dias = dias - 31;
+                        mes = mes + 1;
+                    }
+                    break;
+                }
+                case 6: {
+                    if (dias <= 30) {
+                        snestado = true;
+                    } else {
+                        dias = dias - 30;
+                        mes = mes + 1;
+                    }
+                    break;
+                }
+                case 7: {
+                    if (dias <= 31) {
+                        snestado = true;
+                    } else {
+                        dias = dias - 31;
+                        mes = mes + 1;
+                    }
+                    break;
+                }
+                case 8: {
+                    if (dias <= 31) {
+                        snestado = true;
+                    } else {
+                        dias = dias - 31;
+                        mes = mes + 1;
+                    }
+                    break;
+                }
+                case 9: {
+                    if (dias <= 30) {
+                        snestado = true;
+                    } else {
+                        dias = dias - 30;
+                        mes = mes + 1;
+                    }
+                    break;
+                }
+                case 10: {
+                    if (dias <= 31) {
+                        snestado = true;
+                    } else {
+                        dias = dias - 31;
+                        mes = mes + 1;
+                    }
+                    break;
+                }
+                case 11: {
+                    if (dias <= 30) {
+                        snestado = true;
+                    } else {
+                        dias = dias - 30;
+                        mes = mes + 1;
+                    }
+                    break;
+                }
+                case 12: {
+                    if (dias <= 31) {
+                        snestado = true;
+                    } else {
+                        dias = dias - 31;
+                        mes = 1;
+                        ano = ano + 1;
+                    }
+                    break;
+                }
+
+            }
+
+        }
+        return dias + '/' + mes + '/' + ano;
     }
 
     $scope.TasaCalculaNominal = function (tasa, plazo) {
