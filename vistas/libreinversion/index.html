@@ -18,7 +18,7 @@
 
 </head>
 
-<body ng-controller="LibreInversionController">
+<body ng-controller="LibreInversionController" onresize="resize()">
     <div class="header-credito">
         <div class="logo">
             <img src="../../img/general/logo-white.svg">
@@ -271,9 +271,9 @@
         var time;
         var transparency = 0;        
         document.addEventListener("DOMContentLoaded", function (event) {
-            if (screen.width<400){
+            /*if (screen.width<400){
                 document.getElementById('img-dinamica').style.height='250px';
-            }
+            }*/
             setInterval('CambiarImagen()', 5000);
         })
         function CambiarImagen() {
@@ -342,7 +342,13 @@
           } 
         };
 
-
+        function resize() {
+            if (document.documentElement.clientWidth<400){
+                document.getElementById('img-dinamica').style.height='250px';
+            }else{
+                document.getElementById('img-dinamica').style.height='70%';
+            }
+        }
 
     </script>
 

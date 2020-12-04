@@ -18,7 +18,7 @@
     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase.js"></script>
 </head>
 
-<body ng-controller="CdtController">
+<body ng-controller="CdtController" onresize="resize()">
     <div class="header-credito">
         <div class="logo">
             <img src="../../img/general/logo-white.svg">
@@ -179,14 +179,14 @@
         var time;
         var transparency = 0;        
         document.addEventListener("DOMContentLoaded", function (event) {
-            if (screen.width<400){
+            /*if (screen.width<400){
                 document.getElementById('img-dinamica').style.height='200px';
                 document.getElementById('img-msg').style.width='41%';
                 document.getElementById('img-msg').style.left='28px';
                 document.getElementById('img-family').style.marginLeft ='1px';
                 document.getElementById('fogafin').style.marginTop ='169px';
                 document.getElementById('fogafin').style.marginLeft ='-36px';
-            }            
+            }    */        
             setInterval('CambiarImagen()', 5000);
         })
         function CambiarImagen() {
@@ -254,6 +254,25 @@
             obj2.style.KHTMLOpacity = transparency /100;  
           } 
         };
+
+        function resize() {
+            if (document.documentElement.clientWidth<400){
+                document.getElementById('img-dinamica').style.height='200px';
+                document.getElementById('img-msg').style.width='41%';
+                document.getElementById('img-msg').style.left='28px';
+                document.getElementById('img-family').style.marginLeft ='1px';
+                document.getElementById('fogafin').style.marginTop ='169px';
+                document.getElementById('fogafin').style.marginLeft ='-36px';
+            }else{
+                document.getElementById('img-dinamica').style.height='70%';
+                document.getElementById('img-msg').style.maxWidth='100%';
+                document.getElementById('img-msg').style.left='25px';
+                document.getElementById('img-family').style.marginLeft ='-30px';
+                document.getElementById('fogafin').style.marginTop ='359px';
+                document.getElementById('fogafin').style.marginLeft ='-120px';
+
+            }
+        }
 
 
 

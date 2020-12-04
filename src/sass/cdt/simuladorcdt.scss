@@ -1015,6 +1015,42 @@ input:focus, input.form-control:focus {
 }
 
 
+@media screen and (max-width: 400px) {
+
+        .content-image {
+            height: 200px;
+            margin: auto auto auto auto;
+            .img-izquierda {
+                left: 28px;
+                width: 41%;
+
+                img {
+                    max-width: 100%;
+                }
+            }
+
+            .img-derecha {
+                float: right;
+                margin-left: 1px;
+                img {
+                    max-width: 100%;
+                } 
+            }
+
+            .img-fogafin {
+                float: right;
+                margin-top: 169px;
+                margin-left: -36px;
+
+                img {
+                    max-width: 70%;
+                }
+            }
+        }
+
+
+}
+
 
 @media screen and (max-width: 900px) {
 
