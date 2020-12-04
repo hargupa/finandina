@@ -212,17 +212,18 @@ app.controller('CdtController', ['$scope', '$window', '$filter', function ($scop
             $scope.data.errornombre = 'Debe ingresar su nombre y apellido';
             return false;
         }
-        if ($scope.data.celular == '') {
-            $scope.data.errorcel = 'Debe ingresar su numero de celular';
+        var expresion = /^3[\d]{9}$/;
+        if (isNaN($scope.data.celular) || !expresion.test($scope.data.celular)) {
+            $scope.data.errorcel = "Debe ingresar un n\u00FAmero con el formato correcto";
             return false;
         }
         if ($scope.data.email == '') {
-            $scope.data.erroremail = 'Debe ingresar su correo electronico';
+            $scope.data.erroremail = 'Debe ingresar su correo electr\u00F3nico';
             return false;
         }
         var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         if (!regex.test($scope.data.email)) {
-            $scope.data.erroremail = 'La direccion de correo electronico no es correcta';
+            $scope.data.erroremail = 'Debe ingresar una direcci\u00F3n de correo electr\u00F3nico con el formato correcto';
             return false;
         }
 

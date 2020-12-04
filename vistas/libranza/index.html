@@ -202,6 +202,29 @@
                         </div>
                         <span class="error">{{data.errorplazo}}</span>
                         <span class="error">{{data.errorexcede}}</span>
+
+                        <div class="content-caja-monto" ng-show="data.ShowImgPensionado && data.ShowMonto120Meses" ng-click="MostrarCuota(id=0)">
+                            <div class="caja-plazos ">
+                                <label for="modelocarro">120 meses</label>
+                            </div>
+                        </div>
+                        <div class="content-caja-monto" ng-show="data.ShowImgPensionado && data.ShowMonto120MesesCuota">
+                            <div class="caja-plazos-monto ">
+                                <div class="content-monto">
+                                    <div class="content-monto-sup">
+                                        <span class="caja-izquierda"><p>120 meses</p></span>
+                                        <span class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
+                                    </div>
+                                    <div class="content-monto-inf">
+                                        <span class="caja-izquierda">
+                                            <p ng-show="data.ShowMonto">Cuota mensual</p>
+                                            <p ng-show="data.ShowCuota">Monto aproximado</p>
+                                        </span>
+                                        <span class="caja-derecha texto-info">$ {{data.AproxCalculada | number}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="content-caja-monto" ng-show="data.ShowMonto108Meses" ng-click="MostrarCuota(id=1)">
                             <div class="caja-plazos ">
                                 <label for="modelocarro">108 meses</label>
@@ -321,9 +344,9 @@
                         <div class="texto-inferior-imagen2">
                             <div class="img-super"><img src="../../img/general/super.svg"></div>
                             <div class="texto">
-                                <p>*El valor es aproximado teniendo en cuenta la tasa de interés aplicable a la fecha</p>
-                                <p>La aprobación definitiva de la solicitud de financiación y la tasa de interés del crédito estarán sujetos a las politicas de crédito y condiciones definidas por el Banco Finandina S.A.</p>
-                                <p>La cuota aproximada no incluye seguros y otros cargos.</p>
+                                <p>* El valor es aproximado teniendo en cuenta la tasa de interés aplicable a la fecha.</p>
+                                <p>* La aprobación definitiva de la solicitud de financiación y la tasa de interés del crédito estarán sujetos a las politicas de crédito y condiciones definidas por el Banco Finandina S.A.</p>
+                                <p>** La cuota aproximada no incluye seguros y otros cargos.</p>
                             </div>
                         </div>
                     </div>

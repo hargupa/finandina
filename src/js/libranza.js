@@ -44,6 +44,8 @@ app.controller('LibranzaController', ['$scope', '$window', '$filter', function (
         errorplazo: '',
         errorexcede: '',
 
+        ShowMonto120Meses: true,
+        ShowMonto120MesesCuota: false,
         ShowMonto108Meses: true,
         ShowMonto108MesesCuota: false,
         ShowMonto96Meses: true,
@@ -86,12 +88,30 @@ app.controller('LibranzaController', ['$scope', '$window', '$filter', function (
         $scope.data.AproxCalculada = '';
     };
 
+    $scope.limpiarPlazo = function () {
+        $scope.data.plazo = '';
+
+        $scope.data.ShowMonto120Meses = true;
+        $scope.data.ShowMonto120MesesCuota = false;
+        $scope.data.ShowMonto108Meses = true;
+        $scope.data.ShowMonto108MesesCuota = false;
+        $scope.data.ShowMonto96Meses = true;
+        $scope.data.ShowMonto96MesesCuota = false;
+        $scope.data.ShowMonto84Meses = true;
+        $scope.data.ShowMonto84MesesCuota = false;
+        $scope.data.ShowMonto72Meses = true;
+        $scope.data.ShowMonto72MesesCuota = false;
+        $scope.data.ShowMonto60Meses = true;
+        $scope.data.ShowMonto60MesesCuota = false;
+    }
+
     $scope.CambiarActividad = function () {
         $scope.data.ShowImgDefault = false;
         $scope.data.ShowImgSectorPublico = false;
         $scope.data.ShowImgDocente = false;
         $scope.data.ShowImgFuerzas = false;
         $scope.data.ShowImgPensionado = false;
+        $scope.limpiarPlazo();
 
         switch ($scope.data.selectActividad) {
             case "0":
@@ -114,18 +134,14 @@ app.controller('LibranzaController', ['$scope', '$window', '$filter', function (
     };
 
     $scope.MostrarCuota = function (id) {
-        $scope.data.ShowMonto108Meses = true;
-        $scope.data.ShowMonto108MesesCuota = false;
-        $scope.data.ShowMonto96Meses = true;
-        $scope.data.ShowMonto96MesesCuota = false;
-        $scope.data.ShowMonto84Meses = true;
-        $scope.data.ShowMonto84MesesCuota = false;
-        $scope.data.ShowMonto72Meses = true;
-        $scope.data.ShowMonto72MesesCuota = false;
-        $scope.data.ShowMonto60Meses = true;
-        $scope.data.ShowMonto60MesesCuota = false;
+        $scope.limpiarPlazo();
 
         switch (id) {
+            case 0:
+                $scope.data.plazo = 120;
+                $scope.data.ShowMonto120Meses = false;
+                $scope.data.ShowMonto120MesesCuota = true;
+                break;
             case 1:
                 $scope.data.plazo = 108;
                 $scope.data.ShowMonto108Meses = false;
@@ -215,7 +231,7 @@ app.controller('LibranzaController', ['$scope', '$window', '$filter', function (
                 return false;
             }
             if (_montoAprox > $scope.data.maxMontoPerimitido) {
-               $scope.data.errorMonto = "El monto que intentas solicitar es superior a tu capacidad de endeudamiento, el valor m\u00E1ximo que te podemos prestar es " + $filter('currency')($scope.data.maxMontoPerimitido, '$', 0);
+                $scope.data.errorMonto = "El monto que intentas solicitar es superior a tu capacidad de endeudamiento, el valor m\u00E1ximo que te podemos prestar es " + $filter('currency')($scope.data.maxMontoPerimitido, '$', 0);
                 return false;
             }
         }
@@ -347,18 +363,18 @@ app.controller('LibranzaController', ['$scope', '$window', '$filter', function (
             $scope.data.errornombre = 'Debe ingresar su nombre y apellido';
             return false;
         }
-        if ($scope.data.celular == '') {
-            $scope.data.errorcel = 'Debe ingresar su numero de celular';
+        var expresion = /^3[\d]{9}$/;
+        if (isNaN($scope.data.celular) || !expresion.test($scope.data.celular)) {
+            $scope.data.errorcel = "Debe ingresar un n\u00FAmero con el formato correcto";
             return false;
         }
         if ($scope.data.email == '') {
-            $scope.data.erroremail = 'Debe ingresar su correo electronico';
+            $scope.data.erroremail = 'Debe ingresar su correo electr\u00F3nico';
             return false;
         }
-
         var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         if (!regex.test($scope.data.email)) {
-            $scope.data.erroremail = 'La direccion de correo electronico no es correcta';
+            $scope.data.erroremail = 'Debe ingresar una direcci\u00F3n de correo electr\u00F3nico con el formato correcto';
             return false;
         }
 
