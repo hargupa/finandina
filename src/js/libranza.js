@@ -86,6 +86,13 @@ app.controller('LibranzaController', ['$scope', '$window', '$filter', function (
         $scope.data.montoAprox = '';
         $scope.data.cuotaAprox = '';
         $scope.data.AproxCalculada = '';
+        $scope.data.errorDescNomina = '';
+        $scope.data.errorIngresos = '';
+        $scope.data.errorActividad = '';
+        $scope.data.errorMonto = '';
+        $scope.data.errorCuota = '';
+        $scope.data.errorplazo = '';
+        $scope.data.errorexcede = '';
     };
 
     $scope.limpiarPlazo = function () {
@@ -237,7 +244,7 @@ app.controller('LibranzaController', ['$scope', '$window', '$filter', function (
         }
         if ($scope.data.ShowCuota) {
             if ($scope.data.cuotaAprox == '') {
-                $scope.data.errorCuota = 'Debe indicar la cantidad de cuota que quiere pagar';
+                $scope.data.errorCuota = 'Debe indicar la cuota que quiere pagar';
                 return false;
             }
         }
@@ -287,11 +294,16 @@ app.controller('LibranzaController', ['$scope', '$window', '$filter', function (
         }
         else if ($scope.data.ShowCuota) {
             if ($scope.data.maxCuota < $scope.data.capacidadDescuentoCuota) {
-                $scope.data.errorexcede = "El monto excede tu capacidad de pago";
+                $scope.data.errorexcede = "La cuota indicada excede tu capacidad de descuento";
                 return;
             }
 
             _cuotaAprox = $scope.data.cuotaAprox.replace(/\,/g, '');
+            if (_cuotaAprox > $scope.data.maxCuota) {
+                $scope.data.errorexcede = "La cuota indicada excede tu capacidad de descuento";
+                return;
+            }
+
             var montoAprox = $scope.calculoMontoAprox($scope.data.tasa, $scope.data.plazo, _cuotaAprox);
             //Segun funcion excel:  Redondear.menos (valor, -5)
             $scope.data.AproxCalculada = $scope.calculoRedondearMenos(montoAprox, 5);

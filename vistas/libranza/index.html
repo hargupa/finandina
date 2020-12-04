@@ -98,9 +98,11 @@
                                     </select>
                                     <label for="opcionactividad">¿Cuál es tu actividad?</label>
                                 </div>
+                                <div class="mensaje-valor">
+                                    <span class="error msg-2">{{data.errorActividad}}</span>
+                                </div>
                             </div>
-                            <div class="separador"></div>
-                            <div class="caja-select" ng-if="data.ShowImgDefault" style="border: none;"></div>
+                            <div class="separador" ng-if="!data.ShowImgDefault"></div>
                             <div class="caja-select" ng-if="!data.ShowImgDefault">
                                 <div class="ico-form img-car">
                                     <img class="img-responsive" src="../../img/general/hands.png">
@@ -136,9 +138,7 @@
                                 </div>
                             </div>
                         </div>
-                        <span class="error">{{data.errorActividad}}</span>
-
-
+                        
                         <div class="texto-superior-derecho">
                             <p>Completa los siguientes datos para poder simular tu libranza</p>
                         </div>
@@ -148,7 +148,7 @@
                                     <img src="../../img/general/money-blue.svg">
                                 </div>
                                 <div class="control-select-input">
-                                    <input ng-model="data.ingresos" type="text" autocomplete="off" mileskeypress ng-change="calcularDatos()" maxlength="12" />
+                                    <input ng-model="data.ingresos" type="text" autocomplete="off" mileskeypress ng-change="calcularDatos()" maxlength="13" />
                                     <label for="modelocarro">Indica tus ingresos</label>
                                 </div>
                                 <div class="mensaje-valor">
@@ -161,7 +161,7 @@
                                     <img src="../../img/general/money-blue.svg">
                                 </div>
                                 <div class="control-select-input">
-                                    <input ng-model="data.descuentoNomina" type="text" autocomplete="off" mileskeypress ng-change="calcularDatos()" maxlength="12" />
+                                    <input ng-model="data.descuentoNomina" type="text" autocomplete="off" mileskeypress ng-change="calcularDatos()" maxlength="13" />
                                     <label for="modelocarro" ng-show="data.ShowImgPensionado">Otros descuentos</label>
                                     <label for="modelocarro" ng-show="!data.ShowImgPensionado">Descuentos de nómina</label>
                                 </div>
@@ -183,8 +183,8 @@
                                     <img src="../../img/general/money-blue.svg">
                                 </div>
                                 <div class="control-select-input ">
-                                    <input ng-if="data.ShowMonto" ng-model="data.montoAprox" type="text" mileskeypress autocomplete="off" ng-change="calcularDatos()" maxlength="12" />
-                                    <input ng-if="data.ShowCuota" ng-model="data.cuotaAprox" type="text" mileskeypress autocomplete="off" ng-change="calcularDatos()" maxlength="12" />
+                                    <input ng-if="data.ShowMonto" ng-model="data.montoAprox" type="text" mileskeypress autocomplete="off" ng-change="calcularDatos()" maxlength="13" />
+                                    <input ng-if="data.ShowCuota" ng-model="data.cuotaAprox" type="text" mileskeypress autocomplete="off" ng-change="calcularDatos()" maxlength="13" />
                                     <div class="ico-form2" ng-show="data.ShowAviso">
                                         <img src="../../img/general/money-blue.svg">
                                     </div>
