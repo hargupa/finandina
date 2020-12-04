@@ -1016,7 +1016,7 @@ input:focus, input.form-control:focus {
 
 
 
-@media screen and (max-width: 980px) {
+@media screen and (max-width: 900px) {
 
     .header-credito {
         max-height: 100%;
@@ -1055,11 +1055,11 @@ input:focus, input.form-control:focus {
     .error{
         margin: auto auto auto auto;
     }
+    
     footer {
         text-align: center;
         margin: auto auto auto auto;
         padding-top: 15px;
-
         .texto-normal {
             display: none;
         }
@@ -1107,29 +1107,28 @@ input:focus, input.form-control:focus {
         }
 
         .content-image {
-            
-
+            height: 70%;
+            margin: auto auto auto auto;
             .img-izquierda {
-                left: 15px;
-                top: 5px;
+                left: 25px;
+                max-width: 100%;
 
                 img {
-                    max-width: 80%;
+                    max-width: 100%;
                 }
             }
 
             .img-derecha {
                 float: right;
-                margin-left: -110px;
-
+                margin-left: -30px;
                 img {
-                    max-width: 60%;
-                }
+                    max-width: 100%;
+                } 
             }
 
             .img-fogafin {
                 float: right;
-                margin-top: 170px;
+                margin-top: 359px;
                 margin-left: -120px;
 
                 img {
@@ -1139,25 +1138,9 @@ input:focus, input.form-control:focus {
         }
 
         .content-circunferencias {
-            margin: -2px auto 25px 160px;
-            width: 20%;
+            margin: 10px auto 25px auto;
+            width: 30%;
             max-width: 30%;
-
-            .circunferencia {
-                //top: 676px;
-                left: 349px;
-                width: 4px;
-                height: 4px;
-                margin-right: 6px;
-            }
-
-            .circunferencia2 {
-                //top: 676px;
-                left: 349px;
-                width: 4px;
-                height: 4px;
-                margin-right: 6px;
-            }
         }
     }
 
@@ -1389,7 +1372,7 @@ input:focus, input.form-control:focus {
                         font-size: 10px;
                     }
                 }
-            }
+            }/*texto*/
         }
     }
 }
