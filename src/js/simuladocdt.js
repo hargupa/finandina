@@ -150,7 +150,6 @@ app.controller('CdtController', ['$scope', '$window', '$filter', function ($scop
             dias360 = $scope.CalcularFecha(new Date(), _fechafinal);
         }
 
-
         var anio = _fechafinal.getFullYear();
         var mes = (_fechafinal.getMonth() + 1).toString().padStart(2, "0");
         var dia = _fechafinal.getDate().toString().padStart(2, "0");
