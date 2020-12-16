@@ -77,7 +77,7 @@
 
 
                         <div class="texto-superior-derecho">
-                            <p>¿Cuáles son tus ingresos?</p>
+                            <p>¿Cuáles son tus ingresos mensuales?</p>
                         </div>
 
                         <div class="content-caja-select">
@@ -86,24 +86,24 @@
                                     <img src="../../img/general/money-blue.svg">
                                 </div>
                                 <div class="control-select-input input-ingresos">
-                                    <input ng-model="data.ingresos" type="text" maxlength="11" autocomplete="off" ng-change="calcularDatos()" mileskeypress>
-                                    <label for="modelocarro">Tus ingresos</label>
+                                    <input ng-model="data.ingresos" type="text" placeholder="Tus ingresos" maxlength="11" autocomplete="off" ng-change="calcularDatos()" mileskeypress>
+                                    <!--<span for="modelocarro">Tus ingresos</span>-->
                                 </div>
                             </div>
                         </div>
                         <span class="error">{{data.erroringresos}}</span>
 
-                            <div class="texto-superior-derecho">
-                                <p>Elige el destino de tu crédito</p>
-                            </div>
+                        <div class="texto-superior-derecho">
+                            <p>Elige el destino de tu crédito</p>
+                        </div>
 
-                            <div class="content-caja-select">
-                                <div class="caja-select">
-                                    <div class="ico-form icoSelect">
-                                        <img src="../../img/general/wallet.svg">
-                                    </div>
-                                    <div class="control-select-input">
-                                        <select ng-model="data.destino">
+                        <div class="content-caja-select">
+                            <div class="caja-select">
+                                <div class="ico-form icoSelect">
+                                    <img src="../../img/general/wallet.svg">
+                                </div>
+                                <div class="control-select-input">
+                                    <select ng-model="data.destino">
                                         <option value="">Elige tu opción</option>
                                         <option>Viajar</option>
                                         <option>Estudiar</option>
@@ -116,143 +116,144 @@
                                         <option>Comprar moto</option>
                                         <option>Otra</option>
                                     </select>
-                                    </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="texto-monto">
-                                <p>¿Cuánto dinero necesitas?</p>
-                            </div>
-                            <div class="content-monto">
-                                <div class="caja-monto ">
-                                    <div class="ico-form">
-                                        <img src="../../img/general/money-blue.svg">
-                                    </div>
-                                    <div class="control-select-input ">
-                                        <input ng-model="data.dineronecesito" type="text" autocomplete="off" ng-change="calcularDatos()" mileskeypress maxlength="11">
-                                        <div class="ico-form2" ng-show="data.ShowErrorValor">
-                                            <img src="../../img/general/alert.png">
-                                        </div>
+                        <div class="texto-monto">
+                            <p>¿Cuánto dinero necesitas?</p>
+                        </div>
+                        <div class="content-monto">
+                            <div class="caja-monto ">
+                                <div class="ico-form">
+                                    <img src="../../img/general/money-blue.svg">
+                                </div>
+                                <div class="control-select-input ">
+                                    <input ng-model="data.dineronecesito" type="text" autocomplete="off" ng-change="calcularDatos()" mileskeypress maxlength="11">
+                                    <div class="ico-form2" ng-show="data.ShowErrorValor">
+                                        <img src="../../img/general/alert.png">
                                     </div>
                                 </div>
                             </div>
-                            <div class="contenedor-msg">
-                                <span class="error">{{data.errornecesito}}</span>
-                            </div>
+                        </div>
+                        <div class="contenedor-msg">
+                            <span class="error">{{data.errornecesito}}</span>
+                        </div>
 
 
-                            <div class="texto-plazo">
-                                <p>Elige el plazo e identifica una cuota que se acomode a tu bolsillo o flujo de caja:</p>
-                            </div>
+                        <div class="texto-plazo">
+                            <p>Elige el plazo e identifica una cuota que se acomode a tu bolsillo o flujo de caja:</p>
+                        </div>
 
-                            <span class="error">{{data.errorplazo}}</span>
-                            <div class="content-caja-monto" ng-show="data.ShowMonto60Meses" ng-click="MostrarCuota(id=2)">
-                                <div class="caja-plazos ">
-                                    <label for="modelocarro">60 meses</label>
-                                </div>
+                        <span class="error">{{data.errorplazo}}</span>
+                        <!--<div class="content-caja-monto" >
+                            <div class="caja-plazos">
+                                <label for="modelocarro">60 meses</label>
                             </div>
-                            <div class="content-caja-monto" ng-show="data.ShowMonto60MesesCuota">
-                                <div class="caja-plazos-monto ">
-                                    <div class="content-monto">
-                                        <div class="content-monto-sup">
-                                            <span class="caja-izquierda"><p>60 meses</p></span>
-                                            <span class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
-                                        </div>
-                                        <div class="content-monto-inf">
-                                            <span class="caja-izquierda"><p>Cuota mensual</p></span>
-                                            <span class="caja-derecha texto-info">$ {{data.cuotaMensual | number}}</span>
-                                        </div>
+                        </div>-->
+                        <div class="content-caja-monto" ng-click="MostrarCuota(id=2)">
+                            <div class="caja-plazos-monto" ng-class="{'select':data.ShowMonto60MesesCuota}">
+                                <div class="content-monto">
+                                    <div class="content-monto-sup">
+                                        <span class="caja-izquierda"><p>60 meses</p></span>
+                                        <span ng-show="data.ShowMonto60MesesCuota" class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
+                                    </div>
+                                    <div class="content-monto-inf">
+                                        <span class="caja-izquierda"><p>Cuota mensual</p></span>
+                                        <span class="caja-derecha texto-info">$ {{data.cuota60meses | number}}</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="content-caja-monto" ng-show="data.ShowMonto48Meses" ng-click="MostrarCuota(id=3)">
-                                <div class="caja-plazos ">
-                                    <label for="modelocarro">48 meses</label>
-                                </div>
-                            </div>
-                            <div class="content-caja-monto" ng-show="data.ShowMonto48MesesCuota">
-                                <div class="caja-plazos-monto ">
-                                    <div class="content-monto">
-                                        <div class="content-monto-sup">
-                                            <span class="caja-izquierda"><p>48 meses</p></span>
-                                            <span class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
-                                        </div>
-                                        <div class="content-monto-inf">
-                                            <span class="caja-izquierda"><p>Cuota mensual</p></span>
-                                            <span class="caja-derecha texto-info">$ {{data.cuotaMensual | number}}</span>
-                                        </div>
+                        </div>
+                        <div class="content-caja-monto" ng-click="MostrarCuota(id=3)">
+                            <div class="caja-plazos-monto" ng-class="{'select':data.ShowMonto48MesesCuota}">
+                                <div class="content-monto">
+                                    <div class="content-monto-sup">
+                                        <span class="caja-izquierda"><p>48 meses</p></span>
+                                        <span ng-show="data.ShowMonto48MesesCuota" class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
+                                    </div>
+                                    <div class="content-monto-inf">
+                                        <span class="caja-izquierda"><p>Cuota mensual</p></span>
+                                        <span class="caja-derecha texto-info">$ {{data.cuota48meses | number}}</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="content-caja-monto" ng-show="data.ShowMonto36Meses" ng-click="MostrarCuota(id=4)">
-                                <div class="caja-plazos ">
-                                    <label for="modelocarro">36 meses</label>
-                                </div>
-                            </div>
-                            <div class="content-caja-monto" ng-show="data.ShowMonto36MesesCuota">
-                                <div class="caja-plazos-monto ">
-                                    <div class="content-monto">
-                                        <div class="content-monto-sup">
-                                            <span class="caja-izquierda"><p>36 meses</p></span>
-                                            <span class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
-                                        </div>
-                                        <div class="content-monto-inf">
-                                            <span class="caja-izquierda"><p>Cuota mensual</p></span>
-                                            <span class="caja-derecha texto-info">$ {{data.cuotaMensual | number}}</span>
-                                        </div>
+                        </div>
+                        <div class="content-caja-monto" ng-click="MostrarCuota(id=4)">
+                            <div class="caja-plazos-monto" ng-class="{'select':data.ShowMonto36MesesCuota}">
+                                <div class="content-monto">
+                                    <div class="content-monto-sup">
+                                        <span class="caja-izquierda"><p>36 meses</p></span>
+                                        <span ng-show="data.ShowMonto36MesesCuota" class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
+                                    </div>
+                                    <div class="content-monto-inf">
+                                        <span class="caja-izquierda"><p>Cuota mensual</p></span>
+                                        <span class="caja-derecha texto-info">$ {{data.cuota36meses | number}}</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="content-caja-monto" ng-show="data.ShowMonto24Meses" ng-click="MostrarCuota(id=5)">
-                                <div class="caja-plazos ">
-                                    <label for="modelocarro">24 meses</label>
-                                </div>
-                            </div>
-                            <div class="content-caja-monto" ng-show="data.ShowMonto24MesesCuota">
-                                <div class="caja-plazos-monto ">
-                                    <div class="content-monto">
-                                        <div class="content-monto-sup">
-                                            <span class="caja-izquierda"><p>24 meses</p></span>
-                                            <span class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
-                                        </div>
-                                        <div class="content-monto-inf">
-                                            <span class="caja-izquierda"><p>Cuota mensual</p></span>
-                                            <span class="caja-derecha texto-info">$ {{data.cuotaMensual | number}}</span>
-                                        </div>
+                        </div>
+                        <div class="content-caja-monto" ng-click="MostrarCuota(id=5)">
+                            <div class="caja-plazos-monto" ng-class="{'select':data.ShowMonto24MesesCuota}">
+                                <div class="content-monto">
+                                    <div class="content-monto-sup">
+                                        <span class="caja-izquierda"><p>24 meses</p></span>
+                                        <span ng-show="data.ShowMonto24MesesCuota" class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
+                                    </div>
+                                    <div class="content-monto-inf">
+                                        <span class="caja-izquierda"><p>Cuota mensual</p></span>
+                                        <span class="caja-derecha texto-info">$ {{data.cuota24meses | number}}</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="content-caja-monto" ng-show="data.ShowMonto12Meses" ng-click="MostrarCuota(id=6)">
-                                <div class="caja-plazos ">
-                                    <label for="modelocarro">12 meses</label>
-                                </div>
-                            </div>
-                            <div class="content-caja-monto" ng-show="data.ShowMonto12MesesCuota">
-                                <div class="caja-plazos-monto ">
-                                    <div class="content-monto">
-                                        <div class="content-monto-sup">
-                                            <span class="caja-izquierda"><p>12 meses</p></span>
-                                            <span class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
-                                        </div>
-                                        <div class="content-monto-inf">
-                                            <span class="caja-izquierda"><p>Cuota mensual</p></span>
-                                            <span class="caja-derecha texto-info">$ {{data.cuotaMensual | number}}</span>
-                                        </div>
+                        </div>
+                        <div class="content-caja-monto" ng-click="MostrarCuota(id=6)">
+                            <div class="caja-plazos-monto" ng-class="{'select':data.ShowMonto12MesesCuota}">
+                                <div class="content-monto">
+                                    <div class="content-monto-sup">
+                                        <span class="caja-izquierda"><p>12 meses</p></span>
+                                        <span ng-show="data.ShowMonto12MesesCuota" class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
+                                    </div>
+                                    <div class="content-monto-inf">
+                                        <span class="caja-izquierda"><p>Cuota mensual</p></span>
+                                        <span class="caja-derecha texto-info">$ {{data.cuota12meses | number}}</span>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="content-buttons">
-                                <button class="button-izquierdo" ng-disabled="data.cuotaMensual == ''" ng-click="showPlanPagos()">VER MI PLAN DE PAGOS</button>
-                                <button class="button-derecho" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CreditoLibreInversion'">SOLICITAR MI CRÉDITO</button>
+                        <div class="content-buttons">
+                            <button class="button-izquierdo" ng-disabled="data.cuotaMensual == ''" ng-click="showPlanPagos()">VER MI PLAN DE PAGOS</button>
+                            <button class="button-derecho" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CreditoLibreInversion'">SOLICITAR MI CRÉDITO</button>
+                            <br />
+                            <a style="color:#ED2529" href="https://bancofinandina.com">
+                                <span>
+                                    <svg id="icon-hover" xmlns="http://www.w3.org/2000/svg" width="23.54" height="20.984" viewBox="0 0 23.54 20.984">
+                                        <g id="Grupo_6019" data-name="Grupo 6019" transform="translate(-756.246 -83.796)">
+                                            <g id="Grupo_6016" data-name="Grupo 6016">
+                                                <g id="Grupo_6015" data-name="Grupo 6015">
+                                                    <path id="Trazado_6843" d="M779.536 92.084l-11.159-8.17a.612.612 0 0 0-.722 0l-11.155 8.17a.613.613 0 0 0-.132.855c.2.273.461.1.855.132l11.472-.132 10.122.132h.422c.2 0 .318.025.433-.132a.611.611 0 0 0-.136-.855z" class="cls-1" data-name="Trazado 6843"></path>
+                                                </g>
+                                            </g>
+                                            <g id="Grupo_6018" data-name="Grupo 6018">
+                                                <g id="Grupo_6017" data-name="Grupo 6017">
+                                                    <path id="Trazado_6844" d="M776.575 92.386c-.338 0-7.092-.856-8.78-.858s-8 1.682-8.955 1.113c-.337 0 0 .841 0 1.179v10.347a.612.612 0 0 0 .611.612h6.118a.611.611 0 0 0 .609-.564.371.371 0 0 0 0-.048v-5.924a1.836 1.836 0 0 1 3.671 0v5.925a.377.377 0 0 0 0 .047.611.611 0 0 0 .609.565h6.117a.612.612 0 0 0 .612-.612V93.821c0-.336-.276-1.432-.612-1.435z" class="cls-1" data-name="Trazado 6844"></path>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    Ir al inicio
+                                </span>
+                            </a>
+
+                        </div>
+                        <div class="texto-inferior-imagen2">
+                            <div class="img-super"><img src="../../img/general/super.svg"></div>
+                            <div class="texto">
+                                <p>*Los valores descritos en el presente simulador son informativos, se encuentran sujetos a la solicitud formal de crédito realizada por el cliente a Banco Finandina S.A.</p>
+                                <p>** El valor de cuota propuesta no incluye valor de prima mensual de los seguros.</p>
                             </div>
-                            <div class="texto-inferior-imagen2">
-                                <div class="img-super"><img src="../../img/general/super.svg"></div>
-                                <div class="texto">
-                                    <p>*Los valores descritos en el presente simulador son informativos, se encuentran sujetos a la solicitud formal de crédito realizada por el cliente a Banco Finandina S.A.</p>
-                                    <p>** El valor de cuota propuesta no incluye valor de prima mensual de los seguros.</p>
-                                </div>
-                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -269,7 +270,7 @@
         obj = document.getElementById('img-msg');
         obj2 = document.getElementById('img-woman');
         var time;
-        var transparency = 0;        
+        var transparency = 0;
         document.addEventListener("DOMContentLoaded", function (event) {
             /*if (screen.width<400){
                 document.getElementById('img-dinamica').style.height='250px';
@@ -277,21 +278,21 @@
             setInterval('CambiarImagen()', 5000);
         })
         function CambiarImagen() {
-                // Safari 1.2, posterior Firefox y Mozilla, CSS3
-                obj.style.opacity = 0;
-                obj2.style.opacity = 0;
-                // anteriores Mozilla y Firefox
-                obj.style.opacity = 0;
-                obj2.style.opacity = 0;
-                // Safari anterior a 1.2, Konqueror
-                obj.style.KHTMLOpacity = 0;
-                obj2.style.KHTMLOpacity = 0;
-                obj.style.filter = 'alpha(opacity=0)'; 
-                obj2.style.filter = 'alpha(opacity=0)'; 
+            // Safari 1.2, posterior Firefox y Mozilla, CSS3
+            obj.style.opacity = 0;
+            obj2.style.opacity = 0;
+            // anteriores Mozilla y Firefox
+            obj.style.opacity = 0;
+            obj2.style.opacity = 0;
+            // Safari anterior a 1.2, Konqueror
+            obj.style.KHTMLOpacity = 0;
+            obj2.style.KHTMLOpacity = 0;
+            obj.style.filter = 'alpha(opacity=0)';
+            obj2.style.filter = 'alpha(opacity=0)';
             var i;
             for (i = 1; i <= 4; i++) {
                 let nomdiv = document.getElementById('c' + i);
-                transparency = 0; 
+                transparency = 0;
                 if (nomdiv.className == 'circunferencia') {
                     if (i == 4) {
                         let divcambio = document.getElementById('c1');
@@ -299,7 +300,7 @@
                         nomdiv.className = 'circunferencia2';
                         document.getElementById('img-msg').innerHTML = '<img src="../../img/general/messenge-libreinversion-1.png">';
                         document.getElementById('img-woman').innerHTML = '<img src="../../img/general/woman-1.png">';
-                        time = setInterval('fadeIn()',50);
+                        time = setInterval('fadeIn()', 50);
 
                     } else {
                         i = i + 1;
@@ -308,7 +309,7 @@
                         nomdiv.className = 'circunferencia2';
                         document.getElementById('img-msg').innerHTML = '<img src="../../img/general/messenge-libreinversion-' + i + '.png">';
                         document.getElementById('img-woman').innerHTML = '<img src="../../img/general/woman-' + i + '.png">';
-                        time = setInterval('fadeIn()',50);
+                        time = setInterval('fadeIn()', 50);
                         break;
 
                     }
@@ -317,37 +318,37 @@
         }
 
         function fadeIn() {
-          //
-          //incrementamos el valor
-          transparency += 5; 
-          //si termino la trnsicion borramos el intervalo
-          transparency = (transparency == 100) ? clearInterval(time) : transparency;
-          //seteamos al div como objeto para poder usarlo
-          //obj = document.getElementById('fading');
-          //programamos cada navegador por separado
-          if (document.all){ 
-            //esto es para IE, como siempre hay q programarlo a parte
-            obj.style.filter = 'alpha(opacity='+transparency+')';
-            obj2.style.filter = 'alpha(opacity='+transparency+')';
-          }else{
-            // Safari 1.2, posterior Firefox y Mozilla, CSS3
-            obj.style.opacity = transparency /100;
-            obj2.style.opacity = transparency /100;
-            // anteriores Mozilla y Firefox
-            obj.style.MozOpacity = transparency /100;
-            obj2.style.MozOpacity = transparency /100;
-            // Safari anterior a 1.2, Konqueror
-            obj.style.KHTMLOpacity = transparency /100; 
-            obj2.style.KHTMLOpacity = transparency /100;  
-          } 
+            //
+            //incrementamos el valor
+            transparency += 5;
+            //si termino la trnsicion borramos el intervalo
+            transparency = (transparency == 100) ? clearInterval(time) : transparency;
+            //seteamos al div como objeto para poder usarlo
+            //obj = document.getElementById('fading');
+            //programamos cada navegador por separado
+            if (document.all) {
+                //esto es para IE, como siempre hay q programarlo a parte
+                obj.style.filter = 'alpha(opacity=' + transparency + ')';
+                obj2.style.filter = 'alpha(opacity=' + transparency + ')';
+            } else {
+                // Safari 1.2, posterior Firefox y Mozilla, CSS3
+                obj.style.opacity = transparency / 100;
+                obj2.style.opacity = transparency / 100;
+                // anteriores Mozilla y Firefox
+                obj.style.MozOpacity = transparency / 100;
+                obj2.style.MozOpacity = transparency / 100;
+                // Safari anterior a 1.2, Konqueror
+                obj.style.KHTMLOpacity = transparency / 100;
+                obj2.style.KHTMLOpacity = transparency / 100;
+            }
         };
 
         function resize() {
-            if (document.documentElement.clientWidth<400){
-                document.getElementById('img-dinamica').style.height='250px';
-            }else{
-                document.getElementById('img-dinamica').style.height='70%';
-            }
+            //    if (document.documentElement.clientWidth < 400) {
+            //        document.getElementById('img-dinamica').style.height = '250px';
+            //    } else {
+            //        document.getElementById('img-dinamica').style.height = '70%';
+            //    }
         }
 
     </script>

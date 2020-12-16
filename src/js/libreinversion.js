@@ -36,16 +36,20 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
         ShowErrorValor: false,
         errorplazo: '',
 
-        ShowMonto60Meses: true,
+
+        cuota60meses: '',
+        cuota48meses: '',
+        cuota36meses: '',
+        cuota24meses: '',
+        cuota12meses: '',
+
         ShowMonto60MesesCuota: false,
-        ShowMonto48Meses: true,
         ShowMonto48MesesCuota: false,
-        ShowMonto36Meses: true,
         ShowMonto36MesesCuota: false,
-        ShowMonto24Meses: true,
         ShowMonto24MesesCuota: false,
-        ShowMonto12Meses: true,
         ShowMonto12MesesCuota: false,
+
+
         ShowImgCarro: true,
         ShowImgMoto: true,
         ShowTextoPorcentaje: false,
@@ -60,55 +64,44 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
     }
 
     $scope.MostrarCuota = function (id) {
-
-        $scope.data.ShowMonto60Meses = true;
+        $scope.data.errorplazo = '';
         $scope.data.ShowMonto60MesesCuota = false;
-        $scope.data.ShowMonto48Meses = true;
         $scope.data.ShowMonto48MesesCuota = false;
-        $scope.data.ShowMonto36Meses = true;
         $scope.data.ShowMonto36MesesCuota = false;
-        $scope.data.ShowMonto24Meses = true;
         $scope.data.ShowMonto24MesesCuota = false;
-        $scope.data.ShowMonto12Meses = true;
         $scope.data.ShowMonto12MesesCuota = false;
 
         switch (id) {
-
             case 2:
-                $scope.data.ShowMonto60Meses = false;
                 $scope.data.ShowMonto60MesesCuota = true;
                 $scope.data.plazo = 60;
+                $scope.data.cuotaMensual = $scope.data.cuota60meses;
                 break;
             case 3:
-                $scope.data.ShowMonto48Meses = false;
                 $scope.data.ShowMonto48MesesCuota = true;
                 $scope.data.plazo = 48;
+                $scope.data.cuotaMensual = $scope.data.cuota48meses;
                 break;
             case 4:
-                $scope.data.ShowMonto36Meses = false;
                 $scope.data.ShowMonto36MesesCuota = true;
                 $scope.data.plazo = 36;
+                $scope.data.cuotaMensual = $scope.data.cuota36meses;
                 break;
             case 5:
-                $scope.data.ShowMonto24Meses = false;
                 $scope.data.ShowMonto24MesesCuota = true;
                 $scope.data.plazo = 24;
+                $scope.data.cuotaMensual = $scope.data.cuota24meses;
                 break;
-
             case 6:
-                $scope.data.ShowMonto12Meses = false;
                 $scope.data.ShowMonto12MesesCuota = true;
                 $scope.data.plazo = 12;
+                $scope.data.cuotaMensual = $scope.data.cuota12meses;
                 break;
-
             default:
                 $scope.data.cuotaMensual = '';
                 $scope.data.plazo = '';
                 break;
         }
-        //calcular MONTO FINANCIAR y CUOTA MENSUAL si cambia el plazo
-        $scope.calcularDatos();
-
     };
 
     $scope.calcularDatos = function () {
@@ -158,11 +151,11 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
         }
 
         var prestamoTotal = _ingresos * 10;
-        if (prestamoTotal > $scope.data.maxMonto) {
-            $scope.data.errornecesito = "El monto que intentas solicitar es superior a tu capacidad de endeudamiento, el valor m\u00E1ximo que te podemos prestar es " + $filter('currency')($scope.data.maxMonto, '$', 0);
-            $scope.data.ShowErrorValor = true;
-            return false;
-        }
+        //if (prestamoTotal > $scope.data.maxMonto) {
+        //    $scope.data.errornecesito = "El monto m\u00E1ximo que te podemos prestar es " + $filter('currency')($scope.data.maxMonto, '$', 0);
+        //    $scope.data.ShowErrorValor = true;
+        //    return false;
+        //}
 
         if (_dineronecesito > prestamoTotal) {
             $scope.data.errornecesito = "El monto que intentas solicitar es superior a tu capacidad de endeudamiento, el valor m\u00E1ximo que te podemos prestar es " + $filter('currency')(prestamoTotal, '$', 0);
@@ -173,11 +166,6 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
         if (_dineronecesito > $scope.data.maxMonto) {
             $scope.data.errornecesito = "El monto m\u00E1ximo que te prestamos es de " + $filter('currency')($scope.data.maxMonto, '$', 0);
             $scope.data.ShowErrorValor = true;
-            return false;
-        }
-
-        if ($scope.data.plazo == "") {
-            $scope.data.errorplazo = "Indica el plazo";
             return false;
         }
 
@@ -195,14 +183,19 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
         _dineronecesito = $scope.data.dineronecesito.replace(/\,/g, '');
 
         $scope.data.tasaNVM = $scope.calcularTasa(_ingresos);
+        var tasaEA = (1 + ($scope.data.tasaNVM / 100)) ** 12 - 1;
+        $scope.data.tasaEfectivaAnual = $scope.redondeaSeisDecimas(tasaEA);
 
-        if ($scope.data.plazo != '') {
-            var tasaEA = (1 + ($scope.data.tasaNVM / 100)) ** 12 - 1;
-            $scope.data.tasaEfectivaAnual = $scope.redondeaSeisDecimas(tasaEA);
-            $scope.data.cuotaMensual = $scope.calculoCuota(_dineronecesito, $scope.data.tasaNVM, $scope.data.plazo);
-        }
-        else {
-            $scope.data.errorplazo = "Indica el plazo";
+        $scope.data.cuota60meses = $scope.calculoCuota(_dineronecesito, $scope.data.tasaNVM, 60);
+        $scope.data.cuota48meses = $scope.calculoCuota(_dineronecesito, $scope.data.tasaNVM, 48);
+        $scope.data.cuota36meses = $scope.calculoCuota(_dineronecesito, $scope.data.tasaNVM, 36);
+        $scope.data.cuota24meses = $scope.calculoCuota(_dineronecesito, $scope.data.tasaNVM, 24);
+        $scope.data.cuota12meses = $scope.calculoCuota(_dineronecesito, $scope.data.tasaNVM, 12);
+
+        $scope.MostrarCuota();
+
+        if ($scope.data.cuotaMensual == '') {
+            $scope.data.errorplazo = "elige un plazo";
             return false;
         }
     };
