@@ -142,7 +142,7 @@
                         <div class="content-button-descarga">
                             <div class="caja-vacia">
                                 <div class="paginador">
-                                    <div class="caja-pagina" ng-click="paginador('pri')">
+                                    <div class="caja-pagina flecha" ng-click="paginador('pri')">
                                         <div class="numero"><img src="../../img/general/flecha-izq.png"></div>
                                     </div>
                                     <div class="caja-pagina" id="num-1" ng-click="paginador(1)">
@@ -160,7 +160,7 @@
                                     <div class="caja-pagina" id="num-5" ng-click="data.pag5 && paginador(5)" ng-class="{'disabled':!data.pag5}">
                                         <div class="numero">5</div>
                                     </div>
-                                    <div class="caja-pagina" ng-click="paginador('ult')">
+                                    <div class="caja-pagina flecha" ng-click="paginador('ult')">
                                         <div class="numero"><img src="../../img/general/flecha-der.png"></div>
                                     </div>
                                 </div>
@@ -186,7 +186,7 @@
                                 </div>
                             </div>
                             <span class="error">{{data.erroremail}}</span>
-                            <span ng-show="data.envioOK" class="txtOK">Satisfactorio!!</span>
+                            <span ng-show="data.envioOK" class="txtOK">En un momento te enviaremos el plan de pagos a tu correo!</span>
                             <div class="content-button-correo-2"><button class="button-correo" ng-disabled="data.email == ''" ng-click="guardarInfo(1)">ENVIAR</button></div>
                         </div>
 
