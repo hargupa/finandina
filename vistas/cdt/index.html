@@ -91,78 +91,98 @@
                                 </div>
                             </div>
                         </div>
-                       <span class="error">{{data.errormonto}}</span>
+                        <span class="error">{{data.errormonto}}</span>
 
-                            <div class="texto-superior-derecho">
-                                <p>¿A cuánto tiempo quieres hacer tu inversión?</p>
-                            </div>
+                        <div class="texto-superior-derecho">
+                            <p>¿A cuánto tiempo quieres hacer tu inversión?</p>
+                        </div>
 
-                            <div class="content-caja-select content-dias">
-                                <div class="caja-select ">
-                                    <div class="ico-form">
-                                        <img src="../../img/general/calendar1.svg">
-                                    </div>
-                                    <div class="control-select-input">
-                                        <input class="input-dias" ng-model="data.plazoDias" type="number" min="90" autocomplete="off" ng-change="calculos()">
-                                        <label for="modelocarro">En días</label>
-                                    </div>
+                        <div class="content-caja-select content-dias">
+                            <div class="caja-select ">
+                                <div class="ico-form">
+                                    <img src="../../img/general/calendar1.svg">
+                                </div>
+                                <div class="control-select-input">
+                                    <input class="input-dias" ng-model="data.plazoDias" type="number" min="90" autocomplete="off" ng-change="calculos()">
+                                    <label for="modelocarro">En días</label>
                                 </div>
                             </div>
-                            <span class="error error-2">{{data.errordias}}</span>
+                        </div>
+                        <span class="error error-2">{{data.errordias}}</span>
 
-                            <div class="texto-superior-derecho">
-                                <p>Estos son los intereses que recibirás por tu inversión</p>
-                            </div>
-                            <div class="content-caja-select content-monto-interes">
-                                <div class="caja-select caja-interes">
-                                    <div class="ico-form">
-                                        <img src="../../img/general/money-green.svg">
-                                    </div>
-                                    <div class="control-select-input input-ingresos">
-                                        <span class="texto">{{data.montoInteresNeto ? (data.montoInteresNeto | number) : ''}}</span>
-                                        <label for="modelocarro">Tu ganancia es</label>
-                                    </div>
+                        <div class="texto-superior-derecho">
+                            <p>Estos son los intereses que recibirás por tu inversión</p>
+                        </div>
+                        <div class="content-caja-select content-monto-interes">
+                            <div class="caja-select caja-interes">
+                                <div class="ico-form">
+                                    <img src="../../img/general/money-green.svg">
+                                </div>
+                                <div class="control-select-input input-ingresos">
+                                    <span class="texto">{{data.montoInteresNeto ? (data.montoInteresNeto | number) : ''}}</span>
+                                    <label for="modelocarro">Tu ganancia es</label>
                                 </div>
                             </div>
-                            <div class="texto-aviso">
-                                <p>*Esta cifra incluye retenciones del {{data.fuente}}%</p>
-                            </div>
+                        </div>
+                        <div class="texto-aviso">
+                            <p>*Esta cifra incluye retenciones del {{data.fuente}}%</p>
+                        </div>
 
-                            <div class="content-caja-select content-caja-responsive content-caja-select-tinversion">
-                                <div class="caja-select caja-interes caja-resp-inv">
-                                    <div class="ico-form">
-                                        <img src="../../img/general/money-green.svg">
-                                    </div>
-                                    <div class="control-select-input input-ingresos">
-                                        <span class="texto">{{data.totalInversion ? (data.totalInversion | number) : ''}}</span>
-                                        <label for="modelocarro">Total inversión + interés</label>
-                                    </div>
+                        <div class="content-caja-select content-caja-responsive content-caja-select-tinversion">
+                            <div class="caja-select caja-interes caja-resp-inv">
+                                <div class="ico-form">
+                                    <img src="../../img/general/money-green.svg">
                                 </div>
-                                <div class="separador"></div>
-                                <div class="caja-select-porcentaje caja-select-fecha">
-                                    <div class="ico-porcentaje ico-fecha">
-                                        <img src="../../img/general/calendar2.svg">
-                                    </div>
-                                    <div class=" input-porcentaje input-fecha">
-                                        <!--<span>{{data.fechaFinal | date:'dd/MM/yyyy'}}</span>-->
-                                        <input ng-model="data.fechaFinal" type="text" autocomplete="off" readonly>
-                                        <label for="modelocarro">Fecha final</label>
-                                    </div>
+                                <div class="control-select-input input-ingresos">
+                                    <span class="texto">{{data.totalInversion ? (data.totalInversion | number) : ''}}</span>
+                                    <label for="modelocarro">Total inversión + interés</label>
                                 </div>
                             </div>
-
-                            <div class="content-buttons">
-                                <button class="button-derecho" ng-disabled="data.totalInversion == ''" ng-click="contactenos()">¡QUIERO MI CDT!</button>
-                                <!--<button class="button-derecho" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CDT'">¡QUIERO MI CDT!</button>-->
-                            </div>
-
-                            <div class="texto-inferior-imagen2">
-                                <div class="img-super"><img src="../../img/general/super.svg"></div>
-                                <div class="texto">
-                                    <p>*Los valores descritos en el presente simulador son informativos, se encuentran sujetos a la solicitud formal de crédito realizada por el cliente a Banco Finandina S.A.</p>
-                                    <p>** El valor de cuota propuesta no incluye valor de prima mensual de los seguros.</p>
+                            <div class="separador"></div>
+                            <div class="caja-select-porcentaje caja-select-fecha">
+                                <div class="ico-porcentaje ico-fecha">
+                                    <img src="../../img/general/calendar2.svg">
+                                </div>
+                                <div class=" input-porcentaje input-fecha">
+                                    <!--<span>{{data.fechaFinal | date:'dd/MM/yyyy'}}</span>-->
+                                    <input ng-model="data.fechaFinal" type="text" autocomplete="off" readonly>
+                                    <label for="modelocarro">Fecha final</label>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="content-buttons">
+                            <button class="button-derecho" ng-disabled="data.totalInversion == ''" ng-click="contactenos()">¡QUIERO MI CDT!</button>
+                            <!--<button class="button-derecho" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CDT'">¡QUIERO MI CDT!</button>-->
+                        </div>
+                        <div class="botoncentral">
+                            <a href="https://bancofinandina.com">
+                                <span>
+                                    <svg id="icon-hover" xmlns="http://www.w3.org/2000/svg" width="23.54" height="20.984" viewBox="0 0 23.54 20.984">
+                                        <g id="Grupo_6019" data-name="Grupo 6019" transform="translate(-756.246 -83.796)">
+                                            <g id="Grupo_6016" data-name="Grupo 6016">
+                                                <g id="Grupo_6015" data-name="Grupo 6015">
+                                                    <path id="Trazado_6843" d="M779.536 92.084l-11.159-8.17a.612.612 0 0 0-.722 0l-11.155 8.17a.613.613 0 0 0-.132.855c.2.273.461.1.855.132l11.472-.132 10.122.132h.422c.2 0 .318.025.433-.132a.611.611 0 0 0-.136-.855z" class="cls-1" data-name="Trazado 6843"></path>
+                                                </g>
+                                            </g>
+                                            <g id="Grupo_6018" data-name="Grupo 6018">
+                                                <g id="Grupo_6017" data-name="Grupo 6017">
+                                                    <path id="Trazado_6844" d="M776.575 92.386c-.338 0-7.092-.856-8.78-.858s-8 1.682-8.955 1.113c-.337 0 0 .841 0 1.179v10.347a.612.612 0 0 0 .611.612h6.118a.611.611 0 0 0 .609-.564.371.371 0 0 0 0-.048v-5.924a1.836 1.836 0 0 1 3.671 0v5.925a.377.377 0 0 0 0 .047.611.611 0 0 0 .609.565h6.117a.612.612 0 0 0 .612-.612V93.821c0-.336-.276-1.432-.612-1.435z" class="cls-1" data-name="Trazado 6844"></path>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    Ir al inicio
+                                </span>
+                            </a>
+                        </div>
+                        <div class="texto-inferior-imagen2">
+                            <div class="img-super"><img src="../../img/general/super.svg"></div>
+                            <div class="texto">
+                                <p>*Los valores descritos en el presente simulador son informativos, se encuentran sujetos a la solicitud formal de crédito realizada por el cliente a Banco Finandina S.A.</p>
+                                <p>** El valor de cuota propuesta no incluye valor de prima mensual de los seguros.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -177,7 +197,7 @@
         obj = document.getElementById('img-msg');
         obj2 = document.getElementById('img-family');
         var time;
-        var transparency = 0;        
+        var transparency = 0;
         document.addEventListener("DOMContentLoaded", function (event) {
             /*if (screen.width<400){
                 document.getElementById('img-dinamica').style.height='200px';
@@ -186,25 +206,25 @@
                 document.getElementById('img-family').style.marginLeft ='1px';
                 document.getElementById('fogafin').style.marginTop ='169px';
                 document.getElementById('fogafin').style.marginLeft ='-36px';
-            }    */        
+            }    */
             setInterval('CambiarImagen()', 5000);
         })
         function CambiarImagen() {
-                // Safari 1.2, posterior Firefox y Mozilla, CSS3
-                obj.style.opacity = 0;
-                obj2.style.opacity = 0;
-                // anteriores Mozilla y Firefox
-                obj.style.opacity = 0;
-                obj2.style.opacity = 0;
-                // Safari anterior a 1.2, Konqueror
-                obj.style.KHTMLOpacity = 0;
-                obj2.style.KHTMLOpacity = 0;
-                obj.style.filter = 'alpha(opacity=0)'; 
-                obj2.style.filter = 'alpha(opacity=0)'; 
+            // Safari 1.2, posterior Firefox y Mozilla, CSS3
+            obj.style.opacity = 0;
+            obj2.style.opacity = 0;
+            // anteriores Mozilla y Firefox
+            obj.style.opacity = 0;
+            obj2.style.opacity = 0;
+            // Safari anterior a 1.2, Konqueror
+            obj.style.KHTMLOpacity = 0;
+            obj2.style.KHTMLOpacity = 0;
+            obj.style.filter = 'alpha(opacity=0)';
+            obj2.style.filter = 'alpha(opacity=0)';
             var i;
             for (i = 1; i <= 4; i++) {
                 let nomdiv = document.getElementById('c' + i);
-                transparency = 0; 
+                transparency = 0;
                 if (nomdiv.className == 'circunferencia') {
                     if (i == 4) {
                         let divcambio = document.getElementById('c1');
@@ -212,7 +232,7 @@
                         nomdiv.className = 'circunferencia2';
                         document.getElementById('img-msg').innerHTML = '<img src="../../img/general/messenge-cdt-1.png">';
                         document.getElementById('img-family').innerHTML = '<img src="../../img/general/family-1.png">';
-                        time = setInterval('fadeIn()',50);
+                        time = setInterval('fadeIn()', 50);
 
                     } else {
                         i = i + 1;
@@ -221,7 +241,7 @@
                         nomdiv.className = 'circunferencia2';
                         document.getElementById('img-msg').innerHTML = '<img src="../../img/general/messenge-cdt-' + i + '.png">';
                         document.getElementById('img-family').innerHTML = '<img src="../../img/general/family-' + i + '.png">';
-                        time = setInterval('fadeIn()',50);
+                        time = setInterval('fadeIn()', 50);
                         break;
 
                     }
@@ -230,53 +250,53 @@
         }
 
         function fadeIn() {
-          //
-          //incrementamos el valor
-          transparency += 5; 
-          //si termino la trnsicion borramos el intervalo
-          transparency = (transparency == 100) ? clearInterval(time) : transparency;
-          //seteamos al div como objeto para poder usarlo
-          //obj = document.getElementById('fading');
-          //programamos cada navegador por separado
-          if (document.all){ 
-            //esto es para IE, como siempre hay q programarlo a parte
-            obj.style.filter = 'alpha(opacity='+transparency+')';
-            obj2.style.filter = 'alpha(opacity='+transparency+')';
-          }else{
-            // Safari 1.2, posterior Firefox y Mozilla, CSS3
-            obj.style.opacity = transparency /100;
-            obj2.style.opacity = transparency /100;
-            // anteriores Mozilla y Firefox
-            obj.style.MozOpacity = transparency /100;
-            obj2.style.MozOpacity = transparency /100;
-            // Safari anterior a 1.2, Konqueror
-            obj.style.KHTMLOpacity = transparency /100; 
-            obj2.style.KHTMLOpacity = transparency /100;  
-          } 
+            //
+            //incrementamos el valor
+            transparency += 5;
+            //si termino la trnsicion borramos el intervalo
+            transparency = (transparency == 100) ? clearInterval(time) : transparency;
+            //seteamos al div como objeto para poder usarlo
+            //obj = document.getElementById('fading');
+            //programamos cada navegador por separado
+            if (document.all) {
+                //esto es para IE, como siempre hay q programarlo a parte
+                obj.style.filter = 'alpha(opacity=' + transparency + ')';
+                obj2.style.filter = 'alpha(opacity=' + transparency + ')';
+            } else {
+                // Safari 1.2, posterior Firefox y Mozilla, CSS3
+                obj.style.opacity = transparency / 100;
+                obj2.style.opacity = transparency / 100;
+                // anteriores Mozilla y Firefox
+                obj.style.MozOpacity = transparency / 100;
+                obj2.style.MozOpacity = transparency / 100;
+                // Safari anterior a 1.2, Konqueror
+                obj.style.KHTMLOpacity = transparency / 100;
+                obj2.style.KHTMLOpacity = transparency / 100;
+            }
         };
 
         function resize() {
-            if (document.documentElement.clientWidth<400){
-                document.getElementById('img-dinamica').style.height='200px';
-                document.getElementById('img-msg').style.width='41%';
-                document.getElementById('img-msg').style.left='28px';
-                document.getElementById('img-family').style.marginLeft ='1px';
-                document.getElementById('fogafin').style.marginTop ='169px';
-                document.getElementById('fogafin').style.marginLeft ='-36px';
-            }else{
-                document.getElementById('img-dinamica').style.height='70%';
-                document.getElementById('img-msg').style.maxWidth='100%';
-                document.getElementById('img-msg').style.left='25px';
-                document.getElementById('img-family').style.marginLeft ='-30px';
-                document.getElementById('fogafin').style.marginTop ='359px';
-                document.getElementById('fogafin').style.marginLeft ='-120px';
+            if (document.documentElement.clientWidth < 400) {
+                document.getElementById('img-dinamica').style.height = '200px';
+                document.getElementById('img-msg').style.width = '41%';
+                document.getElementById('img-msg').style.left = '28px';
+                document.getElementById('img-family').style.marginLeft = '1px';
+                document.getElementById('fogafin').style.marginTop = '169px';
+                document.getElementById('fogafin').style.marginLeft = '-36px';
+            } else {
+                document.getElementById('img-dinamica').style.height = '70%';
+                document.getElementById('img-msg').style.maxWidth = '100%';
+                document.getElementById('img-msg').style.left = '25px';
+                document.getElementById('img-family').style.marginLeft = '-30px';
+                document.getElementById('fogafin').style.marginTop = '359px';
+                document.getElementById('fogafin').style.marginLeft = '-120px';
 
             }
         }
 
 
 
-    </script>    
+    </script>
 
 </body>
 </html>

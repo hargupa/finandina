@@ -94,11 +94,11 @@ app.controller('CdtController', ['$scope', '$window', '$filter', function ($scop
         $scope.data.totalInversion = '';
 
         if ($scope.data.montoInversion == "") {
-            $scope.data.errormonto = "Debe ingresar el monto de la inversi\u00F3n";
+            $scope.data.errormonto = "Indica el monto de la inversi\u00F3n";
             return false;
         }
         if ($scope.data.plazoDias == "" || $scope.data.plazoDias == null) {
-            $scope.data.errordias = "Debe ingresar el plazo en d\u00EDas";
+            $scope.data.errordias = "Indica el plazo en d\u00EDas";
             return false;
         }
 
@@ -245,21 +245,21 @@ app.controller('CdtController', ['$scope', '$window', '$filter', function ($scop
         $scope.data.erroremail = '';
 
         if ($scope.data.nombre == '') {
-            $scope.data.errornombre = 'Debe ingresar su nombre y apellido';
+            $scope.data.errornombre = 'Indica tu nombre y apellido';
             return false;
         }
         var expresion = /^3[\d]{9}$/;
         if (isNaN($scope.data.celular) || !expresion.test($scope.data.celular)) {
-            $scope.data.errorcel = "Debe ingresar un n\u00FAmero con el formato correcto";
+            $scope.data.errorcel = "Indica un n\u00FAmero con el formato correcto";
             return false;
         }
         if ($scope.data.email == '') {
-            $scope.data.erroremail = 'Debe ingresar su correo electr\u00F3nico';
+            $scope.data.erroremail = 'Indica tu correo electr\u00F3nico';
             return false;
         }
         var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         if (!regex.test($scope.data.email)) {
-            $scope.data.erroremail = 'Debe ingresar una direcci\u00F3n de correo electr\u00F3nico con el formato correcto';
+            $scope.data.erroremail = 'Indica una direcci\u00F3n de correo electr\u00F3nico con el formato correcto';
             return false;
         }
 

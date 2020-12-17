@@ -203,11 +203,11 @@ app.controller('LibranzaController', ['$scope', '$window', '$filter', function (
         $scope.data.AproxCalculada = '';
 
         if ($scope.data.selectActividad == '0') {
-            $scope.data.errorActividad = "Debe indicar su actividad";
+            $scope.data.errorActividad = "Indica tu actividad";
             return false;
         }
         if ($scope.data.ingresos == "") {
-            $scope.data.errorIngresos = "Debe indicar sus ingresos";
+            $scope.data.errorIngresos = "Indica tus ingresos mensuales";
             return false;
         }
         if (!$scope.data.ShowImgPensionado) {
@@ -220,21 +220,20 @@ app.controller('LibranzaController', ['$scope', '$window', '$filter', function (
 
         if ($scope.data.descuentoNomina == "") {
             if ($scope.data.ShowImgPensionado)
-                $scope.data.errorDescNomina = 'Debe indicar sus descuentos';
+                $scope.data.errorDescNomina = 'Indica tus descuentos';
             else
-                $scope.data.errorDescNomina = 'Debe indicar sus descuentos por n\u00F3mina';
+                $scope.data.errorDescNomina = 'Indica tus descuentos por n\u00F3mina';
 
             return false;
         }
         if ($scope.data.ShowMonto) {
             if ($scope.data.montoAprox == '') {
-                $scope.data.errorMonto = 'Debe indicar la cantidad de dinero que necesita';
+                $scope.data.errorMonto = 'Indica la cantidad de dinero que necesita';
                 return false;
             }
             _montoAprox = $scope.data.montoAprox.replace(/\,/g, '');
             if (_montoAprox < $scope.data.minMontoPerimitido) {
-
-                $scope.data.errorMonto = "El monto del dinero no puede ser inferior a " + $filter('currency')($scope.data.minMontoPerimitido, '$', 0);
+                $scope.data.errorMonto = "El monto m\u00EDnimo que te prestamos es de " + $filter('currency')($scope.data.minMontoPerimitido, '$', 0);
                 return false;
             }
             if (_montoAprox > $scope.data.maxMontoPerimitido) {
@@ -244,13 +243,13 @@ app.controller('LibranzaController', ['$scope', '$window', '$filter', function (
         }
         if ($scope.data.ShowCuota) {
             if ($scope.data.cuotaAprox == '') {
-                $scope.data.errorCuota = 'Debe indicar la cuota que quiere pagar';
+                $scope.data.errorCuota = 'Indica la cuota que quieres pagar';
                 return false;
             }
         }
 
         if ($scope.data.plazo == '') {
-            $scope.data.errorplazo = 'Debe indicar el plazo en el que quiere pagar';
+            $scope.data.errorplazo = 'Indica el plazo en el que quieres pagar';
             return false;
         }
 
@@ -294,13 +293,13 @@ app.controller('LibranzaController', ['$scope', '$window', '$filter', function (
         }
         else if ($scope.data.ShowCuota) {
             if ($scope.data.maxCuota < $scope.data.capacidadDescuentoCuota) {
-                $scope.data.errorexcede = "La cuota indicada excede tu capacidad de descuento";
+                $scope.data.errorexcede = "La cuota indicada excede tu capacidad de descuento, solicita un monto menor";
                 return;
             }
 
             _cuotaAprox = $scope.data.cuotaAprox.replace(/\,/g, '');
             if (_cuotaAprox > $scope.data.maxCuota) {
-                $scope.data.errorexcede = "La cuota indicada excede tu capacidad de descuento";
+                $scope.data.errorexcede = "La cuota indicada excede tu capacidad de descuento, solicita un monto menor";
                 return;
             }
 
@@ -372,21 +371,21 @@ app.controller('LibranzaController', ['$scope', '$window', '$filter', function (
         $scope.data.erroremail = '';
 
         if ($scope.data.nombre == '') {
-            $scope.data.errornombre = 'Debe ingresar su nombre y apellido';
+            $scope.data.errornombre = 'Ingresa tu nombre y apellido';
             return false;
         }
         var expresion = /^3[\d]{9}$/;
         if (isNaN($scope.data.celular) || !expresion.test($scope.data.celular)) {
-            $scope.data.errorcel = "Debe ingresar un n\u00FAmero con el formato correcto";
+            $scope.data.errorcel = "Ingresa un n\u00FAmero con el formato correcto";
             return false;
         }
         if ($scope.data.email == '') {
-            $scope.data.erroremail = 'Debe ingresar su correo electr\u00F3nico';
+            $scope.data.erroremail = 'Ingresa tu correo electr\u00F3nico';
             return false;
         }
         var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         if (!regex.test($scope.data.email)) {
-            $scope.data.erroremail = 'Debe ingresar una direcci\u00F3n de correo electr\u00F3nico con el formato correcto';
+            $scope.data.erroremail = 'Ingresar una direcci\u00F3n de correo electr\u00F3nico con el formato correcto';
             return false;
         }
 

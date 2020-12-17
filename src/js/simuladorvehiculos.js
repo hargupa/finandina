@@ -30,18 +30,20 @@ app.controller('SimuladorController', ['$scope', '$window', '$filter', function 
         errorCuota: '',
         errorMonto: '',
 
-        ShowMonto72Meses: true,
+        cuota72meses: '',
+        cuota60meses: '',
+        cuota48meses: '',
+        cuota36meses: '',
+        cuota24meses: '',
+        cuota12meses: '',
+
         ShowMonto72MesesCuota: false,
-        ShowMonto60Meses: true,
         ShowMonto60MesesCuota: false,
-        ShowMonto48Meses: true,
         ShowMonto48MesesCuota: false,
-        ShowMonto36Meses: true,
         ShowMonto36MesesCuota: false,
-        ShowMonto24Meses: true,
         ShowMonto24MesesCuota: false,
-        ShowMonto12Meses: true,
         ShowMonto12MesesCuota: false,
+
         ShowImgCarro: true,
         ShowImgMoto: false,
         ShowTextoPorcentaje: false,
@@ -61,59 +63,56 @@ app.controller('SimuladorController', ['$scope', '$window', '$filter', function 
     }
 
     $scope.MostrarCuota = function (id) {
-        $scope.data.ShowMonto72Meses = true;
         $scope.data.ShowMonto72MesesCuota = false;
-        $scope.data.ShowMonto60Meses = true;
         $scope.data.ShowMonto60MesesCuota = false;
-        $scope.data.ShowMonto48Meses = true;
         $scope.data.ShowMonto48MesesCuota = false;
-        $scope.data.ShowMonto36Meses = true;
         $scope.data.ShowMonto36MesesCuota = false;
-        $scope.data.ShowMonto24Meses = true;
         $scope.data.ShowMonto24MesesCuota = false;
-        $scope.data.ShowMonto12Meses = true;
         $scope.data.ShowMonto12MesesCuota = false;
 
         switch (id) {
             case 1:
-                $scope.data.ShowMonto72Meses = false;
                 $scope.data.ShowMonto72MesesCuota = true;
                 $scope.data.plazo = 72;
+                $scope.data.cuotaMensual = $scope.data.cuota72meses;
                 break;
             case 2:
-                $scope.data.ShowMonto60Meses = false;
                 $scope.data.ShowMonto60MesesCuota = true;
                 $scope.data.plazo = 60;
+                $scope.data.cuotaMensual = $scope.data.cuota60meses;
                 break;
             case 3:
-                $scope.data.ShowMonto48Meses = false;
                 $scope.data.ShowMonto48MesesCuota = true;
                 $scope.data.plazo = 48;
+                $scope.data.cuotaMensual = $scope.data.cuota48meses;
                 break;
             case 4:
-                $scope.data.ShowMonto36Meses = false;
                 $scope.data.ShowMonto36MesesCuota = true;
                 $scope.data.plazo = 36;
+                $scope.data.cuotaMensual = $scope.data.cuota36meses;
                 break;
             case 5:
-                $scope.data.ShowMonto24Meses = false;
                 $scope.data.ShowMonto24MesesCuota = true;
                 $scope.data.plazo = 24;
+                $scope.data.cuotaMensual = $scope.data.cuota24meses;
                 break;
             case 6:
-                $scope.data.ShowMonto12Meses = false;
                 $scope.data.ShowMonto12MesesCuota = true;
                 $scope.data.plazo = 12;
+                $scope.data.cuotaMensual = $scope.data.cuota12meses;
+                break;
+            default:
+                $scope.data.cuotaMensual = '';
+                $scope.data.plazo = '';
                 break;
         }
 
         //calcular MONTO FINANCIAR y CUOTA MENSUAL si cambia el plazo
-        $scope.calcularDatos();
+        //$scope.calcularDatos();
 
-        if ($scope.data.ShowImgCarro == false) {
-            $scope.data.ShowMonto72Meses = false;
+        if ($scope.data.ShowImgCarro == false)
             $scope.data.ShowMonto72MesesCuota = false;
-        }
+
 
     };
 
@@ -174,7 +173,7 @@ app.controller('SimuladorController', ['$scope', '$window', '$filter', function 
         }*/
 
         if ($scope.data.cuotaInicial == '' && $scope.data.ShowTextoUsado) {
-            $scope.data.errorCuota = "ingrese cuota Inicial del veh\u00CDculo";
+            $scope.data.errorCuota = "Indica la cuota inicial del veh\u00CDculo";
             return false;
         }
 
@@ -215,13 +214,17 @@ app.controller('SimuladorController', ['$scope', '$window', '$filter', function 
         $scope.data.montoFinanciar = _montoFinanciar >= 0 ? _montoFinanciar : 0;
 
         if ($scope.data.montoFinanciar < $scope.data.minMonto) {
-            $scope.data.errorMonto = "El monto m\u00CDnimo a financiar debe ser mayor que " + $filter('currency')($scope.data.minMonto, '$', 0);
+            $scope.data.errorMonto = "El monto m\u00EDnimo a financiar debe ser mayor que " + $filter('currency')($scope.data.minMonto, '$', 0);
             return false;
         }
 
-        if ($scope.data.plazo != '')
-            $scope.data.cuotaMensual = $scope.calculoCuotaMensual($scope.data.tasa, $scope.data.plazo, $scope.data.montoFinanciar);
-
+        $scope.data.cuota72meses = $scope.calculoCuotaMensual($scope.data.tasa, 72, $scope.data.montoFinanciar);
+        $scope.data.cuota60meses = $scope.calculoCuotaMensual($scope.data.tasa, 60, $scope.data.montoFinanciar);
+        $scope.data.cuota48meses = $scope.calculoCuotaMensual($scope.data.tasa, 48, $scope.data.montoFinanciar);
+        $scope.data.cuota36meses = $scope.calculoCuotaMensual($scope.data.tasa, 36, $scope.data.montoFinanciar);
+        $scope.data.cuota24meses = $scope.calculoCuotaMensual($scope.data.tasa, 24, $scope.data.montoFinanciar);
+        $scope.data.cuota12meses = $scope.calculoCuotaMensual($scope.data.tasa, 12, $scope.data.montoFinanciar);
+        $scope.MostrarCuota();
     };
 
     $scope.calculoPorcentajeFinanciacion = function () {
@@ -264,21 +267,21 @@ app.controller('SimuladorController', ['$scope', '$window', '$filter', function 
         $scope.data.erroremail = '';
 
         if ($scope.data.nombre == '') {
-            $scope.data.errornombre = 'Debe ingresar su nombre y apellido';
+            $scope.data.errornombre = 'Indica tu nombre y apellido';
             return false;
         }
         var expresion = /^3[\d]{9}$/;
         if (isNaN($scope.data.celular) || !expresion.test($scope.data.celular)) {
-            $scope.data.errorcel = "Debe ingresar un n\u00FAmero con el formato correcto";
+            $scope.data.errorcel = "Indica un n\u00FAmero con el formato correcto";
             return false;
         }
         if ($scope.data.email == '') {
-            $scope.data.erroremail = 'Debe ingresar su correo electr\u00F3nico';
+            $scope.data.erroremail = 'Indica tu correo electr\u00F3nico';
             return false;
         }
         var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         if (!regex.test($scope.data.email)) {
-            $scope.data.erroremail = 'Debe ingresar una direcci\u00F3n de correo electr\u00F3nico con el formato correcto';
+            $scope.data.erroremail = 'Indica una direcci\u00F3n de correo electr\u00F3nico con el formato correcto';
             return false;
         }
 

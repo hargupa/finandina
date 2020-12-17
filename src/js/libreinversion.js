@@ -195,7 +195,7 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
         $scope.MostrarCuota();
 
         if ($scope.data.cuotaMensual == '') {
-            $scope.data.errorplazo = "elige un plazo";
+            $scope.data.errorplazo = "Elige un plazo";
             return false;
         }
     };
@@ -407,7 +407,7 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
 
             var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
             if (!regex.test($scope.data.email)) {
-                $scope.data.erroremail = 'Debe ingresar una direcci\u00F3n de correo electr\u00F3nico con el formato correcto';
+                $scope.data.erroremail = 'Indica una direcci\u00F3n de correo electr\u00F3nico con el formato correcto';
                 return false;
             }
 

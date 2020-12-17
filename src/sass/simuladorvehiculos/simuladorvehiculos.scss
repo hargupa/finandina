@@ -77,7 +77,7 @@ body {
     color: #707070;
     font-family: "Open_Sans_Regular";
     background: #fff;
-    border: 1px solid #EE2552;
+    border: 1px solid #CCCCCC;
     padding: 0 10px;
     border-radius: 3px;
 }
@@ -416,8 +416,9 @@ footer {
                     color: #EE2552;
                 }
             }
-            .ctrol-gris{
-                    border: 1px solid #ccc;
+
+            .ctrol-gris {
+                border: 1px solid #ccc;
             }
 
 
@@ -542,9 +543,19 @@ footer {
                 }
             }
 
-            .caja-plazos-monto {
+            .caja-plazos-monto.select {
                 background: #FCE6EB 0% 0% no-repeat padding-box;
                 border: 1px solid #F4849E;
+
+                .caja-derecha.texto-info {
+                    border: 1px solid #F4849E;
+                }
+            }
+
+
+            .caja-plazos-monto {
+                background-color: #F4F4F4;
+                border: 1px solid #CCCCCC;
                 border-radius: 6px;
                 opacity: 1;
                 height: 84px;
@@ -621,7 +632,7 @@ footer {
         }
 
         .content-buttons {
-            margin: 40px auto 40px auto;
+            margin: 40px auto 20px;
             display: flex;
             width: 90%;
 
@@ -679,6 +690,17 @@ footer {
 
 
 
+.botoncentral {
+    margin: 20px auto;
+
+    a {
+        color: #ED2529;
+    }
+
+    svg {
+        fill: #ED2529;
+    }
+}
 
 
 
@@ -1114,7 +1136,7 @@ input:focus, input.form-control:focus {
             .content-buttons {
                 display: flex;
                 flex-direction: column;
-                margin: 30px auto 60px auto;
+                margin: 30px auto;
 
                 .button-izquierdo {
                     margin: auto auto auto auto;
