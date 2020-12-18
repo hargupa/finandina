@@ -91,7 +91,9 @@
                                 </div>
                             </div>
                         </div>
-                        <span class="error">{{data.erroringresos}}</span>
+                        <span class="error" ng-if="data.erroringresos">Indica tus ingresos mensuales</span>
+                        <span class="error" ng-if="data.erroringresosmin">Ingreso mínimo ${{data.minIngresos | number}}</span>
+
 
                         <div class="texto-superior-derecho">
                             <p>Elige el destino de tu crédito</p>
@@ -137,15 +139,16 @@
                             </div>
                         </div>
                         <div class="contenedor-msg">
-                            <span class="error">{{data.errornecesito}}</span>
+                            <span class="error" ng-if="data.errornecesito">Indica el monto del dinero que necesitas</span>
+                            <span class="error" ng-if="data.errornecesitomin">El monto mínimo que te prestamos es de ${{data.minMonto | number}}</span>
+                            <span class="error" ng-if="data.errornecesitomax">El monto máximo que te prestamos es de ${{data.maxMonto | number}}</span>
+                            <span class="error" ng-if="data.errornecesitocomparado">El monto que intentas solicitar es superior a tu capacidad de endeudamiento, el valor máximo que te podemos prestar es ${{prestamoTotal | number}}</span>
                         </div>
-
 
                         <div class="texto-plazo">
                             <p>Elige el plazo e identifica una cuota que se acomode a tu bolsillo o flujo de caja:</p>
                         </div>
-
-                        <span class="error">{{data.errorplazo}}</span>
+                        <span class="error" ng-if="data.errorplazo">Elige un plazo</span>
                         <!--<div class="content-caja-monto" >
                             <div class="caja-plazos">
                                 <label for="modelocarro">60 meses</label>

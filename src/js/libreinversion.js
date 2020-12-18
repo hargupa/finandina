@@ -31,10 +31,14 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
         envioOK: false,//variable para envio de correo
 
         sendOK: false,//Variable para envio de formulario
-        erroringresos: '',
-        errornecesito: '',
+        erroringresos: false,
+        erroringresosmin: false,
+        errornecesito: false,
+        errornecesitomin: false,
+        errornecesitomax: false,
+        errornecesitocomparado: false,
         ShowErrorValor: false,
-        errorplazo: '',
+        errorplazo: false,
 
 
         cuota60meses: '',
@@ -64,7 +68,7 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
     }
 
     $scope.MostrarCuota = function (id) {
-        $scope.data.errorplazo = '';
+        $scope.data.errorplazo = false;
         $scope.data.ShowMonto60MesesCuota = false;
         $scope.data.ShowMonto48MesesCuota = false;
         $scope.data.ShowMonto36MesesCuota = false;
@@ -118,25 +122,30 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
 
     /**************CALCULO LIBRE INVERSION *****************/
     $scope.validaciones = function () {
-        $scope.data.erroringresos = '';
-        $scope.data.errornecesito = '';
-        $scope.data.errorplazo = '';
+        $scope.data.erroringresos = false;
+        $scope.data.erroringresosmin = false;
+        $scope.data.errornecesito = false;
+        $scope.data.errornecesitomin = false;
+        $scope.data.errornecesitomax = false;
+        $scope.data.errornecesitocomparado = false
+        $scope.data.errorplazo = false;
+
         $scope.data.cuotaMensual = '';
         $scope.data.ShowErrorValor = false;
 
         if ($scope.data.ingresos == "") {
-            $scope.data.erroringresos = "Indica tus ingresos mensuales";
+            $scope.data.erroringresos = true;
             return false;
         }
 
         var _ingresos = $scope.data.ingresos.replace(/\,/g, '');
         if (_ingresos < $scope.data.minIngresos) {
-            $scope.data.erroringresos = "Ingreso m\u00EDnimo " + $filter('currency')($scope.data.minIngresos, '$', 0);
+            $scope.data.erroringresosmin = true;
             return false;
         }
 
         if ($scope.data.dineronecesito == "") {
-            $scope.data.errornecesito = "Indica el monto del dinero que necesitas";
+            $scope.data.errornecesito = true;
             $scope.data.ShowErrorValor = true;
             return false;
         }
@@ -145,26 +154,26 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
         _ingresos = $scope.data.ingresos.replace(/\,/g, '');
 
         if (_dineronecesito < $scope.data.minMonto) {
-            $scope.data.errornecesito = "El monto m\u00EDnimo que te prestamos es de " + $filter('currency')($scope.data.minMonto, '$', 0);
+            $scope.data.errornecesitomin = true;
             $scope.data.ShowErrorValor = true;
             return false;
         }
 
-        var prestamoTotal = _ingresos * 10;
+        $scope.prestamoTotal = _ingresos * 10;
         //if (prestamoTotal > $scope.data.maxMonto) {
         //    $scope.data.errornecesito = "El monto m\u00E1ximo que te podemos prestar es " + $filter('currency')($scope.data.maxMonto, '$', 0);
         //    $scope.data.ShowErrorValor = true;
         //    return false;
         //}
 
-        if (_dineronecesito > prestamoTotal) {
-            $scope.data.errornecesito = "El monto que intentas solicitar es superior a tu capacidad de endeudamiento, el valor m\u00E1ximo que te podemos prestar es " + $filter('currency')(prestamoTotal, '$', 0);
+        if (_dineronecesito > $scope.prestamoTotal) {
+            $scope.data.errornecesitocomparado = true;
             $scope.data.ShowErrorValor = true;
             return false;
         }
 
         if (_dineronecesito > $scope.data.maxMonto) {
-            $scope.data.errornecesito = "El monto m\u00E1ximo que te prestamos es de " + $filter('currency')($scope.data.maxMonto, '$', 0);
+            $scope.data.errornecesitomax = true;
             $scope.data.ShowErrorValor = true;
             return false;
         }
@@ -195,7 +204,8 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
         $scope.MostrarCuota();
 
         if ($scope.data.cuotaMensual == '') {
-            $scope.data.errorplazo = "Elige un plazo";
+            $scope.data.errorplazo = true;
+            //$scope.data.errorplazo = "Elige un plazo";
             return false;
         }
     };
