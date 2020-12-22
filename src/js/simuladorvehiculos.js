@@ -158,6 +158,14 @@ app.controller('SimuladorController', ['$scope', '$window', '$filter', function 
         $scope.data.errorMonto = '';
         $scope.data.errorModelo = '';
         $scope.data.cuotaMensual = '';
+
+        $scope.data.cuotaMensual = '';
+        $scope.data.cuota60meses = '';
+        $scope.data.cuota48meses = '';
+        $scope.data.cuota36meses = '';
+        $scope.data.cuota24meses = '';
+        $scope.data.cuota12meses = '';
+
         $scope.agregarClase();
         /*if ($scope.data.anioModelo == '') {
             $scope.data.errorModelo = "ingrese el a\u00F1o del modelo del veh\u00CDculo";

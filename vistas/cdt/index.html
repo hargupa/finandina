@@ -5,10 +5,16 @@
     <!--<meta http-equiv="refresh" content="10">-->
     <meta charset="UTF-8">
 
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <link href="../../css/cdt/simuladorcdt.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/cdt/simuladorcdt.min.css">
+    <link rel="stylesheet" type="text/css" href="../../plugins/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="../../plugins/slick/slick-theme.css" />
     <script src="../../js/angular.min.js"></script>
     <script src="../../src/js/simuladocdt.js"></script>
+    <script type="text/javascript" src="../../plugins/slick/slick.js"></script>
     <title>simulador creditos de cdt</title>
 
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
@@ -32,7 +38,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" ng-init="cargarslide()">
         <div class="col-12">
             <div class="card">
                 <div class="col-12 side-left">
@@ -54,7 +60,12 @@
                         <div id="c3" class="circunferencia2"></div>
                         <div id="c4" class="circunferencia2"></div>
                     </div>
-
+                    <div class="carrusel" style="display: grid;text-align: -webkit-center">
+                        <div><img src="../../img/general/family-1.png" alt="family-1" /></div>
+                        <div><img src="../../img/general/family-2.png" alt="family-2" /></div>
+                        <div><img src="../../img/general/family-3.png" alt="family-3" /></div>
+                        <div><img src="../../img/general/family-4.png" alt="family-4" /></div>
+                    </div>
                     <div class="texto-inferior-imagen">
                         <div class="img-super"><img src="../../img/general/super.svg"></div>
                         <div class="texto">
@@ -87,7 +98,7 @@
                                 </div>
                                 <div class="input-porcentaje">
                                     <input ng-model="data.tasaEA_texto" type="text" autocomplete="off" readonly>
-                                    <label class="label-resp-fecha" for="modelocarro">Tasa M.V.</label>
+                                    <label class="label-resp-fecha" for="modelocarro">Tasa E.A.</label>
                                 </div>
                             </div>
                         </div>
@@ -276,22 +287,22 @@
         };
 
         function resize() {
-            if (document.documentElement.clientWidth < 400) {
-                document.getElementById('img-dinamica').style.height = '200px';
-                document.getElementById('img-msg').style.width = '41%';
-                document.getElementById('img-msg').style.left = '28px';
-                document.getElementById('img-family').style.marginLeft = '1px';
-                document.getElementById('fogafin').style.marginTop = '169px';
-                document.getElementById('fogafin').style.marginLeft = '-36px';
-            } else {
-                document.getElementById('img-dinamica').style.height = '70%';
-                document.getElementById('img-msg').style.maxWidth = '100%';
-                document.getElementById('img-msg').style.left = '25px';
-                document.getElementById('img-family').style.marginLeft = '-30px';
-                document.getElementById('fogafin').style.marginTop = '359px';
-                document.getElementById('fogafin').style.marginLeft = '-120px';
+            //if (document.documentElement.clientWidth < 400) {
+            //    document.getElementById('img-dinamica').style.height = '200px';
+            //    document.getElementById('img-msg').style.width = '41%';
+            //    document.getElementById('img-msg').style.left = '28px';
+            //    document.getElementById('img-family').style.marginLeft = '1px';
+            //    document.getElementById('fogafin').style.marginTop = '169px';
+            //    document.getElementById('fogafin').style.marginLeft = '-36px';
+            //} else {
+            //    document.getElementById('img-dinamica').style.height = '70%';
+            //    document.getElementById('img-msg').style.maxWidth = '100%';
+            //    document.getElementById('img-msg').style.left = '25px';
+            //    document.getElementById('img-family').style.marginLeft = '-30px';
+            //    document.getElementById('fogafin').style.marginTop = '359px';
+            //    document.getElementById('fogafin').style.marginLeft = '-120px';
 
-            }
+            //}
         }
 
 

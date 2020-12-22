@@ -131,6 +131,11 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
         $scope.data.errorplazo = false;
 
         $scope.data.cuotaMensual = '';
+        $scope.data.cuota60meses = '';
+        $scope.data.cuota48meses = '';
+        $scope.data.cuota36meses = '';
+        $scope.data.cuota24meses = '';
+        $scope.data.cuota12meses = '';
         $scope.data.ShowErrorValor = false;
 
         if ($scope.data.ingresos == "") {
@@ -487,6 +492,19 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
 
     $scope.showindex = function () {
         $window.location.href = 'index.html'
+    }
+
+    $scope.cargarslide = function () {
+
+        $('.carrusel').slick({
+            dots: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            speed: 1500,
+            fade: true,
+        });
     }
 }]);
 

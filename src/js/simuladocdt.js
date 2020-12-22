@@ -31,6 +31,7 @@ app.controller('CdtController', ['$scope', '$window', '$filter', function ($scop
         mindias: 90,
         maxdias: 540,
         minMontoInversion: 1000000,
+        maxMontoInversion: 100000000,
 
         lstTasas: [
             //tasas para monto de inversion entre 1 millon y 100 millones 
@@ -61,7 +62,7 @@ app.controller('CdtController', ['$scope', '$window', '$filter', function ($scop
 
         if (obj != null) {
             $scope.data.tasaEA = obj.tasa;
-            $scope.data.tasaEA_texto = obj.tasa + '% EA';
+            $scope.data.tasaEA_texto = obj.tasa + '%';
         }
         else {
             var maxValue = 0;
@@ -78,7 +79,7 @@ app.controller('CdtController', ['$scope', '$window', '$filter', function ($scop
             }
 
             $scope.data.tasaEA = maxValue;
-            $scope.data.tasaEA_texto = maxValue + '% EA';
+            $scope.data.tasaEA_texto = maxValue + '%';
 
         }
 
@@ -94,25 +95,29 @@ app.controller('CdtController', ['$scope', '$window', '$filter', function ($scop
         $scope.data.totalInversion = '';
 
         if ($scope.data.montoInversion == "") {
-            $scope.data.errormonto = "Indica el monto de la inversi\u00F3n";
+            $scope.data.errormonto = "Ingresa el monto de tu inversi\u00F3n";
             return false;
         }
-        if ($scope.data.plazoDias == "" || $scope.data.plazoDias == null) {
-            $scope.data.errordias = "Indica el plazo en d\u00EDas";
+        _montoInversion = $scope.data.montoInversion.replace(/\,/g, '');
+        if (_montoInversion < $scope.data.minMontoInversion) {
+            $scope.data.errormonto = "El monto m\u00EDnimo de tu inversi\u00F3n es " + $filter('currency')($scope.data.minMontoInversion, '$', 0);
+            return false;
+        }
+        if (_montoInversion > $scope.data.maxMontoInversion) {
+            $scope.data.errormonto = "El monto m\u00E1ximo para tu inversi\u00F3n es " + $filter('currency')($scope.data.maxMontoInversion, '$', 0);
             return false;
         }
 
-        _montoInversion = $scope.data.montoInversion.replace(/\,/g, '');
-        if (_montoInversion < $scope.data.minMontoInversion) {
-            $scope.data.errormonto = "El monto m\u00EDnimo para la inversi\u00F3n es de " + $filter('currency')($scope.data.minMontoInversion, '$', 0);
+        if ($scope.data.plazoDias == "" || $scope.data.plazoDias == null) {
+            $scope.data.errordias = "Ingresa el plazo en d\u00EDas, m\u00EDnimo " + $scope.data.mindias;
             return false;
         }
         if ($scope.data.plazoDias < $scope.data.mindias) {
-            $scope.data.errordias = "El m\u00EDnimo de d\u00EDas es " + $scope.data.mindias + ' d\u00EDas.';
+            $scope.data.errordias = "Ingresa el plazo en d\u00EDas, m\u00EDnimo " + $scope.data.mindias;
             return false;
         }
         if ($scope.data.plazoDias > $scope.data.maxdias) {
-            $scope.data.errordias = "El m\u00E1ximo de d\u00EDas es " + $scope.data.maxdias + ' d\u00EDas.';
+            $scope.data.errordias = "Ingresa el plazo en d\u00EDas, m\u00E1ximo " + $scope.data.maxdias;
             return false;
         }
 
@@ -128,7 +133,7 @@ app.controller('CdtController', ['$scope', '$window', '$filter', function ($scop
         netoTotal = $scope.cdtNormal(_montoInversion);
         //netoTotal = $scope.cdtDesmaterializado();
 
-        $scope.data.montoInteresNeto = netoTotal.toFixed(2);
+        $scope.data.montoInteresNeto = Math.round(netoTotal);
         $scope.data.totalInversion = parseInt(_montoInversion) + parseInt($scope.data.montoInteresNeto);
 
         var _fechafinal = new Date();
@@ -320,7 +325,18 @@ app.controller('CdtController', ['$scope', '$window', '$filter', function ($scop
         $window.location.href = 'index.html';
     }
 
+    $scope.cargarslide = function () {
 
+        $('.carrusel').slick({
+            dots: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            speed: 1000,
+            fade: true,
+        });
+    }
 }]);
 
 //SERCCION DE DIRECTIVAS
