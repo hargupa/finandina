@@ -203,134 +203,120 @@
                         <span class="error">{{data.errorplazo}}</span>
                         <span class="error">{{data.errorexcede}}</span>
 
-                        <div class="content-caja-monto" ng-show="data.ShowImgPensionado && data.ShowMonto120Meses" ng-click="MostrarCuota(id=0)">
+                        <!--<div class="content-caja-monto" ng-show="data.ShowImgPensionado && data.ShowMonto120Meses" >
                             <div class="caja-plazos ">
                                 <label for="modelocarro">120 meses</label>
                             </div>
-                        </div>
-                        <div class="content-caja-monto" ng-show="data.ShowImgPensionado && data.ShowMonto120MesesCuota">
-                            <div class="caja-plazos-monto ">
+                        </div>-->
+                        <div class="content-caja-monto" ng-show="data.ShowImgPensionado" ng-click="MostrarCuota(id=1)">
+                            <div class="caja-plazos-monto " ng-class="{'select':data.Show120Meses}">
                                 <div class="content-monto">
                                     <div class="content-monto-sup">
                                         <span class="caja-izquierda"><p>120 meses</p></span>
-                                        <span class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
+                                        <span ng-show="data.Show120Meses" class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
                                     </div>
                                     <div class="content-monto-inf">
                                         <span class="caja-izquierda">
                                             <p ng-show="data.ShowMonto">Cuota mensual</p>
                                             <p ng-show="data.ShowCuota">Monto aproximado</p>
                                         </span>
-                                        <span class="caja-derecha texto-info">$ {{data.AproxCalculada | number}}</span>
+                                        <span ng-show="data.ShowMonto" class="caja-derecha texto-info">$ {{data.Monto120 | number}}</span>
+                                        <span ng-show="data.ShowCuota" class="caja-derecha texto-info">$ {{data.Cuota120 | number}}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="content-caja-monto" ng-show="data.ShowMonto108Meses" ng-click="MostrarCuota(id=1)">
-                            <div class="caja-plazos ">
-                                <label for="modelocarro">108 meses</label>
-                            </div>
-                        </div>
-                        <div class="content-caja-monto" ng-show="data.ShowMonto108MesesCuota">
-                            <div class="caja-plazos-monto ">
+                        <div class="content-caja-monto" ng-click="MostrarCuota(id=2)">
+                            <div class="caja-plazos-monto " ng-class="{'select':data.Show108Meses}">
                                 <div class="content-monto">
                                     <div class="content-monto-sup">
                                         <span class="caja-izquierda"><p>108 meses</p></span>
-                                        <span class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
+                                        <span ng-show="data.Show108Meses" class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
                                     </div>
                                     <div class="content-monto-inf">
                                         <span class="caja-izquierda">
                                             <p ng-show="data.ShowMonto">Cuota mensual</p>
                                             <p ng-show="data.ShowCuota">Monto aproximado</p>
                                         </span>
-                                        <span class="caja-derecha texto-info">$ {{data.AproxCalculada | number}}</span>
+                                        <span ng-show="data.ShowMonto" class="caja-derecha texto-info">$ {{data.Monto108 | number}}</span>
+                                        <span ng-show="data.ShowCuota" class="caja-derecha texto-info">$ {{data.Cuota108 | number}}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="content-caja-monto" ng-show="data.ShowMonto96Meses" ng-click="MostrarCuota(id=2)">
-                            <div class="caja-plazos ">
-                                <label for="modelocarro">96 meses</label>
-                            </div>
-                        </div>
-                        <div class="content-caja-monto" ng-show="data.ShowMonto96MesesCuota">
-                            <div class="caja-plazos-monto ">
+                        <div class="content-caja-monto" ng-click="MostrarCuota(id=3)">
+                            <div class="caja-plazos-monto " ng-class="{'select':data.Show96Meses}">
                                 <div class="content-monto">
                                     <div class="content-monto-sup">
                                         <span class="caja-izquierda"><p>96 meses</p></span>
-                                        <span class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
+                                        <span ng-show="data.Show96Meses" class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
                                     </div>
                                     <div class="content-monto-inf">
                                         <span class="caja-izquierda">
                                             <p ng-show="data.ShowMonto">Cuota mensual</p>
                                             <p ng-show="data.ShowCuota">Monto aproximado</p>
                                         </span>
-                                        <span class="caja-derecha texto-info">$ {{data.AproxCalculada | number}}</span>
+                                        <span ng-show="data.ShowMonto" class="caja-derecha texto-info">$ {{data.Monto96 | number}}</span>
+                                        <span ng-show="data.ShowCuota" class="caja-derecha texto-info">$ {{data.Cuota96 | number}}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="content-caja-monto" ng-show="data.ShowMonto84Meses" ng-click="MostrarCuota(id=3)">
-                            <div class="caja-plazos ">
-                                <label for="modelocarro">84 meses</label>
-                            </div>
-                        </div>
-                        <div class="content-caja-monto" ng-show="data.ShowMonto84MesesCuota">
-                            <div class="caja-plazos-monto ">
+                        <div class="content-caja-monto" ng-click="MostrarCuota(id=4)">
+                            <div class="caja-plazos-monto " ng-class="{'select':data.Show84Meses}">
                                 <div class="content-monto">
                                     <div class="content-monto-sup">
                                         <span class="caja-izquierda"><p>84 meses</p></span>
-                                        <span class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
+                                        <span ng-show="data.Show84Meses" class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
                                     </div>
                                     <div class="content-monto-inf">
                                         <span class="caja-izquierda">
                                             <p ng-show="data.ShowMonto">Cuota mensual</p>
                                             <p ng-show="data.ShowCuota">Monto aproximado</p>
                                         </span>
-                                        <span class="caja-derecha texto-info">$ {{data.AproxCalculada | number}}</span>
+                                        <span ng-show="data.ShowMonto" class="caja-derecha texto-info">$ {{data.Monto84 | number}}</span>
+                                        <span ng-show="data.ShowCuota" class="caja-derecha texto-info">$ {{data.Cuota84 | number}}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="content-caja-monto" ng-show="data.ShowMonto72Meses" ng-click="MostrarCuota(id=4)">
+                        <!--<div class="content-caja-monto" ng-show="data.ShowMonto72Meses" ng-click="MostrarCuota(id=4)">
                             <div class="caja-plazos ">
                                 <label for="modelocarro">72 meses</label>
                             </div>
-                        </div>
-                        <div class="content-caja-monto" ng-show="data.ShowMonto72MesesCuota">
-                            <div class="caja-plazos-monto ">
+                        </div>-->
+                        <div class="content-caja-monto" ng-click="MostrarCuota(id=5)">
+                            <div class="caja-plazos-monto " ng-class="{'select':data.Show72Meses}">
                                 <div class="content-monto">
                                     <div class="content-monto-sup">
                                         <span class="caja-izquierda"><p>72 meses</p></span>
-                                        <span class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
+                                        <span ng-show="data.Show72Meses" class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
                                     </div>
                                     <div class="content-monto-inf">
                                         <span class="caja-izquierda">
                                             <p ng-show="data.ShowMonto">Cuota mensual</p>
                                             <p ng-show="data.ShowCuota">Monto aproximado</p>
                                         </span>
-                                        <span class="caja-derecha texto-info">$ {{data.AproxCalculada | number}}</span>
+                                        <span ng-show="data.ShowMonto" class="caja-derecha texto-info">$ {{data.Monto72 | number}}</span>
+                                        <span ng-show="data.ShowCuota" class="caja-derecha texto-info">$ {{data.Cuota72 | number}}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="content-caja-monto" ng-show="data.ShowMonto60Meses" ng-click="MostrarCuota(id=5)">
-                            <div class="caja-plazos ">
-                                <label for="modelocarro">60 meses</label>
-                            </div>
-                        </div>
-                        <div class="content-caja-monto" ng-show="data.ShowMonto60MesesCuota">
-                            <div class="caja-plazos-monto ">
+                        <div class="content-caja-monto" ng-click="MostrarCuota(id=6)">
+                            <div class="caja-plazos-monto " ng-class="{'select':data.Show60Meses}">
                                 <div class="content-monto">
                                     <div class="content-monto-sup">
                                         <span class="caja-izquierda"><p>60 meses</p></span>
-                                        <span class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
+                                        <span ng-show="data.Show60Meses" class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
                                     </div>
                                     <div class="content-monto-inf">
                                         <span class="caja-izquierda">
                                             <p ng-show="data.ShowMonto">Cuota mensual</p>
                                             <p ng-show="data.ShowCuota">Monto aproximado</p>
                                         </span>
-                                        <span class="caja-derecha texto-info">$ {{data.AproxCalculada | number}}</span>
+                                        <span ng-show="data.ShowMonto" class="caja-derecha texto-info">$ {{data.Monto60 | number}}</span>
+                                        <span ng-show="data.ShowCuota" class="caja-derecha texto-info">$ {{data.Cuota60 | number}}</span>
                                     </div>
                                 </div>
                             </div>

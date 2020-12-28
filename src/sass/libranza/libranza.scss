@@ -585,6 +585,8 @@ footer {
             }
         }
 
+
+
         .content-caja-monto {
             width: 100%;
             max-width: 100%;
@@ -612,9 +614,18 @@ footer {
                 }
             }
 
-            .caja-plazos-monto {
+            .caja-plazos-monto.select {
                 background: #D2F6FF 0% 0% no-repeat padding-box;
                 border: 1px solid #24D1FD;
+
+                .caja-derecha.texto-info {
+                    border: 1px solid #24D1FD;
+                }
+            }
+
+            .caja-plazos-monto {
+                background-color: #F4F4F4;
+                border: 1px solid #CCCCCC;
                 border-radius: 6px;
                 opacity: 1;
                 height: 84px;

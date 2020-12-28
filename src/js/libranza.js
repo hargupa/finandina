@@ -44,18 +44,27 @@ app.controller('LibranzaController', ['$scope', '$window', '$filter', function (
         errorplazo: '',
         errorexcede: '',
 
-        ShowMonto120Meses: true,
-        ShowMonto120MesesCuota: false,
-        ShowMonto108Meses: true,
-        ShowMonto108MesesCuota: false,
-        ShowMonto96Meses: true,
-        ShowMonto96MesesCuota: false,
-        ShowMonto84Meses: true,
-        ShowMonto84MesesCuota: false,
-        ShowMonto72Meses: true,
-        ShowMonto72MesesCuota: false,
-        ShowMonto60Meses: true,
-        ShowMonto60MesesCuota: false,
+        Cuota120: '',
+        Cuota108: '',
+        Cuota96: '',
+        Cuota84: '',
+        Cuota72: '',
+        Cuota60: '',
+
+        Monto120: '',
+        Monto108: '',
+        Monto96: '',
+        Monto84: '',
+        Monto72: '',
+        Monto60: '',
+
+        Show120Meses: false,
+        Show108Meses: false,
+        Show96Meses: false,
+        Show84Meses: false,
+        Show72Meses: false,
+        Show60Meses: false,
+
         ShowTextoPorcentaje: false,
         ShowImgDefault: true,
         ShowImgSectorPublico: false,
@@ -98,18 +107,26 @@ app.controller('LibranzaController', ['$scope', '$window', '$filter', function (
     $scope.limpiarPlazo = function () {
         $scope.data.plazo = '';
 
-        $scope.data.ShowMonto120Meses = true;
-        $scope.data.ShowMonto120MesesCuota = false;
-        $scope.data.ShowMonto108Meses = true;
-        $scope.data.ShowMonto108MesesCuota = false;
-        $scope.data.ShowMonto96Meses = true;
-        $scope.data.ShowMonto96MesesCuota = false;
-        $scope.data.ShowMonto84Meses = true;
-        $scope.data.ShowMonto84MesesCuota = false;
-        $scope.data.ShowMonto72Meses = true;
-        $scope.data.ShowMonto72MesesCuota = false;
-        $scope.data.ShowMonto60Meses = true;
-        $scope.data.ShowMonto60MesesCuota = false;
+        $scope.data.Show120Meses = false;
+        $scope.data.Show108Meses = false;
+        $scope.data.Show96Meses = false;
+        $scope.data.Show84Meses = false;
+        $scope.data.Show72Meses = false;
+        $scope.data.Show60Meses = false;
+
+        $scope.data.Monto120 = '';
+        $scope.data.Monto108 = '';
+        $scope.data.Monto96 = '';
+        $scope.data.Monto84 = '';
+        $scope.data.Monto72 = '';
+        $scope.data.Monto60 = '';
+
+        $scope.data.Cuota120 = '';
+        $scope.data.Cuota108 = '';
+        $scope.data.Cuota96 = '';
+        $scope.data.Cuota84 = '';
+        $scope.data.Cuota72 = '';
+        $scope.data.Cuota60 = '';
     }
 
     $scope.CambiarActividad = function () {
@@ -141,41 +158,52 @@ app.controller('LibranzaController', ['$scope', '$window', '$filter', function (
     };
 
     $scope.MostrarCuota = function (id) {
-        $scope.limpiarPlazo();
+        $scope.data.plazo = '';
+
+        $scope.data.Show120Meses = false;
+        $scope.data.Show108Meses = false;
+        $scope.data.Show96Meses = false;
+        $scope.data.Show84Meses = false;
+        $scope.data.Show72Meses = false;
+        $scope.data.Show60Meses = false;
 
         switch (id) {
-            case 0:
-                $scope.data.plazo = 120;
-                $scope.data.ShowMonto120Meses = false;
-                $scope.data.ShowMonto120MesesCuota = true;
-                break;
             case 1:
-                $scope.data.plazo = 108;
-                $scope.data.ShowMonto108Meses = false;
-                $scope.data.ShowMonto108MesesCuota = true;
+                $scope.data.plazo = 120;
+                $scope.data.Show120Meses = true;
+                $scope.data.AproxCalculada = $scope.data.ShowMonto ? $scope.data.Monto120 : $scope.data.Cuota120;
                 break;
             case 2:
-                $scope.data.plazo = 96;
-                $scope.data.ShowMonto96Meses = false;
-                $scope.data.ShowMonto96MesesCuota = true;
+                $scope.data.plazo = 108;
+                $scope.data.Show108Meses = true;
+                $scope.data.AproxCalculada = $scope.data.ShowMonto ? $scope.data.Monto100 : $scope.data.Cuota108;
                 break;
             case 3:
-                $scope.data.plazo = 84;
-                $scope.data.ShowMonto84Meses = false;
-                $scope.data.ShowMonto84MesesCuota = true;
+                $scope.data.plazo = 96;
+                $scope.data.Show96Meses = true;
+                $scope.data.AproxCalculada = $scope.data.ShowMonto ? $scope.data.Monto96 : $scope.data.Cuota96;
                 break;
             case 4:
-                $scope.data.plazo = 72;
-                $scope.data.ShowMonto72Meses = false;
-                $scope.data.ShowMonto72MesesCuota = true;
+                $scope.data.plazo = 84;
+                $scope.data.Show84Meses = true;
+                $scope.data.AproxCalculada = $scope.data.ShowMonto ? $scope.data.Monto84 : $scope.data.Cuota84;
                 break;
             case 5:
+                $scope.data.plazo = 72;
+                $scope.data.Show72Meses = true;
+                $scope.data.AproxCalculada = $scope.data.ShowMonto ? $scope.data.Monto72 : $scope.data.Cuota72;
+                break;
+            case 6:
                 $scope.data.plazo = 60;
-                $scope.data.ShowMonto60Meses = false;
-                $scope.data.ShowMonto60MesesCuota = true;
+                $scope.data.Show60Meses = true;
+                $scope.data.AproxCalculada = $scope.data.ShowMonto ? $scope.data.Monto60 : $scope.data.Cuota60;
+                break;
+            default:
+                $scope.data.AproxCalculada = '';
+                $scope.data.plazo = '';
                 break;
         }
-        $scope.calcularDatos();
+        //$scope.calcularDatos();
     };
 
 
@@ -201,6 +229,8 @@ app.controller('LibranzaController', ['$scope', '$window', '$filter', function (
         $scope.data.errorplazo = '';
         $scope.data.errorexcede = '';
         $scope.data.AproxCalculada = '';
+
+        $scope.limpiarPlazo();
 
         if ($scope.data.selectActividad == '0') {
             $scope.data.errorActividad = "Indica tu actividad";
@@ -248,10 +278,10 @@ app.controller('LibranzaController', ['$scope', '$window', '$filter', function (
             }
         }
 
-        if ($scope.data.plazo == '') {
-            $scope.data.errorplazo = 'Indica el plazo en el que quieres pagar';
-            return false;
-        }
+        //if ($scope.data.plazo == '') {
+        //    $scope.data.errorplazo = 'Indica el plazo en el que quieres pagar';
+        //    return false;
+        //}
 
         return true;
     }
@@ -282,14 +312,18 @@ app.controller('LibranzaController', ['$scope', '$window', '$filter', function (
 
             _montoAprox = $scope.data.montoAprox.replace(/\,/g, '');
             //Segun funcion excel:  Pago 
-            var _AproxCalculada = $scope.calculoCuotaAprox($scope.data.tasa, $scope.data.plazo, _montoAprox);
+            $scope.data.Monto120 = $scope.calculoCuotaAprox($scope.data.tasa, 120, _montoAprox);
+            $scope.data.Monto108 = $scope.calculoCuotaAprox($scope.data.tasa, 108, _montoAprox);
+            $scope.data.Monto96 = $scope.calculoCuotaAprox($scope.data.tasa, 96, _montoAprox);
+            $scope.data.Monto84 = $scope.calculoCuotaAprox($scope.data.tasa, 84, _montoAprox);
+            $scope.data.Monto72 = $scope.calculoCuotaAprox($scope.data.tasa, 72, _montoAprox);
+            $scope.data.Monto60 = $scope.calculoCuotaAprox($scope.data.tasa, 60, _montoAprox);
 
-            if (_AproxCalculada > $scope.data.maxCuota) {
-                $scope.data.errorexcede = "La cuota mensual excede tu capacidad de descuento";
-                return;
-            }
-
-            $scope.data.AproxCalculada = _AproxCalculada;
+            //if (_AproxCalculada > $scope.data.maxCuota) {
+            //    $scope.data.errorexcede = "La cuota mensual excede tu capacidad de descuento";
+            //    return;
+            //}
+            //$scope.data.AproxCalculada = _AproxCalculada;
         }
         else if ($scope.data.ShowCuota) {
             if ($scope.data.maxCuota < $scope.data.capacidadDescuentoCuota) {
@@ -303,9 +337,16 @@ app.controller('LibranzaController', ['$scope', '$window', '$filter', function (
                 return;
             }
 
-            var montoAprox = $scope.calculoMontoAprox($scope.data.tasa, $scope.data.plazo, _cuotaAprox);
+            //var montoAprox = $scope.calculoMontoAprox($scope.data.tasa, $scope.data.plazo, _cuotaAprox);
             //Segun funcion excel:  Redondear.menos (valor, -5)
-            $scope.data.AproxCalculada = $scope.calculoRedondearMenos(montoAprox, 5);
+
+            $scope.data.Cuota120 = $scope.calculoRedondearMenos($scope.calculoMontoAprox($scope.data.tasa, 120, _cuotaAprox), 5);
+            $scope.data.Cuota108 = $scope.calculoRedondearMenos($scope.calculoMontoAprox($scope.data.tasa, 108, _cuotaAprox), 5);
+            $scope.data.Cuota96 = $scope.calculoRedondearMenos($scope.calculoMontoAprox($scope.data.tasa, 96, _cuotaAprox), 5);
+            $scope.data.Cuota84 = $scope.calculoRedondearMenos($scope.calculoMontoAprox($scope.data.tasa, 84, _cuotaAprox), 5);
+            $scope.data.Cuota72 = $scope.calculoRedondearMenos($scope.calculoMontoAprox($scope.data.tasa, 72, _cuotaAprox), 5);
+            $scope.data.Cuota60 = $scope.calculoRedondearMenos($scope.calculoMontoAprox($scope.data.tasa, 60, _cuotaAprox), 5);
+
         }
     };
 
