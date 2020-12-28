@@ -249,6 +249,18 @@ footer {
         }
     }
 
+    .carrusel {
+        width: 90%;
+        max-width: 90%;
+        display: grid;
+        margin: auto;
+
+        img {
+            width: 90%;
+            margin: auto;
+        }
+    }
+
     .content-circunferencias {
         margin: 26px auto 25px auto;
         width: 20%;
@@ -1358,7 +1370,7 @@ input:focus, input.form-control:focus {
 
     .side-left {
         width: 100%;
-        margin: auto auto auto auto;
+        margin: auto;
 
         .texto-superior-imagen {
             //margin: 10px auto 10px auto;

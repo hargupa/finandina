@@ -236,6 +236,7 @@ footer {
         .img-derecha {
             max-width: 70%;
             width: 70%;
+            margin: auto;
 
             img {
                 max-width: 100%;
@@ -269,6 +270,7 @@ footer {
 
     a {
         color: #ED2529;
+        font-family: "Open_Sans_Regular";
     }
 
     svg {
@@ -905,8 +907,9 @@ input:focus, input.form-control:focus {
             }
 
             .img-derecha {
-                margin-left: auto;
-                margin-right: auto;
+                margin: auto;
+                /*margin-left: auto;
+                margin-right: auto;*/
             }
         }
     }

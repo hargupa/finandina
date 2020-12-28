@@ -24,7 +24,7 @@
     <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase.js"></script>
 </head>
 
-<body ng-controller="CdtController" onresize="resize()">
+<body ng-controller="CdtController">
     <div class="header-credito">
         <div class="logo">
             <img src="../../img/general/logo-white.svg">
@@ -45,22 +45,7 @@
                     <div class="texto-superior-imagen">
                         <p>Proyecta los rendimientos de tu <span>Inversión Digital<span></p>
                     </div>
-                    <div class="content-image" id="img-dinamica">
-                        <div class="img-izquierda" id="img-msg">
-                        </div>
-                        <div class="img-derecha" id="img-family">
-                        </div>
-                        <div class="img-fogafin" id="fogafin">
-                            <img src="../../img/general/fogafin.png">
-                        </div>
-                    </div>
-                    <div class="content-circunferencias">
-                        <div id="c1" class="circunferencia"></div>
-                        <div id="c2" class="circunferencia2"></div>
-                        <div id="c3" class="circunferencia2"></div>
-                        <div id="c4" class="circunferencia2"></div>
-                    </div>
-                    <div class="carrusel" style="display: grid;text-align: -webkit-center">
+                    <div class="carrusel">
                         <div><img src="../../img/general/family-1.png" alt="family-1" /></div>
                         <div><img src="../../img/general/family-2.png" alt="family-2" /></div>
                         <div><img src="../../img/general/family-3.png" alt="family-3" /></div>
@@ -155,7 +140,13 @@
                                     <img src="../../img/general/calendar2.svg">
                                 </div>
                                 <div class=" input-porcentaje input-fecha">
-                                    <!--<span>{{data.fechaFinal | date:'dd/MM/yyyy'}}</span>-->
+
+
+
+
+
+
+                                      <!--<span>{{data.fechaFinal | date:'dd/MM/yyyy'}}</span>-->
                                     <input ng-model="data.fechaFinal" type="text" autocomplete="off" readonly>
                                     <label for="modelocarro">Fecha final</label>
                                 </div>
@@ -204,110 +195,6 @@
         <p class="texto-normal">Todos los derechos reservados 2020 - <b>Banco Finandina<b></p>
         <p class="texto-responsivo">Todos los derechos reservados 2020 <br><b>Banco Finandina<b></p>
     </footer>
-    <script>
-        obj = document.getElementById('img-msg');
-        obj2 = document.getElementById('img-family');
-        var time;
-        var transparency = 0;
-        document.addEventListener("DOMContentLoaded", function (event) {
-            /*if (screen.width<400){
-                document.getElementById('img-dinamica').style.height='200px';
-                document.getElementById('img-msg').style.width='41%';
-                document.getElementById('img-msg').style.left='28px';
-                document.getElementById('img-family').style.marginLeft ='1px';
-                document.getElementById('fogafin').style.marginTop ='169px';
-                document.getElementById('fogafin').style.marginLeft ='-36px';
-            }    */
-            setInterval('CambiarImagen()', 5000);
-        })
-        function CambiarImagen() {
-            // Safari 1.2, posterior Firefox y Mozilla, CSS3
-            obj.style.opacity = 0;
-            obj2.style.opacity = 0;
-            // anteriores Mozilla y Firefox
-            obj.style.opacity = 0;
-            obj2.style.opacity = 0;
-            // Safari anterior a 1.2, Konqueror
-            obj.style.KHTMLOpacity = 0;
-            obj2.style.KHTMLOpacity = 0;
-            obj.style.filter = 'alpha(opacity=0)';
-            obj2.style.filter = 'alpha(opacity=0)';
-            var i;
-            for (i = 1; i <= 4; i++) {
-                let nomdiv = document.getElementById('c' + i);
-                transparency = 0;
-                if (nomdiv.className == 'circunferencia') {
-                    if (i == 4) {
-                        let divcambio = document.getElementById('c1');
-                        divcambio.className = 'circunferencia';
-                        nomdiv.className = 'circunferencia2';
-                        document.getElementById('img-msg').innerHTML = '<img src="../../img/general/messenge-cdt-1.png">';
-                        document.getElementById('img-family').innerHTML = '<img src="../../img/general/family-1.png">';
-                        time = setInterval('fadeIn()', 50);
-
-                    } else {
-                        i = i + 1;
-                        let divcambio = document.getElementById('c' + i);
-                        divcambio.className = 'circunferencia';
-                        nomdiv.className = 'circunferencia2';
-                        document.getElementById('img-msg').innerHTML = '<img src="../../img/general/messenge-cdt-' + i + '.png">';
-                        document.getElementById('img-family').innerHTML = '<img src="../../img/general/family-' + i + '.png">';
-                        time = setInterval('fadeIn()', 50);
-                        break;
-
-                    }
-                };
-            }
-        }
-
-        function fadeIn() {
-            //
-            //incrementamos el valor
-            transparency += 5;
-            //si termino la trnsicion borramos el intervalo
-            transparency = (transparency == 100) ? clearInterval(time) : transparency;
-            //seteamos al div como objeto para poder usarlo
-            //obj = document.getElementById('fading');
-            //programamos cada navegador por separado
-            if (document.all) {
-                //esto es para IE, como siempre hay q programarlo a parte
-                obj.style.filter = 'alpha(opacity=' + transparency + ')';
-                obj2.style.filter = 'alpha(opacity=' + transparency + ')';
-            } else {
-                // Safari 1.2, posterior Firefox y Mozilla, CSS3
-                obj.style.opacity = transparency / 100;
-                obj2.style.opacity = transparency / 100;
-                // anteriores Mozilla y Firefox
-                obj.style.MozOpacity = transparency / 100;
-                obj2.style.MozOpacity = transparency / 100;
-                // Safari anterior a 1.2, Konqueror
-                obj.style.KHTMLOpacity = transparency / 100;
-                obj2.style.KHTMLOpacity = transparency / 100;
-            }
-        };
-
-        function resize() {
-            //if (document.documentElement.clientWidth < 400) {
-            //    document.getElementById('img-dinamica').style.height = '200px';
-            //    document.getElementById('img-msg').style.width = '41%';
-            //    document.getElementById('img-msg').style.left = '28px';
-            //    document.getElementById('img-family').style.marginLeft = '1px';
-            //    document.getElementById('fogafin').style.marginTop = '169px';
-            //    document.getElementById('fogafin').style.marginLeft = '-36px';
-            //} else {
-            //    document.getElementById('img-dinamica').style.height = '70%';
-            //    document.getElementById('img-msg').style.maxWidth = '100%';
-            //    document.getElementById('img-msg').style.left = '25px';
-            //    document.getElementById('img-family').style.marginLeft = '-30px';
-            //    document.getElementById('fogafin').style.marginTop = '359px';
-            //    document.getElementById('fogafin').style.marginLeft = '-120px';
-
-            //}
-        }
-
-
-
-    </script>
 
 </body>
 </html>
