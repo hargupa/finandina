@@ -15,8 +15,8 @@ app.controller('LibranzaController', ['$scope', '$window', '$filter', function (
         SMMLV: 877803,
         minMontoPerimitido: 3000000,
         minCuotaPerimitido: 3000000,
-        maxMontoPerimitido: 100000000,
-        maxCuotaPerimitido: 100000000,
+        maxMontoPerimitido: 120000000,
+        maxCuotaPerimitido: 120000000,
 
         capacidadDescuentoMonto: 17800 * 3,
         capacidadDescuentoCuota: 180000,
@@ -313,16 +313,36 @@ app.controller('LibranzaController', ['$scope', '$window', '$filter', function (
             _montoAprox = $scope.data.montoAprox.replace(/\,/g, '');
             //Segun funcion excel:  Pago 
             $scope.data.Monto120 = $scope.calculoCuotaAprox($scope.data.tasa, 120, _montoAprox);
+            if ($scope.data.Monto120 > $scope.data.maxCuota) {
+                $scope.data.errorexcede = "La cuota mensual excede tu capacidad de descuento";
+                $scope.data.Monto120 = '';
+            }
             $scope.data.Monto108 = $scope.calculoCuotaAprox($scope.data.tasa, 108, _montoAprox);
+            if ($scope.data.Monto108 > $scope.data.maxCuota) {
+                $scope.data.errorexcede = "La cuota mensual excede tu capacidad de descuento";
+                $scope.data.Monto108 = '';
+            }
             $scope.data.Monto96 = $scope.calculoCuotaAprox($scope.data.tasa, 96, _montoAprox);
+            if ($scope.data.Monto96 > $scope.data.maxCuota) {
+                $scope.data.errorexcede = "La cuota mensual excede tu capacidad de descuento";
+                $scope.data.Monto96 = '';
+            }
             $scope.data.Monto84 = $scope.calculoCuotaAprox($scope.data.tasa, 84, _montoAprox);
+            if ($scope.data.Monto84 > $scope.data.maxCuota) {
+                $scope.data.errorexcede = "La cuota mensual excede tu capacidad de descuento";
+                $scope.data.Monto84 = '';
+            }
             $scope.data.Monto72 = $scope.calculoCuotaAprox($scope.data.tasa, 72, _montoAprox);
+            if ($scope.data.Monto72 > $scope.data.maxCuota) {
+                $scope.data.errorexcede = "La cuota mensual excede tu capacidad de descuento";
+                $scope.data.Monto72 = '';
+            }
             $scope.data.Monto60 = $scope.calculoCuotaAprox($scope.data.tasa, 60, _montoAprox);
+            if ($scope.data.Monto60 > $scope.data.maxCuota) {
+                $scope.data.errorexcede = "La cuota mensual excede tu capacidad de descuento";
+                $scope.data.Monto60 = '';
+            }
 
-            //if (_AproxCalculada > $scope.data.maxCuota) {
-            //    $scope.data.errorexcede = "La cuota mensual excede tu capacidad de descuento";
-            //    return;
-            //}
             //$scope.data.AproxCalculada = _AproxCalculada;
         }
         else if ($scope.data.ShowCuota) {
