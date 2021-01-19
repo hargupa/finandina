@@ -238,11 +238,13 @@ footer {
         font-size: 16px;
         color: #707070;
     }
-    .content-parrafo{
+
+    .content-parrafo {
         text-align: center;
         width: 70%;
         max-width: 70%;
-        margin:auto auto auto auto;
+        margin: auto auto auto auto;
+
         .texto-popup-contenido-1 {
             font-family: 'Open_Sans_Regular';
             font-size: 15px;
@@ -251,7 +253,7 @@ footer {
 
         .texto-popup-contenido-2 {
             display: none;
-        }        
+        }
     }
 
 
@@ -391,6 +393,7 @@ footer {
                         margin-left: 10px;
                         font-size: 16px;
                     }
+
                     .input-nombre-input {
                         width: 100%;
                         max-width: 85%;
@@ -406,8 +409,7 @@ footer {
                         width: 100%;
                         max-width: 85%;
                         margin-left: 16px;
-                        
-                    }                     
+                    }
                 }
             }
 
@@ -540,6 +542,19 @@ footer {
 
 
 
+
+.botoncentral {
+    margin: 20px auto;
+
+    a {
+        color: #ED2529;
+        font-family: "Open_Sans_Regular";
+    }
+
+    svg {
+        fill: #ED2529;
+    }
+}
 
 .switch-button {
     display: inline-block;
@@ -723,17 +738,18 @@ input:focus, input.form-control:focus {
             font-size: 14px;
             color: #707070;
         }
-        .content-parrafo{
-                .texto-popup-contenido-1 {
-                    display: none;
-                }
 
-                .texto-popup-contenido-2 {
-                    display: block;
-                    font-family: 'Open_Sans_Regular';
-                    font-size: 13px;
-                    color: #707070;
-                }            
+        .content-parrafo {
+            .texto-popup-contenido-1 {
+                display: none;
+            }
+
+            .texto-popup-contenido-2 {
+                display: block;
+                font-family: 'Open_Sans_Regular';
+                font-size: 13px;
+                color: #707070;
+            }
         }
 
 
@@ -918,11 +934,11 @@ input:focus, input.form-control:focus {
             .content-buttons {
                 display: flex;
                 flex-direction: column;
-                margin: 30px auto 60px auto;
+                margin: 30px auto;
 
                 .button-derecho {
                     width: 95%;
-                    margin: auto auto auto auto;
+                    margin: auto;
                 }
             }
 
