@@ -17,6 +17,7 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
         SMMLV: 877803,
         minIngresos: 1000000,
 
+        numPagina: 1,
         //VARIABLES PARA CALCULO Simulador LIBRE INVERSION
         cuotaMensual: '',
         planPago: [],
@@ -138,7 +139,7 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
         $scope.data.cuota12meses = '';
         $scope.data.ShowErrorValor = false;
 
-        if ($scope.data.ingresos == "") {
+        if ($scope.data.ingresos == "" || $scope.data.ingresos == "0") {
             $scope.data.erroringresos = true;
             return false;
         }
@@ -330,12 +331,28 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
     $scope.paginador = function (_numero) {
         var numero = 1;
 
-        if (_numero == 'ult')
-            numero = $scope.data.plazo / 12;
-        else if (_numero == 'pri')
-            numero = 1;
-        else
-            numero = _numero;
+        if (_numero == 'ant') {
+            if ($scope.data.numPagina == 1) {
+                $scope.data.numPagina = 1;
+            }
+            else {
+                $scope.data.numPagina = $scope.data.numPagina - 1;
+            }
+        }
+        else if (_numero == 'sig') {
+            $scope.data.numPagina = $scope.data.numPagina + 1;
+
+            var pag = $scope.data.plazo / 12;
+            if ($scope.data.numPagina > pag)
+                $scope.data.numPagina = pag;
+
+        }
+        else {
+            $scope.data.numPagina = _numero;
+        }
+
+        numero = $scope.data.numPagina;
+
 
         var inicio = 0;
         var finaliza = 0;

@@ -32,28 +32,30 @@
         <div class="col-12">
             <div class="card">
                 <div class="col-12 side-left">
-                    <div class="texto-superior-imagen">
-                        <p>Mereces realizar eso que tanto quieres,<span> estás a pocos clics de disfrutar tu crédito 100% digital<span></p>
-                    </div>
-                    <div class="img-planpagos">
-                        <img src="../../img/general/persons.png">
-                    </div>
-
-                    <!--<div class="content-texto-lateral">
-                        <div class="texto-lateral-inferior">
-                            <p>VIGILADO</p>
+                    <div class="div-flotante">
+                        <div class="texto-superior-imagen">
+                            <p>Mereces realizar eso que tanto quieres,<span> estás a pocos clics de disfrutar tu crédito 100% digital<span></p>
                         </div>
-                        <div class="texto-lateral-superior">
-                            <p>DE COLOMBIA<br>
-                            SUPERINTENDECIA FINACIERA</p>
+                        <div class="img-planpagos">
+                            <img src="../../img/general/persons.png">
                         </div>
-                    </div>-->
 
-                    <div class="texto-inferior-imagen">
-                        <div class="img-super"><img src="../../img/general/super.svg"></div>
-                        <div class="texto">
-                            <p>*Los valores descritos en el presente simulador son informativos, se encuentran sujetos a la solicitud formal de crédito realizada por el cliente a Banco Finandina S.A.</p>
-                            <p>** El valor de cuota propuesta no incluye valor de prima mensual de los seguros.</p>
+                        <!--<div class="content-texto-lateral">
+                            <div class="texto-lateral-inferior">
+                                <p>VIGILADO</p>
+                            </div>
+                            <div class="texto-lateral-superior">
+                                <p>DE COLOMBIA<br>
+                                SUPERINTENDECIA FINACIERA</p>
+                            </div>
+                        </div>-->
+
+                        <div class="texto-inferior-imagen">
+                            <div class="img-super"><img src="../../img/general/super.svg"></div>
+                            <div class="texto">
+                                <p>*Los valores descritos en el presente simulador son informativos, se encuentran sujetos a la solicitud formal de crédito realizada por el cliente a Banco Finandina S.A.</p>
+                                <p>** El valor de cuota propuesta no incluye valor de prima mensual de los seguros.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -142,7 +144,7 @@
                         <div class="content-button-descarga">
                             <div class="caja-vacia">
                                 <div class="paginador">
-                                    <div class="caja-pagina flecha" ng-click="paginador('pri')">
+                                    <div class="caja-pagina flecha" ng-click="paginador('ant')">
                                         <div class="numero"><img src="../../img/general/flecha-izq.png"></div>
                                     </div>
                                     <div class="caja-pagina" id="num-1" ng-click="paginador(1)">
@@ -160,7 +162,7 @@
                                     <div class="caja-pagina" id="num-5" ng-click="data.pag5 && paginador(5)" ng-class="{'disabled':!data.pag5}">
                                         <div class="numero">5</div>
                                     </div>
-                                    <div class="caja-pagina flecha" ng-click="paginador('ult')">
+                                    <div class="caja-pagina flecha" ng-click="paginador('sig')">
                                         <div class="numero"><img src="../../img/general/flecha-der.png"></div>
                                     </div>
                                 </div>
@@ -190,9 +192,29 @@
                             <div class="content-button-correo-2"><button class="button-correo" ng-disabled="data.email == ''" ng-click="guardarInfo(1)">ENVIAR</button></div>
                         </div>
 
-                        <div class="content-buttons-planpagos">
-                            <button class="button-izquierdo-planpago" ng-click="showindex()">SIMULAR OTRO CRÉDITO</button>
-                            <button class="button-derecho-planpago" ng-click="guardarInfo(2)" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CreditoLibreInversion'">SOLICITAR MI CRÉDITO</button>
+                        <div class="content-buttons">
+                            <button class="button-izquierdo" ng-click="showindex()">SIMULAR OTRO CRÉDITO</button>
+                            <button class="button-derecho" ng-click="guardarInfo(2)" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CreditoLibreInversion'">SOLICITAR MI CRÉDITO</button>
+                            <br />
+                            <a href="https://bancofinandina.com" tabindex="11">
+                                <span>
+                                    <svg id="icon-hover" xmlns="http://www.w3.org/2000/svg" width="23.54" height="20.984" viewBox="0 0 23.54 20.984">
+                                        <g id="Grupo_6019" data-name="Grupo 6019" transform="translate(-756.246 -83.796)">
+                                            <g id="Grupo_6016" data-name="Grupo 6016">
+                                                <g id="Grupo_6015" data-name="Grupo 6015">
+                                                    <path id="Trazado_6843" d="M779.536 92.084l-11.159-8.17a.612.612 0 0 0-.722 0l-11.155 8.17a.613.613 0 0 0-.132.855c.2.273.461.1.855.132l11.472-.132 10.122.132h.422c.2 0 .318.025.433-.132a.611.611 0 0 0-.136-.855z" class="cls-1" data-name="Trazado 6843"></path>
+                                                </g>
+                                            </g>
+                                            <g id="Grupo_6018" data-name="Grupo 6018">
+                                                <g id="Grupo_6017" data-name="Grupo 6017">
+                                                    <path id="Trazado_6844" d="M776.575 92.386c-.338 0-7.092-.856-8.78-.858s-8 1.682-8.955 1.113c-.337 0 0 .841 0 1.179v10.347a.612.612 0 0 0 .611.612h6.118a.611.611 0 0 0 .609-.564.371.371 0 0 0 0-.048v-5.924a1.836 1.836 0 0 1 3.671 0v5.925a.377.377 0 0 0 0 .047.611.611 0 0 0 .609.565h6.117a.612.612 0 0 0 .612-.612V93.821c0-.336-.276-1.432-.612-1.435z" class="cls-1" data-name="Trazado 6844"></path>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    Ir al inicio
+                                </span>
+                            </a>
                         </div>
 
                         <div class="texto-inferior-imagen2">

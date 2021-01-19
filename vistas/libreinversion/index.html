@@ -44,28 +44,30 @@
         <div class="col-12">
             <div class="card">
                 <div class="col-12 side-left">
-                    <div class="texto-superior-imagen">
-                        <p>Descubre las ventajas de poder solicitar un crédito<span> desde la comodidad de tu casa u oficina<span></p>
-                    </div>
-                    <div class="content-image" id="img-dinamica">
-                        <div class="img-izquierda imagen-fade" id="img-msg">
+                    <div class="div-flotante">
+                        <div class="texto-superior-imagen">
+                            <p>Descubre las ventajas de poder solicitar un crédito<span> desde la comodidad de tu casa u oficina<span></p>
                         </div>
-                        <div class="img-derecha imagen-fade" id="img-woman">
+                        <div class="content-image" id="img-dinamica">
+                            <div class="img-izquierda imagen-fade" id="img-msg">
+                            </div>
+                            <div class="img-derecha imagen-fade" id="img-woman">
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="carrusel">
-                        <div><img src="../../img/general/woman-1.png" alt="woman-1" /></div>
-                        <div><img src="../../img/general/woman-2.png" alt="woman-2" /></div>
-                        <div><img src="../../img/general/woman-3.png" alt="woman-3" /></div>
-                        <div><img src="../../img/general/woman-4.png" alt="woman-4" /></div>
-                    </div>
+                        <div class="carrusel">
+                            <div><img src="../../img/general/woman-1.png" alt="woman-1" /></div>
+                            <div><img src="../../img/general/woman-2.png" alt="woman-2" /></div>
+                            <div><img src="../../img/general/woman-3.png" alt="woman-3" /></div>
+                            <div><img src="../../img/general/woman-4.png" alt="woman-4" /></div>
+                        </div>
 
-                    <div class="texto-inferior-imagen">
-                        <div class="img-super"><img src="../../img/general/super.svg"></div>
-                        <div class="texto">
-                            <p>* Los valores descritos en el presente simulador son informativos, se encuentran sujetos a la solicitud formal de crédito realizada por el cliente a Banco Finandina S.A.</p>
-                            <p>** El valor de cuota propuesta no incluye valor de prima mensual de los seguros.</p>
+                        <div class="texto-inferior-imagen">
+                            <div class="img-super"><img src="../../img/general/super.svg"></div>
+                            <div class="texto">
+                                <p>* Los valores descritos en el presente simulador son informativos, se encuentran sujetos a la solicitud formal de crédito realizada por el cliente a Banco Finandina S.A.</p>
+                                <p>** El valor de cuota propuesta no incluye valor de prima mensual de los seguros.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -87,13 +89,13 @@
                                     <img src="../../img/general/money-blue.svg">
                                 </div>
                                 <div class="control-select-input input-ingresos">
-                                    <input ng-model="data.ingresos" type="text" placeholder="Tus ingresos" maxlength="11" autocomplete="off" ng-change="calcularDatos()" mileskeypress>
+                                    <input ng-model="data.ingresos" type="text" placeholder="Tus ingresos" maxlength="11" autocomplete="off" ng-change="calcularDatos()" mileskeypress tabindex="1">
                                     <!--<span for="modelocarro">Tus ingresos</span>-->
                                 </div>
                             </div>
                         </div>
                         <span class="error" ng-if="data.erroringresos">Indica tus ingresos mensuales</span>
-                        <span class="error" ng-if="data.erroringresosmin">Ingreso mínimo ${{data.minIngresos | number}}</span>
+                        <span class="error" ng-if="data.erroringresosmin">El ingreso mínimo permitido es ${{data.minIngresos | number}}</span>
 
 
                         <div class="texto-superior-derecho">
@@ -106,7 +108,7 @@
                                     <img src="../../img/general/wallet.svg">
                                 </div>
                                 <div class="control-select-input">
-                                    <select ng-model="data.destino">
+                                    <select ng-model="data.destino" tabindex="2">
                                         <option value="">Elige tu opción</option>
                                         <option>Viajar</option>
                                         <option>Estudiar</option>
@@ -132,7 +134,7 @@
                                     <img src="../../img/general/money-blue.svg">
                                 </div>
                                 <div class="control-select-input ">
-                                    <input ng-model="data.dineronecesito" type="text" autocomplete="off" ng-change="calcularDatos()" mileskeypress maxlength="11">
+                                    <input ng-model="data.dineronecesito" type="text" autocomplete="off" ng-change="calcularDatos()" mileskeypress maxlength="11" tabindex="3">
                                     <div class="ico-form2" ng-show="data.ShowErrorValor">
                                         <img src="../../img/general/alert.png">
                                     </div>
@@ -141,13 +143,13 @@
                         </div>
                         <div class="contenedor-msg">
                             <span class="error" ng-if="data.errornecesito">Indica el monto del dinero que necesitas</span>
-                            <span class="error" ng-if="data.errornecesitomin">El monto mínimo que te prestamos es de ${{data.minMonto | number}}</span>
-                            <span class="error" ng-if="data.errornecesitomax">El monto máximo que te prestamos es de ${{data.maxMonto | number}}</span>
-                            <span class="error" ng-if="data.errornecesitocomparado">El monto que intentas solicitar es superior a tu capacidad de endeudamiento, el valor máximo que te podemos prestar es ${{prestamoTotal | number}}</span>
+                            <span class="error" ng-if="data.errornecesitomin">El monto mínimo que te podemos prestar es ${{data.minMonto | number}}</span>
+                            <span class="error" ng-if="data.errornecesitomax">El monto máximo que te podemos prestar es ${{data.maxMonto | number}}</span>
+                            <span class="error" ng-if="data.errornecesitocomparado">El monto que intentas solicitar es superior al valor que te podemos prestar de acuerdo a tu capacidad, el valor máximo que te podemos prestar es ${{prestamoTotal | number}}</span>
                         </div>
 
                         <div class="texto-plazo">
-                            <p>Elige el plazo e identifica una cuota que se acomode a tu bolsillo o flujo de caja:</p>
+                            <p>Elige el plazo y cuota que mejor se acomode a tu bolsillo o flujo de caja:</p>
                         </div>
                         <span class="error" ng-if="data.errorplazo">Elige un plazo</span>
                         <!--<div class="content-caja-monto" >
@@ -156,70 +158,70 @@
                             </div>
                         </div>-->
                         <div class="content-caja-monto" ng-click="MostrarCuota(id=2)">
-                            <div class="caja-plazos-monto" ng-class="{'select':data.ShowMonto60MesesCuota}">
+                            <div class="caja-plazos-monto" ng-class="{'select':data.ShowMonto60MesesCuota}" tabindex="4">
                                 <div class="content-monto">
                                     <div class="content-monto-sup">
                                         <span class="caja-izquierda"><p>60 meses</p></span>
                                         <span ng-show="data.ShowMonto60MesesCuota" class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
                                     </div>
                                     <div class="content-monto-inf">
-                                        <span class="caja-izquierda"><p>Cuota mensual</p></span>
+                                        <span class="caja-izquierda"><p><span>**</span> Cuota mensual</p></span>
                                         <span class="caja-derecha texto-info">$ {{data.cuota60meses | number}}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="content-caja-monto" ng-click="MostrarCuota(id=3)">
-                            <div class="caja-plazos-monto" ng-class="{'select':data.ShowMonto48MesesCuota}">
+                            <div class="caja-plazos-monto" ng-class="{'select':data.ShowMonto48MesesCuota}" tabindex="5">
                                 <div class="content-monto">
                                     <div class="content-monto-sup">
                                         <span class="caja-izquierda"><p>48 meses</p></span>
                                         <span ng-show="data.ShowMonto48MesesCuota" class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
                                     </div>
                                     <div class="content-monto-inf">
-                                        <span class="caja-izquierda"><p>Cuota mensual</p></span>
+                                        <span class="caja-izquierda"><p><span>**</span> Cuota mensual</p></span>
                                         <span class="caja-derecha texto-info">$ {{data.cuota48meses | number}}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="content-caja-monto" ng-click="MostrarCuota(id=4)">
-                            <div class="caja-plazos-monto" ng-class="{'select':data.ShowMonto36MesesCuota}">
+                            <div class="caja-plazos-monto" ng-class="{'select':data.ShowMonto36MesesCuota}" tabindex="6">
                                 <div class="content-monto">
                                     <div class="content-monto-sup">
                                         <span class="caja-izquierda"><p>36 meses</p></span>
                                         <span ng-show="data.ShowMonto36MesesCuota" class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
                                     </div>
                                     <div class="content-monto-inf">
-                                        <span class="caja-izquierda"><p>Cuota mensual</p></span>
+                                        <span class="caja-izquierda"><p><span>**</span> Cuota mensual</p></span>
                                         <span class="caja-derecha texto-info">$ {{data.cuota36meses | number}}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="content-caja-monto" ng-click="MostrarCuota(id=5)">
-                            <div class="caja-plazos-monto" ng-class="{'select':data.ShowMonto24MesesCuota}">
+                            <div class="caja-plazos-monto" ng-class="{'select':data.ShowMonto24MesesCuota}" tabindex="7">
                                 <div class="content-monto">
                                     <div class="content-monto-sup">
                                         <span class="caja-izquierda"><p>24 meses</p></span>
                                         <span ng-show="data.ShowMonto24MesesCuota" class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
                                     </div>
                                     <div class="content-monto-inf">
-                                        <span class="caja-izquierda"><p>Cuota mensual</p></span>
+                                        <span class="caja-izquierda"><p><span>**</span> Cuota mensual</p></span>
                                         <span class="caja-derecha texto-info">$ {{data.cuota24meses | number}}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="content-caja-monto" ng-click="MostrarCuota(id=6)">
-                            <div class="caja-plazos-monto" ng-class="{'select':data.ShowMonto12MesesCuota}">
+                            <div class="caja-plazos-monto" ng-class="{'select':data.ShowMonto12MesesCuota}" tabindex="8">
                                 <div class="content-monto">
                                     <div class="content-monto-sup">
                                         <span class="caja-izquierda"><p>12 meses</p></span>
                                         <span ng-show="data.ShowMonto12MesesCuota" class="caja-derecha"><img src="../../img/general/chulo-blue.svg"></span>
                                     </div>
                                     <div class="content-monto-inf">
-                                        <span class="caja-izquierda"><p>Cuota mensual</p></span>
+                                        <span class="caja-izquierda"><p><span>**</span> Cuota mensual</p></span>
                                         <span class="caja-derecha texto-info">$ {{data.cuota12meses | number}}</span>
                                     </div>
                                 </div>
@@ -227,10 +229,10 @@
                         </div>
 
                         <div class="content-buttons">
-                            <button class="button-izquierdo" ng-disabled="data.cuotaMensual == ''" ng-click="showPlanPagos()">VER MI PLAN DE PAGOS</button>
-                            <button class="button-derecho" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CreditoLibreInversion'">SOLICITAR MI CRÉDITO</button>
+                            <button class="button-izquierdo" ng-disabled="data.cuotaMensual == ''" ng-click="showPlanPagos()" tabindex="9">VER MI PLAN DE PAGOS</button>
+                            <button class="button-derecho" tabindex="10" onclick="window.location='https://transacciones.bancofinandina.com/BPO/formulario-de-venta?tipoProducto=CreditoLibreInversion'">SOLICITAR MI CRÉDITO</button>
                             <br />
-                            <a href="https://bancofinandina.com">
+                            <a href="https://bancofinandina.com" tabindex="11">
                                 <span>
                                     <svg id="icon-hover" xmlns="http://www.w3.org/2000/svg" width="23.54" height="20.984" viewBox="0 0 23.54 20.984">
                                         <g id="Grupo_6019" data-name="Grupo 6019" transform="translate(-756.246 -83.796)">

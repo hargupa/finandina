@@ -3,6 +3,14 @@
 <head>
     <!--<meta http-equiv="refresh" content="10">-->
     <meta charset="UTF-8">
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../../plugins/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="../../plugins/slick/slick-theme.css" />
+    <script type="text/javascript" src="../../plugins/slick/slick.js"></script>
+
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link href="../../css/cdt/formContacto.min.css" rel="stylesheet">
     <script src="../../js/angular.min.js"></script>
@@ -29,29 +37,19 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" ng-init="cargarslide()">
         <div class="col-12">
             <div class="card">
                 <div class="col-12 side-left">
                     <div class="texto-superior-imagen">
                         <p>Conoce el valor apróximado de los rendimientos de tu <span>CDT.</span></p>
                     </div>
-                    <div class="content-image">
-                        <div class="img-izquierda" id="img-msg">
-                        </div>
-                        <div class="img-derecha" id="img-family">
-                        </div>
-                        <div class="img-fogafin">
-                            <img src="../../img/general/fogafin.png">
-                        </div>
+                    <div class="carrusel">
+                        <div><img src="../../img/general/family-1.png" alt="family-1" /></div>
+                        <div><img src="../../img/general/family-2.png" alt="family-2" /></div>
+                        <div><img src="../../img/general/family-3.png" alt="family-3" /></div>
+                        <div><img src="../../img/general/family-4.png" alt="family-4" /></div>
                     </div>
-                    <div class="content-circunferencias">
-                        <div id="c1" class="circunferencia"></div>
-                        <div id="c2" class="circunferencia2"></div>
-                        <div id="c3" class="circunferencia2"></div>
-                        <div id="c4" class="circunferencia2"></div>
-                    </div>
-
                     <div class="texto-inferior-imagen">
                         <div class="img-super"><img src="../../img/general/super.svg"></div>
                         <div class="texto">
@@ -167,35 +165,6 @@
             <a href="" ng-click="showindex()"><div class="button-izquierdo"><p>ENTENDIDO</p></div></a>
         </div>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function (event) {
-            setInterval('CambiarImagen()', 4000);
-        })
-        function CambiarImagen() {
-            var i;
-            for (i = 1; i <= 4; i++) {
-                let nomdiv = document.getElementById('c' + i);
-                if (nomdiv.className == 'circunferencia') {
-                    if (i == 4) {
-                        let divcambio = document.getElementById('c1');
-                        divcambio.className = 'circunferencia';
-                        nomdiv.className = 'circunferencia2';
-                        document.getElementById('img-msg').innerHTML = '<img src="../../img/general/messenge-cdt-1.svg">';
-                        document.getElementById('img-family').innerHTML = '<img src="../../img/general/family-1.png">';
-                    } else {
-                        i = i + 1;
-                        let divcambio = document.getElementById('c' + i);
-                        divcambio.className = 'circunferencia';
-                        nomdiv.className = 'circunferencia2';
-                        document.getElementById('img-msg').innerHTML = '<img src="../../img/general/messenge-cdt-' + i + '.svg">';
-                        document.getElementById('img-family').innerHTML = '<img src="../../img/general/family-' + i + '.png">';
-                        break;
-
-                    }
-                };
-            }
-        }
-    </script>
     <footer>
         <p class="texto-normal">Todos los derechos reservados 2020 - <b>Banco Finandina</b></p>
         <p class="texto-responsivo">Todos los derechos reservados 2020<br><span>Banco Finandina<span></p>
