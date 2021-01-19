@@ -87,13 +87,17 @@ body {
         }
     }
 
+    .texto-encabezado-mobile {
+        display: none
+    }
+
     .texto-encabezado {
         margin-left: 20px;
         width: 100%;
+        color: #FFFFFF;
 
         p {
             font-size: 24px;
-            color: #FFFFFF;
             font-family: 'Open_Sans_Regular';
         }
 
@@ -237,6 +241,18 @@ footer {
 }
 
 
+.botoncentral {
+    margin: 20px auto;
+
+    a {
+        color: #ED2529;
+        font-family: "Open_Sans_Regular";
+    }
+
+    svg {
+        fill: #ED2529;
+    }
+}
 
 .modal-contenido {
     max-width: 75%;
@@ -328,6 +344,7 @@ footer {
     opacity: 1;
     pointer-events: auto;
 }*/
+
 
 
 .side-right {
@@ -423,8 +440,7 @@ footer {
                         width: 100%;
                         max-width: 85%;
                         margin-left: 16px;
-                        
-                    }                    
+                    }
                 }
             }
 
@@ -478,10 +494,9 @@ footer {
         }
 
         .content-buttons {
-            margin: 40px auto 40px auto;
+            margin: 40px auto 20px;
             display: flex;
-            width: 70%;
-            max-width: 70%;
+            width: 90%;
 
             .button-izquierdo {
                 background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -655,32 +670,39 @@ input:focus, input.form-control:focus {
 }
 
 
-@media screen and (max-width: 800px) {
-
+@media (max-width:650px) {
     .header-credito {
         max-height: 100%;
+        height: auto;
 
         .logo {
-            margin: auto auto auto 15px;
+            margin: 15px;
+        }
+
+        .texto-encabezado-mobile {
+            display: block;
+            margin: auto 0px;
+            color: #FFFFFF;
+            width: 100%;
+
+            p {
+                font-size: 16px;
+                font-family: 'Open_Sans_Regular';
+                margin: 0px;
+            }
         }
 
         .texto-encabezado {
-            margin: auto auto auto 20px;
-
-            p {
-                font-size: 14px;
-                font-family: 'Open_Sans_Regular';
-            }
-
-            span {
-                font-family: 'Open_Sans_Semi_Bold';
-            }
+            display: none;
         }
 
         .img-bancodigital {
-            margin: auto 15px auto auto;
+            margin: 15px;
         }
     }
+}
+
+@media screen and (max-width: 800px) {
 
     footer {
         text-align: center;
@@ -929,17 +951,6 @@ input:focus, input.form-control:focus {
                 }
             }
 
-            .content-buttons {
-                display: flex;
-                flex-direction: column;
-                margin: 30px auto 60px auto;
-
-                .button-derecho {
-                    width: 95%;
-                    margin: auto auto auto auto;
-                }
-            }
-
             .texto-responsive {
                 display: block;
                 max-width: 75%;
@@ -954,11 +965,9 @@ input:focus, input.form-control:focus {
             }
 
             .texto-inferior-imagen2 {
-                display: block;
                 display: flex;
                 margin-left: 10px;
                 margin-bottom: 20px;
-                margin-top: -30px;
 
                 .img-super {
                     margin-top: -40px;
@@ -1006,15 +1015,20 @@ input:focus, input.form-control:focus {
             }
 
             .content-buttons {
+                margin: 30px auto;
+                width: 80%;
                 display: flex;
                 flex-direction: column;
 
                 .button-izquierdo {
-                    margin-bottom: 10px;
+                    margin: auto;
+                    width: 80%;
+                    margin-bottom: 20px;
                 }
 
                 .button-derecho {
-                    width: 100%;
+                    width: 80%;
+                    margin: auto;
                 }
             }
         }
