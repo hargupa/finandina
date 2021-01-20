@@ -107,12 +107,13 @@ footer {
   width: 100%;
   height: 75px;
   background-color: #ed2529;
-  justify-content: center;
-  align-items: center;
   max-width: 100%;
   left: 0;
   bottom: 0;
   z-index: -1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 footer .texto-normal {
   margin: 30px auto auto 280px;

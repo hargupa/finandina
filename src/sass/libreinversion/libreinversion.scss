@@ -122,11 +122,13 @@ footer {
     width: 100%;
     height: 75px;
     background-color: #ed2529;
-    text-align: center;
     max-width: 100%;
     left: 0;
     bottom: 0;
     z-index: -1;
+    justify-content: center;
+    align-items: center;
+    display: flex;
     //margin: auto auto auto auto;
     .texto-normal {
         font-size: 16px;
@@ -200,14 +202,12 @@ footer {
 .side-left {
     width: 100%;
     height: auto;
-    display: flex;
-    justify-content: center;
-
-    .div-flotante {
+    /*    display: flex;
+    justify-content: center;*/
+    /*.div-flotante {
         position: fixed;
         max-width: 35%;
-    }
-
+    }*/
     .texto-superior-imagen {
         width: 85%;
         text-align: left;
@@ -1387,13 +1387,12 @@ input:focus, input.form-control:focus {
     .side-left {
         width: 100%;
         margin: auto;
-
-        .div-flotante {
+        /*   .div-flotante {
             position: relative;
             width: 80%;
             max-width: 100%;
         }
-
+*/
         .texto-superior-imagen {
             width: 70%;
             line-height: 1.3;
