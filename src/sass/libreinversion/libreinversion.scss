@@ -585,13 +585,12 @@ footer {
                     .caja-pagina {
                         width: 15%;
                         height: 40px;
+                        margin: 0px 1px;
 
                         .numero {
                             margin: 12px auto auto auto;
                             font: normal normal normal 14px/19px Open Sans;
                             letter-spacing: 0px;
-                            color: #707070;
-                            opacity: 1;
 
                             img {
                                 height: 100%;
@@ -601,9 +600,7 @@ footer {
 
                     .caja-pagina:hover {
                         background-color: #ED2529;
-                        border: 1px solid #ED2529;
                         border-radius: 5px;
-                        opacity: 1;
                         cursor: pointer;
 
                         .numero {
@@ -614,6 +611,11 @@ footer {
                     .caja-pagina.disabled {
                         display: none;
                     }
+
+                    .flecha .numero {
+                        color: #ED2529;
+                        font-weight: bold;
+                    }
                 }
 
                 .paginador.caja-pagina.flecha:hover {
@@ -623,9 +625,7 @@ footer {
 
                 .caja-seleccionada {
                     background-color: #ED2529;
-                    border: 1px solid #ED2529;
                     border-radius: 5px;
-                    opacity: 1;
                     cursor: pointer;
                     width: 15%;
                     height: 40px;
@@ -1068,43 +1068,6 @@ footer {
         }
     }
 
-    .content-buttons-planpagos {
-        margin: 40px auto 40px auto;
-        display: flex;
-        width: 90%;
-
-        .button-izquierdo-planpago {
-            background: #FFFFFF 0% 0% no-repeat padding-box;
-            border: 1px solid #707070;
-            opacity: 1;
-            height: 50px;
-            width: 100%;
-            //max-width: 100%;
-            border-radius: 30px;
-            font-family: 'Open_Sans_Semi_Bold';
-            font-size: 14px;
-            color: #707070;
-        }
-
-        .button-derecho-planpago {
-            background: #ED2529 0% 0% no-repeat padding-box;
-            opacity: 1;
-            height: 50px;
-            width: 100%;
-            //max-width: 100%;
-            border-radius: 30px;
-            font-family: 'Open_Sans_Semi_Bold';
-            font-size: 14px;
-            color: #fff;
-            border: #CED4DA;
-            background-image: url('../../img/general/chulo-white.svg');
-            background-position: 96%;
-            background-size: 5%;
-            cursor: pointer;
-            margin-left: 10px;
-        }
-    }
-
     .content-buttons {
         margin: 40px auto;
         display: flex;
@@ -1129,14 +1092,24 @@ footer {
             background: #ED2529 0% 0% no-repeat padding-box;
             opacity: 1;
             height: 50px;
-            width: 100%;
             border-radius: 30px;
             font-family: 'Open_Sans_Semi_Bold';
             font-size: 15px;
-            color: white;
+            color: #fff;
             border: #CED4DA;
             background-image: url('../../img/general/chulo-white.svg');
             background-position: 97%;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .button-banco {
+            background: #FFFFFF;
+            border: 1px solid #ED2529;
+            height: 50px;
+            border-radius: 30px;
+            font-family: 'Open_Sans_Semi_Bold';
+            color: #ED2529;
             cursor: pointer;
         }
 
@@ -1790,28 +1763,6 @@ input:focus, input.form-control:focus {
                 }
             }
 
-            .content-buttons-planpagos {
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-                max-width: 100%;
-                margin-top: 32px;
-
-                .button-izquierdo-planpago {
-                    width: 70%;
-                    margin-left: auto;
-                    margin-right: auto;
-                    font-size: 14px;
-                }
-
-                .button-derecho-planpago {
-                    width: 70%;
-                    margin-left: auto;
-                    margin-right: auto;
-                    margin-top: 10px;
-                    font-size: 14px;
-                }
-            }
 
             .content-buttons {
                 margin: 40px auto;
@@ -1826,6 +1777,12 @@ input:focus, input.form-control:focus {
                 .button-derecho {
                     width: 80%;
                     margin: auto;
+                    margin-bottom: 20px;
+                }
+
+                .button-banco {
+                    margin: auto;
+                    width: 80%;
                 }
             }
 

@@ -116,9 +116,8 @@ footer {
   display: flex;
 }
 footer .texto-normal {
-  margin: 30px auto auto 280px;
   font-size: 16px;
-  color: white;
+  color: #fff;
   font-family: "Open_Sans_Regular";
 }
 footer .texto-responsivo {
@@ -400,9 +399,10 @@ footer .texto-responsivo {
 }
 .side-right .card-content .container-switch {
   display: flex;
-  width: 53%;
-  max-width: 53%;
-  margin: 17px auto auto auto;
+  width: 85%;
+  margin: 10px auto;
+  justify-content: center;
+  align-items: center;
 }
 .side-right .card-content .container-switch .texto-switch .texto-switch-descripcion-1 {
   font-size: 15px;
@@ -415,14 +415,11 @@ footer .texto-responsivo {
 .side-right .card-content .container-switch .texto-switch .texto-switch-descripcion-2 {
   display: none;
 }
-.side-right .card-content .container-switch .container-switch-movil {
-  padding-top: 20px;
-  margin: -3px auto auto 5px;
-}
 .side-right .card-content .content-buttons {
-  margin: 40px auto 20px;
+  margin: 40px auto;
   display: flex;
-  width: 90%;
+  flex-direction: column;
+  width: 50%;
 }
 .side-right .card-content .content-buttons .button-izquierdo {
   background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -435,21 +432,33 @@ footer .texto-responsivo {
   font-size: 16px;
   color: #707070;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 .side-right .card-content .content-buttons .button-derecho {
   background: #ED2529 0% 0% no-repeat padding-box;
   opacity: 1;
   height: 50px;
-  width: 100%;
-  margin-left: 10px;
   border-radius: 30px;
   font-family: "Open_Sans_Semi_Bold";
-  font-size: 16px;
-  color: white;
+  font-size: 15px;
+  color: #fff;
   border: #CED4DA;
   background-image: url("../../img/general/chulo-white.svg");
-  background-position: 97% 16px;
+  background-position: 97%;
   cursor: pointer;
+  margin-bottom: 20px;
+}
+.side-right .card-content .content-buttons .button-banco {
+  background: #FFFFFF;
+  border: 1px solid #ED2529;
+  height: 50px;
+  border-radius: 30px;
+  font-family: "Open_Sans_Semi_Bold";
+  color: #ED2529;
+  cursor: pointer;
+}
+.side-right .card-content .content-buttons svg {
+  fill: #ED2529;
 }
 .side-right .card-content .content-buttons .button-derecho:disabled,
 .side-right .card-content .content-buttons .button-derecho input[type=submit]:disabled {
@@ -597,12 +606,7 @@ input:focus, input.form-control:focus {
   }
 }
 @media screen and (max-width: 800px) {
-  footer {
-    text-align: center;
-    margin: auto auto auto auto;
-  }
   footer .texto-normal {
-    margin: 15px auto auto auto;
     width: 70%;
     display: block;
     font-size: 14px;
@@ -791,7 +795,7 @@ input:focus, input.form-control:focus {
     text-align: center;
   }
   .side-right .card-content .container-switch .container-switch-movil {
-    margin: auto auto auto auto;
+    margin: auto;
   }
   .side-right .card-content .texto-plazo p {
     font-size: 14px;
@@ -828,8 +832,8 @@ input:focus, input.form-control:focus {
   .side-right .card-content .container-switch {
     display: flex;
     flex-direction: column;
-    width: 60%;
-    max-width: 60%;
+    width: 70%;
+    max-width: 70%;
   }
   .side-right .card-content .container-switch .texto-switch .texto-switch-descripcion-1 {
     display: none;
@@ -842,9 +846,6 @@ input:focus, input.form-control:focus {
   }
   .side-right .card-content .container-switch .texto-switch .texto-switch-descripcion-2 a {
     color: #FF0000;
-  }
-  .side-right .card-content .container-switch .container-switch-movil {
-    padding-top: 10px;
   }
   .side-right .card-content .content-buttons {
     margin: 30px auto;
@@ -860,5 +861,10 @@ input:focus, input.form-control:focus {
   .side-right .card-content .content-buttons .button-derecho {
     width: 80%;
     margin: auto;
+    margin-bottom: 20px;
+  }
+  .side-right .card-content .content-buttons .button-banco {
+    margin: auto;
+    width: 80%;
   }
 }

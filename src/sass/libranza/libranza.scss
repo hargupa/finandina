@@ -128,11 +128,10 @@ footer {
     justify-content: center;
     align-items: center;
     display: flex;
-    //margin: auto auto auto auto;
+
     .texto-normal {
-        margin-left: 10%;
         font-size: 16px;
-        color: white;
+        color: #fff;
         font-family: 'Open_Sans_Regular';
 
         span {
@@ -279,6 +278,8 @@ footer {
         font-family: "Open_Sans_Regular";
     }
 
+
+
     svg {
         fill: #ED2529;
     }
@@ -352,8 +353,9 @@ footer {
 
         .texto-superior-derecho {
             text-align: center;
-            margin: 30px auto auto auto;
+            margin: auto;
             max-width: 100%;
+            width: 90%;
 
             .texto-sup-2 {
                 display: none;
@@ -368,12 +370,12 @@ footer {
         .content-caja-select {
             width: 70%;
             max-width: 70%;
-            margin: 40px auto auto auto;
+            margin: 20px auto auto auto;
             display: flex;
 
             .caja-select {
                 max-width: 100%;
-                width: 100%;
+                width: 50%;
                 background: #FFFFFF 0% 0% no-repeat padding-box;
                 border: 1px solid #CCCCCC;
                 border-radius: 5px;
@@ -478,7 +480,9 @@ footer {
                 border: 1px solid #24D1FD;
             }
 
-
+            .caja-select.select-actividad {
+                margin: auto;
+            }
 
             .caja-monto {
                 border: 1px solid #CCCCCC;
@@ -582,8 +586,9 @@ footer {
 
 
         .texto-plazo {
-            margin: 40px auto auto auto;
-            width: 55%;
+            margin: auto;
+            margin-top: 40px;
+            width: 95%;
 
             p {
                 font-family: 'Open_Sans_Semi_Bold';
@@ -863,11 +868,8 @@ input:focus, input.form-control:focus {
 @media screen and (max-width: 980px) {
 
     footer {
-        text-align: center;
-        margin: auto;
 
         .texto-normal {
-            margin: 15px auto auto auto;
             width: 70%;
             display: block;
             font-size: 14px;
@@ -981,6 +983,7 @@ input:focus, input.form-control:focus {
 
                 .caja-select {
                     margin-bottom: 40px;
+                    width: 100%;
 
                     .control-select-input {
                         margin-bottom: 20px;
@@ -1005,6 +1008,10 @@ input:focus, input.form-control:focus {
                         font-family: 'Open_Sans_Semi_Bold';
                         font-size: 10px;
                     }
+                }
+
+                .caja-select.select-actividad {
+                    margin-bottom: 40px;
                 }
             }
 

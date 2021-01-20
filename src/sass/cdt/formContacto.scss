@@ -518,33 +518,34 @@ footer {
 
         .container-switch {
             display: flex;
-            width: 55%;
-            max-width: 55%;
-            margin: 91px auto auto auto;
+            width: 85%;
+            margin: 10px auto;
+            justify-content: center;
+            align-items: center;
 
             .texto-switch {
-
                 .texto-switch-descripcion {
                     font-size: 15px;
                     font-family: 'Open_Sans_Regular';
+                    text-align: left;
 
                     a {
                         color: #FF0000;
                     }
                 }
             }
-
+            /*
             .container-switch-movil {
                 padding-top: 10px;
                 margin: -3px auto auto 5px;
-            }
+            }*/
         }
 
         .content-buttons {
-            margin: 40px auto 40px auto;
+            margin: 40px auto;
             display: flex;
-            width: 70%;
-            max-width: 70%;
+            flex-direction: column;
+            width: 50%;
 
             .button-izquierdo {
                 background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -563,17 +564,33 @@ footer {
                 background: #ED2529 0% 0% no-repeat padding-box;
                 opacity: 1;
                 height: 50px;
-                width: 100%;
-                margin-left: 10px;
                 border-radius: 30px;
                 font-family: 'Open_Sans_Semi_Bold';
-                font-size: 16px;
-                color: white;
+                font-size: 15px;
+                color: #fff;
                 border: #CED4DA;
                 background-image: url('../../img/general/chulo-white.svg');
-                background-position: 97% 16px;
+                background-position: 97%;
+                cursor: pointer;
+                margin-bottom: 20px;
+            }
+
+
+            .button-banco {
+                background: #FFFFFF;
+                border: 1px solid #ED2529;
+                height: 50px;
+                border-radius: 30px;
+                font-family: 'Open_Sans_Semi_Bold';
+                color: #ED2529;
                 cursor: pointer;
             }
+
+            svg {
+                fill: #ED2529;
+            }
+
+
 
             .button-derecho:disabled,
             .button-derecho input[type=submit]:disabled {
@@ -1036,7 +1053,7 @@ input:focus, input.form-control:focus {
                 text-align: center;
 
                 .container-switch-movil {
-                    margin: auto auto auto auto;
+                    margin: auto;
                 }
             }
 
@@ -1053,7 +1070,7 @@ input:focus, input.form-control:focus {
 
                 .button-derecho {
                     width: 95%;
-                    margin: auto auto auto auto;
+                    margin: auto;
                 }
             }
 
@@ -1096,28 +1113,45 @@ input:focus, input.form-control:focus {
 
             .container-switch {
                 display: flex;
+                flex-direction: column;
+                width: 70%;
+                max-width: 70%;
 
                 .texto-switch {
                     .texto-switch-descripcion {
-                        font-size: 12px;
-                    }
-                }
+                        display: block;
+                        font-size: 14px;
+                        font-family: 'Open_Sans_Regular';
+                        text-align: center;
 
-                .container-switch-movil {
-                    padding-top: 10px;
+                        a {
+                            color: #FF0000;
+                        }
+                    }
                 }
             }
 
             .content-buttons {
+                margin: 30px auto;
+                width: 80%;
                 display: flex;
                 flex-direction: column;
 
                 .button-izquierdo {
-                    margin-bottom: 10px;
+                    margin: auto;
+                    width: 80%;
+                    margin-bottom: 20px;
                 }
 
                 .button-derecho {
-                    width: 100%;
+                    width: 80%;
+                    margin: auto;
+                    margin-bottom: 20px;
+                }
+
+                .button-banco {
+                    margin: auto;
+                    width: 80%;
                 }
             }
         }
