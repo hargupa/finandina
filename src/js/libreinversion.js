@@ -155,31 +155,31 @@ app.controller('LibreInversionController', ['$scope', '$window', '$filter', func
             $scope.data.ShowErrorValor = true;
             return false;
         }
+        if ($scope.data.dineronecesito != null) {
+            _dineronecesito = $scope.data.dineronecesito.replace(/\,/g, '');
+            _ingresos = $scope.data.ingresos.replace(/\,/g, '');
 
-        _dineronecesito = $scope.data.dineronecesito.replace(/\,/g, '');
-        _ingresos = $scope.data.ingresos.replace(/\,/g, '');
+            if (_dineronecesito < $scope.data.minMonto) {
+                $scope.data.errornecesitomin = true;
+                $scope.data.ShowErrorValor = true;
+                return false;
+            }
 
-        if (_dineronecesito < $scope.data.minMonto) {
-            $scope.data.errornecesitomin = true;
-            $scope.data.ShowErrorValor = true;
-            return false;
+            if (_dineronecesito > $scope.data.maxMonto) {
+                $scope.data.errornecesitomax = true;
+                $scope.data.ShowErrorValor = true;
+                return false;
+            }
+
+            $scope.prestamoTotal = _ingresos * 10;
+            if (_dineronecesito > $scope.prestamoTotal) {
+                $scope.data.errornecesitocomparado = true;
+                $scope.data.ShowErrorValor = true;
+                return false;
+            }
         }
-
-        $scope.prestamoTotal = _ingresos * 10;
-        //if (prestamoTotal > $scope.data.maxMonto) {
-        //    $scope.data.errornecesito = "El monto m\u00E1ximo que te podemos prestar es " + $filter('currency')($scope.data.maxMonto, '$', 0);
-        //    $scope.data.ShowErrorValor = true;
-        //    return false;
-        //}
-
-        if (_dineronecesito > $scope.prestamoTotal) {
-            $scope.data.errornecesitocomparado = true;
-            $scope.data.ShowErrorValor = true;
-            return false;
-        }
-
-        if (_dineronecesito > $scope.data.maxMonto) {
-            $scope.data.errornecesitomax = true;
+        else {
+            $scope.data.errornecesito = true;
             $scope.data.ShowErrorValor = true;
             return false;
         }
