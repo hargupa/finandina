@@ -79,9 +79,6 @@ body {
 .header-credito .logo img {
   max-width: 100%;
 }
-.header-credito .texto-encabezado-mobile {
-  display: none;
-}
 .header-credito .texto-encabezado {
   margin-left: 20px;
   width: 100%;
@@ -588,17 +585,6 @@ input:focus, input.form-control:focus {
     margin: 15px;
   }
   .header-credito .texto-encabezado-mobile {
-    display: block;
-    margin: auto 0px;
-    color: #FFFFFF;
-    width: 100%;
-  }
-  .header-credito .texto-encabezado-mobile p {
-    font-size: 16px;
-    font-family: "Open_Sans_Regular";
-    margin: 0px;
-  }
-  .header-credito .texto-encabezado {
     display: none;
   }
   .header-credito .img-bancodigital {

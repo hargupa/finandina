@@ -87,10 +87,6 @@ body {
         }
     }
 
-    .texto-encabezado-mobile {
-        display: none
-    }
-
     .texto-encabezado {
         margin-left: 20px;
         width: 100%;
@@ -693,19 +689,6 @@ input:focus, input.form-control:focus {
         }
 
         .texto-encabezado-mobile {
-            display: block;
-            margin: auto 0px;
-            color: #FFFFFF;
-            width: 100%;
-
-            p {
-                font-size: 16px;
-                font-family: 'Open_Sans_Regular';
-                margin: 0px;
-            }
-        }
-
-        .texto-encabezado {
             display: none;
         }
 
