@@ -88,8 +88,9 @@ body {
     }
 
     .texto-encabezado {
-        margin-left: 20px;
+        margin: auto 20px;
         width: 100%;
+
 
         p {
             font-size: 24px;
@@ -98,11 +99,9 @@ body {
         }
 
         span {
+            font-size: 24px;
+            color: #FFFFFF;
             font-family: 'Open_Sans_Semi_Bold';
-        }
-
-        .enc-2 {
-            display: none;
         }
     }
 
@@ -1075,40 +1074,31 @@ input:focus, input.form-control:focus {
 
     .header-credito {
         max-height: 100%;
+        min-height: 80px;
+        height: auto;
 
-        .logo {
-            margin: auto 10px auto 10px;
+        .texto-encabezado-mobile {
+            display: none;
         }
 
         .texto-encabezado {
-            .enc-1 {
-                display: none;
-            }
-
-            margin: auto auto auto auto;
-
-            p {
-                font-size: 16px;
-                font-family: 'Open_Sans_Regular';
-            }
-
             span {
-                font-size: 16px;
-                font-family: 'Open_Sans_Semi_Bold';
-            }
-
-            .enc-2 {
-                display: block;
+                font-size: 20px;
             }
         }
 
+        .logo {
+            margin: auto 10px;
+        }
+
+
         .img-bancodigital {
-            margin: auto 10px auto auto;
+            margin: auto 10px;
         }
     }
 
     .error {
-        margin: auto auto auto auto;
+        margin: auto;
     }
 
     footer {

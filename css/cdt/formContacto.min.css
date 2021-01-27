@@ -80,7 +80,7 @@ body {
   max-width: 100%;
 }
 .header-vehiculos .texto-encabezado {
-  margin-left: 20px;
+  margin: auto 20px;
   width: 100%;
 }
 .header-vehiculos .texto-encabezado p {
@@ -89,10 +89,9 @@ body {
   font-family: "Open_Sans_Regular";
 }
 .header-vehiculos .texto-encabezado span {
+  font-size: 24px;
+  color: #FFFFFF;
   font-family: "Open_Sans_Semi_Bold";
-}
-.header-vehiculos .texto-encabezado .enc-2 {
-  display: none;
 }
 .header-vehiculos .img-bancodigital {
   margin-right: 30px;
@@ -630,29 +629,20 @@ input:focus, input.form-control:focus {
 @media screen and (max-width: 810px) {
   .header-vehiculos {
     max-height: 100%;
+    min-height: 80px;
+    height: auto;
   }
-  .header-vehiculos .logo {
-    margin: auto 20px auto 20px;
-  }
-  .header-vehiculos .texto-encabezado {
-    margin: auto auto auto auto;
-  }
-  .header-vehiculos .texto-encabezado .enc-1 {
+  .header-vehiculos .texto-encabezado-mobile {
     display: none;
   }
-  .header-vehiculos .texto-encabezado p {
-    font-size: 16px;
-    font-family: "Open_Sans_Regular";
-  }
   .header-vehiculos .texto-encabezado span {
-    font-size: 16px;
-    font-family: "Open_Sans_Semi_Bold";
+    font-size: 20px;
   }
-  .header-vehiculos .texto-encabezado .enc-2 {
-    display: block;
+  .header-vehiculos .logo {
+    margin: auto 10px;
   }
   .header-vehiculos .img-bancodigital {
-    margin: auto 15px auto auto;
+    margin: auto 10px;
   }
 
   footer {
