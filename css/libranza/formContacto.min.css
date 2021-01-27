@@ -80,7 +80,7 @@ body {
   max-width: 100%;
 }
 .header-credito .texto-encabezado {
-  margin-left: 20px;
+  margin: auto 20px;
   width: 100%;
   color: #FFFFFF;
 }
@@ -89,6 +89,7 @@ body {
   font-family: "Open_Sans_Regular";
 }
 .header-credito .texto-encabezado span {
+  font-size: 24px;
   font-family: "Open_Sans_Semi_Bold";
 }
 .header-credito .img-bancodigital {
@@ -576,19 +577,23 @@ input:focus, input.form-control:focus {
   -webkit-box-shadow: none;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 700px) {
   .header-credito {
     max-height: 100%;
+    min-height: 80px;
     height: auto;
-  }
-  .header-credito .logo {
-    margin: 15px;
   }
   .header-credito .texto-encabezado-mobile {
     display: none;
   }
+  .header-credito .texto-encabezado span {
+    font-size: 20px;
+  }
+  .header-credito .logo {
+    margin: auto 10px;
+  }
   .header-credito .img-bancodigital {
-    margin: 15px;
+    margin: auto 10px;
   }
 }
 @media screen and (max-width: 800px) {

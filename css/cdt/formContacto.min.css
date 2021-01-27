@@ -82,15 +82,14 @@ body {
 .header-vehiculos .texto-encabezado {
   margin: auto 20px;
   width: 100%;
+  color: #FFFFFF;
 }
 .header-vehiculos .texto-encabezado p {
   font-size: 24px;
-  color: #FFFFFF;
   font-family: "Open_Sans_Regular";
 }
 .header-vehiculos .texto-encabezado span {
   font-size: 24px;
-  color: #FFFFFF;
   font-family: "Open_Sans_Semi_Bold";
 }
 .header-vehiculos .img-bancodigital {

@@ -113,12 +113,17 @@ body {
     }
 
     .texto-encabezado {
-        margin-left: 20px;
+        margin: auto 20px;
         width: 100%;
+        color: #FFFFFF;
 
         p {
             font-size: 24px;
-            color: #FFFFFF;
+            font-family: 'Open_Sans_Semi_Bold';
+        }
+
+        span {
+            font-size: 24px;
             font-family: 'Open_Sans_Semi_Bold';
         }
     }
@@ -903,29 +908,33 @@ input:focus, input.form-control:focus {
 
 
 
-@media screen and (max-width: 900px) {
-
+@media (max-width:800px) {
     .header-vehiculos {
         max-height: 100%;
+        min-height: 80px;
+        height: auto;
 
-        .logo {
-            margin: auto auto auto 15px;
+        .texto-encabezado-mobile {
+            display: none;
         }
 
         .texto-encabezado {
-            margin: auto auto auto 20px;
-
-            p {
-                font-size: 14px;
-                font-family: 'Open_Sans_Regular';
+            span {
+                font-size: 20px;
             }
         }
 
+        .logo {
+            margin: auto 10px;
+        }
+
         .img-bancodigital {
-            margin: auto 15px auto auto;
+            margin: auto 10px;
         }
     }
+}
 
+@media screen and (max-width: 900px) {
 
     footer {
         text-align: center;
